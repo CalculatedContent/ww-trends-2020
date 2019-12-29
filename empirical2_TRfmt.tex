@@ -1,0 +1,118 @@
+%\documentclass[12pt]{article}
+\documentclass[11pt]{article}
+
+\addtolength{\textwidth}{1.4in}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+%\addtolength{\topmargin}{-0.5in}
+\addtolength{\topmargin}{-1.0in}
+\addtolength{\textheight}{1.7in}
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{framed}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%%% \usepackage{verbatim}
+\usepackage{graphicx}
+%\usepackage{caption}
+%%\DeclareCaptionType{copyrightbox}
+%\usepackage{subcaption}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{xcolor}
+%%\usepackage{enumitem}
+\usepackage{paralist}
+
+%\usepackage{subfig}
+\usepackage{subfigure}
+
+\usepackage{longtable} 
+\usepackage{makecell}
+
+\usepackage[multiple]{footmisc}
+\usepackage[section]{placeins}
+
+\usepackage{hyperref}
+\hypersetup{
+     colorlinks   = true,
+     linkcolor    = blue,
+     citecolor    = green
+}
+
+%-----------------------------------------------------------------------
+
+\newcommand{\fix}[1]{\textcolor{red}{#1}}
+\newcommand{\comment}[1]{\textcolor{blue}{#1}}
+\newcommand{\awk}[1]{\textcolor{darkgreen}{#1}}
+
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Probab}[1]{\mbox{}{\bf{Pr}}\left[#1\right]}
+\newcommand{\Expect}[1]{\mbox{}{\bf{E}}\left[#1\right]}
+\newcommand{\ExpectBracket}[1]{\mbox{}\langle#1\rangle}
+
+% Here are two macros for comments.
+\newcommand {\nred}[1]{{\color{red}\sf{[#1]}}}
+\newcommand {\ngreen}[1]{{\color{darkgreen}\sf{[#1]}}}
+\newcommand {\michael}[1]{{\color{red}\sf{[michael: #1]}}}
+\newcommand {\charles}[1]{{\color{blue}\sf{[charles: #1]}}}
+
+\usepackage[normalem]{ulem}
+
+%-----------------------------------------------------------------------
+
+\begin{document}
+
+\title{%
+%XXX TITLE OF THIS EMPIRICAL PAPER
+Predicting trends in generalization for state-of-the-art neural networks without access to training or testing data
+}
+
+\author{%
+Charles H. Martin\thanks{Calculation Consulting, 8 Locksley Ave, 6B, San Francisco, CA 94122, \texttt{charles@CalculationConsulting.com}.} 
+\and 
+SERENA\thanks{XXX}
+\and
+Michael W. Mahoney\thanks{ICSI and Department of Statistics, University of California at Berkeley, Berkeley, CA 94720, \texttt{mmahoney@stat.berkeley.edu}.}
+}
+
+\date{}
+\maketitle
+
+%{\bf
+%%   \vspace{5mm}
+%   \emph{
+%      \begin{center}
+%         Note:  This is still a rough draft - from \today. \\
+%         Please do NOT distribute.
+%      \end{center}
+%   }
+%%   \vspace{5mm}
+%}
+
+\begin{abstract}
+XXX.  ABSTRACT.
+\end{abstract}
+
+\input{introduction}
+\input{background}
+\input{conclusion}
+
+\noindent
+\paragraph{Acknowledgements.}
+MWM would like to acknowledge ARO, DARPA, IARPA, NSF, and ONR for providing partial support of this work.
+
+\bibliographystyle{unsrt}
+%\bibliographystyle{plain}
+{\small
+%\bibliography{gen_gap}
+%\bibliography{dnns}
+\bibliography{dnns,gen_gap}
+}
+
+\end{document}
