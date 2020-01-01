@@ -1,4 +1,4 @@
-\section{Methods}
+section{Methods}
 \label{sxn:methods}
 
 We assume we are given several pretrained Deep Neural Networks (DNNs), as part of a similar architecture.
@@ -62,17 +62,19 @@ which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matri
 SOME MORE DISCUSSION HERE
 
 \paragraph{Spectral Analysis of Convolutional 2D Layers}
-While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$.  
-Typically, the $w=h=k$, giving $(k\times k)$ Feature Maps of dimension $(in\_ch\times out\_ch)$ each. 
-Usually $in\_ch\ll out\_ch$.
+While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ kernel, and $in\_ch,out\_ch$ input and output channels, respectively.  Typically, the $w=h=k$, giving $(k\times k)$ Feature Maps $\mathbf{W}_{i,L}$
+of dimension $(in\_ch\times out\_ch)$ each.  Usually $in\_ch\ll out\_ch$.
 There are at least 3 different approaches to computing the Singular Values Decomposition(s) (SVD) of an Conv2D layer
 \begin{enumerate}
-\item run SVD on each of the feature maps, yielding $(k\times k)$ sets of $M$ singular values. 
+\item run SVD on each of the feature maps $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values. 
 \item stack the feature maps into a single rectangular matrix of, say, dimension $((k\times k\times out\_ch)\times in\_ch)$, yielding $in\_ch$ singular values
 \item Compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients\cite{Long2019}.  This leads to $(k\times in\_ch\times out\_ch)$ non-zero singular values.\footnote{assuming say no padding and a stride of 1}
 \end{enumerate}
 
-Each method has tradeoffs. For this study, because we are computing tens of thousands of calculations,  we select $1.$, which is numerically the fastest. 
+Each method has tradeoffs.  While, in principle, 3. is mathematically sound, the actual data available
+in a pretrained model is usually the ourput of the Conv2D transformation, followed by Pooling and/or Batch Nprmalization,
+and this complicates the interpretation.  For this study, because we are computing tens of thousands of calculations,  
+we select $1.$, which is numerically the fastest and easiest to reproduce.\footnote{We will provide a Google Colab notebook where all results can be reproduced, with the option to redo the calculations with option 3 for the SVD of the Conv2D.}
 ----
 
 
