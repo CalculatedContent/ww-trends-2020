@@ -17,12 +17,31 @@ E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots
 \label{eqn:dnn_energy}
 \end{equation}
 
-We assume the model has been (or will be) trained on (unspecified) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, 
-using Backprop, by minimizing the loss $\mathcal{L}$ 
-For simplicity, we do not indicate the structural details of the layers (e.g., Dense or not, Convolutions or not, Residual/Skip Connections, etc.). 
+The model has been (or will be) trained on (unspecified) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, 
+using Backprop, by minimizing the loss $\mathcal{L}()$.  (comment on regularization, dropout, etc).  Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers.  (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below.)
 
-Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ 
-extracted from 2D Convolutional layers.  
+We assume the layer weight matrices are statistically independent, allowing us to estimate the Complexity, or test accuracy, with a standard Product Norm
+
+\begin{equation}
+\mathcal{C}\sim\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert ,
+\end{equation}
+where $\Vert\mathbf{W}\Vert$ may be the Frobenius norm, the Spectral Norm, or even p-Norm (Shatten Norm).
+
+DEFINE EACH HERE
+
+One can view $\mathcal{C}$ as something akin to a data dependent VC complexity.
+
+CLARIFY HOW CONV2D lsyers are treated
+
+
+
+\begin{eqnarray*}
+\log\mathcal{C} &\sim& \log\bigg[\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert\bigg]  \\
+                &\sim& \bigg[\log\Vert\mathbf{W}_{1}\Vert+\log\Vert\mathbf{W}_{2}\Vert\cdots\log\Vert\mathbf{W}_{L}\Vert\bigg]  ,
+\end{eqnarray*}
+and we define the average log norm of the weight matrices as
+
+
 
 
 
