@@ -18,19 +18,31 @@ E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots
 \end{equation}
 
 The model has been (or will be) trained on (unspecified) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, 
-using Backprop, by minimizing the loss $\mathcal{L}()$.  (comment on regularization, dropout, etc).  Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers.  (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below.)
+using Backprop, by minimizing some (also unspecified) loss function $\mathcal{L}()$.  Moreover, we expect that most well trained,. production quality models will employ 1 or more forms of on regularization, such as Batch Normalization, Dropout, etc, and will also contain additional structure such as Skip Connections etc. Here, we ignore these details, and focus only on the weight matrices.  Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers.  (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below.)
 
-We assume the layer weight matrices are statistically independent, allowing us to estimate the Complexity, or test accuracy, with a standard Product Norm
+We assume the layer weight matrices are statistically independent, allowing us to estimate the Complexity, or test accuracy, with a standard Product Norm, which resembles a data dependent VC complexity
 
 \begin{equation}
 \mathcal{C}\sim\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert ,
 \end{equation}
-where $\Vert\mathbf{W}\Vert$ may be the Frobenius norm, the Spectral Norm, or even p-Norm (Shatten Norm).
+where $mathbf{W}$ is an $(N\times M)$ weight matrix, with $N\ge M$, and 
+ $\Vert\mathbf{W}\Vert$ is some matrix Norm.
 
-DEFINE EACH HERE
+\begin{itemize}
+ \item Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{W}\Vert^{2}_{2}=\sum_{i,j}W^{2}_{i,j}$,
+ \item Spectral Norm:  $\Vert\mathbf{W}\Vert_{\infty}=\lambda_{max}$, or even the
+ \item $\alpha$-Norm (or Shatten Norm) $\Vert\mathbf{W}\Vert^{alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
+\end{itemize}
 
-One can view $\mathcal{C}$ as something akin to a data dependent VC complexity.
+where $\lamba_{i}$ is the i-th eigenvalue of the correlation matrix $\mathbf{X}$
 
+\begin{equation}
+\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W},
+\end{equation}
+
+$lambda_{max}$ is the maximum eigenvalue, and $\alpha$ is the power law exponent that
+
+MAKE THIS MORE CLEAR
 CLARIFY HOW CONV2D lsyers are treated
 
 
