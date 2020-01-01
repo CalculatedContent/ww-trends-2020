@@ -70,7 +70,7 @@ There are at least 3 different approaches to computing the Singular Values Decom
 \begin{enumerate}
 \item run SVD on each of the feature maps $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values. 
 \item stack the feature maps into a single rectangular matrix of, say, dimension $((k\times k\times out\_ch)\times in\_ch)$, yielding $in\_ch$ singular values
-\item Compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients\cite{Long2019}.  This leads to $(k\times in\_ch\times out\_ch)$ non-zero singular values.\footnote{assuming say no padding and a stride of 1}
+\item Compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients\cite{Long2019}.  This leads to $\sim(k\times in\_ch\times out\_ch)$ non-zero singular values.
 \end{enumerate}
 
 Each method has tradeoffs.  While, in principle, 3. is mathematically sound, the actual data available
