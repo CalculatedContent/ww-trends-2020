@@ -28,7 +28,13 @@ Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, an
 \mathcal{C}\sim\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert ,
 \end{equation}
 where $\mathbf{W}$ is an $(N\times M)$ weight matrix, with $N\ge M$, and 
- $\Vert\mathbf{W}\Vert$ is some matrix Norm.  Here, we will consider the following Norms:
+ $\Vert\mathbf{W}\Vert$ is a matrix norm.   We will actually compute the log Complexity, which takes the form 
+of an Average Log Norm:
+\begin{eqnarray*}
+\log\mathcal{C} &\sim& \log\Vert\mathbf{W}_{1}\Vert+\log\Vert\mathbf{W}_{2}\Vert\cdots\log\Vert\mathbf{W}_{L}\Vert
+\end{eqnarray*}
+
+Here, we will consider the following Norms:
 
 \begin{itemize}
  \item Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{W}\Vert^{2}_{2}=\sum_{i,j}w^{2}_{i,j}$
@@ -36,7 +42,7 @@ where $\mathbf{W}$ is an $(N\times M)$ weight matrix, with $N\ge M$, and
  \item $\alpha-$Norm (or Shatten Norm) $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
 \end{itemize}
 
-where $\lambda_{i}$ is the $i-th$ eigenvalue of the correlation matrix $\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W}$, and $\lambda_{max}$ is the maximum eigenvalue.
+where $\lambda_{i}$ is the $i-th$ eigenvalue of the correlation matrix $\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W}$, and $\lambda_{max}$ is the maximum eigenvalue.   (Note that eigenvalues are the square of the singular values $\sigma_{i}$ of $\mathbf{W}$ :  $\lambda_{i}=\sigma^{2}_{i}$.)
 
 The exponent $\alpha$ is the power law exponent that arise in our \emph{Theory of Heavy Tailed Self Regularization}, and is the determined by fitting the Empirical Spectral Density (ESD) of $\mathbf{X}$--i.e. a histogram of the eigenvalues--$\rho(\lambda)$ to a truncated power law
 
@@ -44,24 +50,32 @@ The exponent $\alpha$ is the power law exponent that arise in our \emph{Theory o
 \rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}
 \end{equation}
 
-We will also consider an approximate capacity metric, $\hat{\alpha}$, shown previously to correlate well the reported test accuracy of pretrained DNNs
+We will also consider an approximate capacity metric, $\hat{\alpha}$, shown previously to correlate well with the trends in reported test accuracies of pretrained DNNs \cite{MM}
 
 \begin{itemize}
  \item $\hat{\alpha}=\alpha\log\lambda_{max}\approx\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$
 \end{itemize}
 
-which approxmiates the log $\alpha-$Norm for both Very Heavy Tailed weight matrices as well as finite size, Moderately Heavy Tailed $\mathbf{W}$.
----
+which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matrices ($alpha < 2$  and reasoably well for finite size, Moderately Heavy Tailed ones $\alpha\in[2,5]$.  
 
-CLARIFY HOW CONV2D lsyers are treated
 
+SOME MORE DISCUSSION HERE
+
+\paragraph{Spectral Analysis of Convolutional 2D Layers}
+While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$.  
+Typically, the $w=h=k$, giving $(k\times k)$ Feature Maps of dimension $(in\_ch\times out\_ch)$ each. 
+Usually $in\_ch\ll out\_ch$.
+There are at least 3 different approaches to computing the Singular Values Decomposition(s) (SVD) of an Conv2D layer
+\begin{enumerate}
+\item run SVD on each of the feature maps, yielding $(k\times k)$ sets of $M$ singular values. 
+\item stack the feature maps into a single rectangular matrix of, say, dimension $((k\times k\times out\_ch)\times in\_ch)$, yielding $in\_ch$ singular values
+\item Compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients\cite{Long2019}.  This leads to $(k\times in\_ch\times out\_ch)$ non-zero singular values.\footnote{assuming say no padding and a stride of 1}
+\end{enumerate}
+
+Each method has tradeoffs. For this study, because we are computing tens of thousands of calculations,  we select $1.$, which is numerically the fastest. 
 ----
 
-\begin{eqnarray*}
-\log\mathcal{C} &\sim& \log\bigg[\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert\bigg]  \\
-                &\sim& \bigg[\log\Vert\mathbf{W}_{1}\Vert+\log\Vert\mathbf{W}_{2}\Vert\cdots\log\Vert\mathbf{W}_{L}\Vert\bigg]  ,
-\end{eqnarray*}
-and we define the average log norm of the weight matrices as
+
 
 
 
