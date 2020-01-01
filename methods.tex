@@ -11,41 +11,45 @@ Note that unlike traditional ML approaches, however, we do not seek a bound on t
 nor are we trying to evaluating a single model with differing hyperparmeters.  We wish to examine different models a 
 common architecture series. And, also, compare different architectures themselves.  
 
-Let us write the Energy Landscape (or optimization function) for a typical DNN with $L$ layers, with activation functions $h_{l}(\cdot)$, and with $N\times M$)  weight matrices $\mathbf{W}_{l}$, and the biases $\mathbf{b}_{l}$, as follows:
+Let us write the Energy Landscape (or optimization function) for a typical DNN with $L$ layers as
 \begin{equation}
 E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
 \label{eqn:dnn_energy}
 \end{equation}
 
-The model has been (or will be) trained on (unspecified) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, 
-using Backprop, by minimizing some (also unspecified) loss function $\mathcal{L}()$.  Moreover, we expect that most well trained,. production quality models will employ 1 or more forms of on regularization, such as Batch Normalization, Dropout, etc, and will also contain additional structure such as Skip Connections etc. Here, we ignore these details, and focus only on the weight matrices.  Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers.  (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below.)
+with activation functions $h_{l}(\cdot)$,  weight matrices $\mathbf{W}_{l}$, and the biases $\mathbf{b}_{l}$.
 
-We assume the layer weight matrices are statistically independent, allowing us to estimate the Complexity, or test accuracy, with a standard Product Norm, which resembles a data dependent VC complexity
+The model has been (or will be) trained on (unspecified) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, 
+using Backprop, by minimizing some (also unspecified) loss function $\mathcal{L}()$.  Moreover, we expect that most well trained,. production quality models will employ 1 or more forms of on regularization, such as Batch Normalization, Dropout, etc, and will also contain additional structure such as Skip Connections etc. Here, we ignore these details, and focus only on the weight matrices. 
+
+Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers.  (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below.) We assume the layer weight matrices are statistically independent, allowing us to estimate the Complexity, or test accuracy, with a standard Product Norm, which resembles a data dependent VC complexity
 
 \begin{equation}
 \mathcal{C}\sim\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert ,
 \end{equation}
-where $mathbf{W}$ is an $(N\times M)$ weight matrix, with $N\ge M$, and 
- $\Vert\mathbf{W}\Vert$ is some matrix Norm.
+where $\mathbf{W}$ is an $(N\times M)$ weight matrix, with $N\ge M$, and 
+ $\Vert\mathbf{W}\Vert$ is some matrix Norm, such as the:
 
 \begin{itemize}
- \item Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{W}\Vert^{2}_{2}=\sum_{i,j}W^{2}_{i,j}$,
+ \item Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{W}\Vert^{2}_{2}=\sum_{i,j}w^{2}_{i,j}$,
  \item Spectral Norm:  $\Vert\mathbf{W}\Vert_{\infty}=\lambda_{max}$, or even the
- \item $\alpha$-Norm (or Shatten Norm) $\Vert\mathbf{W}\Vert^{alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
+ \item $\alpha$-Norm (or Shatten Norm) $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
 \end{itemize}
 
-where $\lamba_{i}$ is the i-th eigenvalue of the correlation matrix $\mathbf{X}$
+where $\lambda_{i}$ is the $i-th$ eigenvalue of the correlation matrix $\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W}$, and $\lambda_{max}$ is the maximum eigenvalue.
+
+The exponent $\alpha$ is the power law exponent that arise in our \emph{Theory of Heavy Tailed Self Regularization}, and is the determined by fitting the Empirical Spectral Density (ESD) of $\mathbf{X}$--i.e. a histogram of the eigenvalues--$\rho(\lambda)$ to a truncated power law
+
 
 \begin{equation}
-\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W},
+\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}
 \end{equation}
 
-$lambda_{max}$ is the maximum eigenvalue, and $\alpha$ is the power law exponent that
+---
 
-MAKE THIS MORE CLEAR
 CLARIFY HOW CONV2D lsyers are treated
 
-
+----
 
 \begin{eqnarray*}
 \log\mathcal{C} &\sim& \log\bigg[\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert\cdots\Vert\mathbf{W}_{L}\Vert\bigg]  \\
