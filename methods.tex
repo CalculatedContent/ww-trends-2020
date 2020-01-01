@@ -1,0 +1,29 @@
+\section{Methods}
+\label{sxn:methods}
+
+We assume we are given several pretrained Deep Neural Networks (DNNs), as part of a similar architecture.
+We would like to estimate the trends in the reported test / generalization accuracy accross a series of similar archtectures.  
+For example, below we compare the 8 pretrained models in the VGG series: (VGG11, VGG11\_BN$\cdots$ VGG19), with
+and without Batch Normalization, trained on ImageNet, and widely available in the pyTorch distribution.
+
+To do this, we will compute a variety of \emph{Complexity Metrics} based on the Product Norm of the layer weight matrics.
+Note that unlike traditional ML approaches, however, we do not seek a bound on the complexity (i.e. test error), 
+nor are we trying to evaluating a single model with differing hyperparmeters.  We wish to examine different models a 
+common architecture series. And, also, compare different architectures themselves.  
+
+Let us write the Energy Landscape (or optimization function) for a typical DNN with $L$ layers, with activation functions $h_{l}(\cdot)$, and with $N\times M$)  weight matrices $\mathbf{W}_{l}$, and the biases $\mathbf{b}_{l}$, as follows:
+\begin{equation}
+E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
+\label{eqn:dnn_energy}
+\end{equation}
+
+We assume the model has been (or will be) trained on (unspecified) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, 
+using Backprop, by minimizing the loss $\mathcal{L}$ 
+For simplicity, we do not indicate the structural details of the layers (e.g., Dense or not, Convolutions or not, Residual/Skip Connections, etc.). 
+
+Each layer contains by one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or the 2D feature maps $\mathbf{W}_{i,L}$ 
+extracted from 2D Convolutional layers.  
+
+
+
+
