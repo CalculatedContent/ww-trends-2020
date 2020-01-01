@@ -61,14 +61,14 @@ which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matri
 
 SOME MORE DISCUSSION HERE
 
-\charles{not actually feature Maps, need to find the correct term}
+\charles{not actually feature Maps, need to find the correct term: Tensor Slice}
 
 \paragraph{Spectral Analysis of Convolutional 2D Layers}
-While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ kernel, and $in\_ch,out\_ch$ input and output channels, respectively.  Typically, the $w=h=k$, giving $(k\times k)$ Feature Maps $\mathbf{W}_{i,L}$
+While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ kernel, and $in\_ch,out\_ch$ input and output channels, respectively.  Typically, the $w=h=k$, giving $(k\times k)$ Tensor Slices $\mathbf{W}_{i,L}$
 of dimension $(in\_ch\times out\_ch)$ each.  Usually $in\_ch\ll out\_ch$.
 There are at least 3 different approaches to computing the Singular Values Decomposition(s) (SVD) of an Conv2D layer
 \begin{enumerate}
-\item run SVD on each of the feature maps $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values. 
+\item run SVD on each of the Tensor Slices $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values. 
 \item stack the feature maps into a single rectangular matrix of, say, dimension $((k\times k\times out\_ch)\times in\_ch)$, yielding $in\_ch$ singular values
 \item Compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients\cite{Long2019}.  This leads to $\sim(k\times in\_ch\times out\_ch)$ non-zero singular values.
 \end{enumerate}
