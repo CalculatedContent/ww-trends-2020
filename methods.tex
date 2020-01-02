@@ -64,7 +64,7 @@ SOME MORE DISCUSSION HERE
 \charles{not actually feature Maps, need to find the correct term: Tensor Slice}
 
 \paragraph{Spectral Analysis of Convolutional 2D Layers}
-While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ kernel, and $in\_ch,out\_ch$ input and output channels, respectively.  Typically, the $w=h=k$, giving $(k\times k)$ Tensor Slices $\mathbf{W}_{i,L}$
+While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ filter, and $in\_ch,out\_ch$ input and output channels, respectively.  Typically, the $w=h=k$,  giving $(k\times k)$ Tensor Slices $\mathbf{W}_{i,L}$
 of dimension $(in\_ch\times out\_ch)$ each.  Usually $in\_ch\ll out\_ch$.
 There are at least 3 different approaches to computing the Singular Values Decomposition(s) (SVD) of an Conv2D layer
 \begin{enumerate}
