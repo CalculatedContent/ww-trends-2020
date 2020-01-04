@@ -56,7 +56,7 @@ We will also consider an approximate capacity metric, $\hat{\alpha}$, shown prev
  \item $\hat{\alpha}=\alpha\log\lambda_{max}\approx\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$
 \end{itemize}
 
-which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matrices ($alpha < 2$  and reasoably well for finite size, Moderately Heavy Tailed ones $\alpha\in[2,5]$.  
+which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matrices ($\alpha < 2)$  and reasoably well for finite size, Moderately Heavy Tailed ones $\alpha\in[2,5]$.  
 
 
 SOME MORE DISCUSSION HERE
@@ -98,7 +98,7 @@ nor is it heavy tailed.  So we can rule out $\mathbf{W}$ being heavy tailed.
 \end{figure}
 
 
-These plots tell us that the Tensor Slice of the Conv2D contains significant correlations learned from the data.  
+These plots tell us that the pre-activation maps of the Conv2D contains significant correlations learned from the data.  
 By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
 the smaller the exponent $\alpha$, the more correlation in the weight matrix. 
 
