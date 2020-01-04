@@ -73,10 +73,40 @@ There are at least 3 different approaches to computing the Singular Values Decom
 \item Compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients\cite{Long2019}.  This leads to $\sim(k\times in\_ch\times out\_ch)$ non-zero singular values.
 \end{enumerate}
 
-Each method has tradeoffs.  While, in principle, 3. is mathematically sound, the actual data available
-in a pretrained model is usually the ourput of the Conv2D transformation, followed by Pooling and/or Batch Nprmalization,
-and this complicates the interpretation.  For this study, because we are computing tens of thousands of calculations,  
-we select $1.$, which is numerically the fastest and easiest to reproduce.\footnote{We will provide a Google Colab notebook where all results can be reproduced, with the option to redo the calculations with option 3 for the SVD of the Conv2D.}
+Each method has tradeoffs.  While, in principle, 3. is mathematically sound, it is computationally expensive. 
+For this study, because we are computing tens of thousands of calculations, we select $1.$, which is 
+numerically the fastest and easiest to reproduce.\footnote{We will provide a Google Colab notebook where all results can be reproduced, with the option to redo the calculations with option 3 for the SVD of the Conv2D.}
+
+To verify that our approach is meaningful, we need to see the ESD is neither due to a random matrix, nor due to unsually large matrix elements. We examine typical Conv2D layer for the pretained AlexNet model (distributed with pyTorch).  Figure \ref{fig:alexnet1} displays the ESD for the first slice (or matrix $\mathbf{W}$) of the third Conv2D layer, extracted from a 4-index Tensor of shape $(384, 192, 3, 3)$.  The red line displays the best fit to a random matrix, using the Marchenko pastur theory\cite{MM}.  We can see the random matrix model does not describe the ESD very well. For comparison, Figure \ref{fig:alexnet2} shows the ESD of the same matrix, randomly shuffled; here looks similar to the red line plot of the orginal ESD.  In fact, the empircal ESD is better modeled with a truncated power law distribtion.
+
+Although the ESD is \emph{Heavy Tailed}, this does not imply that the orginal matrix $\mathbf{W}$ is itself heavy tailed--
+only the correlation matrix $\mathbf{X}$ is. (i.e. maximum eigenvalue) than the original. If $\mathbf{W}$ was, 
+then it would contain 1 or more unusually large matrix elements, and they would dominate the ESD.  
+Of course the randomized $\mathbf{W}$ would also be heavy tailed, but its ESD neither resembles the original
+nor is it heavy tailed.  So we can rule out $\mathbf{W}$ being heavy tailed.
+
+\begin{figure}[H]
+   \centering
+   \subfigure[ESD of AlexNet Conv2D Layer 3 Slice 1]{
+     \includegraphics[scale=0.5]{img/alexnet1.png} 
+     \label{fig:alexnet1}
+   }
+   \subfigure[ESD of the same matrix, randomly shuffled  ]{
+      \includegraphics[scale=0.5]{img/alexnet2.png}
+      \label{fig:alexnet2}
+   }
+   \caption{%
+    Caption
+   }
+   \label{fig:alexnet}
+\end{figure}
+
+
+These plots tell us that the Tensor Slice of the Conv2D contains significant correlations learned from the data.  
+By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
+the smaller the exponent $\alpha$, the more correlation in the weight matric.
+
+
 ----
 
 
