@@ -33,18 +33,29 @@
 ADD PLOTS FOR
 
 pNorm and ResNet
+pNorm and ResNet (ImageNet1K all models)
 pNorm and DenseNet
 
 
 \paragraph{Correlations and Information Flow in CV Models}
 
-COMPARE:  VGG, ResNet, and DenseNet
+\begin{figure}[t]
+    \centering
 
-REPLACE BELOW with 3 plots
-
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.30]{img/vgg-alpha-layers.png}
-  \label{fig:vgg-alpha-layers}
-    \caption{Power law exponent $\alpha$ vs layer for VGG11 and VGG19. }
+    \subfigure[ VGG ]{
+        \includegraphics[width=4.1cm]{img/vgg-alpha-layers.png}
+        \label{fig:vgg-alpha-layers}
+    }
+    \qquad
+    \subfigure[ ResNet ]{
+        \includegraphics[width=3.8cm]{img/resnet-alpha-layers.png}
+        \label{fig:resnet-alpha-layer}
+    }
+    \qquad
+    \subfigure[ DenseNet ]{
+        \includegraphics[width=4.1cm]{img/densenet-alpha-layers.png}
+        \label{fig:densenet-alpha-layer}
+    }
+    \caption{Power law exponent $\alpha$ vs layer for VGG, ResNet, and DenseNet models}
+    \label{fig:vgg-alpha-layers}
 \end{figure}
