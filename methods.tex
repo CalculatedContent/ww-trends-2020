@@ -6,6 +6,7 @@ We would like to estimate the trends in the reported test / generalization accur
 For example, below we compare the 8 pretrained models in the VGG series: (VGG11, VGG11\_BN$\cdots$ VGG19), with
 and without Batch Normalization, trained on ImageNet, and widely available in the pyTorch distribution.
 
+\paragraph{Empirical Complexity Metrics}
 To do this, we will compute a variety of \emph{Complexity Metrics} based on the Product Norm of the layer weight matrics.
 Note that unlike traditional ML approaches, however, we do not seek a bound on the complexity (i.e. test error), 
 nor are we trying to evaluating a single model with differing hyperparmeters.  We wish to examine different models a 
