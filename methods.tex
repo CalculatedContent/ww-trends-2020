@@ -85,17 +85,15 @@ nor is it heavy tailed.  So we can rule out $\mathbf{W}$ being heavy tailed.
 
 \begin{figure}[H]
    \centering
-   \subfigure[ESD of AlexNet Conv2D Layer 3 Slice 1]{
+   \subfigure[Actual ESD]{
      \includegraphics[scale=0.5]{img/alexnet1.png} 
      \label{fig:alexnet1}
    }
-   \subfigure[ESD of the same matrix, randomly shuffled  ]{
+   \subfigure[ESD of randomly shuffled matrix]{
       \includegraphics[scale=0.5]{img/alexnet2.png}
       \label{fig:alexnet2}
    }
-   \caption{%
-    Caption
-   }
+   \caption{ESD of AlexNet Conv2D pre-Activation map for Layer 3 Slice 1, actual and randomized}
    \label{fig:alexnet}
 \end{figure}
 
