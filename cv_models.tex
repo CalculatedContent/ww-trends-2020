@@ -1,7 +1,7 @@
 \section{Comparison of 3 Computer Vision Models}
 \label{sxn:cv}
 
-\paragraph{Empirical Metrics vs Test Accuracies for VGG}
+\paragraph{Empirical Metrics vs Test Accuracies for CV models}
 
 \begin{figure}[t]
     \centering
@@ -30,6 +30,13 @@
     \label{fig:vgg-metrics}
 \end{figure}
 
+
+VGG works remarkably well
+
+ResNet is also correlated, but the RMSE is much larger, and 2/5 of the models are almost outliers
+But note that the PyTorch distribution only has a few models.
+The ResNet results look better when considering all ResNet models, trained on ImageNet1K.
+
 ADD PLOTS FOR
 
 pNorm and ResNet
@@ -38,6 +45,8 @@ pNorm and DenseNet
 
 
 \paragraph{Correlations and Information Flow in CV Models}
+
+Compare VGG, ResNet, and DenseNet in the context of how many connections that have
 
 \begin{figure}[t]
     \centering
@@ -59,3 +68,5 @@ pNorm and DenseNet
     \caption{Power law exponent $\alpha$ vs layer for VGG, ResNet, and DenseNet models}
     \label{fig:vgg-alpha-layers}
 \end{figure}
+
+
