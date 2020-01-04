@@ -1,5 +1,37 @@
 \section{Comparison of 3 Computer Vision Models}
 \label{sxn:cv}
 
+\begin{figure}[t]
+    \centering
+    \subfigure[ Frobenius Norm ]{
+        \includegraphics[width=5cm]{img/vgg-fnorm.png}
+        \label{fig:vgg-fnorm}
+    }
+    \qquad
+    \subfigure[ Spectral Norm ]{
+        \includegraphics[width=4.9cm]{img/vgg-snorm.png}
+        \label{fig:vgg-snorm}
+    }
+    \qquad
+    \subfigure[ Weighted Alpha ]{
+        \includegraphics[width=4.9cm]{img/vgg-walpha.png}
+        \label{fig:vgg-walpha}
+    }
+    \qquad
+    \subfigure[ Alpha-Norm ]{
+        \includegraphics[width=4.9cm]{img/vgg-pnorm.png}
+        \label{fig:vgg-pnorm}
+    }
+    \caption{Comparison of norm metrics vs reported test accuracy for pretrained VGG models, trained on ImageNet, available in pyTorch.  Plots will be updated and replace }
+    
+
+    \label{fig:vgg-metrics}
+\end{figure}
 
 
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.30]{img/vgg-alpha-layers.png}
+  \label{fig:vgg-alpha-layers}
+    \caption{Power law exponent $\alpha$ vs layer for VGG11 and VGG19. }
+\end{figure}

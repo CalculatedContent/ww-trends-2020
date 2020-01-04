@@ -1,4 +1,4 @@
-section{Methods}
+\section{Methods}
 \label{sxn:methods}
 
 We assume we are given several pretrained Deep Neural Networks (DNNs), as part of a similar architecture.
@@ -39,7 +39,7 @@ Here, we will consider the following Norms:
 \begin{itemize}
  \item Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{W}\Vert^{2}_{2}=\sum_{i,j}w^{2}_{i,j}$
  \item Spectral Norm:  $\Vert\mathbf{W}\Vert_{\infty}=\lambda_{max}$
- \item $\alpha-$Norm (or Shatten Norm) $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
+ \item $\alpha-$Norm (or Shatten Norm) $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
 \end{itemize}
 
 where $\lambda_{i}$ is the $i-th$ eigenvalue of the correlation matrix $\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W}$, and $\lambda_{max}$ is the maximum eigenvalue.   (Note that eigenvalues are the square of the singular values $\sigma_{i}$ of $\mathbf{W}$ :  $\lambda_{i}=\sigma^{2}_{i}$.)
@@ -53,7 +53,7 @@ The exponent $\alpha$ is the power law exponent that arises in our \emph{Theory 
 We will also consider an approximate capacity metric, $\hat{\alpha}$, shown previously to correlate well with the trends in reported test accuracies of pretrained DNNs \cite{MM}
 
 \begin{itemize}
- \item $\hat{\alpha}=\alpha\log\lambda_{max}\approx\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$
+ \item $\hat{\alpha}=\alpha\log\lambda_{max}\approx\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$
 \end{itemize}
 
 which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matrices ($alpha < 2$  and reasoably well for finite size, Moderately Heavy Tailed ones $\alpha\in[2,5]$.  
@@ -77,10 +77,10 @@ Each method has tradeoffs.  While, in principle, 3. is mathematically sound, it 
 For this study, because we are computing tens of thousands of calculations, we select $1.$, which is 
 numerically the fastest and easiest to reproduce.\footnote{We will provide a Google Colab notebook where all results can be reproduced, with the option to redo the calculations with option 3 for the SVD of the Conv2D.}
 
-To verify that our approach is meaningful, we need to see the ESD is neither due to a random matrix, nor due to unsually large matrix elements. We examine typical Conv2D layer for the pretained AlexNet model (distributed with pyTorch).  Figure \ref{fig:alexnet1} displays the ESD for the first slice (or matrix $\mathbf{W}$) of the third Conv2D layer, extracted from a 4-index Tensor of shape $(384, 192, 3, 3)$.  The red line displays the best fit to a random matrix, using the Marchenko pastur theory\cite{MM}.  We can see the random matrix model does not describe the ESD very well. For comparison, Figure \ref{fig:alexnet2} shows the ESD of the same matrix, randomly shuffled; here looks similar to the red line plot of the orginal ESD.  In fact, the empircal ESD is better modeled with a truncated power law distribtion.
+To verify that our approach is meaningful, we need to see the ESD is neither due to a random matrix, nor due to unsually large matrix elements, but, in fact, captures correlations learned from the data.  We examine typical Conv2D layer for the pretained AlexNet model (distributed with pyTorch).  Figure \ref{fig:alexnet1} displays the ESD for the first slice (or matrix $\mathbf{W}$) of the third Conv2D layer, extracted from a 4-index Tensor of shape $(384, 192, 3, 3)$.  The red line displays the best fit to a random matrix, using the Marchenko pastur theory\cite{MM}.  We can see the random matrix model does not describe the ESD very well. For comparison, Figure \ref{fig:alexnet2} shows the ESD of the same matrix, randomly shuffled; here looks similar to the red line plot of the orginal ESD.  In fact, the empircal ESD is better modeled with a truncated power law distribtion.
 
 Although the ESD is \emph{Heavy Tailed}, this does not imply that the orginal matrix $\mathbf{W}$ is itself heavy tailed--
-only the correlation matrix $\mathbf{X}$ is. (i.e. maximum eigenvalue) than the original. If $\mathbf{W}$ was, 
+only the correlation matrix $\mathbf{X}$ is. If $\mathbf{W}$ was, 
 then it would contain 1 or more unusually large matrix elements, and they would dominate the ESD.  
 Of course the randomized $\mathbf{W}$ would also be heavy tailed, but its ESD neither resembles the original
 nor is it heavy tailed.  So we can rule out $\mathbf{W}$ being heavy tailed.
@@ -104,7 +104,7 @@ nor is it heavy tailed.  So we can rule out $\mathbf{W}$ being heavy tailed.
 
 These plots tell us that the Tensor Slice of the Conv2D contains significant correlations learned from the data.  
 By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
-the smaller the exponent $\alpha$, the more correlation in the weight matric.
+the smaller the exponent $\alpha$, the more correlation in the weight matrix. 
 
 
 ----
