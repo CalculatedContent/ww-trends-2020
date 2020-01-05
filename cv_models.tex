@@ -39,9 +39,28 @@ The ResNet results look better when considering all ResNet models, trained on Im
 
 ADD PLOTS FOR
 
-pNorm and ResNet
-pNorm and ResNet (ImageNet1K all models)
-pNorm and DenseNet
+
+\begin{figure}[t]
+    \centering
+
+    \subfigure[ ResNet ]{
+        \includegraphics[width=4.2cm]{img/resnet-accuracy.png}
+        \label{fig:resnet-accuracy}
+    }
+    \qquad
+    \subfigure[ ResNet-1K ]{
+        \includegraphics[width=4.5cm]{img/resnet1k-accuracy.png}
+        \label{fig:resnet1k-accuracy}
+    }
+    \qquad
+    \subfigure[ DenseNet ]{
+        \includegraphics[width=4.4cm]{img/densenet-accuracy.png}
+        \label{fig:densenet-accuracy}
+    }
+    \caption{$\alpha$-Norm vs reported Top1 Error for  ResNet, ResNet-1K, and DenseNet models}
+    \label{fig:cv2-accuracy}
+\end{figure}
+
 
 
 \paragraph{Correlations and Information Flow in CV Models}
