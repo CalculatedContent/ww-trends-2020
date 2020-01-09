@@ -1,7 +1,38 @@
 \section{Comparison of NLP Transformer Models}
 \label{sxn:nlp}
 
+In the past two years, nearly 100 open source, pre-trained DNNs for Natural Language Processing (NLP) have emerged,
+based on the revolutionary Transformer architecture, including variants of BERT, Transformer-XML, GPT, etc.
+The Transformer architectures consist of blocks of Attention layers, containing of 2 large, Feed Forward (Linear)
+weight matrics \cite{Attn2017}. In contrast to the smaller pre-Activation maps arising in Cond2D layers,
+the Attention matrices ar
+
 \paragraph{GPT vs GPT2}
+Here, we use the \emph{WeightWatcher} tool to analyze the OpenAI GPT and GPT2 models, which gives us
+the opportunity to analyze the effect of both training the same model with different size data sets,
+These GPT models have generated significant media attention because of its remarkable ability to
+ generate fake text, and it's potential misuse. 
+The original GPT and later GPT model have the same architecture and number of layers, but
+the original GPT was released having been trained on a deficient data set.  Recently,
+ however, a much improved GPT2 model has been released, which is remarkably good at creating 
+auto-genetated text.  
+
+\charles{more here ?}
+We analyze GPT models deployed with the popular HuggingFace PyTorch library.
+GPT has 12 layers, with 4 Multi-head Attention Blocksm, giving $48$ Layer Weight Matrices $\mathbf{W}$.
+Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
+The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
+The projection layer concatenates the self-attention results into a vector (of dimension $768$).
+This gives many large, typically sparse weight matrices, and they can be
+ \emph{poorly correlated} when trained with insufficient data--as we shall see below.
+
+Because GPT and GPT are trained on different data sets, the initial Embedding matrices differ in shape.
+GPT  has an initial Token and Positional Embedding layers, of dimension
+$(40478\times 768)$ and $(512\times 768)$, resp, whereas GPT2 has input Embeddings of shape
+$(50257\times 768)$ and $(1024\times 768)$, resp.  Interstingly, they also have very spectral properties,
+also shown below.
+
+\charles{Since we show this table, maybe we should discuss GPT2 scaling models}
 
 \begin{table}[t]
 \small
