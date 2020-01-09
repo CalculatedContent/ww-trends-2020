@@ -25,7 +25,7 @@
 \end{table}
 
 
-\paragraph{Power Law Exponents}
+\paragraph{Heavy Tailed Power Law Exponents in GPT and GPT2}
 
 \begin{figure}
    \includegraphics[scale=0.25]{img/gpt-alpha-hist.png}
@@ -35,29 +35,7 @@
 \end{figure}
 
 
-\begin{figure}[t]
-    \centering
-
-    \subfigure[ Power Law Exponent $\alpha$  ]{
-        \includegraphics[width=4.5cm]{img/gpt2-alpha-hist.png}
-        \label{fig:gpt-alpha-layer}
-    }
-    \qquad
-    \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
-        \includegraphics[width=4.5cm]{img/gpt2-snorm-hist.png}
-        \label{fig:resnet-snorm-layer}
-    }
-    \qquad
-    \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
-        \includegraphics[width=4.5cm]{img/gpt2-pnorm-hist.png}
-        \label{fig:gpt-pnorm-layer}
-    }
-    \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.    }
-    \label{fig:gpt-alpha-layers}
-\end{figure}
-
-
-\paragraph{Correlation Flow}
+\paragraph{Correlation Flow in GPT and GPT2}
 
 \begin{figure}[t]
     \centering
@@ -81,6 +59,28 @@
 \end{figure}
 
 \paragraph{GPT2: small, medium, large, extra-large}
+
+\begin{figure}[t]
+    \centering
+
+    \subfigure[ Power Law Exponent $\alpha$  ]{
+        \includegraphics[width=4.5cm]{img/gpt2-alpha-hist.png}
+        \label{fig:gpt-alpha-layer}
+    }
+    \qquad
+    \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
+        \includegraphics[width=4.5cm]{img/gpt2-snorm-hist.png}
+        \label{fig:resnet-snorm-layer}
+    }
+    \qquad
+    \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
+        \includegraphics[width=4.5cm]{img/gpt2-pnorm-hist.png}
+        \label{fig:gpt-pnorm-layer}
+    }
+    \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.    }
+    \label{fig:gpt-alpha-layers}
+\end{figure}
+
 
 
 
