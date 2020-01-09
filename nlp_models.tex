@@ -19,11 +19,11 @@ auto-genetated text.
 
 \charles{more here ?}
 We analyze GPT models deployed with the popular HuggingFace PyTorch library.
-GPT has 12 layers, with 4 Multi-head Attention Blocksm, giving $48$ Layer Weight Matrices $\mathbf{W}$.
+GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ Layer Weight Matrices $\mathbf{W}$.
 Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
 The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
 The projection layer concatenates the self-attention results into a vector (of dimension $768$).
-This gives many large, typically sparse weight matrices, and they can be
+This gives $50$ large, typically sparse weight matrices, and they can be
  \emph{poorly correlated} when trained with insufficient data--as we shall see below.
 
 Because GPT and GPT are trained on different data sets, the initial Embedding matrices differ in shape.
@@ -32,7 +32,12 @@ $(40478\times 768)$ and $(512\times 768)$, resp, whereas GPT2 has input Embeddin
 $(50257\times 768)$ and $(1024\times 768)$, resp.  Interstingly, they also have very spectral properties,
 also shown below.
 
-\charles{Since we show this table, maybe we should discuss GPT2 scaling models}
+The additional OpenAI GPT2 (English) models are: \emph{gpt-medium, got-large, and gpt-xl}, 
+having include $12, 24, 36, and 48$ layers, resp., with increasingly larger weight matrices.
+The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
+Table \ref{table:nlp} reports results for the average log norm metrics, using \emph{weightwatcher (0.2.3)},
+and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/CalculatedContent/kdd2020}}
+
 
 \begin{table}[t]
 \small
@@ -46,17 +51,21 @@ also shown below.
  GPT2 (small) & & & & \\
  GPT2-medium & & & & \\
  GPT2-large & & & & \\
- GPT2-xls & & & & \\
+ GPT2-xl & & & & \\
 
 \hline
 \end{tabular}
 \end{center}
-\caption{Average metrics for pretrainnd OpenAI GPT and GPT2 models.}
-\label{table:models}
+\caption{Average Log Norm Metrics for pretrainnd OpenAI GPT and GPT2 models.}
+\label{table:nlp}
 \end{table}
 
 
-\paragraph{Heavy Tailed Power Law Exponents in GPT and GPT2}
+\paragraph{The Heavy Tailed Power Law Exponents in GPT and GPT2}
+
+are very differenmt, with GPT2 having both a notably smaller mean $\alpha$, and far fewer, unusually large outliers.
+Figure \ref{fig:gpt-alphs-hist} shows the empirical density (histogram) of $\alpha$
+for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
 
 \begin{figure}
    \includegraphics[scale=0.25]{img/gpt-alpha-hist.png}
@@ -66,7 +75,11 @@ also shown below.
 \end{figure}
 
 
-\paragraph{Correlation Flow in GPT and GPT2}
+\paragraph{The Correlation Flow in GPT and GPT2} also differs significantly between GPT and GPT2.
+Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
+
+
+\charles{Discuss Spectral Norm, alpha-Norm}
 
 \begin{figure}[t]
     \centering
@@ -89,7 +102,16 @@ also shown below.
     \label{fig:gpt-alpha-layers}
 \end{figure}
 
-\paragraph{GPT2: small, medium, large, extra-large}
+\paragraph{GPT2: small, medium, large, extra-large} 
+
+Figure \ref{fig:gpt-alpha-layers} ...
+
+For this series of GPT2 models, the average $\alpha$ still decreases with increasing model size,
+althogh, the differences are less noticible than between the GPT and GPT2 models.
+Unlike GPT, however, the Layer Spectral Norms $\vert\mathbf{W}\Vert_{\infty}$ 
+and Alpha-Norms $\vert\mathbf{W}\Vert_{\alpha}^{\alpha}$
+ behave  as expected for GPT2 layers, with the larger models 
+consistently having  smaller norms. 
 
 \begin{figure}[t]
     \centering
