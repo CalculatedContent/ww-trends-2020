@@ -3,6 +3,28 @@
 
 \paragraph{GPT vs GPT2}
 
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{1in}|c|c|c|c|c|}
+\hline
+   &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
+ Series & \#Layers   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
+\hline
+ GPT & & & & \\
+ GPT2 (small) & & & & \\
+ GPT2-medium & & & & \\
+ GPT2-large & & & & \\
+ GPT2-xls & & & & \\
+
+\hline
+\end{tabular}
+\end{center}
+\caption{Average metrics for pretrainnd OpenAI GPT and GPT2 models.}
+\label{table:models}
+\end{table}
+
+
 \paragraph{Power Law Exponents}
 
 \begin{figure}
