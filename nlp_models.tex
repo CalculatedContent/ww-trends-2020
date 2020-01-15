@@ -47,11 +47,11 @@ and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/
    &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
  Series & \#Layers   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
 \hline
- GPT & & & & \\
- GPT2 (small) & & & & \\
- GPT2-medium & & & & \\
- GPT2-large & & & & \\
- GPT2-xl & & & & \\
+ GPT & & & & &\\
+ GPT2 (small) & & & & & \\
+ GPT2-medium & & & & & \\
+ GPT2-large & & & & & \\
+ GPT2-xl & & & & &\\
 
 \hline
 \end{tabular}
@@ -70,8 +70,7 @@ for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
 \begin{figure}
    \includegraphics[scale=0.25]{img/gpt-alpha-hist.png}
    \caption{Comparison of heavy tailed power law exponent $\alpha$ for OpenAI GPT and GPT pretrained models}
-
-   \label{fig:gpt-alphs-hist}
+   \label{fig:gpt-alpha-hist.png}
 \end{figure}
 
 
@@ -85,17 +84,17 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
     \centering
 
     \subfigure[ Power Law Exponent $\alpha$  ]{
-        \includegraphics[width=4.0cm]{img/gpt-alpha-layer.png}
+        \includegraphics[width=4.5cm]{img/GPT-alpha-depth.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
     \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
-        \includegraphics[width=4.5cm]{img/gpt-snorm-layer.png}
+        \includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
         \label{fig:resnet-snorm-layer}
     }
     \qquad
     \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
-        \includegraphics[width=4.5cm]{img/gpt-pnorm-layer.png}
+        \includegraphics[width=4.5cm]{img/GPT-pnorm-depth.png}
         \label{fig:gpt-pnorm-layer}
     }
     \caption{Comparison of Correlation Flow and Spectral Norm for OpenAI GPT and GPT2   }
@@ -117,17 +116,17 @@ consistently having  smaller norms.
     \centering
 
     \subfigure[ Power Law Exponent $\alpha$  ]{
-        \includegraphics[width=4.5cm]{img/gpt2-alpha-hist.png}
+        \includegraphics[width=4.5cm]{img/GPT2_fnl_alpha_hist.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
     \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
-        \includegraphics[width=4.5cm]{img/gpt2-snorm-hist.png}
+        \includegraphics[width=4.5cm]{img/GPT2_fnl_spectralnorm_hist.png}
         \label{fig:resnet-snorm-layer}
     }
     \qquad
     \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
-        \includegraphics[width=4.5cm]{img/gpt2-pnorm-hist.png}
+        \includegraphics[width=4.5cm]{img/GPT2_fnl_alpha_weighted_hist.png}
         \label{fig:gpt-pnorm-layer}
     }
     \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.    }

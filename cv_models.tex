@@ -6,22 +6,22 @@
 \begin{figure}[t]
     \centering
     \subfigure[ Frobenius Norm ]{
-        \includegraphics[width=5cm]{img/vgg-fnorm.png}
+        \includegraphics[width=5cm]{img/VGG_lognorm_accs.png}
         \label{fig:vgg-fnorm}
     }
     \qquad
     \subfigure[ Spectral Norm ]{
-        \includegraphics[width=4.9cm]{img/vgg-snorm.png}
+        \includegraphics[width=4.9cm]{img/VGG_spectralnorm_accs.png}
         \label{fig:vgg-snorm}
     }
     \qquad
     \subfigure[ Weighted Alpha ]{
-        \includegraphics[width=4.9cm]{img/vgg-walpha.png}
+        \includegraphics[width=4.9cm]{img/VGG_alpha_weighted_accs.png}
         \label{fig:vgg-walpha}
     }
     \qquad
     \subfigure[ Alpha-Norm ]{
-        \includegraphics[width=4.9cm]{img/vgg-pnorm.png}
+        \includegraphics[width=4.9cm]{img/VGG_logpnorm_accs.png}
         \label{fig:vgg-pnorm}
     }
     \caption{Comparison of norm metrics vs reported test accuracy for pretrained VGG models, trained on ImageNet, available in pyTorch.  Plots will be updated and replace }
@@ -44,17 +44,17 @@ ADD PLOTS FOR
     \centering
 
     \subfigure[ ResNet ]{
-        \includegraphics[width=4.2cm]{img/resnet-accuracy.png}
+        \includegraphics[width=4.2cm]{img/ResNet_logpnorm_accs.png}
         \label{fig:resnet-accuracy}
     }
     \qquad
     \subfigure[ ResNet-1K ]{
-        \includegraphics[width=4.5cm]{img/resnet1k-accuracy.png}
+        \includegraphics[width=4.5cm]{img/ResNet-1K_logpnorm_accs.png}
         \label{fig:resnet1k-accuracy}
     }
     \qquad
     \subfigure[ DenseNet ]{
-        \includegraphics[width=4.4cm]{img/densenet-accuracy.png}
+        \includegraphics[width=4.4cm]{img/DenseNet_logpnorm_accs.png}
         \label{fig:densenet-accuracy}
     }
     \caption{$\alpha$-Norm vs reported Top1 Error for  ResNet, ResNet-1K, and DenseNet models}
@@ -72,10 +72,10 @@ TODO:  add table of metrics for these 3 models, show that alpha-Norm is best aga
    &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
  Series & \#Models   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
 \hline
- VGG & & & & \\
- ResNet & & & & \\
- ResNet-1K & & & & \\
- DenseNet & & & & \\
+ VGG & & & & & \\
+ ResNet & & & & & \\
+ ResNet-1K & & & & & \\
+ DenseNet & & & &  &\\
 \hline
 \end{tabular}
 \end{center}
@@ -95,17 +95,17 @@ Compare VGG, ResNet, and DenseNet in the context of how many connections that ha
     \centering
 
     \subfigure[ VGG ]{
-        \includegraphics[width=4.1cm]{img/vgg-alpha-layers.png}
-        \label{fig:vgg-alpha-layers}
+        \includegraphics[width=4.5cm]{img/VGG_fnl_alpha_depth.png} 
+                \label{fig:vgg-alpha-layers}
     }
     \qquad
     \subfigure[ ResNet ]{
-        \includegraphics[width=3.8cm]{img/resnet-alpha-layers.png}
+        \includegraphics[width=4.5cm]{img/ResNet_fnl_alpha_depth.png} 
         \label{fig:resnet-alpha-layer}
     }
     \qquad
     \subfigure[ DenseNet ]{
-        \includegraphics[width=4.1cm]{img/densenet-alpha-layers.png}
+        \includegraphics[width=4.5cm]{img/DenseNet_all_depth.png} 
         \label{fig:densenet-alpha-layer}
     }
     \caption{Power law exponent $\alpha$ vs layer for VGG, ResNet, and DenseNet models}
