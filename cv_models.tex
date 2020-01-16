@@ -72,16 +72,18 @@ TODO:  add table of metrics for these 3 models, show that alpha-Norm is best aga
    &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
  Series & \#Models   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
 \hline
- VGG & & & & & \\
- ResNet & & & & & \\
- ResNet-1K & & & & & \\
- DenseNet & & & &  &\\
+ VGG & 6 & 0.56 & 0.53 & 0.48 & 0.42  \\
+ ResNet & 5 & 0.9 & 1.4 & 0.61 & 0.66  \\
+ ResNet-1K & 19 & 2.4 & 3.6 & 1.8 & 1.9  \\
+ DenseNet & 4 & 0.3 & 0.26 & 0.16 & 0.21 \\
 \hline
 \end{tabular}
 \end{center}
 \caption{RMSE for Linear Fits of Metric to Reported Top1 Test Error for all pre-trained models in the architecture series.  All models trained on ImageNet except ResNet-1K, which was trained on ImageNet-1K. }
 \label{table:models}
 \end{table}
+
+DISCUSS TABLE
 
 
 
