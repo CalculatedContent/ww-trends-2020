@@ -106,7 +106,11 @@ These plots tell us that the pre-activation maps of the Conv2D contains signific
 By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
 the smaller the exponent $\alpha$, the more correlation in the weight matrix. 
 
-\paragraph{Normalization of Empirical Matrices}.  Formally, to apply RMT, we would usually define Correlation Matrix with $\dfrac{1}{N}$ normalization,
+\paragraph{Normalization of Empirical Matrices}.  
+The normalization does not affect the Power Law fits because the Heavy Tailed exponent $\alpha$ is scale-invariant.
+As are metrics like the Stable Rank and our MP Soft Rank. In this study, however, all of the metrics strongly depend 
+on the scale of the weight matrix.
+Formally, to apply RMT, we would usually define Correlation Matrix with $\dfrac{1}{N}$ normalization,
 and assume that either the variance of $\mathbf{X}$ is unity, $\sigma^{2}=1$, or is known.
 \footnote{And for formal proofs of the Heavy Tailed results, we need a different normalization,$\dfrac{1}{N^{1-\alpha}}$}
 But for these empirical studies, the pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$ ,
@@ -115,13 +119,23 @@ or as $\sqrt{\frac{2}{N*k^2}}$ for Convolutional 2D Layers.
 We do not normalize (or renormalize) the Empirical Correlation Matrices, and use them as-is,
 except that we rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $\frac{k}{\sqrt{2}}$ so that they
 are on the same scale as the Linear layers.
-Note that in some pretrinaed models, like the pyTorch VGG models, the Linear weight matrices appear to have been 
+
+
+Note that in some pretrained models, like the pyTorch VGG models, the Linear weight matrices appear to have been 
 initialized with variance $\sigma\sim0.01$.  We do not attempt to correct for this, and, instead, simply try to treat all
 models the same.  
-Also, The normalization does not affect the Power Law fits because the Heavy Tailed exponent $\alpha$ is scale-invariant.
-As are metrics like the Stable Rank and our MP Soft Rank. In this study, however, all of the metrics strongly depend 
-on the scale of the weight matrix.
 
+However, in the GPT2 and other NLP models, we find that the first embedding layer(s) have unusually large eigenvalues,
+reflecting a lack of normalization.  For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, 
+but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
+ $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
+the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier); including them does
+not significantly alter the results here.
+
+
+COMMENT ON HOW LOG NORM first and last layers behave, maybe somewhere else
+
+COMMENT ON HOW LOG PORM  for GPT includes unusually high alpha, not meaningful other than to show the trend.
 
 \paragraph{The WeightWatcher Tool}
 
