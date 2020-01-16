@@ -42,7 +42,13 @@ Here, we will consider the following Norms:
  \item $\alpha-$Norm (or Shatten Norm) $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda^{\alpha}$,
 \end{itemize}
 
-where $\lambda_{i}$ is the $i-th$ eigenvalue of the correlation matrix $\mathbf{X}=\dfrac{1}{N}\mathbf{W}^{T}\mathbf{W}$, and $\lambda_{max}$ is the maximum eigenvalue.   (Note that eigenvalues are the square of the singular values $\sigma_{i}$ of $\mathbf{W}$ :  $\lambda_{i}=\sigma^{2}_{i}$.)
+where $\lambda_{i}$ is the $i-th$ eigenvalue of the \emph{Empirical Correlation Matrix}
+
+\begin{equation}
+\mathbf{X}=\mathbf{W}^{T}\mathbf{W}
+\end{equation}
+
+and $\lambda_{max}$ is the maximum eigenvalue. These eigenvalues are the square of the singular values $\sigma_{i}$ of $\mathbf{W}$ :  $\lambda_{i}=\sigma^{2}_{i}$.
 
 The exponent $\alpha$ is the power law exponent that arises in our \emph{Theory of Heavy Tailed Self Regularization}, and is the determined by fitting the Empirical Spectral Density (ESD) of $\mathbf{X}$--i.e. a histogram of the eigenvalues--$\rho(\lambda)$ to a truncated power law
 
@@ -58,8 +64,6 @@ We will also consider an approximate capacity metric, $\hat{\alpha}$, shown prev
 
 which approximates the log $\alpha-$Norm for both Very Heavy Tailed weight matrices ($\alpha < 2)$  and reasoably well for finite size, Moderately Heavy Tailed ones $\alpha\in[2,5]$.  
 
-
-SOME MORE DISCUSSION HERE
 
 \paragraph{Spectral Analysis of Convolutional 2D Layers}
 While we can easily analyze Linear layers, there is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  A Conv2D layer is a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ filter (or kernel), and $in\_ch,out\_ch$ input and output channels, respectively.  Typically, the $w=h=k$,  giving $(k\times k)$ tensor slices, or \emph{pre-Activation Maps} $\mathbf{W}_{i,L}$ of dimension $(in\_ch\times out\_ch)$ each.  Usually $in\_ch\le out\_ch$.
@@ -101,6 +105,23 @@ nor is it heavy tailed.  So we can rule out $\mathbf{W}$ being heavy tailed.
 These plots tell us that the pre-activation maps of the Conv2D contains significant correlations learned from the data.  
 By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
 the smaller the exponent $\alpha$, the more correlation in the weight matrix. 
+
+\paragraph{Normalization of Empirical Matrices}.  Formally, to apply RMT, we would usually define Correlation Matrix with $\dfrac{1}{N}$ normalization,
+and assume that either the variance of $\mathbf{X}$ is unity, $\sigma^{2}=1$, or is known.
+\footnote{And for formal proofs of the Heavy Tailed results, we need a different normalization,$\dfrac{1}{N^{1-\alpha}}$}
+But for these empirical studies, the pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$ ,
+with the variance already normalized to $\sqrt{\frac{1}{N}}$, or some variant of this such as Glorot (or Xavier) Normalization\cite{GloRot},
+or as $\sqrt{\frac{2}{N*k^2}}$ for Convolutional 2D Layers. 
+We do not normalize (or renormalize) the Empirical Correlation Matrices, and use them as-is,
+except that we rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $\frac{k}{\sqrt{2}}$ so that they
+are on the same scale as the Linear layers.
+Note that in some pretrinaed models, like the pyTorch VGG models, the Linear weight matrices appear to have been 
+initialized with variance $\sigma\sim0.01$.  We do not attempt to correct for this, and, instead, simply try to treat all
+models the same.  
+Also, The normalization does not affect the Power Law fits because the Heavy Tailed exponent $\alpha$ is scale-invariant.
+As are metrics like the Stable Rank and our MP Soft Rank. In this study, however, all of the metrics strongly depend 
+on the scale of the weight matrix.
+
 
 \paragraph{The WeightWatcher Tool}
 
