@@ -1,3 +1,35 @@
 \section{Comparison of all pretrained CV Models}
 \label{sxn:all_cv_models}
 
+
+Here, we use the Weightwatcher tool to analyze 466 pretrained computer vision models Pytorch. These image classification and segmentation models are pretrained on nine datasets, ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). The pretrained models and their accuracy metrics are summarized in the osmr github 
+
+\serena{insert link in the footnote}
+
+and a full summary of all the models analyzed is included in the Appendix. For our analysis, we then group models by architecture and datasets for further analysis.
+
+In this paper, we propose that the Weightwatcher tool could be used to predict the trends in the generalization accuracy of deep neutral network without a test set. To test our proposition, we choose simple linear regression to analyze the relationship between the Weightwatcher metrics and the traditional accuracy metric obtained with a test set (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense). On the left-hand-side of regression, we have the Top1 errors, Top5 errors as reported for ImageNet-1K models, Error % as reported in CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.,%) and Intersection-Over-Union (mIOU,%) as dependent variables. We then regress them individually on each of the Weightwatcher metrics, including  alpha, alpha_weighted, spectralnormlog, softranklog, lognorm, and logpnorm as defined in earlier section. 
+
+\serena{Question: only the alpha-related metrics is the core metrics of the WW tool, right? Metrics such as stable rank or spectral norm have been suggested in other paper before???}
+
+\serena{insert a simple formula for linear regression}
+
+To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
+
+\serena{see examples in Figure X}
+
+(Here we omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models for those datasets and thus the regression is less statistically significant)
+
+\serena{insert plots for Figure X}
+
+For the second batch, we plot the regression for models of each architecture-datasets combination, which shows the relationship between the progression of the model accuracy and Weightwatcher metrics more clearly and precisely. For example, as you could see in the Figure X2, 
+
+\serena{Add an example, UPDATE when we have the results from the new codes}
+
+Insert plots for Figure X2
+
+While running each regression, we record the R-squared and mean squared errors (MSE) for each regression. We then filter out regressions with less than five datapoints and models with structural outliers.
+
+\serena{Define and give an example of the structural outliers}
+
+Insert a plot for outliers, OPTIONAL
