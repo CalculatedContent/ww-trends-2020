@@ -70,9 +70,9 @@ GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 \end{table}
 
 
-\paragraph{The Heavy Tailed Power Law Exponents in GPT and GPT2}
-
-are very differenmt, with GPT2 having both a notably smaller mean $\alpha$, and far fewer, unusually large outliers.
+\paragraph{Empirical Quality Metrics for GPT and GPT2}
+We first compare the distribution of  Heavy Tailed Power Law exponents $\alpha$ in GPT and GPT2.
+They are very differenmt, with GPT2 having both a notably smaller mean $\alpha$, and far fewer, unusually large outliers.
 Figure \ref{fig:gpt-alphs-hist} shows the empirical density (histogram) of $\alpha$
 for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
 
@@ -80,12 +80,12 @@ for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
     \centering
     \subfigure[Power Law Exponent $\alpha$]{
         \includegraphics[width=5cm]{img/GPT-alpha-hist.png}
-        \label{fig:GPT-alpha.hist.png}
+        \label{fig:GPT-alpha-hist}
        }
     \qquad
     \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
         \includegraphics[width=5cm]{img/GPT-snorm-hist.png}
-        \label{fig:GPT-snorm.hist.png}
+        \label{fig:GPT-snorm-hist}
        }
 
 
@@ -94,11 +94,37 @@ for the OpenAI GPT and GPT2 (small) pretrained models.}
 
 \end{figure}
 
-\charles{We have redo the spectral norm and remove the outliers}
+Indeed, the $\alpha$ metric makes a good quality metric for comparing these models.
+Figure \ref{fig:GPT-alpha-hist} compares the PL exponent $\alpha$ for the GPT and GPT2 models for all layers,
+As expected, the improved GPT2 model has, on average, smaller $\alpha$ than the older GPT, with all
+$\alpha\le6$.  Indeed, the deficient GPT model has numerous weight matrices with unsually large fitted exponents,
+indicating that they are not Heavy Tailed at all.  Indeed, we may expect that a poorly trained model
+will not exhibit consistent Heavy Tailed behavior in all layers.
+
+However, as seen in Figure \ref{fig:GPT-snorm-hist},
+ the poorly trained GPT model has many smaller (log) Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$
+than the GPT2, which would be inconsistent with a belief that smaller Spectral Norm is always better.
+Indeed, because there are so many anamously small $\Vert\mathbf{W}\Vert_{\infty}$,
+it appears that the GPT model may be exhibiting a kind of rank collapse.
+This is an extremely important observation because it demonstrates that while the Spectral Norm
+may correlate well with predicted test error, it is not a good indicator of the overall quality of a model,
+and using it as an empirical metric may give spurious results when applied to poorly trained
+or otherwise deficient models.  
+
+
+Note that Figure \ref{fig:GPT-snorm-hist} also shows a couple anomalously  large Spectral Norms.
+From Figure \ref{fig:gpt-snorm-layer} (below), we see that these correspond to the first embedding layer(s).
+These layers appear to have a normalization, and therefore a differenc scale.
+For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
+but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
+ $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
+the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
+Here, we do not include them in our computed average metrics in Table \ref{table:nlp},
+and do not include them in the histogram plot in Figure \ref{fig:GPT-snorm-hist}.
+
 
 \paragraph{The Correlation Flow in GPT and GPT2} also differs significantly between GPT and GPT2.
-Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
-
+Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) for each model.
 
 \charles{Discuss Spectral Norm, alpha-Norm}
 
@@ -112,7 +138,7 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
     \qquad
     \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
         \includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
-        \label{fig:resnet-snorm-layer}
+        \label{fig:gpt-snorm-layer}
     }
     \qquad
     \subfigure[log Alpha-Norm $\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
@@ -124,12 +150,6 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
 \end{figure}
 
 
-Notice the first embedding layer(s) have unusually large Spectral Norms,
-reflecting a lack of normalization.  For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
-but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
- $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
-the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier); including them does
-not significantly alter the results here.
 
 
 \paragraph{GPT2: small, medium, large, extra-large} 
