@@ -33,3 +33,28 @@ While running each regression, we record the R-squared and mean squared errors (
 \serena{Define and give an example of the structural outliers}
 
 Insert a plot for outliers, OPTIONAL
+
+
+\charles{Still preliminary, only 309 data points here}
+\paragraph{Results}
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{1in}|c|c|c|c|}
+\hline
+    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
+    & $\langle\log\Vert\mathbf{W}\Vert_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$ & $\langle\hat{\alpha}=\alpha\log\lambda_{max}\rangle$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
+\hline
+$R^{2}$ (mean)  & 0.61 & 0.59 & 0.66 & 0.66 \\
+$R^{2}$ (std)   & 0.35 & 0.37 & 0.30 & 0.30 \\
+\hline
+$MSE$ (mean)    & 3.60 &  7.19 & 2.44 & 2.28 \\
+$MSE$ (std)     & 7.64 & 20.13 & 4.57 & 4.43 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Comparison of linear regression fits for different average log norm metrics across XX datasets, covering 228 different pretrained DNNs.  We only cinclude regressions for architecturs with 5 or more data points \charles{and which are postively correlated with the test error}.}
+\label{table:nlp}
+\end{table}
+
+
