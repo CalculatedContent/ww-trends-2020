@@ -75,6 +75,7 @@ for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
    \label{fig:gpt-alpha-hist.png}
 \end{figure}
 
+\charles{We have redo the spectral norm and remove the outliers}
 
 \paragraph{The Correlation Flow in GPT and GPT2} also differs significantly between GPT and GPT2.
 Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
@@ -118,17 +119,17 @@ consistently having  smaller norms.
     \centering
 
     \subfigure[ Power Law Exponent $\alpha$  ]{
-        \includegraphics[width=4.5cm]{img/GPT2_fnl_alpha_hist.png}
+        \includegraphics[width=4.5cm]{img/GPT2_all_alpha_hist.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
     \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
-        \includegraphics[width=4.5cm]{img/GPT2_fnl_spectralnorm_hist.png}
+        \includegraphics[width=4.5cm]{img/GPT2_all_spectralnorm_hist.png}
         \label{fig:resnet-snorm-layer}
     }
     \qquad
     \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
-        \includegraphics[width=4.5cm]{img/GPT2_fnl_alpha_weighted_hist.png}
+        \includegraphics[width=4.5cm]{img/GPT2_all_alpha_weighted_hist.png}
         \label{fig:gpt-pnorm-layer}
     }
     \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.    }
