@@ -37,7 +37,7 @@ also shown below.
 The additional OpenAI GPT2 (English) models are: \emph{gpt-medium, got-large, and gpt-xl}, 
 having include $12, 24, 36, and 48$ layers, resp., with increasingly larger weight matrices.
 The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
-Table \ref{table:nlp} reports results for the average log norm metrics, using \emph{weightwatcher (0.2.3)},
+Table \ref{table:nlp} reports results for the average log norm metrics, using \emph{weightwatcher (0.2.7)},
 and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/CalculatedContent/kdd2020}}
 
 
@@ -70,7 +70,7 @@ Figure \ref{fig:gpt-alphs-hist} shows the empirical density (histogram) of $\alp
 for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
 
 \begin{figure}
-   \includegraphics[scale=0.25]{img/gpt-alpha-hist.png}
+   \includegraphics[scale=0.25]{img/GPT-alpha-hist.png}
    \caption{Comparison of heavy tailed power law exponent $\alpha$ for OpenAI GPT and GPT pretrained models}
    \label{fig:gpt-alpha-hist.png}
 \end{figure}
@@ -132,7 +132,7 @@ consistently having  smaller norms.
         \includegraphics[width=4.5cm]{img/GPT2_all_alpha_weighted_hist.png}
         \label{fig:gpt-pnorm-layer}
     }
-    \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.    }
+    \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.  Spectral Norm dhistogram does not contain the first 2 layers because the values are unusually large. }
     \label{fig:gpt-alpha-layers}
 \end{figure}
 
