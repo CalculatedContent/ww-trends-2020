@@ -32,7 +32,66 @@ While running each regression, we record the R-squared and mean squared errors (
 
 \serena{Define and give an example of the structural outliers}
 
+\charles{What are the structrual outliers we chose ?}
+
 Insert a plot for outliers, OPTIONAL
+
+\charles{These tables could go to appendix. We need references}
+
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{1in}|c|}
+\hline
+Dataset & $\#$ of Models \\
+\hline
+imagenet-1k   &  78 \\
+svhn          &  30 \\
+cifar-100     &  30 \\
+cifar-10      &  18 \\
+cub-200-2011  &  12 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Datasets used}
+\label{table:datasets}
+\end{table}
+
+
+
+
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{3in}|c|}
+\hline
+Architecture & $\#$ of Models \\
+\hline
+ResNet                                     & 30 \\
+SENet/SE-ResNet/SE-PreResNet/SE-ResNeXt    & 24 \\
+DIA-ResNet/DIA-PreResNet                   & 18 \\
+ResNeXt                                    & 12 \\
+WRN                                        & 12 \\
+DLA                                        & 6 \\
+PreResNet                                  & 6 \\
+ProxylessNAS                               & 6 \\
+VGG/BN-VGG                                 & 6 \\
+IGCV3                                      & 6 \\
+EfficientNet                               & 6 \\
+SqueezeNext/SqNxt                          & 6 \\
+ShuffleNet                                 & 6 \\
+DRN-C/DRN-D                                & 6 \\
+ESPNetv2                                   & 6 \\
+HRNet                                      & 6 \\
+SqueezeNet/SqueezeResNet                   & 6 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Architectures used}
+\label{table:architectures}
+\end{table}
+
+
 
 
 \charles{Still preliminary, only 309 data points here}
@@ -53,8 +112,8 @@ $MSE$ (std)    & 8.69 &23.06 &5.14 &5.00 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Comparison of linear regression fits for different average log norm metrics across XX datasets, covering 168 (out of 309) different pretrained DNNs.  We only cinclude regressions for architecturs with 4 or more data points \charles{and which are postively correlated with the test error?}.  These results can be readily reproduced using the Google Colab notebooks accompanying thie paper\cite{notebooks}}
-\label{table:nlp}
+\caption{Comparison of linear regression fits for different average log norm metrics across 5 computer vision datasets, 17 Architectures, covering 168 (out of 309) different pretrained DNNs.  We only conclude regressions for architecturs with 4 or more data points \charles{and which are postively correlated with the test error?}.  These results can be readily reproduced using the Google Colab notebooks accompanying thie paper\cite{notebooks}}
+\label{table:results}
 \end{table}
 
 
