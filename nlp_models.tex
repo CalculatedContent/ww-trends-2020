@@ -8,20 +8,24 @@ based on the revolutionary Transformer architecture, including variants of BERT,
 The Transformer architectures consist of blocks of Attention layers, containing of 2 large, Feed Forward (Linear)
 weight matrics \cite{Attn2017}. In contrast to the smaller pre-Activation maps arising in Cond2D layers,
 the Attention matrices are significantly larger, and frequently under-correlated, with generally larger
-Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).
+Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).  Here, we breifly look at a few
+popular pretrained NLP DNNs to demonstrate that the Theory of Heavy Tailed Self-Regularization also
+applies to NLP models and not just CV models, and to highlight how to use the theory to identify
+poorly trained models where the empirical norm metrics will perform poorly.
 
 \paragraph{OpenAI GPT Models}
-Here, we use the \emph{WeightWatcher} tool to analyze the OpenAI GPT and GPT2 models, which gives us
+We use the \emph{WeightWatcher} tool to analyze the OpenAI GPT and GPT2 models, which gives us
 the opportunity to analyze the effect of both training the same model with different size data sets,
 and increasing sizes of both the data set and architectures.
 These models have generated significant media attention because of their remarkable ability to
  generate fake text that appears to be real and the potential misuse of this.
 For this reason, the original GPT model was trained on on a deficient data set, rendering
-the model interesting but not fully functional.  Later, the same GPT model 
-The original GPT and later GPT model have the same architecture and number of layers, but
-
- however, a much improved GPT2 model has been released, which is remarkably good at creating 
-auto-genetated text.  
+the model interesting but not fully functional.  Later, OpenAI released a much improved model--
+GPT2 (small)--which has the same architecture and number of layers as GPT, but has
+been trained on a larger and betterd data set (and with other changes), making it
+remarkably good at generating (near) human-quality fake text.  
+By comparing GPT and GPT2, we can indentify empirical markers indicating that
+a model has been poorly trained and may perform poorly when deployed.
 
 \charles{more here ?}
 We analyze GPT models deployed with the popular HuggingFace PyTorch library.
