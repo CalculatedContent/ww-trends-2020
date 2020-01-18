@@ -34,8 +34,7 @@ GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ Layer Weight 
 Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
 The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
 The projection layer concatenates the self-attention results into a vector (of dimension $768$).
-This gives $50$ large, typically sparse weight matrices, and they can be
- \emph{poorly correlated} when trained with insufficient data--as we shall see below.
+This gives $50$ large matrices.
 
 Because GPT and GPT are trained on different data sets, the initial Embedding matrices differ in shape.
 GPT  has an initial Token and Positional Embedding layers, of dimension
@@ -43,8 +42,8 @@ $(40478\times 768)$ and $(512\times 768)$, resp, whereas GPT2 has input Embeddin
 $(50257\times 768)$ and $(1024\times 768)$, resp.  Interstingly, they also have very spectral properties,
 also shown below.
 
-The additional OpenAI GPT2 (English) models are: \emph{gpt-medium, got-large, and gpt-xl}, 
-having include $12, 24, 36, and 48$ layers, resp., with increasingly larger weight matrices.
+The OpenAI GPT2 (English) models are: \nred{gpt-small, gpt-medium, gpt-large, and gpt-xl}, \
+having include $12, 24, 36, \text{and }48$ layers, resp., with increasingly larger weight matrices.
 The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
 Table \ref{table:nlp} reports results for the average log norm metrics, using \emph{weightwatcher (0.2.7)},
 and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/CalculatedContent/kdd2020}}
@@ -58,25 +57,17 @@ and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/
    &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
  Series & \#Layers   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
 \hline
- GPT & & & & &\\
-GPT2 & 50 & 2.05 &2.59& 9.78 & 10.03 \\
-GPT2 medium & 98 & 2.08 &2.58& 9.74 & 10.01 \\
-GPT2 large & 146 & 1.85 &1.99& 7.67 & 7.94 \\
-GPT2 xl & 194 & 1.86 &1.92& 7.17 & 7.51 \\
+GPT & 49 & 1.64  & 1.72 & 7.01 & 7.28 \\
+GPT (small) & 49 & 2.04  & 2.54& 9.62 & 9.87 \\
+GPT2 medium & 98 & 2.08 & 2.58& 9.74 & 10.01 \\
+GPT2 large & 146 & 1.85 & 1.99& 7.67 & 7.94 \\
+GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 \hline
 \end{tabular}
 \end{center}
 \caption{Average Log Norm Metrics for pretrainnd OpenAI GPT and GPT2 models.}
 \label{table:nlp}
 \end{table}
-
-We find that in the pretrained GPT models, the first embedding layer(s) have unusually large eigenvalues,
-reflecting a lack of normalization.  For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, 
-but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
- $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
-the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier); including them does
-not significantly alter the results here.  
-
 
 
 \paragraph{The Heavy Tailed Power Law Exponents in GPT and GPT2}
@@ -92,7 +83,7 @@ for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
         \label{fig:GPT-alpha.hist.png}
        }
     \qquad
-    \subfigure[Log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
+    \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
         \includegraphics[width=5cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm.hist.png}
        }
@@ -114,17 +105,17 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
 \begin{figure}[t]
     \centering
 
-    \subfigure[ Power Law Exponent $\alpha$  ]{
+    \subfigure[Power Law Exponent $\alpha$]{
         \includegraphics[width=4.5cm]{img/GPT-alpha-depth.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
-    \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
+    \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
         \includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
         \label{fig:resnet-snorm-layer}
     }
     \qquad
-    \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
+    \subfigure[log Alpha-Norm $\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
         \includegraphics[width=4.5cm]{img/GPT-pnorm-depth.png}
         \label{fig:gpt-pnorm-layer}
     }
@@ -132,35 +123,43 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the layer id for each model.
     \label{fig:gpt-alpha-layers}
 \end{figure}
 
+
+Notice the first embedding layer(s) have unusually large Spectral Norms,
+reflecting a lack of normalization.  For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
+but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
+ $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
+the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier); including them does
+not significantly alter the results here.
+
+
 \paragraph{GPT2: small, medium, large, extra-large} 
 
 Figure \ref{fig:gpt-alpha-layers} ...
 
 For this series of GPT2 models, the average $\alpha$ still decreases with increasing model size,
 althogh, the differences are less noticible than between the GPT and GPT2 models.
-Unlike GPT, however, the Layer Spectral Norms $\vert\mathbf{W}\Vert_{\infty}$ 
-and Alpha-Norms $\vert\mathbf{W}\Vert_{\alpha}^{\alpha}$
- behave  as expected for GPT2 layers, with the larger models 
-consistently having  smaller norms. 
+Unlike GPT, however, the Layer (log) Spectral Norms $\log\vert\mathbf{W}\Vert_{\infty}$ 
+and (log) Alpha-Norms $\log\vert\mathbf{W}\Vert_{\alpha}^{\alpha}$
+ behave  as expected for GPT2 layers, with the larger models  consistently having  smaller norms. 
 
 \begin{figure}[t]
     \centering
 
-    \subfigure[ Power Law Exponent $\alpha$  ]{
+    \subfigure[Power Law Exponent $\alpha$  ]{
         \includegraphics[width=4.5cm]{img/GPT2_all_alpha_hist.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
-    \subfigure[ Spectral Norm $\Vert\mathbf{W}\Vert_{\infty}$]{
+    \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
         \includegraphics[width=4.5cm]{img/GPT2*_all_spectralnorm_hist.png}
         \label{fig:resnet-snorm-layer}
     }
     \qquad
-    \subfigure[ Alpha-Norm $\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
-        \includegraphics[width=4.5cm]{img/GPT2_all_alpha_weighted_hist.png}
+    \subfigure[log Alpha-Norm $\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
+        \includegraphics[width=4.5cm]{img/GPT2_all_logpnorm_hist.png}
         \label{fig:gpt-pnorm-layer}
     }
-    \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.  Spectral Norm dhistogram does not contain the first 2 layers because the values are unusually large.}
+    \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.  *Note: the log spectral norms (b) histogram omits the first 2 layers, corresponding to the embedding layer, which are normalized differently and have anamolously large values.}
     \label{fig:gpt-alpha-layers}
 \end{figure}
 
