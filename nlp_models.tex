@@ -78,12 +78,12 @@ for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
 
 \begin{figure}
     \centering
-    \subfigure[Power Law Exponent $\alpha$]{
+    \subfigure[Power Law Exponent $(\alpha)$]{
         \includegraphics[width=5cm]{img/GPT-alpha-hist.png}
         \label{fig:GPT-alpha-hist}
        }
     \qquad
-    \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
+    \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
         \includegraphics[width=5cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm-hist}
        }
@@ -131,17 +131,17 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) f
 \begin{figure}[t]
     \centering
 
-    \subfigure[Power Law Exponent $\alpha$]{
+    \subfigure[Power Law Exponent $(\alpha)$]{
         \includegraphics[width=4.5cm]{img/GPT-alpha-depth.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
-    \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
+    \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
         \includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
         \label{fig:gpt-snorm-layer}
     }
     \qquad
-    \subfigure[log Alpha-Norm $\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
+    \subfigure[log Alpha-Norm $(\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha})$]{
         \includegraphics[width=4.5cm]{img/GPT-pnorm-depth.png}
         \label{fig:gpt-pnorm-layer}
     }
@@ -152,35 +152,52 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) f
 
 
 
-\paragraph{GPT2: small, medium, large, extra-large} 
+\paragraph{GPT2: small, medium, large, xl} 
 
-Figure \ref{fig:gpt-alpha-layers} ...
+We now look across the series of increasingly improving GPT2 models, examining both our
+PL exponent $\alpha$, as well as the various Norm metrics.
+As we move from small to xl, both the PL exponents $\alpha$, and the peak of distribtion of
+log Norm metrics shifts from larger to smaller values. 
+Figure \ref{fig:gpt2-histograms} shows the histograms over the layer weight matrics
+for fitted $\alpha$, and the log Spectral Norm
+ $\log\Vert\mathbf{W}\Vert_{\infty}$  
+and log Alpha-Norm
+ $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$ 
+metrics.
 
-For this series of GPT2 models, the average $\alpha$ still decreases with increasing model size,
-althogh, the differences are less noticible than between the GPT and GPT2 models.
+We see that the average $\alpha$ decreases with increasing model size,
+althogh, the differences are less noticible between GTP2 mkodels than between the GPT and GPT2 models.
 Unlike GPT, however, the Layer (log) Spectral Norms $\log\vert\mathbf{W}\Vert_{\infty}$ 
 and (log) Alpha-Norms $\log\vert\mathbf{W}\Vert_{\alpha}^{\alpha}$
- behave  as expected for GPT2 layers, with the larger models  consistently having  smaller norms. 
+behave more as expected for GPT2 layers, with the larger models  consistently having  smaller norms. 
+Likewise, Figure \ref{fig:gpt2-snorm-hist} shows decreasing average log Spectral Norms
+with the larger models.   As we have seen in the trends of other well trained models.
+
+We do notice, however, that while the peaks of the $\alpha$ is getting smaller, towards $2.0$,
+the tails of the distribution shifts right, with larger GPT2 models having more
+usually large $\alpha$.  We suspect this indicates that these larger GPT2 models are 
+overparameterized and/or not yet fully optimized and require datasets even larger
+than the recent XL $1.5B$ release\cite{gpt2-xl}.
 
 \begin{figure}[t]
     \centering
 
-    \subfigure[Power Law Exponent $\alpha$  ]{
+    \subfigure[Power Law Exponent $(\alpha)$]{
         \includegraphics[width=4.5cm]{img/GPT2_all_alpha_hist.png}
-        \label{fig:gpt-alpha-layer}
+        \label{fig:gpt2-alpha-hist}
     }
     \qquad
-    \subfigure[log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$]{
+    \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
         \includegraphics[width=4.5cm]{img/GPT2*_all_spectralnorm_hist.png}
-        \label{fig:resnet-snorm-layer}
+        \label{fig:gpt2-snorm-hist}
     }
     \qquad
-    \subfigure[log Alpha-Norm $\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$]{
+    \subfigure[log Alpha-Norm $(\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha})$]{
         \includegraphics[width=4.5cm]{img/GPT2_all_logpnorm_hist.png}
-        \label{fig:gpt-pnorm-layer}
+        \label{fig:gpt2-pnorm-hist}
     }
     \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.  *Note: the log spectral norms (b) histogram omits the first 2 layers, corresponding to the embedding layer, which are normalized differently and have anamolously large values.}
-    \label{fig:gpt-alpha-layers}
+    \label{fig:gpt2-histograms}
 \end{figure}
 
 
