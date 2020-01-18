@@ -70,7 +70,14 @@ GPT2 xl & 194 & 1.86 &1.92& 7.17 & 7.51 \\
 \label{table:nlp}
 \end{table}
 
-Explain why Log Norm is sooo large...alpha is off may need to prune the alpha
+We find that in the pretrained GPT models, the first embedding layer(s) have unusually large eigenvalues,
+reflecting a lack of normalization.  For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, 
+but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
+ $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
+the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier); including them does
+not significantly alter the results here.  
+
+
 
 \paragraph{The Heavy Tailed Power Law Exponents in GPT and GPT2}
 

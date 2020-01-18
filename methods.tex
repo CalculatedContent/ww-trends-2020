@@ -125,14 +125,6 @@ Note that in some pretrained models, like the pyTorch VGG models, the Linear wei
 initialized with variance $\sigma\sim0.01$.  We do not attempt to correct for this, and, instead, simply try to treat all
 models the same.  
 
-However, in the GPT2 and other NLP models, we find that the first embedding layer(s) have unusually large eigenvalues,
-reflecting a lack of normalization.  For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, 
-but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
- $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
-the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier); including them does
-not significantly alter the results here.
-
-
 COMMENT ON HOW LOG NORM first and last layers behave, maybe somewhere else
 
 COMMENT ON HOW LOG PORM  for GPT includes unusually high alpha, not meaningful other than to show the trend.
