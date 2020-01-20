@@ -133,18 +133,22 @@ COMMENT ON HOW LOG PORM  for GPT includes unusually high alpha, not meaningful o
 
 
 \paragraph{Organization of this paper}
-
-We want to study the effective of Product Norm Metrics in describing trends in the
-generalization accuracyof real-word, production quality, pretrained Deep Neural Networks.
+\charles{This could be moved to the end of the into also}
+We want to study the effectiveness of product norm metrics in predicting trends in the
+generalization accuracy of real-word, production quality, pretrained Deep Neural Networks.
 In Section \ref{sxn:cv}, we study three well known, and widely available DNN CV architectures:
-the VGG series, the ResNet series, and the DenseNet series of models.  We lay out the
+the VGG, the ResNet, and the DenseNet series of models.  We lay out the
 basic methodology we use to evaluate the different metrics against the reported test accuracies. 
-We also introduce the notion of Correlation Flow, compare the three pretrained architectures in detail.  
-In Section  \ref{sxn:nlp}, we then look at several variations of a popular NLP DNN architecture,
-the OpenAI GPT and GPT2 models.  We discuss when and how the different metrics apply more generally.
+We also introduce the notion of Correlation Flow, and use this to 
+compare the three pretrained architectures in detail.  
+Then, in Section  \ref{sxn:nlp}, we look at several variations of a popular NLP DNN architecture,
+the OpenAI GPT and GPT2 models.  We discuss when and how the different metrics apply more generally,
+and where they differ.  In particular, we show where the layer Spectral Norm
+ $\Vert\mathbf{W}\Vert_{\infty}$ behaves unexpectedly, and, contrastly, how
+the $\alpha$ parameter can give insight into how well trained a model is.
 Finally, in Section \ref{sxn:all}, we examine over 100 pretraind DNN CV models, and show
 how well each metric is correlated with the reported test accuracies across different models
-in an architeture series.  
+in an architeture series, and that the Alpha-Norm metric performs better.
 ----
 
 
