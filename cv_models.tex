@@ -151,4 +151,13 @@ as the layer id increases, although it displays a large variance, and can range 
     \label{fig:vgg-alpha-layers}
 \end{figure}
 
-
+We can understand the Correlation Flow by considering the differences between the VGG, ResNet, and DenseNet architectures,
+and, in particular, the number of residual connections.  VGG, while a good model, had been limited by needing the massive
+FC layers at the end of the model,requiring significant memory and computational resources.  ResNet greatly improved
+on VGG by introducing residual connections, allowing for greater accurary with far fewer parameters.
+Indeed, ResNet models of upto 1000 layers have been trained. And we see this in the Corraltion Flow.
+We conjuecture that the effeciency and effectivness of ResNet is reflected in the smaller and stable
+$\alpha\sim 2.0$,  indicating that the inner layers are very well correlated, really optimized.
+In contrast, the DenseNet model contains a massive number of connections and between every layer.
+Here, we suppose that DenseNet has too many connections, diluting the Correlation Flow, leaving
+many layers very poorly correlated, with large $\alpha$, meaning they are probably not even Heavy Tailed.
