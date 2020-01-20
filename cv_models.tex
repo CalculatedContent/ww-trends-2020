@@ -2,15 +2,32 @@
 \label{sxn:cv}
 
 
-\michael{We set up the methdology we will use later, and give examples on the CV models
-and explain how to interpret things a bit. We study pretrained CV models.
-We look at correlation with the reportest test accuarcies.
- We will run linear regressions. We will compute the RMSE.  
-We study alpha and the 4 norms.  we could add softrank with some work.
+We start our empirical studies by compute the differernt log 
+product norm metrics for three computer vision (CV) architectures,
+the VGG, and ResNet, and the DenseNet series.  Each
+series consists of several pretrained DNN models, 
+trained on the full ImageNet\cite{imagenet} dataset,
+and distributed with the current opensource pyTorch framework (vesion 1.4)\cite{pyTorch}.
+We also provide results for a larger set of ResNet models,
+trained on the ImageNet-1K dataset\cite{imagenet1k},  provided 
+on the OSMR ``Sandbox for training convolutional networks for computer vision''\cite{osmr};
+we call this the ResNet-1K series of models.
+We compute the metrics using the WeightWatcher tool (version 0.2.7),
+and provide Jupyter notebooks in the github repo for this paper\cite{repo},
+making the results fully reproducible.
 
-We introduce the notion of Correlation Flow and 
-tell a nice story about residual connections
-with VGG RseNet and DenseNet}
+Figure \ref{fig:vgg-metrics} plots the different log norm metrics
+versus the reported Test accuracies\cite{pyTorchVgg}, for the
+pretrained models:  VGG11, VGG13, VGG16, and VGG19, with and without
+BatchNormalization.  The figure also shows a basic linear regression
+line, with the Root Mean Squared Error (RMSE) shown.
+All four metrics correlate well with the reported Top1 Accuracies,
+with smaller norms implying better generalziation 
+(greater accuracy, lower error).  Similar results are obtained
+for the Top5 Accuracies (not shown).  Notice that the log $\alpha$-Norm
+metric $\log\Vert\mathbf{W}\Vert)_{\infty}^{\infty}$ performs best,
+with an RMSE of $0.34$.  Also, the next best metric is the
+Weighted Alpha, $\hat\alpha$, which is an approximate log $\alpha$-Norm metric.
 
 \paragraph{Empirical Metrics vs Test Accuracies for CV models}
 
@@ -42,13 +59,14 @@ with VGG RseNet and DenseNet}
 \end{figure}
 
 
-VGG works remarkably well
+Table \ref{table:cv-models} summarizes results from linear regressions, applied to the VGG, ResNet, ResNet-1K, and DenseNet series,
+and reports the RMSE for all four product norm metrics.  For all series, all four metrics correlates remarkably well with
+the reported Top1 test accuracies.  Moreover, the $\alpha$-Norm and/or the approximate Weighted Alpha metrics perform best.
 
-ResNet is also correlated, but the RMSE is much larger, and 2/5 of the models are almost outliers
-But note that the PyTorch distribution only has a few models.
-The ResNet results look better when considering all ResNet models, trained on ImageNet1K.
-
-ADD PLOTS FOR
+For a more visual depiction, Figure \ref{fig:cv2-accuracy} displays the log $\alpha$-Norm metric  $\log\Vert\mathbf{W}\Vert)_{\infty}^{\infty}$ 
+versus test accuracies for the ResNet, ResNet-1K, and DenseNet series. Notice that ResNet series, which has been trained on the full
+ImageNet dataset, has an RMSE of $0.66$, whereas the ResNet-1K series, which has been trained on the much smaller ImageNet-1K dataset,
+also correlated wells, but has a much larger RMSE of $1.9$.
 
 
 \begin{figure}[t]
@@ -73,8 +91,6 @@ ADD PLOTS FOR
 \end{figure}
 
 
-TODO:  add table of metrics for these 3 models, show that alpha-Norm is best again!
-
 \begin{table}[t]
 \small
 \begin{center}
@@ -91,18 +107,28 @@ TODO:  add table of metrics for these 3 models, show that alpha-Norm is best aga
 \end{tabular}
 \end{center}
 \caption{RMSE for Linear Fits of Metric to Reported Top1 Test Error for all pre-trained models in the architecture series.  All models trained on ImageNet except ResNet-1K, which was trained on ImageNet-1K. }
-\label{table:models}
+\label{table:cv-models}
 \end{table}
-
-DISCUSS TABLE
-
 
 
 \paragraph{Correlation Flow in CV Models}
 
-Explain WHAT IS \emph{Correlation Flow}
+We can learn even more about how a pretrained model will perform by examining what we call the
+\emph{Correlation Flow} down the layers.  By this, we mean the values of individual Heavy Tailed
+Power Law exponent $\alpha$ for each layer weight matric $\mathbf{W}$, as a function of depth
+(or layer id) in the network. (The first layer corresponds to the data, and the last layer the labels).
+Figure \ref{fig:vgg-alpha-layers} plots $\alpha$ for each layer for the VGG (no batchnorm), RseNet-1K, and DenseNet models,
+including the least accurate and most accurate model in each series. 
 
-Compare VGG, ResNet, and DenseNet in the context of how many connections that have
+First observe that in the VGG models, $\alpha$ systematically increases as we move down the network from data to labels,
+in the Conv2D layers, starting with $\alpha\le 2.0$ and reaching all the way to $\alpha\sim 5.0$.
+Then, $\alpha\in[2,2.5]$ stabilizes back down to last three, large,  fully connected (FC) layers. 
+In contrast, in the larger ResNet-1K (152) model, $\alpha$ remaims stable at $\alpha\sim 2.0$ all the way
+until we reach the final layers.  Finally, in the DenseNet models, as in the VGG models, $\alpha$ increases
+as the layer id increases, although it displays a large variance, and can range all the way to $alpha\le 8.0$.
+
+\charles{INTERPRET}
+
 
 \begin{figure}[t]
     \centering
@@ -112,7 +138,7 @@ Compare VGG, ResNet, and DenseNet in the context of how many connections that ha
                 \label{fig:vgg-alpha-layers}
     }
     \qquad
-    \subfigure[ ResNet ]{
+    \subfigure[ ResNet-1K ]{
         \includegraphics[width=4.5cm]{img/ResNet_fnl_alpha_depth.png} 
         \label{fig:resnet-alpha-layer}
     }
@@ -121,7 +147,7 @@ Compare VGG, ResNet, and DenseNet in the context of how many connections that ha
         \includegraphics[width=4.5cm]{img/DenseNet_fnl_alpha_depth.png} 
         \label{fig:densenet-alpha-layer}
     }
-    \caption{Power law exponent $\alpha$ vs layer for VGG, ResNet, and DenseNet models}
+    \caption{Correlation Flow: Heavy Tailed Power Law exponent $\alpha$ vs layer for VGG, ResNet-1K, and DenseNet models.}
     \label{fig:vgg-alpha-layers}
 \end{figure}
 
