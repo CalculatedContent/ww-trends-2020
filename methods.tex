@@ -136,11 +136,15 @@ COMMENT ON HOW LOG PORM  for GPT includes unusually high alpha, not meaningful o
 
 We want to study the effective of Product Norm Metrics in describing trends in the
 generalization accuracyof real-word, production quality, pretrained Deep Neural Networks.
-In Section \ref{sxn:cv}, we study three well known, and widely available DNN architectures:
-the VGG series, the ResNet series, and the DenseNet series of models.  Each have been pretrained
-on the full ImageNet dataset\cite{imagenet}, and are distributed with the current of pyTorch (1.4)\cite{pyTorch}.
-[Explain more]
-
+In Section \ref{sxn:cv}, we study three well known, and widely available DNN CV architectures:
+the VGG series, the ResNet series, and the DenseNet series of models.  We lay out the
+basic methodology we use to evaluate the different metrics against the reported test accuracies. 
+We also introduce the notion of Correlation Flow, compare the three pretrained architectures in detail.  
+In Section  \ref{sxn:nlp}, we then look at several variations of a popular NLP DNN architecture,
+the OpenAI GPT and GPT2 models.  We discuss when and how the different metrics apply more generally.
+Finally, in Section \ref{sxn:all}, we examine over 100 pretraind DNN CV models, and show
+how well each metric is correlated with the reported test accuracies across different models
+in an architeture series.  
 ----
 
 
