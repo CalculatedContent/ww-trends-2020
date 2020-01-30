@@ -1,5 +1,14 @@
 \documentclass[sigconf]{acmart}
 
+\usepackage{subfigure}
+
+% Here are two macros for comments.
+\newcommand {\nred}[1]{{\color{red}\sf{[#1]}}}
+\newcommand {\ngreen}[1]{{\color{darkgreen}\sf{[#1]}}}
+\newcommand {\michael}[1]{{\color{red}\sf{[michael: #1]}}}
+\newcommand {\charles}[1]{{\color{blue}\sf{[charles: #1]}}}
+\newcommand {\serena}[1]{{\color{orange}\sf{[charles: #1]}}}
+
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -52,8 +61,7 @@
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
 \title{%
-%XXX TITLE OF THIS EMPIRICAL PAPER
-Predicting trends in generalization for state-of-the-art neural networks without access to training or testing data
+Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data
 }
 
 %%
@@ -71,7 +79,7 @@ Predicting trends in generalization for state-of-the-art neural networks without
   \country{USA}}
 \email{charles@CalculationConsulting.com}
 
-\author{XXX SERENA}
+\author{Serena Peng}
 \affiliation{%
   \institution{XXX}
   \streetaddress{XXX}
@@ -99,7 +107,7 @@ Predicting trends in generalization for state-of-the-art neural networks without
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-XXX.  ABSTRACT.
+\input{abstract_file}
 \end{abstract}
 
 %%
@@ -159,6 +167,10 @@ XXX.  ABSTRACT.
 
 \input{introduction}
 \input{background}
+\input{methods}
+\input{cv_models}
+\input{nlp_models}
+\input{all_models}
 \input{conclusion}
 
 %%
@@ -167,7 +179,7 @@ XXX.  ABSTRACT.
 %% identification of the section in the article metadata, and the
 %% consistent spelling of the heading.
 \begin{acks}
-MWM would like to acknowledge ARO, DARPA, IARPA, NSF, and ONR for providing partial support of this work.
+MWM would like to acknowledge ARO, DARPA, NSF, and ONR for providing partial support of this work.
 \end{acks}
 
 %%
@@ -177,6 +189,9 @@ MWM would like to acknowledge ARO, DARPA, IARPA, NSF, and ONR for providing part
 %\bibliography{gen_gap}
 %\bibliography{dnns}
 \bibliography{dnns,gen_gap}
+
+\appendix
+\input{appendix}
 
 \end{document}
 

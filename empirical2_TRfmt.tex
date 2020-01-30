@@ -72,8 +72,7 @@
 \begin{document}
 
 \title{%
-%XXX TITLE OF THIS EMPIRICAL PAPER
-Predicting trends in generalization for state-of-the-art neural networks without access to training or testing data
+Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data
 }
 
 \author{%
@@ -90,21 +89,22 @@ Michael W. Mahoney\thanks{ICSI and Department of Statistics, University of Calif
 
 
 \begin{abstract}
-XXX.  ABSTRACT.
+\input{abstract_file}
 \end{abstract}
-GLG | Powered by Box
+
+%GLG | Powered by Box
+
 \input{introduction}
 \input{background}
 \input{methods}
 \input{cv_models}
 \input{nlp_models}
 \input{all_models}
-
 \input{conclusion}
 
 \noindent
 \paragraph{Acknowledgements.}
-MWM would like to acknowledge ARO, DARPA, IARPA, NSF, and ONR for providing partial support of this work.
+MWM would like to acknowledge ARO, DARPA, NSF, and ONR for providing partial support of this work.
 
 \bibliographystyle{unsrt}
 %\bibliographystyle{plain}
@@ -113,5 +113,8 @@ MWM would like to acknowledge ARO, DARPA, IARPA, NSF, and ONR for providing part
 %\bibliography{dnns}
 \bibliography{dnns,gen_gap}
 }
+
+\appendix
+\input{appendix}
 
 \end{document}

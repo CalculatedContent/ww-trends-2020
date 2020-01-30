@@ -2,16 +2,45 @@
 \label{sxn:background}
 
 
+To our knowledge, there is very little work on the particular question we are addressing: namely, how to predict, in a theoretically-principled manner, the quality of large-scale state-of-the-art NNs, and to do so without access to training data or testing data or details of the training protocol, etc.
+Our work is, however, loosely related to several other lines of work, and we briefly discuss them here.
 
+\paragraph{Statistical mechanical theory of NNs.}
 
-Here we will cite and discuss related work, including
-
-
+XXX.
+Cite our stuff:
 \cite{MM17_TR},
 \cite{MM18_TR},
 \cite{MM19_HTSR_ICML},
 \cite{weightwatcher_package}
 \cite{MM19_KDD},
 \cite{MM20_SDM},
-\cite{MM20_unpub_work},
+\cite{MM20_unpub_work}.
+Cite also Ganguli review and maybe other stuff.
 
+XXX.
+Distinguish between what we will call a
+\emph{phenomenological theory}
+(that describes empirical relationship of phenomena to each other, in a way which is consistent with fundamental theory, but is not directly derived from that theory)
+and what can be called a 
+\emph{first principles theory} 
+(that is applicable to tiny things but has no hope of scaling up).
+\footnote{In most areas where there are complex highly-engineered systems (beyond complex AI/ML systems), one used phenomenological theory rather than first principles theory.  For example, one does not try to solve the Schr\"odinger equation if one is interested in building a bridge or an airplane.}
+
+\paragraph{Norm-based capacity control theory.}
+XXX.  MOST IRRELEVANT, BUT LIAO AND OUR SDM ARE RELATED.  
+XXX.  MAYBE BEAT ON INFINITELY WIDE OR SOMETHING ELSE.
+
+\paragraph{Practical problems poorly addressed by theory.}
+There are many very practical problems in ML that are poorly addressed by existing theory and that either motivated our work or should be addressable by our techniques.
+Here are several.
+\begin{itemize}
+\item
+\textbf{Lack of accuracy metrics.}
+\item
+\textbf{Lack of data.}
+\item
+XXX. LACK OF SOMETHING ELSE.
+\end{itemize}
+Importantly, there are many examples in ML where (as a practical matter) there is no reliable notion of accuracy, e.g., when generating fake text, when developing self driving car systems, and when distilling a reliable model in some way to obtain comparable training/test quality but that damages the model in some other subtle way. 
+\michael{That last example is awkward.  It would be good to have a better example and plant seeds for model distillation elsewhere.}

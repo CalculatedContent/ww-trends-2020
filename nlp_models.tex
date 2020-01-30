@@ -1,6 +1,11 @@
 \section{Comparison of NLP Transformer Models}
 \label{sxn:nlp}
 
+In this section, we examine the quality metrics described in Section~\ref{sxn:methods} for several NLP model architectures.
+
+
+apply more generally, where they differ, e.g., how the layer Spectral Norm behaves unexpectedly, while the $\alpha$-based metrics can give insight into how well trained a model is.
+
 \michael{We show that this not only works for CV, so we look at NLP.
 We now look in detail at the alpha metric, the spectral norm, and the new norm.
 We compare good and bad models, and a series of increasingly big models
@@ -9,17 +14,17 @@ trained on big data sets.  We show why alpha works but spectral norm is not enou
 }
 
 
-In the past two years, nearly 100 open source, pre-trained DNNs for Natural Language Processing (NLP) have emerged,
-based on the revolutionary Transformer architecture, including variants of BERT, Transformer-XML, GPT, etc.
-The Transformer architectures consist of blocks of Attention layers, containing of 2 large, Feed Forward (Linear)
-weight matrics \cite{Attn2017}. In contrast to the smaller pre-Activation maps arising in Cond2D layers,
-the Attention matrices are significantly larger, and frequently under-correlated, with generally larger
-Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).  Here, we breifly look at a few
-popular pretrained NLP DNNs to demonstrate that the Theory of Heavy Tailed Self-Regularization also
+Within the past two years, nearly 100 open source, pre-trained DNNs for NLP have emerged, based on the revolutionary Transformer architecture.
+This includes variants of BERT, Transformer-XML, GPT, etc.
+The Transformer architectures consist of blocks of Attention layers, containing two large, Feed Forward (Linear) weight matrics~\cite{Attn2017}. 
+In contrast to the smaller pre-Activation maps arising in Cond2D layers, Attention matrices are significantly larger, 
+and frequently under-correlated, with generally larger Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).  
+Here, we breifly look at a few popular pretrained NLP DNNs to demonstrate that the Theory of Heavy Tailed Self-Regularization also
 applies to NLP models and not just CV models, and to highlight how to use the theory to identify
 poorly trained models where the empirical norm metrics will perform poorly.
 
-\paragraph{OpenAI GPT Models}
+\paragraph{OpenAI GPT Models.}
+
 We use the \emph{WeightWatcher} tool to analyze the OpenAI GPT and GPT2 models, which gives us
 the opportunity to analyze the effect of both training the same model with different size data sets,
 and increasing sizes of both the data set and architectures.
@@ -76,7 +81,8 @@ GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 \end{table}
 
 
-\paragraph{Empirical Quality Metrics for GPT and GPT2}
+\paragraph{Empirical Quality Metrics for GPT and GPT2.}
+
 We first compare the distribution of  Heavy Tailed Power Law exponents $\alpha$ in GPT and GPT2.
 They are very differenmt, with GPT2 having both a notably smaller mean $\alpha$, and far fewer, unusually large outliers.
 Figure \ref{fig:gpt-alphs-hist} shows the empirical density (histogram) of $\alpha$
@@ -129,7 +135,9 @@ Here, we do not include them in our computed average metrics in Table \ref{table
 and do not include them in the histogram plot in Figure \ref{fig:GPT-snorm-hist}.
 
 
-\paragraph{The Correlation Flow in GPT and GPT2} also differs significantly between GPT and GPT2.
+\paragraph{Correlation Flow in GPT and GPT2.} 
+
+also differs significantly between GPT and GPT2.
 Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) for each model.
 
 \charles{Discuss Spectral Norm, alpha-Norm}
@@ -183,7 +191,7 @@ We do notice, however, that while the peaks of the $\alpha$ is getting smaller, 
 the tails of the distribution shifts right, with larger GPT2 models having more
 usually large $\alpha$.  We suspect this indicates that these larger GPT2 models are 
 overparameterized and/or not yet fully optimized and require datasets even larger
-than the recent XL $1.5B$ release\cite{gpt2-xl}.
+than the recent XL $1.5B$ release~\cite{gpt2-xl}.
 
 \begin{figure}[t]
     \centering

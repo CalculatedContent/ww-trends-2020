@@ -13,38 +13,51 @@ Well-known problems with just examining training/testing curves include that
 they give very limited insight into the overall properties of the model, 
 they do not take into account the (often extremely large human and CPU/GPU) time for hyperparameter fiddling,
 they typically do not correlate with other properties of interest such as robustness or fairness or interpretability, 
-%XXX SOMETHING ELSE, 
 and so on.
 A somewhat less well-known problem, but one that is increasingly important (in particular in industrial-scale ML---where the \emph{users} of models are not the \emph{developers} of the models) is that one may access to neither the training data nor the testing data.
-Instead, one may simply be given a model that has already been trained---we will call such an already-trained model a \emph{pre-trained model}---and be told to use it.
+Instead, one may simply be given a model that has already been trained---we will call such an already-trained model a \emph{pretrained model}---and be told to use it.
 
 Na\"{\i}vely---but in our experience commonly, among both ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
-This may be true in worst-case theory, but ML models are used in practice, and there is a need for theory to guide that practice.
-Moreover, if ML is to become an industrial process, then the process will become siloed: some groups will gather data, other groups will develop models, and still other groups will use those models.
-The users of models can not be expected to know the precise details of how the models were built, the specifics of the data that were used to train the model, what the loss of values of the hyperparameters were, how precisely the model was regularized, etc.
+This may be true in worst-case theory, but ML models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
+Moreover, if ML is to become an industrial process, then that process will become siloed: some groups will gather data, other groups will develop models, and still other groups will use those models.
+The users of models can not be expected to know the precise details of how the models were built, the specifics of the data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized, etc.
 %
-Having metrics to evaluate the quality of a ML model in the absence of training and testing data and without any detailed knowledge of the training and testing process---indeed, having theory for pre-trained models, to predict how, when, and why such models can be expected to perform well or poorly---is clearly of interest.
+Having metrics to evaluate the quality of a ML model in the absence of training and testing data and without any detailed knowledge of the training and testing process---indeed, having theory for pretrained models, to predict how, when, and why such models can be expected to perform well or poorly---is clearly of interest.
 
-In this paper, we present and apply techniques to evaluate the generalization properties of large-scale state-of-the-art pre-trained neural network (NN) models.%
-\footnote{We reiterate: One could use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pre-trained NN models.}
-To do so, we consider a large suite of publicly-available models from computer vision (CV) and natural language processing (NLP).
+In this paper, we present and evaluate quality metrics for pretrained neural network (NN) and deep neural network (DNN) models at scale.%
+\footnote{We reiterate: One could use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained NN models.}
+To do so, we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
 %
 By now, there are many such state-of-the-art models that are publicly-available, e.g., 
-there are now hundreds of pre-trained models in CV ($\ge 500$) and NLP ($\approx 100$).%
+there are now hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 100$).%
 \footnote{When we began this work in 2018, there were fewer than tens of such models; now in 2020, there are hundreds of such models; and we expect that in a year or two there will be an order of magnitude or more of such models.}
 These provide a large corpus of models that by some community standard are state-of-the-art.%
 \footnote{Clearly, there is a selection bias or survivorship bias here---people tend not to make publicly-available their poorly-performing models---but these models are things in the world that (like social networks or the internet) can be analyzed for their properties.}
-XXX.  MORE DETAILS.
+\michael{XXX.  MORE DETAILS.}
 Importantly, for all of these models, we have no access to training data or testing data.
 
-XXX.  LIST PLACES WHERE THEY ARE AVAIALBLE, HERE OR IN NEXT SECTION.
+\michael{XXX.  LIST PLACES WHERE THEY ARE AVAIALBLE, HERE OR IN NEXT SECTION.}
+
+
+XXX.  
+To do this, we will compute a variety of \emph{quality metrics} based on the spectral properties of the layer weight matrics.
+Note that unlike traditional ML approaches, however, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), and \emph{we do not aim to evaluate a single model} (e.g., by training with differing hyperparmeters). 
+Instead, we want to examine different models a common architecture series, and we want to compare models between different architectures themselves, and in both cases \emph{we aim to predict trends in the quality of pre-trained models without access to training or testing data}.  
 
 In more detail, our main contributions are the following.
 \begin{itemize}
 \item XXX TECHNICAL THING 1
 \item XXX TECHNICAL THING 2
 \item XXX TECHNICAL THING 3
+\item XXX TECHNICAL THING 4
 \end{itemize}
 
-%Perhaps our most improtant contribution, however, is just doing things different, etc. ...
+
+\paragraph{Organization of this paper.}
+
+We start in Section~\ref{sxn:background} and Section~\ref{sxn:methods} with background and an overview of our general approach.
+In Section \ref{sxn:cv}, we study three well-known widely-available DNN CV architectures (the VGG, ResNet, and DenseNet series of models); and we provide an illustration of our basic methodology, both to evaluate the different metrics against reported test accuracies and to use quality metrics to understand model properties.
+Then, in Section~\ref{sxn:nlp}, we look at several variations of a popular NLP DNN architecture (the OpenAI GPT and GPT2 models); and we show how model quality and properties vary between several variants of GPT and GPT2, including how metrics behave similarly and differently.
+Then, in Section \ref{sxn:all_cv_models}, we present results based on an analysis of hundreds of pretraind DNN CV models, showing how well each metric is correlated with the reported test accuracies, and how the Alpha-Norm metric(s) perform remarkably well.
+Finally, in Section~\ref{sxn:conc}, we provide a brief discussion and conclusion.
 
