@@ -15,14 +15,14 @@ they do not take into account the (often extremely large human and CPU/GPU) time
 they typically do not correlate with other properties of interest such as robustness or fairness or interpretability, 
 and so on.
 A somewhat less well-known problem, but one that is increasingly important (in particular in industrial-scale ML---where the \emph{users} of models are not the \emph{developers} of the models) is that one may access to neither the training data nor the testing data.
-Instead, one may simply be given a model that has already been trained---we will call such an already-trained model a \emph{pretrained model}---and be told to use it.
+Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and be told to use it.
 
 Na\"{\i}vely---but in our experience commonly, among both ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but ML models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
 Moreover, if ML is to become an industrial process, then that process will become siloed: some groups will gather data, other groups will develop models, and still other groups will use those models.
 The users of models can not be expected to know the precise details of how the models were built, the specifics of the data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized, etc.
 %
-Having metrics to evaluate the quality of a ML model in the absence of training and testing data and without any detailed knowledge of the training and testing process---indeed, having theory for pretrained models, to predict how, when, and why such models can be expected to perform well or poorly---is clearly of interest.
+\charles{Moreover, industry faces unique practical problems such as 'do we have enough data for this model?' It is great practical interest to have metrics to evaluate the quality of a ML model in the absence of training and testing data and without any detailed knowledge of the training and testing process.  We seek a theory for pretrained models which can predict how, when, and why such models can be expected to perform well or poorly.}
 
 In this paper, we present and evaluate quality metrics for pretrained neural network (NN) and deep neural network (DNN) models at scale.%
 \footnote{We reiterate: One could use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained NN models.}
@@ -41,8 +41,8 @@ Importantly, for all of these models, we have no access to training data or test
 
 XXX.  
 To do this, we will compute a variety of \emph{quality metrics} based on the spectral properties of the layer weight matrics.
-Note that unlike traditional ML approaches, however, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), and \emph{we do not aim to evaluate a single model} (e.g., by training with differing hyperparmeters). 
-Instead, we want to examine different models a common architecture series, and we want to compare models between different architectures themselves, and in both cases \emph{we aim to predict trends in the quality of pre-trained models without access to training or testing data}.  
+Note that unlike traditional ML approaches, however, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., \ncyan{hyperparmeter optimization}). 
+Instead, we want to examine different models \ncyan{across} common architecture series, and we want to compare models between different architectures themselves, and in both cases \emph{we aim to predict trends in the quality of pre-trained models without access to training or testing data}.  
 
 In more detail, our main contributions are the following.
 \begin{itemize}
