@@ -15,7 +15,7 @@ We use our quality metrics to perform \emph{coarse model analysis}, comparing an
 We also use our metrics to perform \emph{fine layer analysis}, permitting us to understand more fine-scale properties of these models as a function of model depth.
 
 
-\paragraph{Quality Metrics versus Reported Test Accuracies.}
+\paragraph{Coarse Analysis: Quality Metrics versus Reported Test Accuracies.}
 
 We have examined the performance of the four quality (Frobenius norm, Spectral norm, Weighted Alpha, and $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
 To start, Figure~\ref{fig:vgg-metrics} plots the four quality metrics versus the reported Test accuracies~\cite{pyTorchVgg}, as well as a basic linear regression line, 
@@ -130,7 +130,7 @@ Moreover, the $\alpha$-Norm and/or the approximate Weighted Alpha metrics perfor
 \end{table}
 
 
-\paragraph{Layer Analytics: Correlation Flow in CV Models.}
+\paragraph{Layer Analysis: Correlation Flow in CV Models.}
 
 We can learn much more about a pretrained model by going beyond average values to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
 The most interesting results are seen when we plot the PL exponent, $\alpha$, as a function of depth.
@@ -188,7 +188,7 @@ This should also be contrasted with the DenseNet model, which contains many conn
 Our results (large $\alpha$, meaning they even a HT model is probably a poor fit) suggest that DenseNet has too many connections, diluting the correlation flow across layers, and leaving many layers very poorly optimized.
 
 
-\paragraph{Layer Analytics: Behavior on Less Thoroughy Studied CV Models.}
+\paragraph{Layer Analysis: Behavior on Less Thoroughy Studied CV Models.}
 
 Figure~\ref{fig:vgg-metrics} and Table~\ref{table:cv-models} show that---for well-trained and widely-studied models---the weighted $\hat{\alpha}$ metric performs better than but similar to norm-based metrics.
 This suggests an obvious question: is the $\hat{\alpha}$ metric just a variation of these more familiar norm-based metrics, or does it capture something different?  
