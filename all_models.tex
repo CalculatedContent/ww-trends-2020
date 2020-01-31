@@ -40,7 +40,7 @@ Here, we use the Weightwatcher tool to analyze 466 pretrained computer vision mo
     \label{fig:dataset_alphas}
 \end{figure}
 
-
+\charles{This section needs a lot of work}
 
 
 \serena{insert link in the footnote}
@@ -49,9 +49,6 @@ and a full summary of all the models analyzed is included in the Appendix. For o
 
 In this paper, we propose that the Weightwatcher tool could be used to predict the trends in the generalization accuracy of deep neutral network without a test set. To test our proposition, we choose simple linear regression to analyze the relationship between the Weightwatcher metrics and the traditional accuracy metric obtained with a test set (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense). On the left-hand-side of regression, we have the Top1 errors, Top5 errors as reported for ImageNet-1K models, Error % as reported in CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.,%) and Intersection-Over-Union (mIOU,%) as dependent variables. We then regress them individually on each of the Weightwatcher metrics, including  alpha, alpha_weighted, spectralnormlog, softranklog, lognorm, and logpnorm as defined in earlier section. 
 
-\serena{Question: only the alpha-related metrics is the core metrics of the WW tool, right? Metrics such as stable rank or spectral norm have been suggested in other paper before???}
-
-\serena{insert a simple formula for linear regression}
 
 To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
 

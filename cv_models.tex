@@ -23,6 +23,7 @@ Notice that the log $\alpha$-Norm metric $\log\Vert\mathbf{W}\Vert)_{\infty}^{\i
 \michael{XXX IS THAT A TYPO} 
 performs best, with an RMSE of $0.34$; and the second best metric is $\hat\alpha$, which is an approximate log $\alpha$-Norm metric.
 \michael{Are those numbers stale, I don't see them, and some things seem in the other order.}
+\charles{See Figure 2}
 \michael{We should probably point to the table if we cite quantitative results.}
 
 
@@ -35,6 +36,7 @@ also correlated wells, but has a much larger RMSE of $1.9$.
 
 Table \ref{table:cv-models} summarizes results for all four metrics (Frobenius norm, Spectral norm, Weighted Alpha, and $\alpha$-Norm) applied to the VGG, ResNet, ResNet-1K, and DenseNet series.
 \michael{XXX.  AGAIN, WHERE IS RMSE, IN THAT TABLE?}
+\charles{The Table may be stale, see the figures to confirm}
 
 For all series, all four metrics correlate quite well with the reported Top1 test accuracies.  
 Moreover, the $\alpha$-Norm and/or the approximate Weighted Alpha metrics perform best.
@@ -152,6 +154,7 @@ This is quite different than the behavior of either the ResNet-1K models or the 
 
 For the ResNet-1K models, $\alpha$ also increases in the last few layers, but as the models get deeper, there is a wide range over which $\alpha$ values tend to remain small.
 \michael{Can we say something about exceptions which are larger than for VGG or DenseNet.}
+\charles{You have the same plots I do..what do you want to say >}
 This is seen for other models in the ResNet-1K series, but it is most pronounced for the larger ResNet-1K (152) model, where $\alpha$ remains relatively stable at $\alpha\sim 2.0$, from the earliest layers all the way until we reach close to the final layers.  
 
 For the DenseNet models, $\alpha$ tends to increase as the layer id increases, in particular for layers toward the end.

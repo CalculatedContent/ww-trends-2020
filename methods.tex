@@ -18,6 +18,7 @@ Here, we will ignore these details, and will focus only on the weight matrices.
 Each DNN layer contains one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers. 
 (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below.) 
 %
+\charles{hard to confer on this.  I tried to state this as simply as possible.  We have never stated this before, and I think its going to be confusing.  We at least need to explain why we are looking at the average log norm. Otherwise we are forcing the reader to look back, and the paper is hard to read as a standalone entity. }
 \michael{
 XXX.  PROBABLY WE DO NOT WANT THE FOLLOWING.  INSTEAD, JUST PRESENT METRICS AND POINT TO PREVIOUS PAPERS FOR JUSTIFICATION.  E.G., WE DONT WANT TO JUSTIFY THE IMPLICIT STATISTICAL INDEPENDENCE ASSUMPTION HERE.  IF OKAY, JUST DELETE THIS RED BLOCK.
 We assume the layer weight matrices are statistically independent, allowing us to estimate the Complexity $\mathcal{C}$, or test accuracy, with a standard Product Norm, which resembles a data dependent VC complexity
@@ -94,6 +95,7 @@ To verify that our approach is meaningful, we need to confirm that the ESD is ne
 We examine typical layer for the pretained AlexNet model (distributed with pyTorch). 
 Figure~\ref{fig:alexnet1} displays the ESD for the first slice (or matrix $\mathbf{W}$) of the third Conv2D layer, extracted from a 4-index Tensor of shape $(384, 192, 3, 3)$.  The red line displays the best fit to a random matrix, using the Marchenko pastur theory~\cite{MM}.  We can see the random matrix model does not describe the ESD very well. For comparison, Figure \ref{fig:alexnet2} shows the ESD of the same matrix, randomly shuffled; here looks similar to the red line plot of the orginal ESD.  In fact, the empircal ESD is better modeled with a truncated power law distribtion.
 \michael{We may want to give a one-sentence summary of this par and fig at the end of the previous par.}
+\charles{Here, on the RMT MP stuff, I think it makes sense to point back}
 
 \begin{figure}[H]
    \centering
@@ -119,6 +121,7 @@ If $\mathbf{W}$ was, then it would contain 1 or more unusually large matrix elem
 Of course the randomized $\mathbf{W}$ would also be heavy tailed, but its ESD neither resembles the original nor is it heavy tailed. 
 So we can rule out $\mathbf{W}$ being heavy tailed.
 \michael{These comments seem out of place, since they hold more generally than for the Conv2D layers.}
+\charles{Agreed. We could move this up.  We have never really talked about this, but it is essential to explain the difference between assuming W is heavy tailed , which confuses everyone}
 
 These plots tell us that the pre-activation maps of the Conv2D contains significant correlations learned from the data.  
 By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
