@@ -1,6 +1,12 @@
 \section{Comparison of NLP Transformer Models}
 \label{sxn:nlp}
 
+\michael{Need to say that such large $\alpha$ values don't mean much.}
+
+\michael{Need to highlight difference between $\alpha$ and $\hat{\alpha}$.}
+
+
+
 In this section, we examine the quality metrics described in Section~\ref{sxn:methods} for several NLP model architectures.
 
 
@@ -96,12 +102,14 @@ for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
 \begin{figure}
     \centering
     \subfigure[Power Law Exponent $(\alpha)$]{
-        \includegraphics[width=5cm]{img/GPT-alpha-hist.png}
+        %\includegraphics[width=5cm]{img/GPT-alpha-hist.png}
+        \includegraphics[width=3.7cm]{img/GPT-alpha-hist.png}
         \label{fig:GPT-alpha-hist}
        }
     \qquad
     \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
-        \includegraphics[width=5cm]{img/GPT-snorm-hist.png}
+        %\includegraphics[width=5cm]{img/GPT-snorm-hist.png}
+        \includegraphics[width=3.7cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm-hist}
        }
 
@@ -151,17 +159,20 @@ Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) f
     \centering
 
     \subfigure[Power Law Exponent $(\alpha)$]{
-        \includegraphics[width=4.5cm]{img/GPT-alpha-depth.png}
+        %\includegraphics[width=4.5cm]{img/GPT-alpha-depth.png}
+        \includegraphics[width=3.7cm]{img/GPT-alpha-depth.png}
         \label{fig:gpt-alpha-layer}
     }
     \qquad
     \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
-        \includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
+        %\includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
+        \includegraphics[width=3.7cm]{img/GPT-snorm-depth.png}
         \label{fig:gpt-snorm-layer}
     }
     \qquad
     \subfigure[log Alpha-Norm $(\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha})$]{
-        \includegraphics[width=4.5cm]{img/GPT-pnorm-depth.png}
+        %\includegraphics[width=4.5cm]{img/GPT-pnorm-depth.png}
+        \includegraphics[width=3.7cm]{img/GPT-pnorm-depth.png}
         \label{fig:gpt-pnorm-layer}
     }
     \caption{Comparison of Correlation Flow and Spectral Norm for OpenAI GPT and GPT2   }
@@ -202,17 +213,20 @@ than the recent XL $1.5B$ release~\cite{gpt2-xl}.
     \centering
 
     \subfigure[Power Law Exponent $(\alpha)$]{
-        \includegraphics[width=4.5cm]{img/GPT2_all_alpha_hist.png}
+        %\includegraphics[width=4.5cm]{img/GPT2_all_alpha_hist.png}
+        \includegraphics[width=3.7cm]{img/GPT2_all_alpha_hist.png}
         \label{fig:gpt2-alpha-hist}
     }
     \qquad
     \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
-        \includegraphics[width=4.5cm]{img/GPT2*_all_spectralnorm_hist.png}
+        %\includegraphics[width=4.5cm]{img/GPT2*_all_spectralnorm_hist.png}
+        \includegraphics[width=3.7cm]{img/GPT2*_all_spectralnorm_hist.png}
         \label{fig:gpt2-snorm-hist}
     }
     \qquad
     \subfigure[log Alpha-Norm $(\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha})$]{
-        \includegraphics[width=4.5cm]{img/GPT2_all_logpnorm_hist.png}
+        %\includegraphics[width=4.5cm]{img/GPT2_all_logpnorm_hist.png}
+        \includegraphics[width=3.7cm]{img/GPT2_all_logpnorm_hist.png}
         \label{fig:gpt2-pnorm-hist}
     }
     \caption{Comparison of Power Law Exponnents, Spectral Norm, and Alpha-Norm for different size models in the GPT2 architecture series.  *Note: the log spectral norms (b) histogram omits the first 2 layers, corresponding to the embedding layer, which are normalized differently and have anamolously large values.}
