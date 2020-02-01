@@ -2,13 +2,12 @@
 \label{sxn:cv}
 
 
-In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
+In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several Computer Vision (CV) model architecture series.
 This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pyTorch}.
 This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet1k}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
 
-We use our quality metrics to perform \emph{coarse model analysis}, comparing and contrasting the three (or four, if ResNet-1K is a distinct series) model series, permitting us to predict trends in model quality for these series. 
-We also use our metrics to perform \emph{fine layer analysis}, permitting us to understand more fine-scale properties of these models as a function of model depth.
-
+We use our quality metrics to perform \emph{coarse model analysis}, comparing and contrasting the three model series (or four, if ResNet-1K is included), permitting us to predict trends in model quality. 
+We also use perform a more \emph{fine layer analysis} as a function of depth for these models, providing novel insights among the VGG, ResNet, and DenseNet architectures. 
 
 \paragraph{Coarse Analysis: Quality Metrics versus Reported Test Accuracies.}
 
@@ -84,8 +83,8 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 %\begin{tabular}{|l|c|c|c|c|c|}
 \hline
 %   &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
-% Series & \#Models   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{2}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
-        & Num.   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{2}$ & $\hat{\alpha}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
+% Series & \#Models   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
+        & Num.   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
  Series & Models & Metric                     & Metric                     & Metric         & Metric                                   \\
 \hline
  VGG       &  6 & 0.56 & 0.53 & 0.48          & \textbf{0.42}  \\
