@@ -2,7 +2,8 @@
 \label{sxn:nlp}
 
 In this section, we examine the quality metrics described in Section~\ref{sxn:methods} for several Natural Language Processing (NLP) model architectures.
-NLP models are different in many ways than the CV models we considered in Section~\ref{sxn:cv}.
+NLP models are different in many ways than the CV models we considered in Section~\ref{sxn:cv}, and thus they should provide a very different test of norm based metrics and HT-SR metrics than do CV models.
+
 In particular, within the past two years, nearly 100 open source, pre-trained DNNs for NLP have emerged, based on the revolutionary Transformer architecture.
 This includes variants of BERT, Transformer-XML, GPT, etc.
 The Transformer architectures consist of blocks of so-called Attention layers, containing two large, Feed Forward (Linear) weight matrics~\cite{Attn2017}. 
@@ -35,39 +36,33 @@ apply more generally, where they differ, e.g., how the layer Spectral Norm behav
 
 \paragraph{OpenAI GPT Models.}
 
-We use the \emph{WeightWatcher} tool to analyze the OpenAI GPT and GPT2 models, which gives us
-the opportunity to analyze the effect of both training the same model with different size data sets,
-and increasing sizes of both the data set and architectures.
-These models have generated significant media attention because of their remarkable ability to
- generate fake text that appears to be real and the potential misuse of this.
-For this reason, the original GPT model was trained on on a deficient data set, rendering
-the model interesting but not fully functional.  Later, OpenAI released a much improved model--
-GPT2 (small)--which has the same architecture and number of layers as GPT, but has
-been trained on a larger and better data set (and with other changes), making it
-remarkably good at generating (near) human-quality fake text.  
-By comparing the poorly trained GPT to the well trained GPT2, we
-indentify empirical indidcators for when  model has in fact
-been poorly trained and may perform poorly when deployed.
+The OpenAI GPT and GPT2 models provide us with the opportunity to analyze two effects: training the same model with different data set sizes; and increasing sizes of both the data set and architectures.
+These models have the remarkable ability to generate fake text that appears to the human to be real, and they have generated significant media attention because of the potential for their misuse.
+For this reason, the original GPT model released by OpenAI was trained on on a deficient data set, rendering the model interesting but not fully functional.  
+Later, OpenAI released a much improved model, GPT2 (small), which has the same architecture and number of layers as GPT, but which has been trained on a larger and better data set (and with other changes), making it remarkably good at generating (near) human-quality fake text.  
+%
+By comparing the poorly-trained GPT to the well-trained GPT2, we can indentify empirical indidcators for when a model has in fact been poorly-trained and thus may perform poorly when deployed.
 
-\charles{more here ?}
-We analyze GPT models deployed with the popular HuggingFace PyTorch library.
+\charles{More details here.}
+The GPT models we analyze are deployed with the popular HuggingFace PyTorch library.
 GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ Layer Weight Matrices $\mathbf{W}$.
 Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
 The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
 The projection layer concatenates the self-attention results into a vector (of dimension $768$).
 This gives $50$ large matrices.
+\michael{Fix that.}
 
 Because GPT and GPT are trained on different data sets, the initial Embedding matrices differ in shape.
-GPT  has an initial Token and Positional Embedding layers, of dimension
-$(40478\times 768)$ and $(512\times 768)$, resp, whereas GPT2 has input Embeddings of shape
-$(50257\times 768)$ and $(1024\times 768)$, resp.  Interstingly, they also have very spectral properties,
-also shown below.
+GPT  has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
+Interstingly, they also have very spectral properties, also shown below. XXX.  WHICH.  MOVE.
+\michael{Fix that.}
 
 The OpenAI GPT2 (English) models are: \nred{gpt-small, gpt-medium, gpt-large, and gpt-xl}, \
 having include $12, 24, 36, \text{and }48$ layers, resp., with increasingly larger weight matrices.
 The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
-Table \ref{table:nlp} reports results for the average log norm metrics, using \emph{weightwatcher (0.2.7)},
+Table \ref{table:nlp} reports results for the average log norm metrics and the Weighted Alpha metric, using \emph{weightwatcher (0.2.7)},
 and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/CalculatedContent/kdd2020}}
+\michael{Fix that.}
 
 %        &  Num.  & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{2}$ & $\hat{\alpha}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
 % Series & Models & Metric                     & Metric                     & Metric         & Metric                                   \\
@@ -96,39 +91,36 @@ GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 \end{table}
 
 
-\paragraph{Empirical Quality Metrics for GPT and GPT2.}
+\paragraph{Coarse Analysis: Empirical Quality Metrics for GPT and GPT2.}
 
-We first compare the distribution of  Heavy Tailed Power Law exponents $\alpha$ in GPT and GPT2.
-They are very differenmt, with GPT2 having both a notably smaller mean $\alpha$, and far fewer, unusually large outliers.
-Figure \ref{fig:gpt-alphs-hist} shows the empirical density (histogram) of $\alpha$
-for all layers in GPT (blue) and GPT2 (red).  \charles{discuss more}
+We have analyzed the four quality metrics described in Section~\ref{sxn:methods} for the OpenAI GPT and GPT2 pretrained models.
+We start by examining the PL exponents $\alpha$ for GPT and GPT2 (small).
+Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT (blue) and this GPT2 (red) model.  
+These two histograms are very different, with GPT2 having both a notably smaller mean $\alpha$, and far fewer unusually-large outlying $\alpha$ values.
+
+Observe that these results indicate that $\alpha$ provides a good quality metric for comparing these two models, one of which which was designed to be of low quality.
+The deficient GPT model has numerous weight matrices with unsually large fitted exponents (indicating that they are not HT at all).  
+Indeed, we may expect that a poorly trained model will not exhibit consistent Heavy Tailed behavior in all layers.
+On the other hand, as expected, the improved GPT2 model has, on average, smaller $\alpha$ than the older GPT, with all $\alpha\le6$.  
+\michael{XXX.  FLESH OUT.}
+
 
 \begin{figure}
     \centering
     \subfigure[Power Law Exponent $(\alpha)$]{
         %\includegraphics[width=5cm]{img/GPT-alpha-hist.png}
-        \includegraphics[width=3.7cm]{img/GPT-alpha-hist.png}
+        \includegraphics[width=4.0cm]{img/GPT-alpha-hist.png}
         \label{fig:GPT-alpha-hist}
        }
-    \qquad
+    %\qquad
     \subfigure[log Spectral Norm $(\log\Vert\mathbf{W}\Vert_{\infty})$]{
         %\includegraphics[width=5cm]{img/GPT-snorm-hist.png}
-        \includegraphics[width=3.7cm]{img/GPT-snorm-hist.png}
+        \includegraphics[width=4.0cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm-hist}
        }
-
-
-   \caption{Comparison of Heavy Tailed Power Law exponents $\alpha$, and log Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$
-for the OpenAI GPT and GPT2 (small) pretrained models.}
-
+   \caption{Comparison of PL exponents, $\alpha$, and log Spectral Norms, $\log\Vert\mathbf{W}\Vert_{\infty}$, for the OpenAI GPT and GPT2 (small) pretrained models.}
+\label{fig:GPT-hist}
 \end{figure}
-
-Indeed, the $\alpha$ metric makes a good quality metric for comparing these models.
-Figure \ref{fig:GPT-alpha-hist} compares the PL exponent $\alpha$ for the GPT and GPT2 models for all layers,
-As expected, the improved GPT2 model has, on average, smaller $\alpha$ than the older GPT, with all
-$\alpha\le6$.  Indeed, the deficient GPT model has numerous weight matrices with unsually large fitted exponents,
-indicating that they are not Heavy Tailed at all.  Indeed, we may expect that a poorly trained model
-will not exhibit consistent Heavy Tailed behavior in all layers.
 
 However, as seen in Figure \ref{fig:GPT-snorm-hist},
  the poorly trained GPT model has many smaller (log) Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$
@@ -152,7 +144,7 @@ Here, we do not include them in our computed average metrics in Table \ref{table
 and do not include them in the histogram plot in Figure \ref{fig:GPT-snorm-hist}.
 
 
-\paragraph{Correlation Flow in GPT and GPT2.} 
+\paragraph{Layer Analysis: Correlation Flow in GPT and GPT2.} 
 
 also differs significantly between GPT and GPT2.
 Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) for each model.
