@@ -1,16 +1,23 @@
 \section{Comparison of NLP Transformer Models}
 \label{sxn:nlp}
 
-\michael{Need to say that such large $\alpha$ values don't mean much.}
+In this section, we examine the quality metrics described in Section~\ref{sxn:methods} for several Natural Language Processing (NLP) model architectures.
+NLP models are different in many ways than the CV models we considered in Section~\ref{sxn:cv}.
+In particular, within the past two years, nearly 100 open source, pre-trained DNNs for NLP have emerged, based on the revolutionary Transformer architecture.
+This includes variants of BERT, Transformer-XML, GPT, etc.
+The Transformer architectures consist of blocks of so-called Attention layers, containing two large, Feed Forward (Linear) weight matrics~\cite{Attn2017}. 
+In contrast to the smaller pre-Activation maps arising in Cond2D layers, Attention matrices are significantly larger, 
+and frequently under-correlated, with generally larger Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).  
 
-\michael{Need to highlight difference between $\alpha$ and $\hat{\alpha}$.}
+Nevertheless, norm-base metrics perform reasonably well on good NLP models, but they have problems with less well-trained models.
 
+Here, PL-based metrics 
+(the Log $\alpha$-Norm metric, $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $)
 
-
-In this section, we examine the quality metrics described in Section~\ref{sxn:methods} for several NLP model architectures.
-
-
-apply more generally, where they differ, e.g., how the layer Spectral Norm behaves unexpectedly, while the $\alpha$-based metrics can give insight into how well trained a model is.
+we breifly look at a few popular pretrained NLP DNNs to demonstrate that HT-SR Theory 
+also
+applies to NLP models and not just CV models, and to highlight how to use the theory to identify
+poorly trained models where the empirical norm metrics will perform poorly.
 
 \michael{We show that this not only works for CV, so we look at NLP.
 We now look in detail at the alpha metric, the spectral norm, and the new norm.
@@ -19,15 +26,12 @@ trained on big data sets.  We show why alpha works but spectral norm is not enou
 
 }
 
+\michael{Need to say that such large $\alpha$ values don't mean much.}
 
-Within the past two years, nearly 100 open source, pre-trained DNNs for NLP have emerged, based on the revolutionary Transformer architecture.
-This includes variants of BERT, Transformer-XML, GPT, etc.
-The Transformer architectures consist of blocks of Attention layers, containing two large, Feed Forward (Linear) weight matrics~\cite{Attn2017}. 
-In contrast to the smaller pre-Activation maps arising in Cond2D layers, Attention matrices are significantly larger, 
-and frequently under-correlated, with generally larger Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).  
-Here, we breifly look at a few popular pretrained NLP DNNs to demonstrate that the Theory of Heavy Tailed Self-Regularization also
-applies to NLP models and not just CV models, and to highlight how to use the theory to identify
-poorly trained models where the empirical norm metrics will perform poorly.
+\michael{Need to highlight difference between $\alpha$ and $\hat{\alpha}$.}
+
+apply more generally, where they differ, e.g., how the layer Spectral Norm behaves unexpectedly, while the $\alpha$-based metrics can give insight into how well trained a model is.
+
 
 \paragraph{OpenAI GPT Models.}
 
