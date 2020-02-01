@@ -10,12 +10,12 @@ E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots
 We assume we are given several pretrained Deep Neural Networks (DNNs), e.g., as part of an architecture series.
 The models have been trained on (unspecified and unavailable) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using Backprop, by minimizing some (also unspecified and unavailable) loss function $\mathcal{L}(\cdot)$. 
 We expect that most well-trained, production-quality models will employ one or more forms of on regularization, such as Batch Normalization, Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
-Here, we will ignore these details, and will focus only on the weight matrices. 
+Here, we will ignore these details, and will focus only on the layer weight matrices $\mathbf{W}_{l}$.
 
 
 \paragraph{DNN Quality Metrics.}
 
-Each DNN layer contains one or more layer 2D weight matrices $\mathbf{W}_{L}$, and/or 2D feature maps $\mathbf{W}_{i,L}$ extracted from 2D Convolutional layers. 
+Each DNN layer contains one or more layer 2D weight matrices $\mathbf{W}_{l}$, and/or 2D feature maps $\mathbf{W}_{i,l}$ extracted from 2D Convolutional layers. 
 (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below; and we let $\mathbf{W}$ be a generic $N\times M$ weight matrix, with $N\ge M$.) 
 %
 We have examined a large number of possible quality metrics.
@@ -46,6 +46,7 @@ Operationally, $\alpha$ is determined by using the publicly-available \emph{Weig
 \rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}  .
 \end{equation}
 \michael{We need to be clear that this is a truncated power law fit and that $\lambda_{max}$ comes from that and not the largest empirical eigenvalue.}
+\charles{Actually $\lambda_{max}$ \emph{is} the largest empirical eigenvalue}
 The Weighted Alpha Metric was introduced previously~\cite{MM20_SDM}, where (on a much smaller set of data than we consider here) it was shown to correlate well with the trends in reported test accuracies of pretrained DNNs.
 Based on this, here we introduce and evaluate the $\alpha$-Norm metric.
 One would expect $\hat{\alpha}$ to approximate the log $\alpha$-Norm very well for $\alpha < 2$ and reasoably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.
@@ -53,7 +54,7 @@ One would expect $\hat{\alpha}$ to approximate the log $\alpha$-Norm very well f
 Each of these metrics is defined for a given layer $\mathbf{W}$ matrix.
 For the Weighted Alpha Metric, we consider the average of $\hat{\alpha}$ over all layers, i.e., $\sum_l \hat{\alpha}_l = \sum_l \alpha_l\log\lambda_{max,l} $ .  
 \michael{Be careful to get that right.}
-For the norm-based metrics, we consider the average of the log of the norm to the appropriate power.
+For the norm-based metrics, we consider the \emph{weighted} average of the log of the norm to the appropriate power.
 For example, for the $\alpha$-Norm, we compute 
 \begin{equation}
 \label{eqn:sum_log_alpha_norm_alpha}
