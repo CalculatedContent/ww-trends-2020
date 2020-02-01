@@ -1,9 +1,9 @@
 \section{Background and Related Work}
 \label{sxn:background}
 
-
-To our knowledge, there is very little work on the particular question we are addressing: namely, how to predict, in a theoretically-principled manner, the quality of large-scale state-of-the-art NNs, and to do so without access to training data or testing data or details of the training protocol, etc.
-Our work is, however, loosely related to several other lines of work, and we briefly discuss them here.
+Most theory for DNNs is applied to small toy models and assumes access to data.
+There is very little work asking how to predict, in a theoretically-principled manner, the quality of large-scale state-of-the-art NNs, and how to do so without access to training data or testing data or details of the training protocol, etc.
+Our work is, however, loosely related to several other lines of work.
 
 \paragraph{Statistical mechanical theory of NNs.}
 
@@ -13,18 +13,6 @@ However, that the way in which we \emph{use} statistical mechanics theory is qui
 Several very good overviews of the more common approach are available~\cite{EB01_BOOK, BKPx20}.
 We will \emph{use} statistical mechanics theory more as it is used in quantitative finance.
 Thus, much more relevant for our metholodogical approach is older work of Bouchaud, Potters, Sornette, and coworkers~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017} on the statisical mechanics of heavy tailed and strongly correlated systems.
-
-
-XXX.
-Distinguish between what we will call a
-\emph{phenomenological theory}
-(that describes empirical relationship of phenomena to each other, in a way which is consistent with fundamental theory, but is not directly derived from that theory)
-and what can be called a 
-\emph{first principles theory} 
-(that is applicable to tiny things but has no hope of scaling up).
-\charles{it is the oppposite...ab initio theory scales quite well...it is the spherical cow models of physics and ML that do not scale. What we have is a semi-empirical theory.  We use real theory, but require empirical input, at least in the new stat mech work.  What we have introduced is a phenomenology, which to me is different from a semi-empirical or phenomenological theory  }
-\michael{Let's touch base to get this right.}
-\footnote{In most areas where there are complex highly-engineered systems (beyond complex AI/ML systems), one used phenomenological theory rather than first principles theory.  For example, one does not try to solve the Schr\"odinger equation if one is interested in building a bridge or an airplane.}
 
 
 \paragraph{Norm-based capacity control theory.}
@@ -40,13 +28,13 @@ Here are several.
 \begin{itemize}
 \item
 \textbf{Simplicity, or lack of,  accuracy metrics.}
-XXX.
+\michael{XXX.  Put in two or at most three sentences.}
 \item
 \textbf{Information leakage in the production pipeline.}
-XXX.
+\michael{XXX.  Put in two or at most three sentences.}
 \item
 \textbf{Cost of acquring labeled data.}
-XXX.
+\michael{XXX.  Put in two or at most three sentences.}
 \end{itemize}
 Importantly, there are many examples in ML where (as a practical matter) there is no reliable notion of accuracy, e.g., when generating fake text or realiztic chatbots, developing self driving cars, or just clusterting user profiles.
 \footnote{For example, current chatbots use perplexity as a proxy for passing a Turing test.}

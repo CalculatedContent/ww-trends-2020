@@ -1,14 +1,14 @@
 
-In many applications,
-% of machine learning and artificial intelligence, 
-one must work with models that have been trained by someone else.
+In many applications, one must work with models that have been trained by someone else.
 For such \emph{pretrained models}, one typically does not have access to training data or test data, and one does not know the details of how the models were built, the specifics of the data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized, etc.
 Here, we present and evaluate quality metrics for pretrained neural network models at scale.
 %%Our metrics are drawn from traditional statistical learning theory (e.g., norm-based capacity control metrics) as well as Heavy-Tailed Random Matrix Theory (HT-RMT), as used in the recently-developed Theory of Heavy-Tailed Self Regularization (e.g., fitted power law metrics used to characterize the degree of strong correlations in trained models).
-The most promising are metrics drawn from traditional statistical learning theory (e.g., norm-based capacity control metrics) as well as metrics (e.g., fitted power law metrics used to characterize the degree of strong correlations in a system) derived from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
+%%The most promising are metrics drawn from traditional statistical learning theory (e.g., norm-based capacity control metrics) as well as metrics (e.g., fitted power law metrics used to characterize the degree of strong correlations in a system) derived from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
+The most promising are norm-based metrics (such as those used to provide capacity control in traditional statistical learning theory) and metrics based on fitting eigenvalue distributions to truncated power law (PL) distributions (which derive from statistical mechanics, in particular the recently-developed Theory of Heavy-Tailed Self Regularization, and which can be used to characterize the degree of strong correlations in a system). 
+%
 Using the publicly-available \emph{WeightWatcher} tool, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in computer vision and natural language processing.
 We find that norm-based metrics do a reasonably good job at predicting quality trends in well-trained models, i.e., they can be used to discriminate between ``good-better-best.'' 
-On the other hand, for models that may not be well-trained (which, arguably is the point of needing metrics to evaluate the quality of pretrained models), i.e., when we want to distinguish ``good-bad,'' norm-based metrics can qualitatively fail. 
-We also find that HT-SR metrics do much better, quantitatively better at discriminating good-better-best and qualitatively better at discriminating good-bad.
-HT-SR metrics can also be used to characterize fine-scale properties of models, e.g., understanding layer-wise \emph{correlation flow}, and evaluate post-training modifications such as model distillation and model improvement.
+On the other hand, for models that may not be well-trained (which, arguably is the point of needing metrics to evaluate the quality of pretrained models), i.e., when we want to distinguish ``good-vs-bad,'' norm-based metrics can qualitatively fail. 
+We also find that PL-based metrics do much better, quantitatively better at discriminating good-better-best and qualitatively better at discriminating good-vs-bad.
+PL-based metrics can also be used to characterize fine-scale properties of models, e.g., understanding layer-wise \emph{correlation flow}, and evaluate post-training modifications such as model distillation and model improvement.
 

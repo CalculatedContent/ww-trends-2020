@@ -2,12 +2,13 @@
 \label{sxn:methods}
 
 
-Let us write the Energy Landscape (or optimization function, parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a typical DNN with $L$ layers, with activation functions $h_{l}(\cdot)$, and with $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$, as:
+Let us 
+write the Energy Landscape (or optimization function, parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as:
 \begin{equation}
 E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
 \label{eqn:dnn_energy}
 \end{equation}
-We assume we are given several pretrained Deep Neural Networks (DNNs), e.g., as part of an architecture series.
+Assume we are given several pretrained DNNs, e.g., as part of an architecture series.
 The models have been trained on (unspecified and unavailable) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using Backprop, by minimizing some (also unspecified and unavailable) loss function $\mathcal{L}(\cdot)$. 
 We expect that most well-trained, production-quality models will employ one or more forms of on regularization, such as Batch Normalization, Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
 Here, we will ignore these details, and will focus only on the layer weight matrices $\mathbf{W}_{l}$.
@@ -41,8 +42,8 @@ $ %% $$
 $ %% $$
 and so $\lambda_{max}$ is the maximum eigenvalue of $\mathbf{X}$. 
 (These eigenvalues are the squares of the singular values $\sigma_{i}$ of $\mathbf{W}$, i.e., $\lambda_{i}=\sigma^{2}_{i}$.)
-For the last two metrics, the exponent $\alpha$ is the power law exponent that arises in the recently-developed \emph{Theory of Heavy Tailed Self Regularization (HT-SR)}~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
-Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool (\cite{weightwatcher_package}) to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated power law
+For the last two metrics, $\alpha$ is the PL exponent that arises in the recently-developed \emph{Theory of Heavy Tailed Self Regularization (HT-SR)}~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
 \rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}  ,
 \end{equation}
@@ -102,10 +103,4 @@ Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ n
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with the variance already normalized to $\sqrt{1/N}$, or some variant of this, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers.
 We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
 The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
-
-\paragraph{The WeightWatcher Tool.}
-
-We compute the metrics using the WeightWatcher tool (version 0.2.7), and we provide Jupyter notebooks in the github repo for this paper~\cite{repo}, making the results fully reproducible.
-\michael{XXX.  FEW SENTENCES ABOUT REPRODUCIBILITY MORE GENERALLY HERE, HERE OR IN DISCUSSION/CONCLUSION.}
-
 

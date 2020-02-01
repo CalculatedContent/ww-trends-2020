@@ -38,26 +38,34 @@ These provide a large corpus of models that by some community standard are state
 They include 
 \michael{XXX, XXX and XXX.  MORE DETAILS.}
 \michael{XXX.  LIST PLACES WHERE THEY ARE AVAIALBLE, HERE OR IN NEXT SECTION.}
-Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available, and for all of these models, we have no access to training data or testing data, and we have no knowledge of the training/testing protocols. 
+Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available; and, for all of these models, we have no access to training data or testing data, and we have no knowledge of the training/testing protocols. 
 
 The \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrics.
-Note that unlike traditional ML approaches, however, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., hyperparmeter optimization).% 
-\footnote{We reiterate: One could use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained NN models.}
+In particular, they are based on the norms of weight matrices (such norms have been used in traditional statistical learning theory to bound capacity and construct regularizers) and parameters of power law (PL) fits of the eigenvalues of weight matrices (such PL fits are based on statistical mechanics approaches to NNs).
+Note that, while we use traditional norm-based and PL-based metrics, our goals are different.
+In particular, unlike more common ML approaches, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., hyperparmeter optimization).% 
+\footnote{One could of course use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained NN models.}
 Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves, and in both cases \emph{we aim to predict trends in the quality of pre-trained models without access to training or testing data}.  
 
 
 In more detail, our main contributions are the following.
-\begin{itemize}
-\item \michael{XXX TECHNICAL THING 1}
-\item \michael{XXX TECHNICAL THING 2}
-\item \michael{XXX TECHNICAL THING 3}
-\item \michael{XXX TECHNICAL THING 4}
-\end{itemize}
-MENTION: The most promising are metrics drawn from traditional statistical learning theory (e.g., norm-based capacity control metrics) as well as metrics (e.g., fitted power law metrics used to characterize the degree of strong correlations in a system) derived from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
-AND DEFINE HT-SR ACRONYM.
-\michael{Sentence or two about how our metrics come from norm-based SLT and alpha-based HT-SR theory, since that is also highlighted in the abstract.}
-
-SOMEWHERE CITE WEIGHTWATCHER: \cite{weightwatcher_package}
+%\begin{itemize}
+%\item 
+First, 
+motivated by practical problems, we formulate the question ``Can one predict trends in the quality of state-of-the-art neural networks without access to training or testing data?''
+%\item
+Second, 
+to answer this question, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in CV and NLP.
+%\item 
+Third, 
+we find that norm-based metrics do a reasonably good job at predicting quality trends in well-trained models, i.e., they can be used to discriminate between ``good-better-best'' models, but they can qualitatively fail for models that may not be well-trained, i.e., to distinguish ``good-vs-bad'' models.
+%\item 
+Fourth, 
+we find that PL-based metrics do much better, quantitatively better at discriminating good-better-best and qualitatively better at discriminating good-vs-bad.
+%\item 
+Finally, 
+we find that PL-based metrics can also be used to characterize fine-scale properties of models, including understanding layer-wise \emph{correlation flow}, and evaluating post-training modifications such as model distillation and model improvement.
+%\end{itemize}
 
 
 \paragraph{Organization of this paper.}
@@ -67,4 +75,13 @@ In Section \ref{sxn:cv}, we study three well-known widely-available DNN CV archi
 Then, in Section~\ref{sxn:nlp}, we look at several variations of a popular NLP DNN architecture (the OpenAI GPT and GPT2 models); and we show how model quality and properties vary between several variants of GPT and GPT2, including how metrics behave similarly and differently.
 Then, in Section \ref{sxn:all_cv_models}, we present results based on an analysis of hundreds of pretraind DNN CV models, showing how well each metric is correlated with the reported test accuracies, and how the Alpha-Norm metric(s) perform remarkably well.
 Finally, in Section~\ref{sxn:conc}, we provide a brief discussion and conclusion.
+
+
+\paragraph{The WeightWatcher Tool.}
+
+All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package};
+and, in order to make our results fully reproducible, we provide Jupyter notebooks in the github repo for this paper~\cite{repo}.
+\michael{LINK TO: Google Colab, IS THIS THAT REPO.}
+
+
 
