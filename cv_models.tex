@@ -2,16 +2,16 @@
 \label{sxn:cv}
 
 
-In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several Computer Vision (CV) model architecture series.
+In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
 This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pyTorch}.
 This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet1k}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
 
-We use our quality metrics to perform \emph{coarse model analysis}, comparing and contrasting the three model series (or four, if ResNet-1K is included), permitting us to predict trends in model quality. 
-We also use perform a more \emph{fine layer analysis} as a function of depth for these models, providing novel insights among the VGG, ResNet, and DenseNet architectures. 
+We perform \emph{coarse model analysis}, comparing and contrasting the four model series, and predicting trends in model quality. 
+We also perform \emph{fine layer analysis}, as a function of depth for these models, illustrating that PL-based metrics can provide novel insights among the VGG, ResNet/ResNet-1K, and DenseNet architectures. 
 
 \paragraph{Coarse Analysis: Quality Metrics versus Reported Test Accuracies.}
 
-We have examined the performance of the four quality metrics (Frobenius norm, Spectral norm, Weighted Alpha, and $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
+We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
 To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without BatchNormalization), and it plots the four quality metrics versus the reported Test accuracies~\cite{pyTorchVgg}, as well as a basic linear regression line. 
 %with the Root Mean Squared Error (RMSE) shown, \michael{XXX.  WHERE IS RMSE.  IN THAT TABLE?}
 All four metrics correlate quite well with the reported Top1 Accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalziation (i.e., greater accuracy, lower error). 
