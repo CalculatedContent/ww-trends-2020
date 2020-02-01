@@ -1,37 +1,34 @@
 \section{Comparison of NLP Transformer Models}
 \label{sxn:nlp}
 
-In this section, we examine the quality metrics described in Section~\ref{sxn:methods} for several Natural Language Processing (NLP) model architectures.
-NLP models are different in many ways than the CV models we considered in Section~\ref{sxn:cv}, and thus they should provide a very different test of norm based metrics and HT-SR metrics than do CV models.
-
-In particular, within the past two years, nearly 100 open source, pre-trained DNNs for NLP have emerged, based on the revolutionary Transformer architecture.
-This includes variants of BERT, Transformer-XML, GPT, etc.
+In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several NLP model architectures.
+%
+%In particular, 
+Within the past two years, nearly 100 open source, pre-trained NLP DNNs based on the revolutionary Transformer architecture have emerged.
+These include variants of BERT, Transformer-XML, GPT, etc.
+%
 The Transformer architectures consist of blocks of so-called Attention layers, containing two large, Feed Forward (Linear) weight matrics~\cite{Attn2017}. 
-In contrast to the smaller pre-Activation maps arising in Cond2D layers, Attention matrices are significantly larger, 
-and frequently under-correlated, with generally larger Heavy Tailed Power Law exponents $\alpha$ (when fitting the ESD).  
+In contrast to smaller pre-Activation maps arising in Cond2D layers, Attention matrices are significantly larger.
+In general, we have found that they have larger $\alpha$ PL exponents.
+Based on HT-SR Theory (in particular, the interpretation of values of $\alpha \sim 2$ as modeling systems with good correlations over many size scales~\cite{BouchaudPotters03, SornetteBook}), this suggests that these models fail to capture successfully many of the correlations in the data (relative to their size) and thus that they are substantially \emph{under}-trained.
+%
+More generally, these NLP models are quite different than the CV models we considered in Section~\ref{sxn:cv}, both in terms of their architecture (e.g., wheter there are convolutions) as well as how they are used (e.g., whether one uses prediction error or perplexity).
+Thus, they provide a very different test for our metrics.
 
-Nevertheless, norm-base metrics perform reasonably well on good NLP models, but they have problems with less well-trained models.
+\michael{WHERE: Norm-base metrics perform reasonably well on good NLP models, but they have problems with less well-trained models.
+PL-based metrics (the Log $\alpha$-Norm metric, $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $) do even better.
+We highlight how to use the theory to identify poorly trained models where the empirical norm metrics will perform poorly.}
 
-Here, PL-based metrics 
-(the Log $\alpha$-Norm metric, $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $)
-
-we breifly look at a few popular pretrained NLP DNNs to demonstrate that HT-SR Theory 
-also
-applies to NLP models and not just CV models, and to highlight how to use the theory to identify
-poorly trained models where the empirical norm metrics will perform poorly.
-
-\michael{We show that this not only works for CV, so we look at NLP.
+\michael{WHERE: We show that this not only works for CV, so we look at NLP.
 We now look in detail at the alpha metric, the spectral norm, and the new norm.
 We compare good and bad models, and a series of increasingly big models
-trained on big data sets.  We show why alpha works but spectral norm is not enough
+trained on big data sets.  We show why alpha works but spectral norm is not enough.
+The layer Spectral Norm behaves unexpectedly, while $\alpha$-based metrics can give insight into how well trained a model is.}
 
-}
+\michael{WHERE: Say large $\alpha$ values don't mean much.}
 
-\michael{Need to say that such large $\alpha$ values don't mean much.}
+\michael{WHERE: Highlight difference between $\alpha$ and $\hat{\alpha}$.}
 
-\michael{Need to highlight difference between $\alpha$ and $\hat{\alpha}$.}
-
-apply more generally, where they differ, e.g., how the layer Spectral Norm behaves unexpectedly, while the $\alpha$-based metrics can give insight into how well trained a model is.
 
 
 \paragraph{OpenAI GPT Models.}
@@ -44,24 +41,20 @@ Later, OpenAI released a much improved model, GPT2 (small), which has the same a
 By comparing the poorly-trained GPT to the well-trained GPT2, we can indentify empirical indidcators for when a model has in fact been poorly-trained and thus may perform poorly when deployed.
 
 \charles{More details here.}
-The GPT models we analyze are deployed with the popular HuggingFace PyTorch library.
+The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{XXX-XXX}.
 GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ Layer Weight Matrices $\mathbf{W}$.
 Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
 The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
 The projection layer concatenates the self-attention results into a vector (of dimension $768$).
 This gives $50$ large matrices.
-\michael{Fix that.}
-
+%
 Because GPT and GPT are trained on different data sets, the initial Embedding matrices differ in shape.
 GPT  has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
-Interstingly, they also have very spectral properties, also shown below. XXX.  WHICH.  MOVE.
-\michael{Fix that.}
-
+%
 The OpenAI GPT2 (English) models are: \nred{gpt-small, gpt-medium, gpt-large, and gpt-xl}, \
-having include $12, 24, 36, \text{and }48$ layers, resp., with increasingly larger weight matrices.
+having include $12, 24, 36, \text{and }48$ layers, respectively, with increasingly larger weight matrices.
 The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
-Table \ref{table:nlp} reports results for the average log norm metrics and the Weighted Alpha metric, using \emph{weightwatcher (0.2.7)},
-and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/CalculatedContent/kdd2020}}
+Table \ref{table:nlp} reports results for the average log norm metrics and the Weighted Alpha metric, 
 \michael{Fix that.}
 
 %        &  Num.  & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{2}$ & $\hat{\alpha}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
@@ -75,8 +68,9 @@ and with fully reproducible Jupyter notebooks.\footnote{\url{https://github.com/
 \hline
 %   &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
 % Series & \#Layers   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
-        & Num.   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
- Series & Layers & Metric                     & Metric                          & Metric         & Metric                                   \\
+        &        & Log                   & Log                        & Weighted       & Log                                 \\
+        & Num.   & $\Vert\cdot\Vert_{F}$ & $\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
+ Series & Layers & Metric                & Metric                     & Metric         & Metric                              \\
 \hline
 GPT & 49 & 1.64  & 1.72 & 7.01 & 7.28 \\
 GPT (small) & 49 & 2.04  & 2.54& 9.62 & 9.87 \\

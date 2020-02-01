@@ -5,12 +5,12 @@ Most theory for DNNs is applied to small toy models and assumes access to data.
 There is very little work asking how to predict, in a theoretically-principled manner, the quality of large-scale state-of-the-art NNs, and how to do so without access to training data or testing data or details of the training protocol, etc.
 Our work is, however, loosely related to several other lines of work.
 
-\paragraph{Statistical mechanical theory of NNs.}
 
-Statistical mechanical ideas have long had influence on NN theory and practice~\cite{EB01_BOOK, MM17_TR, BKPx20}; and 
-our best-performing metrics (i.e., those using fitted PL exponents and HT-SR Theory) are based on statistical mechanics ideas~\cite{MM17_TR, MM18_TR, MM19_HTSR_ICML, MM19_KDD, MM20_SDM}.
-\michael{Where first define HT-SR.}
-However, that the way in which we \emph{use} statistical mechanics theory is quite different than the way it is more commonly formulated.
+\paragraph{Statistical mechanics theory for NNs.}
+
+Statistical mechanics ideas have long had influence on NN theory and practice~\cite{EB01_BOOK, MM17_TR, BKPx20}; and 
+our best-performing metrics (those using fitted PL exponents) are based on statistical mechanics~\cite{MM17_TR, MM18_TR, MM19_HTSR_ICML, MM19_KDD, MM20_SDM}, in particular the recently-developed \emph{Theory of Heavy Tailed Self Regularization (HT-SR)}~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.  
+However, we emphasize that the way in which we \emph{use} statistical mechanics theory is quite different than the way it is more commonly formulated.
 Several very good overviews of the more common approach are available~\cite{EB01_BOOK, BKPx20}.
 We will \emph{use} statistical mechanics theory more as it is used in quantitative finance.
 Thus, much more relevant for our metholodogical approach is older work of Bouchaud, Potters, Sornette, and coworkers~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017} on the statisical mechanics of heavy tailed and strongly correlated systems.

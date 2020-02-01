@@ -1,7 +1,6 @@
 \section{Comparison across series of CV models}
 \label{sxn:cv}
 
-
 In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
 This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pyTorch}.
 This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet1k}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
@@ -84,8 +83,9 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 \hline
 %   &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
 % Series & \#Models   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
-        & Num.   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
- Series & Models & Metric                     & Metric                     & Metric         & Metric                                   \\
+        &        & Log                   & Log                        & Weighted       & Log                                 \\
+        & Num.   & $\Vert\cdot\Vert_{F}$ & $\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
+ Series & Models & Metric                & Metric                     & Metric         & Metric                              \\
 \hline
  VGG       &  6 & 0.56 & 0.53 & 0.48          & \textbf{0.42}  \\
  ResNet    &  5 & 0.9  & 1.4  & \textbf{0.61} & 0.66           \\

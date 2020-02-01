@@ -42,7 +42,7 @@ $ %% $$
 $ %% $$
 and so $\lambda_{max}$ is the maximum eigenvalue of $\mathbf{X}$. 
 (These eigenvalues are the squares of the singular values $\sigma_{i}$ of $\mathbf{W}$, i.e., $\lambda_{i}=\sigma^{2}_{i}$.)
-For the last two quantities, $\alpha$ is the PL exponent that arises in the recently-developed \emph{Theory of Heavy Tailed Self Regularization (HT-SR)}~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+For the last two quantities, $\alpha$ is the PL exponent that arises in the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
 Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
 \rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}  ,
@@ -50,8 +50,8 @@ Operationally, $\alpha$ is determined by using the publicly-available \emph{Weig
 where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
 Each of these quantities is defined for a given layer $\mathbf{W}$ matrix.
 
-For norm-based metrics, we consider the average log norm to the appropriate power.
-For example, for the \emph{$\alpha$-Norm metric}, 
+For norm-based metrics, we use the average of the log norm to the appropriate power.
+For example, consider the \emph{$\alpha$-Norm metric}, 
 \begin{equation}
 \label{eqn:sum_log_alpha_norm_alpha}
 \sum\nolimits_l \log \Vert\mathbf{W}_l\Vert_{\alpha_l}^{\alpha_l} 
@@ -107,7 +107,7 @@ Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the Power Law fits because the Heavy Tailed exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
 Norm-based metrics, however, do depend strongly on the scale of the weight matrix.
 Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ normalization and assume that the variance of $\mathbf{X}$ is either unity or a known constant.% 
-\footnote{For formal proofs of Heavy Tailed results, one typically needs a different normalization such as $1/N^{1-\alpha}$.}
+\footnote{For formal proofs of Heavy Tailed results, one typically needs a normalization such as $1/N^{1-\alpha}$.}
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with the variance already normalized to $\sqrt{1/N}$, or some variant of this, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers.
 We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
 The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
