@@ -107,13 +107,13 @@ Log $\alpha$-Norm
 %) 
 metric for the full ResNet, ResNet-1K, and DenseNet series.
 (A much more detailed set of plots, including the behavior of all four methods on each of the series, is available at \cite{XXX-WEB-LINK}.)
-Here, the Log $\alpha$-Norm is much better thatn the Log Frobenius/Spectral norm metrics (although, as Table~\ref{table:cv-models} shows, it is actually slightly worse than the Weighted Alpha metric).
+Here, the Log $\alpha$-Norm is much better that the Log Frobenius/Spectral norm metrics (although, as Table~\ref{table:cv-models} shows, it is actually slightly worse than the Weighted Alpha metric).
 Notice also that ResNet series, which has been trained on the full ImageNet dataset, has an RMSE of $0.66$, whereas the ResNet-1K series, which has been trained on the much smaller ImageNet-1K dataset, also correlated wells, but has a much larger RMSE of $1.9$.
 
 See Table~\ref{table:cv-models} for a summary of results for Top1 Accuracies for all four metrics on all four model series.
 Similar results (not shown) are obtained for the Top5 Accuracies.
 Overall, for the the ResNet, ResNet-1K, and DenseNet series, all metrics perform relatively well, the Log $\alpha$-Norm metric performs second best, and the Weighted Alpha metric performs best. 
-These model series are all well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish ``good-better-best,'' with PL-based metrics performing somewhat better. 
+These model series are all well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among ``good-better-best'' models, with PL-based metrics performing somewhat better. 
 
 
 \paragraph{Layer Analysis: Correlation Flow in CV Models.}
@@ -121,7 +121,7 @@ These model series are all well-trodden, and our results indicate that norm-base
 We can learn much more about a pretrained model by going beyond average values to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
 %The most interesting results are seen when we 
 For example, we can 
-plot the PL exponent, $\alpha$,%
+plot \nred{just} the PL exponent, $\alpha$,%
 \footnote{That is, here we consider just $\alpha$ for each layer, not $\hat{\alpha}$ or $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$.} 
 as a function of depth.
 %
@@ -167,6 +167,7 @@ However, as the ResNet-1K models get deeper, there is a wide range over which $\
 \michael{Can we say something about exceptions which are larger than for VGG or DenseNet.}
 \charles{You have the same plots I do..what do you want to say >}
 \michael{Are they small or different types of layers or something?}
+\charles{Not that I am aware of.  Ill think on it}
 This is seen for other models in the ResNet-1K series, but it is most pronounced for the larger ResNet-1K (152) model, where $\alpha$ remains relatively stable at $\alpha\sim 2.0$, from the earliest layers all the way until we reach close to the final layers.  
 
 For the DenseNet models, $\alpha$ tends to increase as the layer id increases, in particular for layers toward the end.
@@ -195,7 +196,7 @@ Smaller $\alpha$ values correspond to layers in which correlations across multip
 
 The similarity between norm-based metrics and $\alpha$-based metrics suggests a question: is the Weighted Alpha metric just a variation of the more familiar norm-based metrics, or does it capture something different?  
 More generally, do fitted $\alpha$ values contain information not captured by norms? 
-To show that it is not just a variation and that it does capture something different, consider the following example, which involves DN model compressed/distillation~\cite{CWZZ17_TR}.
+To show that it is not just a variation and that $\alpha$ does capture something different, consider the following example, which looks at a compressed / distilled DNN model~\cite{CWZZ17_TR}.
 
 
 \begin{figure}[t]
@@ -224,7 +225,7 @@ We consider ResNet20, trained on CIFAR10, before and after applying the Group Re
 \footnote{For details, see \url{https://nervanasystems.github.io/distiller/\#distiller-documentation} and also \url{https://github.com/NervanaSystems/distiller}.}
 We analyze the available pre-trained 4D\_regularized\_5Lremoved baseline and fine-tuned models.  %\cite{distiller_repo}.
 The reported baseline test accuracies ($Top1=91.45$ and $Top5=99.75$) are better than the reported fine-tuned test accuracies ($Top1=91.02$ and $Top5=99.67$)~\cite{XXX-XXX}.
-The results of Figure~\ref{fig:vgg-metrics} and Figure~\ref{fig:cv2-accuracy} might suggest that the baseline Spectral Norm should be \emph{smaller} than those of the layers in the fine-tuned model.
+The previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy} might suggest that the baseline Spectral Norm should be \emph{smaller} than those of the layers in the fine-tuned model.
 \michael{Do we have something backwards here: where we observed that the average norm to increase with decreasing test error (as it ``should'' not), whereas the average PL exponent $\alpha$ decreases (as ``expected'' from HT-SR Theory).  }
 In both cases (Frobenius norm results not shown), we observe the opposite.
 Figure~\ref{fig:resnet204D5L} presents the Spectral Norm ($\lambda_{max}$) and PL exponent ($\alpha$) for each individual layer weight matrix $\mathbf{W}_{l}$.%
