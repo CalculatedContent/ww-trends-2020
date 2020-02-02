@@ -107,7 +107,7 @@ Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the Power Law fits because the Heavy Tailed exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
 Norm-based metrics, however, do depend strongly on the scale of the weight matrix.
 Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ normalization and assume that the variance of $\mathbf{X}$ is either unity or a known constant.% 
-\footnote{For formal proofs of Heavy Tailed results, one typically needs a normalization such as $1/N^{1-\alpha}$.}
+\footnote{For Heavy Tailed theorems, one typically needs a normalization such as $1/N^{1-\alpha}$.}
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with the variance already normalized to $\sqrt{1/N}$, or some variant of this, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers.
 We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
 The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.

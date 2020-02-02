@@ -20,25 +20,25 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
     \centering
     \subfigure[ Frobenius Norm, VGG ]{
         %\includegraphics[width=5cm]{img/VGG_lognorm_accs.png}
-        \includegraphics[width=3.7cm]{img/VGG_lognorm_accs.png}
+        \includegraphics[width=4.0cm]{img/VGG_lognorm_accs.png}
         \label{fig:vgg-fnorm}
     }
     %\qquad
     \subfigure[ Spectral Norm, VGG ]{
         %\includegraphics[width=4.9cm]{img/VGG_spectralnorm_accs.png}
-        \includegraphics[width=3.7cm]{img/VGG_spectralnorm_accs.png}
+        \includegraphics[width=4.0cm]{img/VGG_spectralnorm_accs.png}
         \label{fig:vgg-snorm}
     }
     %\qquad
     \subfigure[ Weighted Alpha, VGG ]{
         %\includegraphics[width=4.9cm]{img/VGG_alpha_weighted_accs.png}
-        \includegraphics[width=3.7cm]{img/VGG_alpha_weighted_accs.png}
+        \includegraphics[width=4.0cm]{img/VGG_alpha_weighted_accs.png}
         \label{fig:vgg-walpha}
     }
     %\qquad
     \subfigure[ $\alpha$-Norm, VGG ]{
         %\includegraphics[width=4.9cm]{img/VGG_logpnorm_accs.png}
-        \includegraphics[width=3.7cm]{img/VGG_logpnorm_accs.png}
+        \includegraphics[width=4.0cm]{img/VGG_logpnorm_accs.png}
         \label{fig:vgg-pnorm}
     }
     \caption{Comparison of quality metrics versus reported test accuracy for pretrained VGG models, trained on ImageNet, available in pyTorch.  
@@ -54,19 +54,19 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 
     \subfigure[ ResNet, $\alpha$-Norm ]{
         %\includegraphics[width=4.2cm]{img/ResNet_logpnorm_accs.png}
-        \includegraphics[width=3.7cm]{img/ResNet_logpnorm_accs.png}
+        \includegraphics[width=4.0cm]{img/ResNet_logpnorm_accs.png}
         \label{fig:resnet-accuracy}
     }
-    \qquad
+    %\qquad
     \subfigure[ ResNet-1K, $\alpha$-Norm ]{
         %\includegraphics[width=4.5cm]{img/ResNet-1K_logpnorm_accs.png}
-        \includegraphics[width=3.7cm]{img/ResNet-1K_logpnorm_accs.png}
+        \includegraphics[width=4.0cm]{img/ResNet-1K_logpnorm_accs.png}
         \label{fig:resnet1k-accuracy}
     }
-    \qquad
+    %\qquad
     \subfigure[ DenseNet, $\alpha$-Norm ]{
         %\includegraphics[width=4.4cm]{img/DenseNet_logpnorm_accs.png}
-        \includegraphics[width=3.7cm]{img/DenseNet_logpnorm_accs.png}
+        \includegraphics[width=4.0cm]{img/DenseNet_logpnorm_accs.png}
         \label{fig:densenet-accuracy}
     }
     \caption{$\alpha$-Norm versus reported Top1 Error for  ResNet, ResNet-1K, and DenseNet models. The corresponding results for VGG are shown in Figure~\ref{fig:vgg-pnorm}.  }
@@ -121,11 +121,11 @@ These model series are all well-trodden, and our results indicate that norm-base
 We can learn much more about a pretrained model by going beyond average values to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
 %The most interesting results are seen when we 
 For example, we can 
-plot \nred{just} the PL exponent, $\alpha$,%
-\footnote{That is, here we consider just $\alpha$ for each layer, not $\hat{\alpha}$ or $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$.} 
+plot (just) the PL exponent, $\alpha$,%
+\footnote{That is, here we consider just $\alpha$ for each layer, i.e., not $\hat{\alpha}$ or $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$.} 
 as a function of depth.
 %
-See Figure~\ref{fig:vgg-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (without BatchNormalization), ResNet-1K, and DenseNet series.
+See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (without BatchNormalization), ResNet-1K, and DenseNet series.
 (Again, much more detailed set of plots is available at \cite{XXX-WEB-LINK}; but note that the corresponding layer-wise plots for Frobenius and Spectral norms are much less interesting than the results we present here.)
 
 \begin{figure}[t]
@@ -133,19 +133,19 @@ See Figure~\ref{fig:vgg-alpha-layers}, which plots $\alpha$ for each layer (the 
 
     \subfigure[ VGG ]{
         %\includegraphics[width=4.5cm]{img/VGG_fnl_alpha_depth.png} 
-        \includegraphics[width=3.7cm]{img/VGG_fnl_alpha_depth.png} 
+        \includegraphics[width=4.0cm]{img/VGG_fnl_alpha_depth.png} 
                 \label{fig:vgg-alpha-layers}
     }
-    \qquad
+    %\qquad
     \subfigure[ ResNet-1K ]{
         %\includegraphics[width=4.5cm]{img/ResNet_fnl_alpha_depth.png} 
-        \includegraphics[width=3.7cm]{img/ResNet_fnl_alpha_depth.png} 
+        \includegraphics[width=4.0cm]{img/ResNet_fnl_alpha_depth.png} 
         \label{fig:resnet-alpha-layer}
     }
-    \qquad
+    %\qquad
     \subfigure[ DenseNet ]{
         %\includegraphics[width=4.5cm]{img/DenseNet_fnl_alpha_depth.png} 
-        \includegraphics[width=3.7cm]{img/DenseNet_fnl_alpha_depth.png} 
+        \includegraphics[width=4.0cm]{img/DenseNet_fnl_alpha_depth.png} 
         \label{fig:densenet-alpha-layer}
     }
     \caption{Layer Analysis. 
@@ -155,22 +155,22 @@ See Figure~\ref{fig:vgg-alpha-layers}, which plots $\alpha$ for each layer (the 
              This contrasts with how VGG gets gradually worse in deeper layers and how DenseNet is worse and much more erratic.  
              We interpret this in the text as quantifying a \emph{correlation flow} across the layers.  
             }
-    \label{fig:vgg-alpha-layers}
+    \label{fig:3models-alpha-layers}
 \end{figure}
 
 In the VGG models, Figure~\ref{fig:vgg-alpha-layers} shows that the PL exponent $\alpha$ systematically increases as we move down the network, from data to labels, in the Conv2D layers, starting with $\alpha\lesssim 2.0$ and reaching all the way to $\alpha\sim 5.0$; and then, in the last three, large, fully-connected (FC) layers, $\alpha$ stabilizes back down to $\alpha\in[2,2.5]$.
 This is seen for all the VGG models (again, only the shallowest and deepest are shown in this figure), indicating that the main effect of increasing depth is to increase the range over which $\alpha$ increases, thus leading to larger $\alpha$ values in later Conv2D layers of the VGG models.
 This is quite different than the behavior of either the ResNet-1K models or the DenseNet models.
 
-For the ResNet-1K models, $\alpha$ also increases in the last few layers (more dramatically, in fact, observe the differing scales on the Y axes).
+For the ResNet-1K models, Figure~\ref{fig:resnet-alpha-layer} shows that $\alpha$ also increases in the last few layers (more dramatically, in fact, observe the differing scales on the Y axes).
 However, as the ResNet-1K models get deeper, there is a wide range over which $\alpha$ values tend to remain small.
-\michael{Can we say something about exceptions which are larger than for VGG or DenseNet.}
-\charles{You have the same plots I do..what do you want to say >}
-\michael{Are they small or different types of layers or something?}
-\charles{Not that I am aware of.  Ill think on it}
+%\michael{Can we say something about exceptions which are larger than for VGG or DenseNet.}
+%\charles{You have the same plots I do..what do you want to say >}
+%\michael{Are they small or different types of layers or something?}
+%\charles{Not that I am aware of.  Ill think on it}
 This is seen for other models in the ResNet-1K series, but it is most pronounced for the larger ResNet-1K (152) model, where $\alpha$ remains relatively stable at $\alpha\sim 2.0$, from the earliest layers all the way until we reach close to the final layers.  
 
-For the DenseNet models, $\alpha$ tends to increase as the layer id increases, in particular for layers toward the end.
+For the DenseNet models, Figure~\ref{fig:densenet-alpha-layer} shows that $\alpha$ tends to increase as the layer id increases, in particular for layers toward the end.
 While this is similar to what is seen in the VGG models, with the DenseNet models, $\alpha$ values increase almost immediately after the first few layers, and the variance is much larger (in particular for the earlier and middle layers, where it can range all the way to $\alpha\lesssim 8.0$) and much less systematic throughout the network.
 
 Recall the differences---in particular, the number of residual connections---between the VGG, ResNet, and DenseNet architectures.
@@ -203,14 +203,14 @@ To show that it is not just a variation and that $\alpha$ does capture something
    \centering
    \subfigure[$\lambda_{max}$ for ResNet20 layers]{
       %\includegraphics[scale=0.14]{img/resnet4d_maxev.png}
-      \includegraphics[width=3.7cm]{img/resnet4d_maxev.png}
+      \includegraphics[width=4.0cm]{img/resnet4d_maxev.png}
       %\includegraphics[width=4.5cm]{img/resnet4d_maxev.png}
       \label{fig:resnet204Dalpha}
    }
-   \qquad
+   %\qquad
    \subfigure[$\alpha$ for ResNet20 layers]{
       %\includegraphics[scale=0.14]{img/resnet4d_alphas.png}
-      \includegraphics[width=3.7cm]{img/resnet4d_alphas.png}
+      \includegraphics[width=4.0cm]{img/resnet4d_alphas.png}
       %\includegraphics[width=4.5cm]{img/resnet4d_alphas.png}
       \label{fig:resnet204Dmaxev}
    }

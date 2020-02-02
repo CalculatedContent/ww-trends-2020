@@ -1,85 +1,26 @@
 \section{Conclusion}
 \label{sxn:conc}
 
+We have developed (based on strong theory) and evaluated (on a large corpus of publicly-available pretrained models from CV and NLP) methods to predict trends in the quality of state-of-the-art neural networks---without access to training or testing data.
+Prior to our work, it was not obvious that norm-based metrics would perform well to predict trends \emph{across} models (as they are usually used \emph{within} a given model or parameterized model class, e.g., to bound generalization error or to construct regularizers), and our results are the first to demonstrate that they can be used for this important practical problem.
+That PL-based metrics perform better (than norm-based metrics) should not be surprising---at least to those familiar with the statisical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017}, since our use of PL exponents is designed to capture the idea that well-trained models capture correlations over many size scales in the data), but again,  our results are the first to demonstrate this.
+It is gratifying, also, that PL exponents can be used to provide fine-scale insight such as rationalizing the flow of correlations through a network. 
 
-
-We should point out that it is not obvious that norm-based metrics will perform well \emph{across} models, as they are usually used \emph{within} a given model or parameterized model class.
-That PL-based metrics perform better should not be surprising---while norms are very coarse metrics of the properties of a matrix, 
-
-That being said, our goal is not to make a statement about every publicly-available model.
-Ther are exceptions to the general trends we state.
-Several of these are described below, and others are are available in what we release.
-
-\michael{MENTION:} 
-Have some sort of caveat about how we don't solve every problem in the world, in particular there are exceptions to ghe general trends we note, but that all of our work is publicly available in Weightwatcher and Google Colab, so people can reproduce.
-\michael{XXX.  FEW SENTENCES ABOUT REPRODUCIBILITY MORE GENERALLY HERE, HERE OR IN DISCUSSION/CONCLUSION.}
-
-\michael{MENTION:} 
-PL-based metrics have been used to characterize the degree of strong correlations in a system, and they are derived from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
-AND DEFINE HT-SR ACRONYM.
-
-
-
-
-
-\michael{
-Where, if anywhere to put the following:
-\begin{itemize}
-\item MOVE TO LATER: COMMENT ON HOW LOG NORM first and last layers behave, maybe somewhere else.
-\item MOVE TO LATER: COMMENT ON HOW LOG PORM  for GPT includes unusually high alpha, not meaningful other than to show the trend.
-\end{itemize}
-}
-
-XXX.  THE FOLLOWING IS PROBABLY BETTER HERE.
-Distinguish between what we will call a
+We conclude with a few thoughts on what a \emph{practical theory} of NNs should look like.
+%
+We distinguish between what we will call a
 \emph{phenomenological theory}
 (that describes empirical relationship of phenomena to each other, in a way which is consistent with fundamental theory, but is not directly derived from that theory)
 and what can be called a 
 \emph{first principles theory} 
-(that is applicable to tiny things but has no hope of scaling up).
+(that is applicable to toy models, but that does not scale up to realistic systems if one includes realistic apsects of realistic systems).
+%
+For most complex highly-engineered systems (aside from complex AI/ML systems), one \emph{uses} phenomenological theory rather than first principles theory. 
+(One does not try to solve the Schr\"odinger equation if one is interested in building a bridge or flying an airplane.)
+%
+Our results, which are based on our \emph{use} of sophisticated statistical mechanics theory to solve an important practical NN problems, suggests that this approach should be of interest more generally for those interested in developing a practical NN theory.
+
 \charles{it is the oppposite...ab initio theory scales quite well...it is the spherical cow models of physics and ML that do not scale. What we have is a semi-empirical theory.  We use real theory, but require empirical input, at least in the new stat mech work.  What we have introduced is a phenomenology, which to me is different from a semi-empirical or phenomenological theory  }
 \michael{Let's touch base to get this right.}
-\footnote{In most areas where there are complex highly-engineered systems (beyond complex AI/ML systems), one used phenomenological theory rather than first principles theory.  For example, one does not try to solve the Schr\"odinger equation if one is interested in building a bridge or an airplane.}
 
 
-
-
-XXX.  PUT CONCLUSION HERE AND WEAVE IN COMMENTS FROM BELOW.
-
-
-Some other comments that we need to weave into a narrative eventually after later sections are written:
-\begin{itemize}
-\item
-GPT versus GPT2.
-What happens when we don't have enough data?
-This is the main question, and we can use out metrics to evaluate that, but we also get very different results for GPT versus GPT2.
-\item
-The spectral norm is a regularizer, used to distinguish good-better-best, not a quality metric.
-For example, it can ``collapse,'' and for bad models we can have small spectral norm.
-So, it isn't really a quality metric.
-\item
-One question that isn't obvious is whether regularization metrics can be used as quality metrics.
-One might think so, but the answer isn't obviously yes.
-We show that the answer is No.
-A regularizer is designed to select a unique solution from a non-unique good-better-best.
-Quality metrics can also distinguish good versus bad.
-\item
-(We should at least mention this is like the statistical thing where we evaluate which model is better, as oposed to asking if a given model is good, I forget the name of that.)
-\item
-There are cases where the model is bad but regularization metric doesn't tell you that.
-Quality should be correlated in an empirical way.
-Correlated with good-better-best; but also tell good-bad.
-\item
-Question: why not use regularier for quality?
-Answer: A regularizer selects from a given set of degenerate models one which is nice or unique.
-It doesn't tell good versus bad, i.e., whether that model class is any good.
-\item
-Thus, it isn't obvious that norm-based metrics should do well, and they don't in general.
-\item
-We give examples of all of these: bad data; defective data; and distill models in a bad way.
-(Of course, bad data means bad model, at least indirectly, since the quality of the data affects the properties of the model.)
-\item
-We can select a model and change it, i.e., we don't just do hyperparameter fiddling.
-\end{itemize}
-
-%Perhaps our most improtant contribution, however, is just doing things different, etc. ...

@@ -7,25 +7,25 @@ A common problem in machine learning (ML)
 is to evaluate the quality of a given model.
 A popular way to accomplish this
 %, in particular in academic environments, 
-is to train a model and then evaluate its training and/or testing error.
+is to train a model and then evaluate its training/testing error.
 There are many problems with this approach.
 Well-known problems with just examining training/testing curves include that 
 they give very limited insight into the overall properties of the model, 
-they do not take into account the (often extremely large human and CPU/GPU) time for hyperparameter fiddling,
+they do not take into account the (often large human and CPU/GPU) time for hyperparameter fiddling,
 they typically do not correlate with other properties of interest such as robustness or fairness or interpretability, 
 and so on.
-A somewhat less well-known problem, but one that is increasingly important (in particular in industrial-scale ML---where the \emph{users} of models are not the \emph{developers} of the models) is that one may have access to neither the training data nor the testing data.
+A less well-known problem, but one that is increasingly important (in particular in industrial-scale ML---where the \emph{users} of models are not the \emph{developers} of the models) is that one may have access to neither the training data nor the testing data.
 Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and be told to use it.
 
-Na\"{\i}vely---but in our experience commonly, among both ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
-This may be true in worst-case theory, but ML models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
-Moreover, if ML is to become an industrial process, then that process will become siloed: some groups will gather data, other groups will develop models, and still other groups will use those models.
-The users of models can not be expected to know the precise details of how the models were built, the specifics of the data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized, etc.
-%
+Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
+This may be true in worst-case theory, but models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
+Moreover, if ML is to become an industrial process, then that process will become siloed: some groups will gather data, other groups will develop models, and other groups will use those models.
+Users of models cannot be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
+
 Moreover, in industry, one faces unique practical problems such as: do we have enough data for this model? 
 Methods that are developed and evaluated on any well-defined publicly-available coprus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
-It is thus of great practical interest to have metrics to evaluate the quality of a ML model in the absence of training and testing data and without any detailed knowledge of the training and testing process.  
-We seek a practical theory for pretrained models which can predict how, when, and why such models can be expected to perform well or poorly.
+It is of great practical interest to have metrics to evaluate the quality of a ML model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
+We seek a practical theory for pretrained models which can predict how, when, and why such models can be expected to perform well or~poorly.
 
 In this paper, we present and evaluate quality metrics for pretrained neural network (NN) and deep neural network (DNN) models at scale.
 To do so, we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
@@ -35,9 +35,6 @@ there are now hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 
 \footnote{When we began this work in 2018, there were fewer than tens of such models; now in 2020, there are hundreds of such models; and we expect that in a year or two there will be an order of magnitude or more of such models.}
 These provide a large corpus of models that by some community standard are state-of-the-art.%
 \footnote{Clearly, there is a selection bias or survivorship bias here---people tend not to make publicly-available their poorly-performing models---but these models are things in the world that (like social networks or the internet) can be analyzed for their properties.}
-They include 
-\michael{XXX, XXX and XXX.  MORE DETAILS.}
-\michael{XXX.  LIST PLACES WHERE THEY ARE AVAIALBLE, HERE OR IN NEXT SECTION.}
 Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available; and, for all of these models, we have no access to training data or testing data, and we have no knowledge of the training/testing protocols. 
 
 The \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrics.
@@ -49,23 +46,40 @@ Instead, we want to examine different models across common architecture series, 
 
 
 In more detail, our main contributions are the following.
-%\begin{itemize}
-%\item 
-First, 
-motivated by practical problems, we formulate the question ``Can one predict trends in the quality of state-of-the-art neural networks without access to training or testing data?''
-%\item
-Second, 
-to answer this question, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in CV and NLP.
-%\item 
-Third, 
-we find that norm-based metrics do a reasonably good job at predicting quality trends in well-trained models, i.e., they can be used to discriminate between ``good-better-best'' models, but they can qualitatively fail for models that may not be well-trained, i.e., to distinguish ``good-vs-bad'' models.
-%\item 
-Fourth, 
-we find that PL-based metrics do much better, quantitatively better at discriminating good-better-best and qualitatively better at discriminating good-vs-bad.
-%\item 
-Finally, 
-we find that PL-based metrics can also be used to characterize fine-scale properties of models, including understanding layer-wise \emph{correlation flow}, and evaluating post-training modifications such as model distillation and model improvement.
-%\end{itemize}
+\begin{itemize}[leftmargin=*]
+\item 
+%First, 
+Motivated by practical problems, we formulate the question ``Can one predict trends in the quality of state-of-the-art neural networks without access to training or testing data?''
+\item
+%Second, 
+%To answer this question, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in CV and NLP.
+To answer this question, we analyze hundreds of publicly-available pretrained state-of-the-art models from CV and NLP.
+\item 
+%Third, 
+We find that norm-based metrics do a reasonably good job at predicting quality trends in well-trained models, i.e., they can be used to discriminate between ``good-better-best'' models, but they can qualitatively fail for models that may not be well-trained, i.e., to distinguish ``good-vs-bad'' models.
+\item 
+%Fourth, 
+We find that PL-based metrics do much better, quantitatively better at discriminating good-better-best, and qualitatively better at discriminating good-vs-bad models.
+\item 
+%Finally, 
+We find that PL-based metrics can also be used to characterize fine-scale properties of models, including understanding layer-wise \emph{correlation flow}, and evaluating post-training modifications such as model distillation and model improvement.
+\end{itemize}
+
+\noindent
+We emphasize that our goal is a practical theory to predict trends in the quality of state-of-the-art NN models, i.e., not to make a statement about every publicly-available model.
+We have examined hundreds of models, and are exceptions to the general trends we state.
+Several of the most interesting are described below.
+
+\paragraph{The WeightWatcher Tool.}
+
+All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package};
+and, in order to make our results fully reproducible, we provide Jupyter notebooks in the github repo for this paper~\cite{repo},
+with fully reproducible Jupyter notebooks.%
+\footnote{\url{https://github.com/CalculatedContent/kdd2020} \michael{DIFFERENT NAME?}}
+\michael{LINK TO: Google Colab, IS THIS THAT REPO.}
+\michael{FIX THIS PAR.}
+
+
 
 
 \paragraph{Organization of this paper.}
@@ -76,14 +90,5 @@ Then, in Section~\ref{sxn:nlp}, we look at several variations of a popular NLP D
 Then, in Section \ref{sxn:all_cv_models}, we present results based on an analysis of hundreds of pretraind DNN CV models, showing how well each metric is correlated with the reported test accuracies, and how the Alpha-Norm metric(s) perform remarkably well.
 Finally, in Section~\ref{sxn:conc}, we provide a brief discussion and conclusion.
 
-
-\paragraph{The WeightWatcher Tool.}
-
-All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package};
-and, in order to make our results fully reproducible, we provide Jupyter notebooks in the github repo for this paper~\cite{repo},
-with fully reproducible Jupyter notebooks.%
-\footnote{\url{https://github.com/CalculatedContent/kdd2020} \michael{DIFFERENT NAME?}}
-\michael{LINK TO: Google Colab, IS THIS THAT REPO.}
-\michael{FIX THIS PAR.}
 
 

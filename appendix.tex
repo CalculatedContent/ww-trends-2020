@@ -1,6 +1,6 @@
 \section{Appendix}
 
-XXX.  APPENDIX.
+\subsection{XXX}
 
 \michael{I put this here for now as a placeholder.  Where to put it.  Maybe in a discussion/conclusion if there is space.}
 
@@ -8,7 +8,7 @@ XXX.  APPENDIX.
 XXX.  THIS VERIFICATION IS NOT ABOUT CONV LAYERS, IT IS ABOUT PL MORE GENERALLY, CORRECT?  WE SHOULD CLARIFY AND SQUISH.
 To verify that our approach is meaningful, we need to confirm that the ESD is neither due to a random matrix, nor due to unsually large matrix elements, but, in fact, captures correlations learned from the data. 
 We examine typical layer for the pretained AlexNet model (distributed with pyTorch). 
-Figure~\ref{fig:alexnet1} displays the ESD for the first slice (or matrix $\mathbf{W}$) of the third Conv2D layer, extracted from a 4-index Tensor of shape $(384, 192, 3, 3)$.  The red line displays the best fit to a random matrix, using the Marchenko pastur theory~\cite{MM}.  We can see the random matrix model does not describe the ESD very well. For comparison, Figure \ref{fig:alexnet2} shows the ESD of the same matrix, randomly shuffled; here looks similar to the red line plot of the orginal ESD.  In fact, the empircal ESD is better modeled with a truncated power law distribtion.
+Figure~\ref{fig:alexnet1} displays the ESD for the first slice (or matrix $\mathbf{W}$) of the third Conv2D layer, extracted from a 4-index Tensor of shape $(384, 192, 3, 3)$.  The red line displays the best fit to a random matrix, using the Marchenko pastur theory~\cite{MM18_TR}.  We can see the random matrix model does not describe the ESD very well. For comparison, Figure \ref{fig:alexnet2} shows the ESD of the same matrix, randomly shuffled; here looks similar to the red line plot of the orginal ESD.  In fact, the empircal ESD is better modeled with a truncated power law distribtion.
 \michael{We may want to give a one-sentence summary of this par and fig at the end of the previous par.}
 \charles{Here, on the RMT MP stuff, I think it makes sense to point back}
 
@@ -42,4 +42,41 @@ These plots tell us that the pre-activation maps of the Conv2D contains signific
 By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can characterize the amount of correlation learned;
 the smaller the exponent $\alpha$, the more correlation in the weight matrix. 
 \michael{These comments seem out of place, since they hold more generally than for the Conv2D layers.}
+
+\subsection{XXX}
+
+Some other comments that we need to weave into a narrative eventually after later sections are written:
+\begin{itemize}
+\item
+GPT versus GPT2.
+What happens when we don't have enough data?
+This is the main question, and we can use out metrics to evaluate that, but we also get very different results for GPT versus GPT2.
+\item
+The spectral norm is a regularizer, used to distinguish good-better-best, not a quality metric.
+For example, it can ``collapse,'' and for bad models we can have small spectral norm.
+So, it isn't really a quality metric.
+\item
+One question that isn't obvious is whether regularization metrics can be used as quality metrics.
+One might think so, but the answer isn't obviously yes.
+We show that the answer is No.
+A regularizer is designed to select a unique solution from a non-unique good-better-best.
+Quality metrics can also distinguish good versus bad.
+\item
+(We should at least mention this is like the statistical thing where we evaluate which model is better, as oposed to asking if a given model is good, I forget the name of that.)
+\item
+There are cases where the model is bad but regularization metric doesn't tell you that.
+Quality should be correlated in an empirical way.
+Correlated with good-better-best; but also tell good-bad.
+\item
+Question: why not use regularier for quality?
+Answer: A regularizer selects from a given set of degenerate models one which is nice or unique.
+It doesn't tell good versus bad, i.e., whether that model class is any good.
+\item
+Thus, it isn't obvious that norm-based metrics should do well, and they don't in general.
+\item
+We give examples of all of these: bad data; defective data; and distill models in a bad way.
+(Of course, bad data means bad model, at least indirectly, since the quality of the data affects the properties of the model.)
+\item
+We can select a model and change it, i.e., we don't just do hyperparameter fiddling.
+\end{itemize}
 
