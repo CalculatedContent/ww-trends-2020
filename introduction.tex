@@ -7,27 +7,31 @@ A common problem in machine learning (ML)
 is to evaluate the quality of a given model.
 A popular way to accomplish this
 %, in particular in academic environments, 
-is to train a model and then evaluate its training/testing error.
-There are many problems with this approach.
-Well-known problems with just examining training/testing curves include that 
-they give very limited insight into the overall properties of the model, 
+is to train a model and then evaluate its training/testing error--but
+there are many problems with this approach.
+The training/testing curves give very limited insight into the overall properties of the model, 
 they do not take into account the (often large human and CPU/GPU) time for hyperparameter fiddling,
 they typically do not correlate with other properties of interest such as robustness or fairness or interpretability, 
 and so on.
-A less well-known problem, but one that is increasingly important (in particular in industrial-scale ML---where the \emph{users} of models are not the \emph{developers} of the models) is that one may have access to neither the training data nor the testing data.
-Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and be told to use it.
+A less well-known problem, but one that is increasingly important (in particular in industrial-scale 
+artificial intelligence (AI), arises when the model \emph{user} is not the model \emph{developer}.
+here, one may not have access to either the training data nor the testing data.
+\nred{Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and need to use it "as is'', or fine tune it and/or compress it.}
 
 Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
 Moreover, if ML is to become an industrial process, then that process will become siloed: some groups will gather data, other groups will develop models, and other groups will use those models.
 Users of models cannot be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
 
-Moreover, in industry, one faces unique practical problems such as: do we have enough data for this model? 
+Moreover, for many large scale, practical applications, one can not define a true test metric.  For example, NLP models that generate fake text or conversational chatbots may use a proxy, like perplexity, as a test metric, but, in the end, really require human evaluation.  Or, say, models that cluster user profiles, which are widely used in marketing, are unsupervised and have no labels for comparison.  \charles{more here, clean up?}
+
+Most importantly, in industry, one faces unique practical problems such as: do we have enough data for this model? 
+\nred{Indeed, high quality, labeled data can be very expensive to acquire, and this cost can make or break a project.}
 Methods that are developed and evaluated on any well-defined publicly-available coprus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
-It is of great practical interest to have metrics to evaluate the quality of a ML model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
+It is of great practical interest to have metrics to evaluate the quality of a trained model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
 We seek a practical theory for pretrained models which can predict how, when, and why such models can be expected to perform well or~poorly.
 
-In this paper, we present and evaluate quality metrics for pretrained neural network (NN) and deep neural network (DNN) models at scale.
+In this paper, we present and evaluate quality metrics for pretrained deep neural network (DNN) models, and at scale.
 To do so, we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
 %
 By now, there are many such state-of-the-art models that are publicly-available, e.g., 
@@ -38,10 +42,10 @@ These provide a large corpus of models that by some community standard are state
 Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available; and, for all of these models, we have no access to training data or testing data, and we have no knowledge of the training/testing protocols. 
 
 The \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrics.
-In particular, they are based on the norms of weight matrices (such norms have been used in traditional statistical learning theory to bound capacity and construct regularizers) and parameters of power law (PL) fits of the eigenvalues of weight matrices (such PL fits are based on statistical mechanics approaches to NNs).
+In particular, they are based on the norms of weight matrices (such norms have been used in traditional statistical learning theory to bound capacity and construct regularizers) and parameters of power law (PL) fits of the eigenvalues of weight matrices (such PL fits are based on statistical mechanics approaches to DNNs).
 Note that, while we use traditional norm-based and PL-based metrics, our goals are different.
 In particular, unlike more common ML approaches, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., hyperparmeter optimization).% 
-\footnote{One could of course use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained NN models.}
+\footnote{One could of course use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained DNN models.}
 Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves, and in both cases \emph{we aim to predict trends in the quality of pre-trained models without access to training or testing data}.  
 
 
@@ -66,20 +70,18 @@ We find that PL-based metrics can also be used to characterize fine-scale proper
 \end{itemize}
 
 \noindent
-We emphasize that our goal is a practical theory to predict trends in the quality of state-of-the-art NN models, i.e., not to make a statement about every publicly-available model.
-We have examined hundreds of models, and are exceptions to the general trends we state.
-Several of the most interesting are described below.
+We emphasize that our goal is a practical theory to predict trends in the quality of state-of-the-art DNN models, i.e., not to make a statement about every publicly-available model.
+\nred{We have examined hundreds of models, we indentify the general trends, and highlight interesting exceptions.}
+%%Several of the most interesting are described below.
 
 \paragraph{The WeightWatcher Tool.}
 
 All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package};
 and, in order to make our results fully reproducible, we provide Jupyter notebooks in the github repo for this paper~\cite{repo},
-with fully reproducible Jupyter notebooks.%
-\footnote{\url{https://github.com/CalculatedContent/kdd2020} \michael{DIFFERENT NAME?}}
+and with fully reproducible Google colab notebooks for the larger calculations.%
+\footnote{\url{https://github.com/CalculatedContent/kdd2020} \michael{DIFFERENT NAME?}\charles{suggestions?}}
 \michael{LINK TO: Google Colab, IS THIS THAT REPO.}
 \michael{FIX THIS PAR.}
-
-
 
 
 \paragraph{Organization of this paper.}

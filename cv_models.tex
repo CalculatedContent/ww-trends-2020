@@ -253,10 +253,14 @@ Also (not shown), the average (unweighted) baseline $\alpha$ is \emph{smaller} t
 \michael{XXX.  WORK ON THIS PAR AFTER DO NLP EXAMPLES.}
 Our interpretation of this is the following.
 The pre-trained models in the \texttt{distiller} package have passed some quality metric, but they are much less well trodden than any of the VGG/ResNet/DenseNet models we condisered previously.
-Norms are often used as regularizers, and thys they are a natural metric to consider, e.g., during training or distillation.
-The PL $\alpha$ captures more subtle correlations.
+\charles{MOvE THIS SOMEWHERE ELSE AND CLEAN UP THIS SECTION Notice while norms make good regularizers for a single model, there is no reason \emph{a priori} 
+to expect them correlate so well with the test accuracies across different models.
+However, we do expect the PL $\alpha$ to do so because it effectively measures the amount of correlation in the model}
 %
-The reason for this is that the \texttt{distiller} Group Regularization technique has the unusual effect of increasing the norms of the $\mathbf{W}$ feature maps for at least two of the Conv2D layers.
+The reason for this is that the \texttt{distiller} Group Regularization technique 
+%%has the unusual effect of increasing
+\nred{spuriously increases}
+ the norms of the $\mathbf{W}$ pre-activation maps for at least two of the Conv2D layers.
 \michael{This impedance shuffling or whatever it is called messes up norms, but the strong correlations are still preserved, as seen in the $\hat{\alpha}$ metric, and the model quality is good.  CLARIFY.}
 \michael{XXX.  INTERPRET IN TERMS OF XXX GOOD VERSUS BAD, AS OPPOSED TO GOOD BETTER BEST.}
 

@@ -23,6 +23,8 @@ We have examined a large number of possible quality metrics.
 The best performing metrics (recall that we can only consider metrics that do not use training/test data) depend on the norm and/or spectral properties of weight matrices, $\mathbf{W}$.%
 \footnote{We do not use intra-layer information from the models in our quality metrics, but as we will describe our metrics can be used to learn about that.}
 Consider the following.
+\charles{Note I write X for the $\alpha$-norm and not W.  This is because it would be $2\alpha$.  I know its a bit confusing.
+We have to be careful here with the Frobenius norm also and check that we are not off by a factor of 2}
 \begin{itemize}
 \item 
 Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\sum_{i,j}w^{2}_{i,j} = \sum_{i=1}^{M} \lambda_{i}^{2}$
@@ -105,9 +107,10 @@ For our analysis, because we are performing tens of thousands of calculations, w
 \paragraph{Normalization of Empirical Matrices.}  
 Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the Power Law fits because the Heavy Tailed exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
-Norm-based metrics, however, do depend strongly on the scale of the weight matrix.
+Norm-based metrics, however, do depend strongly on the scale of the weight matrix--\nred{that's the point.}
+\nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
 Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ normalization and assume that the variance of $\mathbf{X}$ is either unity or a known constant.% 
-\footnote{For Heavy Tailed theorems, one typically needs a normalization such as $1/N^{1-\alpha}$.}
+\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with the variance already normalized to $\sqrt{1/N}$, or some variant of this, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers.
 We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
 The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
