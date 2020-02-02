@@ -68,9 +68,8 @@ The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($30
 The projection layer concatenates the self-attention results into a vector (of dimension $768$).
 This gives $50$ large matrices.
 %
-Because GPT and GPT are trained on different data sets, the initial Embedding matrices differ in shape.
-\michael{Clarify that, which is second GPT.}
-GPT  has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
+Because GPTand GPT2 are trained on different data sets, the initial Embedding matrices differ in shape.
+GPT has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
 %
 The OpenAI GPT2 (English) models are: \nred{gpt-small, gpt-medium, gpt-large, and gpt-xl}, \
 having include $12, 24, 36, \text{and }48$ layers, respectively, with increasingly larger weight matrices.
@@ -113,7 +112,7 @@ Observe that all four metrics increase when going from GPT to GPT (small), i.e.,
 Observe also that (with one minor exception involving the Log Frobenius norm metric) all four metrics decrease as one goes from GPT2 medium to large to xl, indicating that the larger models indeed look better than the smaller models.
 %(The one minor exception is the Log Frobenius norm increasing from $1.85$ to $1.86$, for GPT2 large to GPT2 xl.)
 \michael{We seem to have typos(s), so I'm not going to flesh out all conclusions I see yet.  The comments I just mad may be wrong, if GPT (small) is really GPT2 (small).  FIX TYPOS AND CLARIFY.}
-\charles{GPT2 (small) is GPT--they are the same model}
+\charles{GPT2 (small) is GPT--I think they are the same model--but the embeddings may be different I will check again}
 These results coincide with the results in Section~\ref{sxn:cv} on CV models. 
 
 Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT (blue) and this GPT2 (red) model.  
