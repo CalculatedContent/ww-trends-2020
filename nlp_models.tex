@@ -10,26 +10,46 @@ These include variants of BERT, Transformer-XML, GPT, etc.
 The Transformer architectures consist of blocks of so-called Attention layers, containing two large, Feed Forward (Linear) weight matrics~\cite{Attn2017}. 
 In contrast to smaller pre-Activation maps arising in Cond2D layers, Attention matrices are significantly larger.
 In general, we have found that they have larger $\alpha$ PL exponents.
-Based on HT-SR Theory (in particular, the interpretation of values of $\alpha \sim 2$ as modeling systems with good correlations over many size scales~\cite{BouchaudPotters03, SornetteBook}), this suggests that these models fail to capture successfully many of the correlations in the data (relative to their size) and thus that they are substantially \emph{under}-trained.
+Based on HT-SR Theory, 
+%(in particular, the interpretation of values of $\alpha \sim 2$ as modeling systems with good correlations over many size scales~\cite{BouchaudPotters03, SornetteBook}), 
+this suggests that these models fail to successfully capture many of the correlations in the data (relative to their size) and thus are substantially \emph{under}-trained.
 %
-More generally, these NLP models are quite different than the CV models we considered in Section~\ref{sxn:cv}, both in terms of their architecture (e.g., wheter there are convolutions) as well as how they are used (e.g., whether one uses prediction error or perplexity).
-Thus, they provide a very different test for our metrics.
+More generally, compared to the CV models of Section~\ref{sxn:cv},
+modern NLP models have larger weight matrices and display different spectral properties, and 
+%, both in terms of their architecture (e.g., wheter there are convolutions) as well as how they are used (e.g., whether one uses prediction error or perplexity).
+thus, they provide a very different test for our empirical quality metrics.
 
-\michael{WHERE: Norm-base metrics perform reasonably well on good NLP models, but they have problems with less well-trained models.
-PL-based metrics (the Log $\alpha$-Norm metric, $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $) do even better.
-We highlight how to use the theory to identify poorly trained models where the empirical norm metrics will perform poorly.}
+Where Norm-base metrics perform reasonably well on well-trained NLP models, they behave anomalously poorly-trained models.
+Indeed, in ``bad models'', the weight matrics may display rank collapse, decreased Frobeinus mass, or unsually small Spectral norms, 
+which may be mis-interpreted as ``smaller is better.''
+In contast, PL-based metrics (the Log $\alpha$-Norm metric, $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $) display consistant behavior even on poorly trained models, and we can use these metrics to help indentify
+where the archiectures need repair, and/or more and/or better data is needed.
 
-\michael{WHERE: We show that this not only works for CV, so we look at NLP.
-We now look in detail at the alpha metric, the spectral norm, and the new norm.
-We compare good and bad models, and a series of increasingly big models
-trained on big data sets.  We show why alpha works but spectral norm is not enough.
-The layer Spectral Norm behaves unexpectedly, while $\alpha$-based metrics can give insight into how well trained a model is.}
+%We now look in detail at the alpha metric, the spectral norm, and the new norm.
+%We compare good and bad models, and a series of increasingly big models
+%trained on big data sets.  We show why alpha works but spectral norm is not enough.
+%The layer Spectral Norm behaves unexpectedly, while $\alpha$-based metrics can give insight into how well trained a model is.
 
 \michael{WHERE: Say large $\alpha$ values don't mean much.}
+We do note, however, that many NLP models, such as the GPT and BERT, may have weight matrices with unusually large PL exponents
+($\alpha>6$), which indicates these matrices may be \emph{under}-correlated (i.e over-paramaterized), although the truncated PL fit
+itself may not be very reliable because the MLE estimator is unreliable in this range.  Phenomenologically, if we examine
+the ESD visually, we can usually describe these $\mathbf{W}$ as in the \emph{Bulk-Decay} or \emph{Bulk-plus-Spikes} phase\cite{MM}.
+We have conjectured previously that very well-trained DNNs would not have many \emph{outlier} $\alpha>6$, 
+and improved versions of GPT (shown below, and BERT (not shown) confirm this.
 
 \michael{WHERE: Highlight difference between $\alpha$ and $\hat{\alpha}$.}
-
-
+To avoid confusion, let us clarify the differences between $\alpha$ and $\hat{\alpha}$.  
+We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated power law (PL), parameterized by 2 values:
+the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  (Technically, we also need the minimum
+eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
+The PL exponent $\alpha$ measures of the 
+amount of correlation in a DNN layer weight matrix $\mathbf{W}$.  It is valid for $\lambda<\lambda_{max}$, and
+it scale invariant (does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.)
+The Weighted-Alpha metric, $\hat{\alpha}=\alpha\log\lambda_{max}$, approximates the Log $\alpha$ (Shatten) Norm 
+$(\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha})$ (derived using statistical mechanics and RMT \nred{(in progress)}, 
+and lets us compute a balanced, weighted average log PL norm metrix for the entire DNN.  
+The $\hat{\alpha}$ metric also behaves like an imrpoved, weighted log average Spectral Norm, and may track this metric in some cases.
 
 \paragraph{OpenAI GPT Models.}
 
