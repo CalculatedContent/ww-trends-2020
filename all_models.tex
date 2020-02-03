@@ -52,25 +52,20 @@ In this paper, we propose that the Weightwatcher tool could be used to predict t
 We regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).  These include the Top5 errors for the ImageNet-1K mode, the percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and the Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (mIOU) for XXX.
 We regress them individually on each of the Weightwatcher log Norm metrics, as described above.
 
-To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
+%To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
 
-\serena{see examples in Figure X}
+%\serena{see examples in Figure X}
 
-(Here we omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models for those datasets and thus the regression is less statistically significant)
+%(Here we omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models for those datasets and thus the regression is less statistically significant)
 
-\serena{insert plots for Figure X}
+%\serena{insert plots for Figure X}
 
-For the second batch, we plot the regression for models of each architecture-datasets combination, which shows the relationship between the progression of the model accuracy and Weightwatcher metrics more clearly and precisely. For example, as you could see in the Figure X2, 
+%e compite the regression R-squared and RMSE  for models of each architecture-datasets combination, which shows the relationship between the progression of the model accuracy and Weightwatcher metrics more clearly and precisely. For example, as you could see in the Figure X2, 
 
-\serena{Add an example, UPDATE when we have the results from the new codes}
+%\serena{Add an example, UPDATE when we have the results from the new codes}
 
-Insert plots for Figure X2
-
-While running each regression, we record the R-squared and mean squared errors (MSE) for each regression. We then filter out regressions with less than five datapoints and models with structural outliers.
-
-\serena{Define and give an example of the structural outliers}
-
-Insert a plot for outliers, OPTIONAL
+For each regression, we record the R-squared and mean squared errors (MSE). We filter out regressions with less than five datapoints,
+ \nred{and models with structural outliers (where the trend is anti-correlated?) ?}
 
 \charles{These tables could go to appendix. We need references}
 
