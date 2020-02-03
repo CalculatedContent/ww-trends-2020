@@ -22,7 +22,8 @@ thus, they provide a very different test for our empirical quality metrics.
 Where Norm-base metrics perform reasonably well on well-trained NLP models, they behave anomalously poorly-trained models.
 Indeed, in ``bad models'', the weight matrics may display rank collapse, decreased Frobeinus mass, or unsually small Spectral norms, 
 which may be mis-interpreted as ``smaller is better.''
-In contast, PL-based metrics (the Log $\alpha$-Norm metric, $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $) display consistant behavior even on poorly trained models, and we can use these metrics to help indentify
+In contast, PL-based metrics (the log $\alpha$-Norm metric, 
+$(\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha})$, and the Weighted Alpha metric, $\hat\alpha =\alpha\log\lambda_{max} $) display consistant behavior even on poorly trained models, and we can use these metrics to help indentify
 where the archiectures need repair, and/or more and/or better data is needed.
 
 %We now look in detail at the alpha metric, the spectral norm, and the new norm.
@@ -46,7 +47,7 @@ eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
 The PL exponent $\alpha$ measures of the 
 amount of correlation in a DNN layer weight matrix $\mathbf{W}$.  It is valid for $\lambda<\lambda_{max}$, and
 it scale invariant (does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.)
-The Weighted-Alpha metric, $\hat{\alpha}=\alpha\log\lambda_{max}$, approximates the Log $\alpha$ (Shatten) Norm 
+The Weighted-Alpha metric, $\hat{\alpha}=\alpha\log\lambda_{max}$, approximates the log $\alpha$ (Shatten) Norm 
 $(\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha})$ (derived using statistical mechanics and RMT \nred{(in progress)}, 
 and lets us compute a balanced, weighted average log PL norm metrix for the entire DNN.  
 The $\hat{\alpha}$ metric also behaves like an imrpoved, weighted log average Spectral Norm, and may track this metric in some cases.
@@ -86,7 +87,7 @@ The model card for GPT2 is published on github.\footnote{\url{https://github.com
 \hline
 %   &    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha Norm \\
 % Series & \#Layers   & $\Vert\mathbf{W}\Vert_{F}$ & $\Vert\mathbf{W}\Vert_{\infty}$ & $\hat{\alpha}=\alpha\log\lambda_{max}$ & $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$ \\
-        &        & Log                   & Log                        & Weighted       & Log                                 \\
+        &        & log                   & log                        & Weighted       & log                                 \\
         & Num.   & $\Vert\cdot\Vert_{F}$ & $\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
  Series & Layers & Metric                & Metric                     & Metric         & Metric                              \\
 \hline
@@ -109,8 +110,8 @@ We have analyzed the four quality metrics described in Section~\ref{sxn:methods}
 See Table \ref{table:nlp} for a summary of results.
 We start by examining the PL exponents $\alpha$ for GPT and GPT2-small.
 Observe that all four metrics increase when going from GPT to GPT2-small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
-Observe also that (with one minor exception involving the Log Frobenius norm metric) all four metrics decrease as one goes from GPT2 medium to large to xl, indicating that the larger models indeed look better than the smaller models.
-%(The one minor exception is the Log Frobenius norm increasing from $1.85$ to $1.86$, for GPT2 large to GPT2 xl.)
+Observe also that (with one minor exception involving the log Frobenius norm metric) all four metrics decrease as one goes from GPT2 medium to large to xl, indicating that the larger models indeed look better than the smaller models.
+%(The one minor exception is the log Frobenius norm increasing from $1.85$ to $1.86$, for GPT2 large to GPT2 xl.)
 
 Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT (blue) and this GPT2 (red) model.  
 These two histograms are very different, with GPT2 having both a notably smaller mean $\alpha$, and far fewer unusually-large outlying $\alpha$ values.
@@ -128,17 +129,19 @@ On the other hand, as expected, the improved GPT2 model has, on average, smaller
         \label{fig:GPT-alpha-hist}
        }
     %\qquad
-    \subfigure[Log Spectral Norm]{
+    \subfigure[log Spectral Norm]{
         %\includegraphics[width=5cm]{img/GPT-snorm-hist.png}
         \includegraphics[width=4.0cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm-hist}
        }
-   \caption{Comparison of PL exponents, $\alpha$, and log Spectral Norms, $\log\Vert\mathbf{W}\Vert_{\infty}$, for the OpenAI GPT and GPT2 (small) pretrained models.}
+   \caption{Comparison of PL exponents, $\alpha$, and log Spectral Norms, 
+$(\log\Vert\mathbf{W}\Vert_{\infty})$, for the OpenAI GPT and GPT2 (small) pretrained models.}
 \label{fig:GPT-hist}
 \end{figure}
 
+\paragraph{Scale Collapse.}
 However, as seen in Figure \ref{fig:GPT-snorm-hist},
-the ``bad'' GPT model has, spuriously, many smaller Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$,
+the ``bad'' GPT model has, spuriously, many smaller Spectral Norms $(\log\Vert\mathbf{W}\Vert_{\infty})$,
 compared to the ``good'' GPT2--which violates the belief that smaller Spectral Norms are always better.
 Indeed, because there are so many anonymously small $\Vert\mathbf{W}\Vert_{\infty}$,
 it appears that the GPT model may be exhibiting a kind of \emph{scale collapse} and/or undesired
@@ -190,13 +193,13 @@ because of the anamalous scale collapse that is frequently observed in bad model
         \label{fig:gpt-alpha-layer}
     }
     %\qquad
-    \subfigure[Log Spectral Norm]{
+    \subfigure[log Spectral Norm]{
         %\includegraphics[width=4.5cm]{img/GPT-snorm-depth.png}
         \includegraphics[width=4.0cm]{img/GPT-snorm-depth.png}
         \label{fig:gpt-snorm-layer}
     }
     %\qquad
-    \subfigure[Log Alpha Norm]{
+    \subfigure[log Alpha Norm]{
         %\includegraphics[width=4.5cm]{img/GPT-pnorm-depth.png}
         \includegraphics[width=4.0cm]{img/GPT-pnorm-depth.png}
         \label{fig:gpt-pnorm-layer}
@@ -216,15 +219,15 @@ In general, as we move from GPT2-small to GPT2-xl,
 the histograms for both $\alpha$ exponents and the log Norm metrics downshift from larger to smaller values. 
 See Figure \ref{fig:gpt2-histograms}, which shows the histograms over the layer weight matrics
 for fitted $\alpha$, and the log Spectral Norm
- $\log\Vert\mathbf{W}\Vert_{\infty}$  
+ $(\log\Vert\mathbf{W}\Vert_{\infty})$  
 and log Alpha Norm
- $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$ 
+ $(\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha})$ 
 metrics.
 
 We see that the average $\alpha$ decreases with increasing model size, although the differences are less noticible 
 between the differing ``good, better, best'' GTP2 models than between the ``good vs bad'' GPT2 and GPT models.
-Unlike GPT, however, the layer (log) Spectral Norms $\log\vert\mathbf{W}\Vert_{\infty}$ 
-and (log) Alpha Norms $\log\vert\mathbf{W}\Vert_{\alpha}^{\alpha}$
+Unlike GPT, however, the layer (log) Spectral Norms $(\log\vert\mathbf{W}\Vert_{\infty})$ 
+and (log) Alpha Norms $(\log\vert\mathbf{W}\Vert_{\alpha}^{\alpha})$
 behave more as expected for GPT2 layers, with the larger models, consistently having smaller norms. 
 \michael{Clarify.}\charles{???}
 Likewise, Figure \ref{fig:gpt2-snorm-hist} shows decreasing average log Spectral Norms with the larger models.  
@@ -247,18 +250,18 @@ that they have capacity to support datasets even larger than the recent XL $1.5B
         \label{fig:gpt2-alpha-hist}
     }
     %\qquad
-    \subfigure[Log Spectral Norm]{
+    \subfigure[log Spectral Norm]{
         %\includegraphics[width=4.5cm]{img/GPT2*_all_spectralnorm_hist.png}
         \includegraphics[width=4.0cm]{img/GPT2*_all_spectralnorm_hist.png}
         \label{fig:gpt2-snorm-hist}
     }
     %\qquad
-    \subfigure[Log Alpha Norm]{
+    \subfigure[log Alpha Norm]{
         %\includegraphics[width=4.5cm]{img/GPT2_all_logpnorm_hist.png}
         \includegraphics[width=4.0cm]{img/GPT2_all_logpnorm_hist.png}
         \label{fig:gpt2-pnorm-hist}
     }
-    \caption{PL exponents ($\alpha$), Log Spectral norm, and Log Alpha norm for different size models in the GPT2 architecture series.  (The Log Spectral norm histogram omits the first 2 layers, corresponding to the embedding layer, as these are normalized differently and have anamolously large values.)}
+    \caption{PL exponents ($\alpha$), log Spectral norm, and log Alpha norm for different size models in the GPT2 architecture series.  (The log Spectral norm histogram omits the first 2 layers, corresponding to the embedding layer, as these are normalized differently and have anamolously large values.)}
     \label{fig:gpt2-histograms}
 \end{figure}
 
