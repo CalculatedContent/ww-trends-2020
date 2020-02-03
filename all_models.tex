@@ -140,9 +140,7 @@ SqueezeNet/SqueezeResNet                   & 6 \\
 \hline
 %    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
 %    & $\langle\log\Vert\mathbf{W}\Vert_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$ & $\langle\hat{\alpha}=\alpha\log\lambda_{max}\rangle$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
-        & Log                   & Log                        & Weighted       & Log                                 \\
-        & $\Vert\cdot\Vert_{F}$ & $\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
- Series & Metric                & Metric                     & Metric         & Metric                              \\
+Series        & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
 \hline
 $R^{2}$ (mean) & 0.63 &0.55 &0.64 &0.64 \\
 $R^{2}$ (std)  & 0.34 &0.36 &0.29 &0.30 \\
