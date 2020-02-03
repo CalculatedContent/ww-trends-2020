@@ -141,7 +141,7 @@ However, as seen in Figure \ref{fig:GPT-snorm-hist},
 the ``bad'' GPT model has, spuriously, many smaller Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$,
 compared to the ``good'' GPT2--which violates the belief that smaller Spectral Norms are always better.
 Indeed, because there are so many anonymously small $\Vert\mathbf{W}\Vert_{\infty}$,
-it appears that the GPT model may be exhibiting a kind of soft rank collapse and/or undesired
+it appears that the GPT model may be exhibiting a kind of \emph{scale collapse} and/or undesired
 loss of Frobeinus mass.
 This is an extremely important observation because it demonstrates that while the Spectral Norm
 may correlate well with predicted test error, it is not a good indicator of the overall quality of a model,
@@ -163,6 +163,23 @@ and do not include them in the histogram plot in Figure \ref{fig:GPT-snorm-hist}
 
 also differs significantly between GPT and GPT2.
 Figure \ref{fig:gpt-alpha-layer} plots $\alpha$ vs the depth (i.e. a layer id) for each model.
+The deficient GPT model displays two trends in $\alpha$ , one stable with $\alpha\sim 4$,
+and one increasing with layer id, with $\alpha$ reaching as high as $12$.
+In contrast, the well-trained GPT2 model shows consistant and stable patterns, again
+with one stable $\alpha\sim 3.5$ (and below the GPT trend), and the other only
+slightly trending up, with $alpha\le 6$. 
+Again, the scale-invariant $\alpha$ metric lets us identify potentially
+poorly-trained models.
+
+Notice also that the Spectral Norms
+(Figure \ref{fig:gpt-snorm-layer})
+and the $\alpha-$Norms
+(Figure \ref{fig:gpt-pnorm-layer})
+display an unusually some mall values for GPT,
+and some increasing trending values for GPT2.
+Generally speaking, we do not think scale-dependennt 
+norm metrics can be directly applied to distinguish ``good'' vs ``bad''  models 
+because of the anamalous scale collapse that is observed in bad models.
 
 \charles{Discuss Spectral Norm, alpha-Norm}
 
