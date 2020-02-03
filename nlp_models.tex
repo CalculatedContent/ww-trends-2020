@@ -62,7 +62,7 @@ By comparing the poorly-trained GPT to the well-trained GPT2, we can indentify e
 
 \charles{More details here.}
 The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{XXX-XXX}.
-GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ Layer Weight Matrices $\mathbf{W}$.
+GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ layer Weight Matrices $\mathbf{W}$.
 Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
 The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
 The projection layer concatenates the self-attention results into a vector (of dimension $768$).
@@ -71,7 +71,7 @@ This gives $50$ large matrices.
 Because GPTand GPT2 are trained on different data sets, the initial Embedding matrices differ in shape.
 GPT has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
 %
-The OpenAI GPT2 (English) models are: \nred{gpt-small, gpt-medium, gpt-large, and gpt-xl}, \
+The OpenAI GPT2 (English) models are: \nred{GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl}, \
 having include $12, 24, 36, \text{and }48$ layers, respectively, with increasingly larger weight matrices.
 The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
 
@@ -91,14 +91,14 @@ The model card for GPT2 is published on github.\footnote{\url{https://github.com
  Series & Layers & Metric                & Metric                     & Metric         & Metric                              \\
 \hline
 GPT & 49 & 1.64  & 1.72 & 7.01 & 7.28 \\
-GPT2 small & 49 & 2.04  & 2.54& 9.62 & 9.87 \\
+GPT2-small & 49 & 2.04  & 2.54& 9.62 & 9.87 \\
 GPT2 medium & 98 & 2.08 & 2.58& 9.74 & 10.01 \\
 GPT2 large & 146 & 1.85 & 1.99& 7.67 & 7.94 \\
 GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Average value for the Average Log Norm metrics and the Weighted Alpha metric for pretrainnd OpenAI GPT and GPT2 models.  }
+\caption{Average value for the Average log Norm metrics and the Weighted Alpha metric for pretrainnd OpenAI GPT and GPT2 models.  }
 \label{table:nlp}
 \end{table}
 
@@ -107,8 +107,8 @@ GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 
 We have analyzed the four quality metrics described in Section~\ref{sxn:methods} for the OpenAI GPT and GPT2 pretrained models.
 See Table \ref{table:nlp} for a summary of results.
-We start by examining the PL exponents $\alpha$ for GPT and GPT2 small.
-Observe that all four metrics increase when going from GPT to GPT2 small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
+We start by examining the PL exponents $\alpha$ for GPT and GPT2-small.
+Observe that all four metrics increase when going from GPT to GPT2-small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
 Observe also that (with one minor exception involving the Log Frobenius norm metric) all four metrics decrease as one goes from GPT2 medium to large to xl, indicating that the larger models indeed look better than the smaller models.
 %(The one minor exception is the Log Frobenius norm increasing from $1.85$ to $1.86$, for GPT2 large to GPT2 xl.)
 
@@ -210,8 +210,10 @@ because of the anamalous scale collapse that is frequently observed in bad model
 
 \paragraph{GPT2: small, medium, large, xl} 
 
-We now look across the series of increasingly improving GPT2 models, examining both the PL exponent $\alpha$ as well as the various Log Norm metrics.
-In general, as we move from small to xl, the histograms for both $\alpha$ exponents and the log Norm metrics shift from larger to smaller values. 
+We now look across the series of increasingly improving GPT2 models, (i.e. ``good, better, best''), 
+by examining both the PL exponent $\alpha$, as well as the various log Norm metrics.  
+In general, as we move from GPT2-small to GPT2-xl, 
+the histograms for both $\alpha$ exponents and the log Norm metrics downshift from larger to smaller values. 
 See Figure \ref{fig:gpt2-histograms}, which shows the histograms over the layer weight matrics
 for fitted $\alpha$, and the log Spectral Norm
  $\log\Vert\mathbf{W}\Vert_{\infty}$  
@@ -219,11 +221,12 @@ and log Alpha Norm
  $\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$ 
 metrics.
 
-We see that the average $\alpha$ decreases with increasing model size, although the differences are less noticible between different GTP2 models than between the GPT and GPT2 models.
-Unlike GPT, however, the Layer (log) Spectral Norms $\log\vert\mathbf{W}\Vert_{\infty}$ 
+We see that the average $\alpha$ decreases with increasing model size, although the differences are less noticible 
+between the differing ``good, better, best'' GTP2 models than between the ``good vs bad'' GPT2 and GPT models.
+Unlike GPT, however, the layer (log) Spectral Norms $\log\vert\mathbf{W}\Vert_{\infty}$ 
 and (log) Alpha Norms $\log\vert\mathbf{W}\Vert_{\alpha}^{\alpha}$
-behave more as expected for GPT2 layers, with the larger models  consistently having  smaller norms. 
-\michael{Clarify.}
+behave more as expected for GPT2 layers, with the larger models, consistently having smaller norms. 
+\michael{Clarify.}\charles{???}
 Likewise, Figure \ref{fig:gpt2-snorm-hist} shows decreasing average log Spectral Norms with the larger models.  
 As we have seen in the trends of other well trained models.
 
