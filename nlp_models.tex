@@ -91,7 +91,7 @@ The model card for GPT2 is published on github.\footnote{\url{https://github.com
  Series & Layers & Metric                & Metric                     & Metric         & Metric                              \\
 \hline
 GPT & 49 & 1.64  & 1.72 & 7.01 & 7.28 \\
-GPT (small) & 49 & 2.04  & 2.54& 9.62 & 9.87 \\
+GPT2 small & 49 & 2.04  & 2.54& 9.62 & 9.87 \\
 GPT2 medium & 98 & 2.08 & 2.58& 9.74 & 10.01 \\
 GPT2 large & 146 & 1.85 & 1.99& 7.67 & 7.94 \\
 GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
@@ -107,13 +107,10 @@ GPT2 xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 
 We have analyzed the four quality metrics described in Section~\ref{sxn:methods} for the OpenAI GPT and GPT2 pretrained models.
 See Table \ref{table:nlp} for a summary of results.
-We start by examining the PL exponents $\alpha$ for GPT and GPT2 (small).
-Observe that all four metrics increase when going from GPT to GPT (small), i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
+We start by examining the PL exponents $\alpha$ for GPT and GPT2 small.
+Observe that all four metrics increase when going from GPT to GPT2 small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
 Observe also that (with one minor exception involving the Log Frobenius norm metric) all four metrics decrease as one goes from GPT2 medium to large to xl, indicating that the larger models indeed look better than the smaller models.
 %(The one minor exception is the Log Frobenius norm increasing from $1.85$ to $1.86$, for GPT2 large to GPT2 xl.)
-\michael{We seem to have typos(s), so I'm not going to flesh out all conclusions I see yet.  The comments I just mad may be wrong, if GPT (small) is really GPT2 (small).  FIX TYPOS AND CLARIFY.}
-\charles{GPT2 (small) is GPT--I think they are the same model--but the embeddings may be different I will check again}
-These results coincide with the results in Section~\ref{sxn:cv} on CV models. 
 
 Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT (blue) and this GPT2 (red) model.  
 These two histograms are very different, with GPT2 having both a notably smaller mean $\alpha$, and far fewer unusually-large outlying $\alpha$ values.
