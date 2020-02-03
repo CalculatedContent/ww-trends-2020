@@ -154,7 +154,7 @@ From Figure \ref{fig:gpt-snorm-layer} (below), we see that these correspond to t
 These layers appear to have a different effectvie normalization, and therefore a different scale.
 For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
 but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
- $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
+ $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
 the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
 Here, we do not include them in our computed average metrics in Table \ref{table:nlp},
 and do not include them in the histogram plot in Figure \ref{fig:GPT-snorm-hist}.
