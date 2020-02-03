@@ -115,12 +115,10 @@ Observe also that (with one minor exception involving the Log Frobenius norm met
 Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT (blue) and this GPT2 (red) model.  
 These two histograms are very different, with GPT2 having both a notably smaller mean $\alpha$, and far fewer unusually-large outlying $\alpha$ values.
 
-Observe that these results indicate that $\alpha$ provides a good quality metric for comparing these two models, one of which which was designed to be of low quality.
-The deficient GPT model has numerous weight matrices with unsually large fitted exponents (indicating that they are not HT at all).  
-Indeed, we may expect that a poorly trained model will not exhibit consistent Heavy Tailed behavior in all layers.
+From this, we see that $\alpha$ provides a good quality metric for comparing these two models, the``bad'' GPT vs. the ``good'' GPT2.
+The deficient GPT has numerous unsually large $\alpha$ exponents--meaning they are not Heavy Tailed at all.
+Indeed, we expect that a poorly trained model lack Heavy Tailed behavior in all layers.
 On the other hand, as expected, the improved GPT2 model has, on average, smaller $\alpha$ than the older GPT, with all $\alpha\le6$.  
-\michael{XXX.  FLESH OUT.}
-
 
 \begin{figure}
     \centering
@@ -140,26 +138,25 @@ On the other hand, as expected, the improved GPT2 model has, on average, smaller
 \end{figure}
 
 However, as seen in Figure \ref{fig:GPT-snorm-hist},
- the poorly trained GPT model has many smaller (log) Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$
-than the GPT2, which would be inconsistent with a belief that smaller Spectral Norm is always better.
-Indeed, because there are so many anamously small $\Vert\mathbf{W}\Vert_{\infty}$,
-it appears that the GPT model may be exhibiting a kind of rank collapse.
+the ``bad'' GPT model has, spuriously, many smaller Spectral Norms $\log\Vert\mathbf{W}\Vert_{\infty}$,
+compared to the ``good'' GPT2--which violates the beleif that that smaller Spectral Norms are always better.
+Indeed, because there are so many anonymously small $\Vert\mathbf{W}\Vert_{\infty}$,
+it appears that the GPT model may be exhibiting a kind of soft rank collapse.
 This is an extremely important observation because it demonstrates that while the Spectral Norm
 may correlate well with predicted test error, it is not a good indicator of the overall quality of a model,
 and using it as an empirical metric may give spurious results when applied to poorly trained
-or otherwise deficient models.  
+or otherwise deficient models. 
 
-
-Note that Figure \ref{fig:GPT-snorm-hist} also shows a couple anomalously  large Spectral Norms.
+Note that Figure \ref{fig:GPT-snorm-hist} also shows a couple unusually large Spectral Norms, but,
+here, simply correspond to the change in normalization of the word embedding layer(s) and can be ignored.
 From Figure \ref{fig:gpt-snorm-layer} (below), we see that these correspond to the first embedding layer(s).
-These layers appear to have a normalization, and therefore a differenc scale.
+These layers appear to have a different effectvie normalization, and therefore a different scale.
 For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
 but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
  $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we layer all layers as-is (although one may to normalize
 the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
 Here, we do not include them in our computed average metrics in Table \ref{table:nlp},
 and do not include them in the histogram plot in Figure \ref{fig:GPT-snorm-hist}.
-
 
 \paragraph{Layer Analysis: Correlation Flow in GPT and GPT2.} 
 
