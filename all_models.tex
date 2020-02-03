@@ -4,7 +4,7 @@
 \michael{Now we go back to the CV models and look at over 100 of them, and draw'
 more broad conclusions about why alpha and the new norm is better, by looking at the MSE}
 
-Here, we use the Weightwatcher tool to analyze 466 pretrained computer vision models Pytorch. These image classification and segmentation models are pretrained on nine datasets, ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). The pretrained models and their accuracy metrics are summarized in the osmr github 
+Here, we use the Weightwatcher tool to analyze over 100 pretrained computer vision (CV) models Pytorch, including image classification and segmentation models.  They have been pretrained on nine datasets, ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). The pretrained models and their accuracy metrics are summarized in the osmr github \charles{add link}
 
 
 \charles{We actually don't run regressions on all these datasetsm, BUT we could present them in the Figure below to show that alpha is a good metric for these kinds of models, in contrast to the NLP, where alpha is frequently too large to run a regression}
@@ -47,8 +47,10 @@ Here, we use the Weightwatcher tool to analyze 466 pretrained computer vision mo
 
 and a full summary of all the models analyzed is included in the Appendix. For our analysis, we then group models by architecture and datasets for further analysis.
 
-In this paper, we propose that the Weightwatcher tool could be used to predict the trends in the generalization accuracy of deep neutral network without a test set. To test our proposition, we choose simple linear regression to analyze the relationship between the Weightwatcher metrics and the traditional accuracy metric obtained with a test set (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense). On the left-hand-side of regression, we have the Top1 errors, Top5 errors as reported for ImageNet-1K models, Error % as reported in CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.,%) and Intersection-Over-Union (mIOU,%) as dependent variables. We then regress them individually on each of the Weightwatcher metrics, including  alpha, alpha_weighted, spectralnormlog, softranklog, lognorm, and logpnorm as defined in earlier section. 
-
+In this paper, we propose that the Weightwatcher tool could be used to predict the trends in the generalization accuracy of deep neutral network without a test set. To test our proposition, we choose simple linear regression to analyze the relationship between the Weightwatcher metrics and the traditional accuracy metric obtained with a test set.
+% (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense).
+We regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).  These include the Top5 errors for the ImageNet-1K mode, the percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and the Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (mIOU) for XXX.
+We regress them individually on each of the Weightwatcher log Norm metrics, as described above.
 
 To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
 
@@ -67,8 +69,6 @@ Insert plots for Figure X2
 While running each regression, we record the R-squared and mean squared errors (MSE) for each regression. We then filter out regressions with less than five datapoints and models with structural outliers.
 
 \serena{Define and give an example of the structural outliers}
-
-\charles{What are the structrual outliers we chose ?}
 
 Insert a plot for outliers, OPTIONAL
 
