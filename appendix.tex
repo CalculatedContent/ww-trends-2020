@@ -24,7 +24,7 @@ For our analysis, because we are performing tens of thousands of calculations, w
 
 \paragraph{Normalization of Empirical Matrices.}  
 Normalization is an important, if underappreciated, practical issue.
-Importantly, the normalization of weight matrices does \emph{not} affect the Power Law fits because the Heavy Tailed exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
+Importantly, the normalization of weight matrices does \emph{not} affect the PL fits because the PL exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
 Norm-based metrics, however, do depend strongly on the scale of the weight matrix--\nred{that's the point.}
 \nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
 Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ normalization and assume that the variance of $\mathbf{X}$ is either unity or a known constant.% 
@@ -151,7 +151,7 @@ SqueezeNet/SqueezeResNet                   & 6 \\
         \includegraphics[width=2.5cm]{img/cub200_alpha.png}
         \label{fig:cub200.alpha}
     }
-    \caption{\charles{Preliminary charts:} Heavy Tailed Power Law exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available\charles{ref} for 5 different data sets.}
+    \caption{\charles{Preliminary charts:} PL exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available\charles{ref} for 5 different data sets.}
 
     \label{fig:dataset_alphas}
 \end{figure}
