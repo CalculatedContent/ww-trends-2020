@@ -1,6 +1,170 @@
 \section{Appendix}
+\label{sxn:appendix}
 
-\subsection{XXX}
+In this appendix, we provide more details on several issues that are important for reproducibility of our results.
+
+\subsection{Convolutional layers and normalization issues}
+
+
+\paragraph{Spectral Analysis of Convolutional 2D Layers.}
+
+There is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  
+A Conv2D layer can be represented as a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ filter (or kernel) and $in\_ch$ / $out\_ch$ input / output channels, respectively (usually $in\_ch\le out\_ch$). 
+Typically, $w=h=k$,  giving $(k\times k)$ tensor slices, or \emph{pre-Activation Maps} $\mathbf{W}_{i,L}$ of dimension $(in\_ch\times out\_ch)$ each. 
+%
+There are at least three different approaches that have been advocated for applying the Singular Values Decomposition (SVD) to an Conv2D layer:
+run an SVD on each of the pre-Activation Maps $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values; 
+stack the feature maps into a single rectangular matrix of, say, dimension $((k\times k\times out\_ch)\times in\_ch)$, yielding $in\_ch$ singular values;
+compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients~\cite{Long2019}, leading to $\sim(k\times in\_ch\times out\_ch)$ non-zero singular values.
+Each method has tradeoffs.  
+In principle, the third method is mathematically sound, but it is computationally expensive. 
+For our analysis, because we are performing tens of thousands of calculations, we select the first method, which is numerically the fastest and is easiest to reproduce.%
+\footnote{We provide a Google Colab notebook where all results can be reproduced, with the option to redo the calculations with the third option for the SVD of the Conv2D.}
+
+
+\paragraph{Normalization of Empirical Matrices.}  
+Normalization is an important, if underappreciated, practical issue.
+Importantly, the normalization of weight matrices does \emph{not} affect the Power Law fits because the Heavy Tailed exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
+Norm-based metrics, however, do depend strongly on the scale of the weight matrix--\nred{that's the point.}
+\nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
+Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ normalization and assume that the variance of $\mathbf{X}$ is either unity or a known constant.% 
+\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
+Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with the variance already normalized to $\sqrt{1/N}$, or some variant of this, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers.
+We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
+The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
+
+
+\subsection{Reproducing results on hundreds of models}
+
+
+\charles{This section needs a lot of work}
+
+
+\serena{insert link in the footnote}
+
+and a full summary of all the models analyzed is included in the Appendix. For our analysis, we then group models by architecture and datasets for further analysis.
+
+
+%To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
+
+%\serena{see examples in Figure X}
+
+%(Here we omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models for those datasets and thus the regression is less statistically significant)
+
+%\serena{insert plots for Figure X}
+
+%e compite the regression R-squared and RMSE  for models of each architecture-datasets combination, which shows the relationship between the progression of the model accuracy and Weightwatcher metrics more clearly and precisely. For example, as you could see in the Figure X2, 
+
+%\serena{Add an example, UPDATE when we have the results from the new codes}
+
+For each regression, we record the R-squared and mean squared errors (MSE). We filter out regressions with less than five datapoints,
+ \nred{and models with structural outliers (where the trend is anti-correlated?) ?}
+
+
+\charles{Still preliminary, only 309 data points here}
+\paragraph{Results}
+
+
+\charles{These tables could go to appendix. We need references}
+
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{1in}|c|}
+\hline
+Dataset & $\#$ of Models \\
+\hline
+imagenet-1k   &  78 \\
+svhn          &  30 \\
+cifar-100     &  30 \\
+cifar-10      &  18 \\
+cub-200-2011  &  12 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Datasets used}
+\label{table:datasets}
+\end{table}
+
+
+
+
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{2in}|c|}
+\hline
+Architecture & $\#$ of Models \\
+\hline
+ResNet                                     & 30 \\
+SENet/SE-ResNet/SE-PreResNet/SE-ResNeXt    & 24 \\
+DIA-ResNet/DIA-PreResNet                   & 18 \\
+ResNeXt                                    & 12 \\
+WRN                                        & 12 \\
+DLA                                        & 6 \\
+PreResNet                                  & 6 \\
+ProxylessNAS                               & 6 \\
+VGG/BN-VGG                                 & 6 \\
+IGCV3                                      & 6 \\
+EfficientNet                               & 6 \\
+SqueezeNext/SqNxt                          & 6 \\
+ShuffleNet                                 & 6 \\
+DRN-C/DRN-D                                & 6 \\
+ESPNetv2                                   & 6 \\
+HRNet                                      & 6 \\
+SqueezeNet/SqueezeResNet                   & 6 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Architectures used}
+\label{table:architectures}
+\end{table}
+
+
+
+
+\charles{We actually don't run regressions on all these datasetsm, BUT we could present them in the Figure below to show that alpha is a good metric for these kinds of models, in contrast to the NLP, where alpha is frequently too large to run a regression}
+
+\begin{figure}[t]
+    \centering
+    \subfigure[ImageNet 1K]{
+        \includegraphics[width=2.5cm]{img/imagenet1k_alpha.png}
+        \label{fig:imagenet1k-alpha}
+    }
+    \qquad
+    \subfigure[ CIFAR 10 ]{
+        \includegraphics[width=2.5cm]{img/cifar10_alpha.png}
+        \label{fig:cifar10.alpha}
+    }
+    \qquad
+    \subfigure[ CIFAR 100 ]{
+        \includegraphics[width=2.5cm]{img/cifar100_alpha.png}
+        \label{fig:cifar100.alpha}
+    }
+    \qquad
+    \subfigure[ SVHN ]{
+        \includegraphics[width=2.5cm]{img/svhn_alpha.png}
+        \label{fig:svhn.alpha}
+    }
+    \qquad
+    \subfigure[ CUB 200 ]{
+        \includegraphics[width=2.5cm]{img/cub200_alpha.png}
+        \label{fig:cub200.alpha}
+    }
+    \caption{\charles{Preliminary charts:} Heavy Tailed Power Law exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available\charles{ref} for 5 different data sets.}
+
+    \label{fig:dataset_alphas}
+\end{figure}
+
+
+
+
+
+
+
+\section{XXX: PLACEHOLDER STUFF PROBABLY TO BE REMOVED}
+
+\subsection{XXX: PLACEHOLDER STUFF PROBABLY TO BE REMOVED}
 
 \michael{I put this here for now as a placeholder.  Where to put it.  Maybe in a discussion/conclusion if there is space.}
 
@@ -43,7 +207,7 @@ By modeling the ESD with a power law distribution $\lambda^{\alpha}$, we can cha
 the smaller the exponent $\alpha$, the more correlation in the weight matrix. 
 \michael{These comments seem out of place, since they hold more generally than for the Conv2D layers.}
 
-\subsection{XXX}
+\subsection{XXX: PLACEHOLDER STUFF PROBABLY TO BE REMOVED}
 
 Some other comments that we need to weave into a narrative eventually after later sections are written:
 \begin{itemize}

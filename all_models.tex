@@ -6,127 +6,16 @@ more broad conclusions about why alpha and the new norm is better, by looking at
 
 Here, we use the Weightwatcher tool to analyze over 100 pretrained computer vision (CV) models Pytorch, including image classification and segmentation models.  They have been pretrained on nine datasets, ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). The pretrained models and their accuracy metrics are summarized in the osmr github \charles{add link}
 
-
-\charles{We actually don't run regressions on all these datasetsm, BUT we could present them in the Figure below to show that alpha is a good metric for these kinds of models, in contrast to the NLP, where alpha is frequently too large to run a regression}
-
-\begin{figure}[t]
-    \centering
-    \subfigure[ImageNet 1K]{
-        \includegraphics[width=4cm]{img/imagenet1k_alpha.png}
-        \label{fig:imagenet1k-alpha}
-    }
-    \qquad
-    \subfigure[ CIFAR 10 ]{
-        \includegraphics[width=4cm]{img/cifar10_alpha.png}
-        \label{fig:cifar10.alpha}
-    }
-    \qquad
-    \subfigure[ CIFAR 100 ]{
-        \includegraphics[width=4cm]{img/cifar100_alpha.png}
-        \label{fig:cifar100.alpha}
-    }
-    \qquad
-    \subfigure[ SVHN ]{
-        \includegraphics[width=4cm]{img/svhn_alpha.png}
-        \label{fig:svhn.alpha}
-    }
-    \qquad
-    \subfigure[ CUB 200 ]{
-        \includegraphics[width=4cm]{img/cub200_alpha.png}
-        \label{fig:cub200.alpha}
-    }
-    \caption{\charles{Preliminary charts:} Heavy Tailed Power Law exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available\charles{ref} for 5 different data sets.}
-
-    \label{fig:dataset_alphas}
-\end{figure}
-
-\charles{This section needs a lot of work}
+We provide more details in Appendix~\ref{sxn:appendix}.
 
 
-\serena{insert link in the footnote}
-
-and a full summary of all the models analyzed is included in the Appendix. For our analysis, we then group models by architecture and datasets for further analysis.
 
 In this paper, we propose that the Weightwatcher tool could be used to predict the trends in the generalization accuracy of deep neutral network without a test set. To test our proposition, we choose simple linear regression to analyze the relationship between the Weightwatcher metrics and the traditional accuracy metric obtained with a test set.
 % (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense).
 We regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).  These include the Top5 errors for the ImageNet-1K mode, the percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and the Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (mIOU) for XXX.
 We regress them individually on each of the Weightwatcher log Norm metrics, as described above.
 
-%To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
 
-%\serena{see examples in Figure X}
-
-%(Here we omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models for those datasets and thus the regression is less statistically significant)
-
-%\serena{insert plots for Figure X}
-
-%e compite the regression R-squared and RMSE  for models of each architecture-datasets combination, which shows the relationship between the progression of the model accuracy and Weightwatcher metrics more clearly and precisely. For example, as you could see in the Figure X2, 
-
-%\serena{Add an example, UPDATE when we have the results from the new codes}
-
-For each regression, we record the R-squared and mean squared errors (MSE). We filter out regressions with less than five datapoints,
- \nred{and models with structural outliers (where the trend is anti-correlated?) ?}
-
-\charles{These tables could go to appendix. We need references}
-
-\begin{table}[t]
-\small
-\begin{center}
-\begin{tabular}{|p{1in}|c|}
-\hline
-Dataset & $\#$ of Models \\
-\hline
-imagenet-1k   &  78 \\
-svhn          &  30 \\
-cifar-100     &  30 \\
-cifar-10      &  18 \\
-cub-200-2011  &  12 \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Datasets used}
-\label{table:datasets}
-\end{table}
-
-
-
-
-\begin{table}[t]
-\small
-\begin{center}
-\begin{tabular}{|p{2in}|c|}
-\hline
-Architecture & $\#$ of Models \\
-\hline
-ResNet                                     & 30 \\
-SENet/SE-ResNet/SE-PreResNet/SE-ResNeXt    & 24 \\
-DIA-ResNet/DIA-PreResNet                   & 18 \\
-ResNeXt                                    & 12 \\
-WRN                                        & 12 \\
-DLA                                        & 6 \\
-PreResNet                                  & 6 \\
-ProxylessNAS                               & 6 \\
-VGG/BN-VGG                                 & 6 \\
-IGCV3                                      & 6 \\
-EfficientNet                               & 6 \\
-SqueezeNext/SqNxt                          & 6 \\
-ShuffleNet                                 & 6 \\
-DRN-C/DRN-D                                & 6 \\
-ESPNetv2                                   & 6 \\
-HRNet                                      & 6 \\
-SqueezeNet/SqueezeResNet                   & 6 \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Architectures used}
-\label{table:architectures}
-\end{table}
-
-
-
-
-\charles{Still preliminary, only 309 data points here}
-\paragraph{Results}
 \begin{table}[t]
 \small
 \begin{center}
@@ -148,5 +37,6 @@ $MSE$ (std)    & 8.69 &23.06 &5.14 &5.00 \\
 \caption{Comparison of linear regression fits for different average log norm metrics across 5 computer vision datasets, 17 Architectures, covering 168 (out of 309) different pretrained DNNs.  We only conclude regressions for architecturs with 4 or more data points \charles{and which are postively correlated with the test error?}.  These results can be readily reproduced using the Google Colab notebooks accompanying thie paper~\cite{notebooks}}
 \label{table:results}
 \end{table}
+
 
 

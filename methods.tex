@@ -88,30 +88,8 @@ One would expect $\hat{\alpha}$ to approximate the log $\alpha$-Norm very well f
 
 
 
-\paragraph{Spectral Analysis of Convolutional 2D Layers.}
+\paragraph{Convolutional Layers and Normalization issues.}
+There are several technical issues (regarding spectral analysis of convolutional layers and normalization of empirical matrices) that are important for reproducibility of our results.
+See Appendix \ref{sxn:appendix} for a discussion.
 
-There is some ambiguity in performing spectral analysis on Convolutional 2D (Conv2D) layers.  
-A Conv2D layer can be represented as a 4-index tensor of dimension $(w,h,in\_ch,out\_ch)$, specified by an $(w\times h)$ filter (or kernel) and $in\_ch$ / $out\_ch$ input / output channels, respectively (usually $in\_ch\le out\_ch$). 
-Typically, $w=h=k$,  giving $(k\times k)$ tensor slices, or \emph{pre-Activation Maps} $\mathbf{W}_{i,L}$ of dimension $(in\_ch\times out\_ch)$ each. 
-%
-There are at least three different approaches that have been advocated for applying the Singular Values Decomposition (SVD) to an Conv2D layer:
-run an SVD on each of the pre-Activation Maps $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values; 
-stack the feature maps into a single rectangular matrix of, say, dimension $((k\times k\times out\_ch)\times in\_ch)$, yielding $in\_ch$ singular values;
-compute the 2D Fourier Transform (FFT) for each of the $(in\_ch, out\_ch)$ pairs, and run SVD on the resulting Fourier coeffients~\cite{Long2019}, leading to $\sim(k\times in\_ch\times out\_ch)$ non-zero singular values.
-Each method has tradeoffs.  
-In principle, the third method is mathematically sound, but it is computationally expensive. 
-For our analysis, because we are performing tens of thousands of calculations, we select the first method, which is numerically the fastest and is easiest to reproduce.%
-\footnote{We provide a Google Colab notebook where all results can be reproduced, with the option to redo the calculations with the third option for the SVD of the Conv2D.}
-
-
-\paragraph{Normalization of Empirical Matrices.}  
-Normalization is an important, if underappreciated, practical issue.
-Importantly, the normalization of weight matrices does \emph{not} affect the Power Law fits because the Heavy Tailed exponent $\alpha$ (as well as other metrics such as the Stable Rank and MP Soft Rank~\cite{MM18_TR,MM19_HTSR_ICML}) is scale-invariant.
-Norm-based metrics, however, do depend strongly on the scale of the weight matrix--\nred{that's the point.}
-\nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
-Typically, to apply RMT, we would usually define Correlation Matrix with $1/N$ normalization and assume that the variance of $\mathbf{X}$ is either unity or a known constant.% 
-\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
-Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with the variance already normalized to $\sqrt{1/N}$, or some variant of this, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers.
-We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
-The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
 
