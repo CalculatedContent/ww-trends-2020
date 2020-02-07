@@ -16,7 +16,7 @@ Here, we will ignore these details, and will focus only on the layer weight matr
 
 \paragraph{DNN Quality Metrics.}
 
-Each DNN layer contains one or more layer 2D weight matrices $\mathbf{W}_{l}$, and/or 2D feature maps $\mathbf{W}_{i,l}$ extracted from 2D Convolutional layers. 
+Each DNN layer contains one or more layer 2D weight matrices, $\mathbf{W}_{l}$, and/or 2D feature maps, $\mathbf{W}_{i,l}$, extracted from 2D Convolutional layers. 
 (For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below; and we let $\mathbf{W}$ be a generic $N\times M$ weight matrix, with $N\ge M$.) 
 %
 We have examined a large number of possible quality metrics.
@@ -32,7 +32,7 @@ Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\sum_{i,j}w^{2}_{i,j} = \sum_{i=1}
 Spectral Norm: $\Vert\mathbf{W}\Vert_{\infty}=\lambda_{max}$
 \michael{Should this be $\sqrt{\lambda_{max}}$?}
 \item 
-Weighted Alpha Metric: $\hat{\alpha}=\alpha\log\lambda_{max}$
+Weighted Alpha: $\hat{\alpha}=\alpha\log\lambda_{max}$
 \item 
 $\alpha$-Norm (or $\alpha$-Shatten Norm): $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda_{i}^{\alpha}$
 \end{itemize}
@@ -42,7 +42,7 @@ For all these quantities, $\lambda_{i}$ is the $i^{th}$ eigenvalue of the \emph{
 $ %% $$
 \mathbf{X}=\mathbf{W}^{T}\mathbf{W} ,
 $ %% $$
-and so $\lambda_{max}$ is the maximum eigenvalue of $\mathbf{X}$. 
+and $\lambda_{max}$ is the maximum eigenvalue of $\mathbf{X}$. 
 (These eigenvalues are the squares of the singular values $\sigma_{i}$ of $\mathbf{W}$, i.e., $\lambda_{i}=\sigma^{2}_{i}$.)
 For the last two quantities, $\alpha$ is the PL exponent that arises in the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
 Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
@@ -53,7 +53,7 @@ where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}
 Each of these quantities is defined for a given layer $\mathbf{W}$ matrix.
 
 For norm-based metrics, we use the average of the log norm to the appropriate power.
-For example, consider the \emph{$\alpha$-Norm metric}, 
+Consider, e.g., the \emph{$\alpha$-Shatten Norm metric}, 
 \begin{equation}
 \label{eqn:sum_log_alpha_norm_alpha}
 \sum\nolimits_l \log \Vert\mathbf{W}_l\Vert_{\alpha_l}^{\alpha_l} 
@@ -73,17 +73,30 @@ The log Complexity,
  takes the form of an Average Log Norm.
 For the \emph{Frobenius norm metric} and \emph{Spectral norm metric}, we can use Eqn.~(\ref{eqn:eqn:sum_log_norm}) directly. 
 (When taking $\log\Vert\mathbf{W}_{l}\Vert_{F}^{2}$, the $2$ comes down and out of the sum, and thus ignoring it only changes the metric by a constant factor.)
-For the Weighted Alpha Norm, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it cannot be taken out of the sum.
+For the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it cannot be taken out of the sum.
 
 
-For the Weighted Alpha Metric, we consider the average of $\hat{\alpha}$ over all layers, i.e., 
+For the \emph{Weighted Alpha metric}, we average of $\hat{\alpha}$ over all layers, i.e., 
 $ %$$
 \sum_l \hat{\alpha}_l = \sum_l \alpha_l\log\lambda_{max,l}  .  
 $ %$$
-\michael{Be careful to get that right.}
-The Weighted Alpha Metric was introduced previously~\cite{MM20_SDM}, where (on a much more limited set of data than we consider here) it was shown to correlate well with the trends in reported test accuracies of pretrained DNNs.
+\michael{Be careful to get right.}
+The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where (on a much more limited dataset than we consider here) it was shown to correlate well with trends in reported test accuracies of pretrained DNNs.
 Based on this, in this paper, we introduce and evaluate the $\alpha$-Norm metric.
 One would expect $\hat{\alpha}$ to approximate the log $\alpha$-Norm very well for $\alpha < 2$ and reasoably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.
+
+To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\alpha}$.  
+We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  
+(Technically, we also need the minimum eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
+The PL exponent $\alpha$ measures of the amount of correlation in a DNN layer weight matrix $\mathbf{W}$. 
+It is valid for $\lambda<\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
+The $\lambda_{max}$ is a measure of the size of $\mathbf{W}$.
+%
+Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigger'' layers more, and averaging this product leads to a balanced, Weighted Alpha metric for the entire~DNN.  
+%%%
+%%For small values of $\alpha$, this Weighted Alpha metric approximates the log $\alpha$-Shatten norm, as can be shown with a statistical mechanics and random matrix theory derivation \cite{MM20_unpub_work}.
+%%%
+%%The Weighted Alpha metric and $\alpha$-Shatten norm metric also often behave like an improved, weighted log average Spectral Norm, and may track this metric in some cases.
 
 
 
