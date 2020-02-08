@@ -1,7 +1,7 @@
 \section{Comparison across series of CV models}
 \label{sxn:cv}
 
-In this section, we examine quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
+In this section, we examine empirical quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
 This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pyTorch}.
 This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet1k}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
 
@@ -160,6 +160,10 @@ See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (
         %\includegraphics[width=4.5cm]{img/DenseNet_fnl_alpha_depth.png} 
         \includegraphics[width=4.0cm]{img/DenseNet_fnl_alpha_depth.png} 
         \label{fig:densenet-alpha-layer}
+    
+}    \subfigure[ DenseNet ]{
+        \includegraphics[width=4.0cm]{img/resnet_alpha_overlaid_depth.png} 
+        \label{fig:resnet_alpha_overlaid_depth}
     }
     \caption{Correlation Flow: Power Law exponent $\alpha$ versus layer id, for the least and the most accurate
       models in VGG (a), ResNet (b), and DenseNet (c) series (VGG without BatchNorm, and the Y axes on each plot are different.)  
