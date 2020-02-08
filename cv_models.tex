@@ -10,7 +10,7 @@ We also perform \emph{fine layer analysis}, as a function of depth for these mod
 
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
-To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without BatchNormalization), and it plots the four quality metrics versus the reported Test accuracies~\cite{pyTorchVgg}, as well as a basic linear regression line. 
+To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without Batch Normalization), and it plots the four quality metrics versus the reported Test accuracies~\cite{pyTorchVgg}, as well as a basic linear regression line. 
 %with the Root Mean Squared Error (RMSE) shown, \michael{XXX.  WHERE IS RMSE.  IN THAT TABLE?}
 All four metrics correlate quite well with the reported Top1 Accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalziation (i.e., greater accuracy, lower error). 
 While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) performs best (with an RMSE of $0.42$, see Table~\ref{table:cv-models}); and the Weighted Alpha metric ($\hat\alpha =\alpha\log\lambda_{max} $), which is an approximation to the Log $\alpha$-Norm metric~\cite{MM20_unpub_work}, performs second best (with an RMSE of $0.48$, see Table~\ref{table:cv-models}).
@@ -40,7 +40,7 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
         \includegraphics[width=4.0cm]{img/VGG_logpnorm_accs.png}
         \label{fig:vgg-pnorm}
     }
-    \caption{Comparison of average log Norm empirical quality metrics versus reported test accuracy for pretrained VGG models (with and without BatchNormalization), trained on ImageNet, available in pyTorch (v1.x).  Metrics fit by linear regression, RMSE reported. }
+    \caption{Comparison of average log Norm empirical quality metrics versus reported test accuracy for pretrained VGG models (with and without Batch Normalization (BN)), trained on ImageNet, available in pyTorch (v1.x).  Metrics fit by linear regression, RMSE reported. }
     \label{fig:vgg-metrics}
 \end{figure}
 
@@ -136,7 +136,7 @@ plot (just) the PL exponent, $\alpha$,%
 \footnote{That is, here we consider just $\alpha$ for each layer, i.e., not $\hat{\alpha}$ or $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$.} 
 as a function of depth.
 %
-See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (without BatchNormalization), ResNet-1K, and DenseNet series.
+See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (no BN), ResNet, and DenseNet series.
 (Again, much more detailed set of plots is available at \cite{XXX-WEB-LINK}; but note that the corresponding layer-wise plots for Frobenius and Spectral norms are much less interesting than the results we present here.)
 
 \begin{figure}[t]

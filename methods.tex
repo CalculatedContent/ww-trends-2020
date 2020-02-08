@@ -23,8 +23,8 @@ We have examined a large number of possible quality metrics.
 The best performing metrics (recall that we can only consider metrics that do not use training/test data) depend on the norm and/or spectral properties of weight matrices, $\mathbf{W}$.%
 \footnote{We do not use intra-layer information from the models in our quality metrics, but as we will describe our metrics can be used to learn about that.}
 Consider the following.
-\charles{Note I write X for the $\alpha$-norm and not W.  This is because it would be $2\alpha$.  I know its a bit confusing.
-We have to be careful here with the Frobenius norm also and check that we are not off by a factor of 2}
+%\charles{Note I write X for the $\alpha$-norm and not W.  This is because it would be $2\alpha$.  I know its a bit confusing.
+%We have to be careful here with the Frobenius norm also and check that we are not off by a factor of 2}
 \begin{itemize}
 \item 
 Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\sum_{i,j}w^{2}_{i,j} = \sum_{i=1}^{M} \lambda_{i}^{2}$
