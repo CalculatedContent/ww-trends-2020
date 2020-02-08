@@ -43,7 +43,39 @@ but in the first embedding layer, the maximum is of order N (the number of words
  $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
 the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
 
-\subsection{Reproducing results on hundreds of models}
+\subsection{Reproducing the CV and NLP models }
+
+We provide a github repository for this paper that includes jupyter notsbooks that fully reproduce all results.
+All results have been produced using the weightwatcher tool (v0.2.7).
+The ImageNet and OpenAI GPT pretrained models are provided in the current pyTorch, torchvision, and huggingface distributions,
+as specified in the \texttt{requirements.txt} file.
+The ImageNet-1K models, and other models in section 6), are taken from the \textttr{omsr/imgclsmob}
+``Sandbox for training convolutional networks for computer vision'' github repository.
+
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{1in}|c|}
+\hline
+Figure & Notebook \\
+\hline
+1  &  WeightWatcher-VGG.ipynb \\
+2(a)  &  WeightWatcher-ResNet.ipynb \\
+2(b)  &  WeightWatcher-ResNet-1K.ipynb \\
+3(a)  &  WeightWatcher-VGG.ipynb \\
+3(b)  &  WeightWatcher-ResNet.ipynb \\
+3(c)  &  WeightWatcher-DenseNet.ipynb \\
+\hline
+5 & WeightWatcher-OpenAI-GPT2.ipynb \\
+6, 7 & WeightWatcher-OpenAI-GPT2.ipynb \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Jupyter notesbooks used to reproduce sections 4 and 5}
+\label{table:notebooks}
+\end{table}
+
+\subsection{Reproducing Section 6}
 
 
 \charles{This section needs a lot of work}
