@@ -80,17 +80,17 @@ For the \emph{Weighted Alpha metric}, we average of $\hat{\alpha}$ over all laye
 $ %$$
 \sum_l \hat{\alpha}_l = \sum_l \alpha_l\log\lambda_{max,l}  .  
 $ %$$
-\michael{Be careful to get right.}
-The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where (on a much more limited dataset than we consider here) it was shown to correlate well with trends in reported test accuracies of pretrained DNNs.
+%\michael{Be careful to get right.}
+The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a limited set of models.
 Based on this, in this paper, we introduce and evaluate the $\alpha$-Norm metric.
 One would expect $\hat{\alpha}$ to approximate the log $\alpha$-Norm very well for $\alpha < 2$ and reasoably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.
 
 To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\alpha}$.  
 We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  
-(Technically, we also need the minimum eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
+%(Technically, we also need the minimum eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
 The PL exponent $\alpha$ measures of the amount of correlation in a DNN layer weight matrix $\mathbf{W}$. 
 It is valid for $\lambda<\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
-The $\lambda_{max}$ is a measure of the size of $\mathbf{W}$.
+The $\lambda_{max}$ is a measure of the size, or scale, of $\mathbf{W}$.
 %
 Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigger'' layers more, and averaging this product leads to a balanced, Weighted Alpha metric for the entire~DNN.  
 %%%
