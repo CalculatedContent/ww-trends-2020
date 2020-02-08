@@ -31,15 +31,17 @@ where the archiectures need repair, and/or more and/or better data is needed.
 %trained on big data sets.  We show why alpha works but spectral norm is not enough.
 %The layer Spectral Norm behaves unexpectedly, while $\alpha$-based metrics can give insight into how well trained a model is.
 
-\michael{WHERE: Say large $\alpha$ values don't mean much.}
+%\michael{WHERE: Say large $\alpha$ values don't mean much.}
+\paragraph{What does large $\alpha$ mean?}
 We do note, however, that many NLP models, such as the GPT and BERT, may have weight matrices with unusually large PL exponents
-($\alpha>6$), which indicates these matrices may be \emph{under}-correlated (i.e over-paramaterized), although the truncated PL fit
+($\alpha\gg 6$), which indicates these matrices may be \emph{under}-correlated (i.e over-parameterized), although the truncated PL fit
 itself may not be very reliable because the MLE estimator is unreliable in this range.  Phenomenologically, if we examine
 the ESD visually, we can usually describe these $\mathbf{W}$ as in the \emph{Bulk-Decay} or \emph{Bulk-plus-Spikes} phase\cite{MM}.
 We have conjectured previously that very well-trained DNNs would not have many \emph{outlier} $\alpha>6$, 
 and improved versions of GPT (shown below, and BERT (not shown) confirm this.
 
-\michael{WHERE: Highlight difference between $\alpha$ and $\hat{\alpha}$.}
+%\michael{WHERE: Highlight difference between $\alpha$ and $\hat{\alpha}$.}
+\paragraph{The differences between $\alpha$ and $\hat{\alpha}$.}
 To avoid confusion, let us clarify the differences between $\alpha$ and $\hat{\alpha}$.  
 We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated power law (PL), parameterized by 2 values:
 the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  (Technically, we also need the minimum
