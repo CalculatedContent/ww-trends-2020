@@ -3,7 +3,7 @@
 
 In this appendix, we provide more details on several issues that are important for reproducibility of our results.
 
-\subsection{Convolutional layers and normalization issues}
+\subsection{Reproducibility and Normalization issues}
 
 
 \paragraph{Spectral Analysis of Convolutional 2D Layers.}
@@ -33,7 +33,9 @@ Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W
 We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
 The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
 
-Special consideration is necessary for NLP models.
+\paragraph{Special consideration for NLP models.}
+NLP models, and other models with large initial embeddings require special care because the
+embedding layers frequently lack the implicit $latex\frac{1}{\sqrt{N}}$ normalization present in other layers.
 For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
 but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
  $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
