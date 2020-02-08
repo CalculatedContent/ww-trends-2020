@@ -47,7 +47,7 @@ eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
 The PL exponent $\alpha$ measures of the 
 amount of correlation in a DNN layer weight matrix $\mathbf{W}$.  It is valid for $\lambda<\lambda_{max}$, and
 it scale invariant (does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.)
-The Weighted-Alpha metric, $\hat{\alpha}=\alpha\log\lambda_{max}$, approximates the log $\alpha$ (Shatten) Norm 
+The Weighted-Alpha metric, $\hat{\alpha}=\alpha\log\lambda_{max}$, approximates the log $\alpha$ Norm.
 $(\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha})$ (derived using statistical mechanics and RMT \nred{(in progress)}, 
 and lets us compute a balanced, weighted average log PL norm metrix for the entire DNN.  
 The $\hat{\alpha}$ metric also behaves like an imrpoved, weighted log average Spectral Norm, and may track this metric in some cases.
