@@ -132,8 +132,8 @@ As expected, the higher quality data set shows a better fit, even with less data
 We can learn much more about a pretrained model by going beyond average values to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
 %The most interesting results are seen when we 
 For example, we can 
-plot (just) the PL exponent, $\alpha$,%
-\footnote{That is, here we consider just $\alpha$ for each layer, i.e., not $\hat{\alpha}$ or $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$.} 
+plot (just) the PL exponent, $\alpha$, for each layer,%
+%\footnote{That is, here we consider just $\alpha$ for each layer, i.e., not $\hat{\alpha}$ or $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}$.} 
 as a function of depth.
 %
 See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (no BN), ResNet, and DenseNet series.
