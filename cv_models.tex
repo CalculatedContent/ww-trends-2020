@@ -130,7 +130,7 @@ Here, the Log $\alpha$-Norm is much better that the Log Frobenius/Spectral norm 
 The ResNet series, has an RMSE of $0.66$, whereas the ResNet-1K series also shows good correlation, but has a much larger RMSE of $1.9$.
 As expected, the higher quality data set shows a better fit, even with less data points.
 
-\paragraph{Layer Analysis: Correlation Flow in CV Models.}
+\paragraph{Correlation Flow}
 We can learn much more about a pretrained model by going beyond average values to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
 %The most interesting results are seen when we 
 For example, we can 
@@ -161,7 +161,7 @@ See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (
         \includegraphics[width=4.0cm]{img/DenseNet_fnl_alpha_depth.png} 
         \label{fig:densenet-alpha-layer}
     
-}    \subfigure[ DenseNet ]{
+}    \subfigure[ ResNet (overlaid) ]{
         \includegraphics[width=4.0cm]{img/resnet_alpha_overlaid_depth.png} 
         \label{fig:resnet_alpha_overlaid_depth}
     }
@@ -169,7 +169,7 @@ See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (
       models in VGG (a), ResNet (b), and DenseNet (c) series (VGG without BatchNorm, and the Y axes on each plot are different.)  
              Figure (d) displays the ResNet models (b), zoomed in to $alpha\in[1,5]$, and with the layer ids overlaid on the X-axis, to
              allow a more detailed analysis for the most strongly correlated layers.
-             Notuece that ResNet152 exhibits different and much more stable behavior across layers
+             Notice that ResNet152 exhibits different and much more stable behavior across layers
              This contrasts with how both VGG models gradually worsen in deeper layers and how the DenseNet models are much more erratic.  
             }
     \label{fig:3models-alpha-layers}
@@ -190,13 +190,17 @@ This is seen for other models in the ResNet-1K series, but it is most pronounced
 For the DenseNet models, Figure~\ref{fig:densenet-alpha-layer} shows that $\alpha$ tends to increase as the layer id increases, in particular for layers toward the end.
 While this is similar to what is seen in the VGG models, with the DenseNet models, $\alpha$ values increase almost immediately after the first few layers, and the variance is much larger (in particular for the earlier and middle layers, where it can range all the way to $\alpha\lesssim 8.0$) and much less systematic throughout the network.
 
-Recall the differences---in particular, the number of residual connections---between the VGG, ResNet, and DenseNet architectures.
-VGG, while a fine model in many ways, was limited by needing massive FC layers at the end of the model, requiring significant memory and computational resources, and it's poor conditioning led to problems with vanishing gradients.  
-The empirical manifestations of this (on weight matrices) are that fitted $\alpha$ values get much worse for deeper layers.
-ResNet greatly improved on VGG by introducing residual connections, allowing for greater accurary with far fewer parameters.
-(Indeed, ResNet models of up to 1000 layers have been trained.) 
+%Recall the differences---in particular, the number of residual connections---between the VGG, ResNet, and DenseNet architectures.
+%VGG, while a fine model in many ways, was limited by needing massive FC layers at the end of the model, requiring significant memory and computational resources, and it's poor conditioning led to problems with vanishing gradients.  
+%The empirical manifestations of this (on weight matrices) are that fitted $\alpha$ values get much worse for deeper layers.
+\ncyan{We can interpret these observations by recalling the architectural differences between the VGG, ResNet, and DenseNet architectures,
+and, in particular, the number of of residual connections. VGG resembles the  traditional convolutional architectures,
+such as LeNet5, and consists of several [Conv2D-Maxpool-ReLu] blocks, followed by 3 large Fully Connected (FC) layers.
+ResNet greatly improved on VGG by replacing the large FC layers, shrinking the Conv2D blocks, and introducing \emph{residual connections}.
+This optimized approach allows for greater accurary with far fewer parameters (and GPU memory requirements), and
+ResNet models of up to 1000 layers have been trained.\cite{resnet1000}.}
 We conjuecture that the effeciency and effectivness of ResNet is reflected in the smaller and more stable $\alpha\sim 2.0$, across nearly all layers, indicating that the inner layers are very well correlated and strongly optimized.
-This should also be contrasted with the DenseNet model, which contains many connections between every layer.
+Contrast this with the DenseNet models, which contains many connections between every layer.
 Our results (large $\alpha$, meaning they even a HT model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly optimized.
 
 More generally, we can understand Figure~\ref{fig:vgg-alpha-layers} in terms of the \emph{flow of correlation}, as follows.
@@ -209,7 +213,7 @@ Smaller $\alpha$ values correspond to layers in which correlations across multip
 
 
 %\paragraph{Layer Analysis: Behavior on Less Thoroughy Studied CV Models.}
-\paragraph{Layer Analysis: Differences Between PL Metrics and Norm Metrics.}
+\paragraph{Corraltion Flow: PL vs. Norm Metrics.}
 
 The similarity between norm-based metrics and $\alpha$-based metrics suggests a question: is the Weighted Alpha metric just a variation of the more familiar norm-based metrics, or does it capture something different?  
 More generally, do fitted $\alpha$ values contain information not captured by norms? 
@@ -231,9 +235,9 @@ To show that it is not just a variation and that $\alpha$ does capture something
       %\includegraphics[width=4.5cm]{img/resnet4d_alphas.png}
       \label{fig:resnet204Dmaxev}
    }
-   \caption{Layer Analysis.
+   \caption{Correlation Flow.
             ResNet20, distilled with Group Regularization, as implemented in the \texttt{distiller} (4D\_regularized\_5Lremoved) pre-trained models.  
-            Spectral Norm, $\lambda_{max}$, and, PL exponent, $\alpha$, for individual layer, versus layer id, for both between baseline (before distillation, shown in green) and fine-tuned (after distillation, shown in red) pre-trained models. 
+            Spectral Norm, $\log\lambda_{max}$, and, PL exponent, $\alpha$, for individual layer, versus layer id, for both baseline (before distillation, green) and finetuned (after distillation, red) pre-trained models. 
            }
    \label{fig:resnet204D5L}
 \end{figure}
