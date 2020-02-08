@@ -33,6 +33,11 @@ Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W
 We do not have conrol over the final empirical normalization of these models; and we do \emph{not} normalize (or renormalize) the Empirical Correlation Matrices, i.e., we use them as-is.
 The only exception to this is that we do rescale the Conv2D pre-Activation Maps $\mathbf{W}_{i,L}$ by $k/\sqrt{2}$ so that they are on the same scale as the Linear layers.
 
+Special consideration is necessary for NLP models.
+For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
+but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
+ $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
+the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
 
 \subsection{Reproducing results on hundreds of models}
 
