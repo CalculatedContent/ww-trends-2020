@@ -49,15 +49,13 @@ We provide a github repository for this paper that includes jupyter notsbooks th
 All results have been produced using the weightwatcher tool (v0.2.7).
 The ImageNet and OpenAI GPT pretrained models are provided in the current pyTorch, torchvision, and huggingface distributions,
 as specified in the \texttt{requirements.txt} file.
-The ImageNet-1K models, and other models in section 6), are taken from the \textttr{omsr/imgclsmob}
-``Sandbox for training convolutional networks for computer vision'' github repository.
 
 \begin{table}[t]
 \small
 \begin{center}
 \begin{tabular}{|p{1in}|c|}
 \hline
-Figure & Notebook \\
+Figure & Jupyter Notebook \\
 \hline
 1  &  WeightWatcher-VGG.ipynb \\
 2(a)  &  WeightWatcher-ResNet.ipynb \\
@@ -71,42 +69,34 @@ Figure & Notebook \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Jupyter notesbooks used to reproduce sections 4 and 5}
+\caption{Jupyter notebooks used to reproduce Tables 1 and 2, and Figures 1,2,3,5,6, and 7.}
 \label{table:notebooks}
 \end{table}
 
 \subsection{Reproducing Section 6}
 
+We provide several Google Colab notebooks which can be used to reproduce the result in Table 3.
+The ImageNet-1K and other pretrained models are taken from the pytorch models in the \texttt{omsr/imgclsmob} 
+``Sandbox for training convolutional networks for computer vision'' github repository.
+\footnote{\url{https://github.com/osmr/imgclsmob}}
+The data can be generated in parallel by running each Colab notebook simultaneously on the same account,
+The final results are generated with \charles{move notebooks to repo and finish}
 
-\charles{This section needs a lot of work}
+We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
+There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
+We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models
+for those datasets. The final datasets used are shown in Table~\ref{table:datasets}
+The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
 
+To further explain how to reproduce our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
+The regressions are shown in Figure~\ref{fig:DSalphas}.
 
-\serena{insert link in the footnote}
-
-and a full summary of all the models analyzed is included in the Appendix. For our analysis, we then group models by architecture and datasets for further analysis.
-
-
-%To further refine our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
-
-%\serena{see examples in Figure X}
-
-%(Here we omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models for those datasets and thus the regression is less statistically significant)
-
-%\serena{insert plots for Figure X}
-
-%e compite the regression R-squared and RMSE  for models of each architecture-datasets combination, which shows the relationship between the progression of the model accuracy and Weightwatcher metrics more clearly and precisely. For example, as you could see in the Figure X2, 
-
-%\serena{Add an example, UPDATE when we have the results from the new codes}
-
-For each regression, we record the R-squared and mean squared errors (MSE). We filter out regressions with less than five datapoints,
- \nred{and models with structural outliers (where the trend is anti-correlated?) ?}
-
-
-\charles{Still preliminary, only 309 data points here}
-\paragraph{Results}
-
-
-\charles{These tables could go to appendix. We need references}
+To generate the results in Table 3, we run linear for each architecture series in Table~\ref{table:architectures},
+regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github 
+repository README file. 
+We filter out regressions with less than five datapoints.
+We record the R-squared and mean squared errors (MSE). 
+The final results for all models is provided in the \texttt{XXXXXX}.
 
 \begin{table}[t]
 \small
@@ -126,9 +116,6 @@ cub-200-2011  &  12 \\
 \caption{Datasets used}
 \label{table:datasets}
 \end{table}
-
-
-
 
 \begin{table}[t]
 \small
@@ -162,10 +149,6 @@ SqueezeNet/SqueezeResNet                   & 6 \\
 \end{table}
 
 
-
-
-\charles{We actually don't run regressions on all these datasetsm, BUT we could present them in the Figure below to show that alpha is a good metric for these kinds of models, in contrast to the NLP, where alpha is frequently too large to run a regression}
-
 \begin{figure}[t]
     \centering
     \subfigure[ImageNet 1K]{
@@ -194,7 +177,7 @@ SqueezeNet/SqueezeResNet                   & 6 \\
     }
     \caption{\charles{Preliminary charts:} PL exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available\charles{ref} for 5 different data sets.}
 
-    \label{fig:dataset_alphas}
+    \label{fig:DSalphas}
 \end{figure}
 
 
