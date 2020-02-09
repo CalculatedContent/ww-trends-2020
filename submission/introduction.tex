@@ -48,27 +48,31 @@ They are based on norms of weight matrices (such norms have been used in traditi
 Note that, while we use traditional norm-based and PL-based metrics, our goals are different.
 Unlike more common ML approaches, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., hyperparmeter optimization).% 
 \footnote{One could of course use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained DNN models.}
-Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves, and in both cases \emph{we aim to predict trends in the quality of pre-trained models without access to training or testing data}.  
+Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves, and in both cases, we ask
+
+\emph{Can we predict trends in the quality of pre-trained models without access to training or testing data ?}.  
 
 
-In more detail, our main contributions are the following.
-\begin{itemize}[leftmargin=*]
-\item 
+%\begin{itemize}[leftmargin=*]
+%\item 
 %First, 
-Motivated by practical problems, we formulate the question ``Can one predict trends in the quality of state-of-the-art neural networks without access to training or testing data?''
-\item
+%Motivated by practical problems, we formulate the question ``Can one predict trends in the quality of state-of-the-art neural networks without access to training or testing data''
+%\item
 %Second, 
 %To answer this question, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in CV and NLP.
-To answer this question, we analyze hundreds of publicly-available pretrained state-of-the-art models from CV and NLP.
-\item 
+To answer this, we analyze hundreds of publicly-available pretrained state-of-the-art CV and NLP models. And we find that:
+%\end{itemize}
 %Third, 
-We find that norm-based metrics do a reasonably good job at predicting quality trends in well-trained models, i.e., they can be used to discriminate between ``good-better-best'' models, but they can qualitatively fail for models that may not be well-trained, i.e., to distinguish ``good-versus-bad'' models.
+%\paragraph{Our main contributions are:}
+\begin{itemize}
+\item
+Norm-based metrics do a reasonably good job at predicting quality trends in well-trained models, i.e., they can be used to discriminate between ``good-better-best'' models, but they can qualitatively fail for models that may not be well-trained, i.e., to distinguish ``good-versus-bad'' models.
 \item 
 %Fourth, 
-We find that PL-based metrics do much better---quantitatively better at discriminating good-better-best, and qualitatively better at discriminating good-versus-bad models.
+Power Law (PL)-based metrics do much better---quantitatively better at discriminating good-better-best, and qualitatively better at discriminating good-versus-bad models.
 \item 
 %Finally, 
-We find that PL-based metrics can also be used to characterize fine-scale model properties, including layer-wise \emph{correlation flow}, and evaluating post-training modifications such as model distillation, increasing the dataset size, and other model improvements.
+PL-based metrics can also be used to characterize fine-scale model properties, including layer-wise \emph{correlation flow}, and evaluating post-training modifications such as model distillation, increasing the dataset size, and other model improvements.
 \end{itemize}
 
 \noindent
@@ -79,10 +83,11 @@ We have examined hundreds of models, and we indentify general trends, but we als
 \paragraph{The WeightWatcher Tool.}
 
 All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package};
-and, in order to make our results fully reproducible, we provide Jupyter notebooks in the github repo for this paper~\cite{repo},
-and with fully reproducible Google colab notebooks for the larger calculations.%
-\footnote{\url{https://github.com/CalculatedContent/kdd2020} \michael{different name?}\charles{suggestions?}\michael{Anonymous, just for anonymized submission.}}
-\michael{FIX THIS LINK TO: Google Colab OR THE REPO.}
+and, to be fully reproducible, we only examine publically available, pretrained models, and
+also provide all Jupyter and Google Colab notebooks used accompanying github 
+repository\footnote{\url{https://github.com/CalculatedContent/kdd2020}
+\michael{To be anonymized}}
+See the Appendix for more details on how to reproduce all results.
 
 
 \paragraph{Organization of this paper.}

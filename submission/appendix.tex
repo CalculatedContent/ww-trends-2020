@@ -64,26 +64,36 @@ Figure & Jupyter Notebook \\
 3(b)  &  WeightWatcher-ResNet.ipynb \\
 3(c)  &  WeightWatcher-DenseNet.ipynb \\
 \hline
+4 & WeightWatcher-Intel-Distiller-ResNet20.ipynb \\
+\hline
 5 & WeightWatcher-OpenAI-GPT.ipynb \\
 6, 7 & WeightWatcher-OpenAI-GPT2.ipynb \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Jupyter notebooks used to reproduce Tables 1 and 2, and Figures 1,2,3,5,6, and 7.}
+\caption{Jupyter notebooks used to reproduce all results in sections ~\ref{sxn:cv} and ~\ref{sxn:nlp}}
 \label{table:notebooks}
 \end{table}
 
-\subsection{Reproducing Section 3, Distiller Model}
+\subsection{Reproducing Figure~\ref{fig:resnet204D5L}, Distiller Model}
 
+We provide the orginal Jupyter Notebooks, which uses the Intel \texttt{distiller} framework
+.\footnote{\url{https://nervanasystems.github.io/distiller}} in the \texttt{distiller} folder of our 
+github repo. Figure ~\ref{fig:resnet204D5L} is from the  \texttt{``...-Distiller-ResNet20.ipynb''} 
+notebook (see Table~\ref{table:notebooks}).  
+For completeness, we provide both the results described here, and additional results
+on other pretrained and distilled models using the \texttt{weightwatcher} tool.
 
-\subsection{Reproducing Table 3, Section 6}
+\subsection{Reproducing Table 3, Section~\ref{xsn:all}}
 
-We provide several Google Colab notebooks which can be used to reproduce the result in Table 3.
+We provide several Google Colab notebooks which can be used to reproduce the results in Table 3,
+in the \texttt{ww-colab} folder in our github repo.  
 The ImageNet-1K and other pretrained models are taken from the pytorch models in the \texttt{omsr/imgclsmob} 
-``Sandbox for training convolutional networks for computer vision'' github repository.
-\footnote{\url{https://github.com/osmr/imgclsmob}}
-The data can be generated in parallel by running each Colab notebook simultaneously on the same account,
-The final results are generated with \charles{move notebooks to repo and finish}
+``Sandbox for training convolutional networks for computer vision'' github repository
+.\footnote{\url{https://github.com/osmr/imgclsmob}}
+The data can be generated in parallel by running each Google Colab notebook (i.e. \texttt{ww\_kdd2020\_0\_100.ipynb}) 
+simultaneously on the same account.
+The final results are generated with the \texttt{ww\_kdd2020\_results.ipynb} notebook.
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
@@ -96,10 +106,10 @@ The regressions are shown in Figure~\ref{fig:DSalphas}.
 
 To generate the results in Table 3, we run linear for each architecture series in Table~\ref{table:architectures},
 regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github 
-repository README file. 
+repository README file, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}
 We filter out regressions with less than five datapoints.
 We record the R-squared and mean squared errors (MSE). 
-The final results for all models is provided in the \texttt{XXXXXX}.
+The final results for all series regressions are provided in the \texttt{ww-colab/df\_all.xslx} python pandas dataframe file.
 
 \begin{table}[t]
 \small
