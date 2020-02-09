@@ -8,43 +8,48 @@ write the Energy Landscape (or optimization function, parameterized by $\mathbf{
 E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
 \label{eqn:dnn_energy}
 \end{equation}
+
+Each DNN layer contains one or more layer 2D  $N\times M$ weight matrices, $\mathbf{W}_{l}$ or pre-activation maps, $\mathbf{W}_{i,l}$, extracted from 2D Convolutional layers, and where $N > M$. \footnote{We do not use intra-layer information from the models in our quality metrics, but as we will describe our metrics can be used to learn about that.}
+Notice we may drop the $i$ and/or $i,l$ subscripts below.
+See the Appendix for how we define the Conv2D layer matrixes, and our choices of normalization. 
+
 Assume we are given several pretrained DNNs, e.g., as part of an architecture series.
-The models have been trained on (unspecified and unavailable) labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using Backprop, by minimizing some (also unspecified and unavailable) loss function $\mathcal{L}(\cdot)$. 
+The models have been trained and evaluated on labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$,
+using standard techniques.  The pretained pytroch model files are publically available,
+and the test accuracies have been reported online.  
+In this study, we do not have access to this data, and we have not trained any of the models ourselves,
+nor have we re-evaluated the test accuracies.
 We expect that most well-trained, production-quality models will employ one or more forms of on regularization, such as Batch Normalization, Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
-Here, we will ignore these details, and will focus only on the layer weight matrices $\mathbf{W}_{l}$.
+Here, we will ignore these details, and will focus only on the pretrained layer weight matrices $\mathbf{W}_{l}$.
+
+\paragraph{DNN Empirical Quality Metrics.}
+
+The best performing empirical quality metrics depend on the norms and/or spectral properties of each weight matrix,
+$\mathbf{W}$ and/or, equivalently, it's \emph{Empirical Correlation Matrix}: $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$ .%
 
 
-\paragraph{DNN Quality Metrics.}
+Here, we consider the following metrics:.
 
-Each DNN layer contains one or more layer 2D weight matrices, $\mathbf{W}_{l}$, and/or 2D feature maps, $\mathbf{W}_{i,l}$, extracted from 2D Convolutional layers. 
-(For notational convenience, we may drop the $i$ and/or $i,l$ subscripts below; and we let $\mathbf{W}$ be a generic $N\times M$ weight matrix, with $N\ge M$.) 
-%
-We have examined a large number of possible quality metrics.
-The best performing metrics (recall that we can only consider metrics that do not use training/test data) depend on the norm and/or spectral properties of weight matrices, $\mathbf{W}$.%
-\footnote{We do not use intra-layer information from the models in our quality metrics, but as we will describe our metrics can be used to learn about that.}
-Consider the following.
-%\charles{Note I write X for the $\alpha$-norm and not W.  This is because it would be $2\alpha$.  I know its a bit confusing.
-%We have to be careful here with the Frobenius norm also and check that we are not off by a factor of 2}
 \begin{itemize}
 \item 
-Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\sum_{i,j}w^{2}_{i,j} = \sum_{i=1}^{M} \lambda_{i}^{2}$
+Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{X}\Vert_{F}=\sum_{i=1}^{M} \lambda_{i}$
 \item 
-Spectral Norm: $\Vert\mathbf{W}\Vert_{\infty}=\lambda_{max}$
-\michael{Should this be $\sqrt{\lambda_{max}}$?}
+Spectral Norm: $\Vert\mathbf{W}\Vert_{\infty}^{2}=\Vert\mathbf{X}\Vert_{\infty}=\lambda_{max}$
 \item 
 Weighted Alpha: $\hat{\alpha}=\alpha\log\lambda_{max}$
 \item 
-$\alpha$-Norm (or $\alpha$-Shatten Norm): $\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda_{i}^{\alpha}$
+$\alpha$-Norm (or $\alpha$-Shatten Norm):
+\footnote{Notice  $\Vert\mathbf{W}\Vert^{2\alpha}_{2\alpha}=\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}$. We use $\mathbf{X}$ to emphasize that $\alpha$ depends on the ESD of $\mathbf{X}$}
+ $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda_{i}^{\alpha}$
 \end{itemize}
-The first two quantities are well-known in ML.
-The last two deserve special mention.
-For all these quantities, $\lambda_{i}$ is the $i^{th}$ eigenvalue of the \emph{Empirical Correlation Matrix},
-$ %% $$
-\mathbf{X}=\mathbf{W}^{T}\mathbf{W} ,
-$ %% $$
-and $\lambda_{max}$ is the maximum eigenvalue of $\mathbf{X}$. 
-(These eigenvalues are the squares of the singular values $\sigma_{i}$ of $\mathbf{W}$, i.e., $\lambda_{i}=\sigma^{2}_{i}$.)
-For the last two quantities, $\alpha$ is the PL exponent that arises in the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+
+The  $\lambda_{i}$ is the $i^{th}$ eigenvalue of the $\mathbf{X}$, 
+and $\lambda_{max}$ is the maximum eigenvalue.
+Note the squared singular values $\sigma_{i}$ of $\mathbf{W}$, $\lambda_{i}=\sigma^{2}_{i}$.)
+Also, note we do \emph{not} normalize $\mathbf{X}$ by $1/N$; see the Appendix for a discussion why.
+
+The first two norms are well-known in ML; the last two deserve special mention.
+The empirical parameter $\alpha$ is the Power Law (PL) exponent that arises in the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
 Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
 \rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}  ,
@@ -72,18 +77,19 @@ The log Complexity,
 \end{equation}
  takes the form of an Average Log Norm.
 For the \emph{Frobenius norm metric} and \emph{Spectral norm metric}, we can use Eqn.~(\ref{eqn:eqn:sum_log_norm}) directly. 
-(When taking $\log\Vert\mathbf{W}_{l}\Vert_{F}^{2}$, the $2$ comes down and out of the sum, and thus ignoring it only changes the metric by a constant factor.)
+\footnote{When taking $\log\Vert\mathbf{W}_{l}\Vert_{F}^{2}$, the $2$ comes down and out of the sum, and thus ignoring it only changes the metric by a constant factor.}
 For the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it cannot be taken out of the sum.
 
 
-For the \emph{Weighted Alpha metric}, we average of $\hat{\alpha}$ over all layers, i.e., 
-$ %$$
-\sum_l \hat{\alpha}_l = \sum_l \alpha_l\log\lambda_{max,l}  .  
-$ %$$
-%\michael{Be careful to get right.}
+\emph{The Weighted Alpha metric} is an average of $\hat{\alpha}$ over all layers, weighted by the size, or scale, or each matrix
+(and approximates the average log $\alpha$-Norm metric).
+\begin{equation}
+\hat{\alpha} = \dfrac{1}{L}\sum_l \alpha_l\log\lambda_{max,l}\approx\langle\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}\rangle  
+\end{equation}
+where $L$ is the total nuumber of layer weight matrices.
 The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a limited set of models.
 Based on this, in this paper, we introduce and evaluate the $\alpha$-Norm metric.
-One would expect $\hat{\alpha}$ to approximate the log $\alpha$-Norm very well for $\alpha < 2$ and reasoably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.
+One expects$\hat{\alpha}$ approximates the log $\alpha$-Norm very well for $\alpha < 2$ and reasoably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.  
 
 To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\alpha}$.  
 We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  
