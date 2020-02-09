@@ -17,14 +17,15 @@ We examine both familiar norm-based capacity control metrics (the Frobenius and 
 new Power-Law (PL) based metrics, the PL exponent $\alpha$ and the Weighted Alpha ($\hat{\alpha}$) metrics,
 from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
 We also introduce the $\alpha$ (Shatten) Norm metric.
-We find that norm-based metrics do a reasonably good job at predicting quality trends in well-trained models
-On the other hand, for poorly trained models, they can not  to distinguish ``good-versus-bad'' models--which, 
-arguably is the point of needing quality metrics.
+We find that norm-based metrics correlate well with reported test accuracies of well-trained models
+across nearly all CV architecture series.
+PL-based metrics can also be used to characterize fine-scale properties of these models, and
+we define the layer-wise \emph{Correlation Flow} as new quality assesment.
 We also find that PL-based metrics do much better--quantitatively-- at discriminating among
 a series of ``good-better-best'' models, and qualitatively better at discriminating ``good-versus-bad'' models.
-PL-based metrics can also be used to characterize fine-scale properties of models, and
-we the layer-wise \emph{Correlation Flow} as new quality assesment.
-We also define and show how poorly-trained (and/or poorly-finetuned) models can exhbit both \emph{Scale Collapse}
+On the other hand, we find that norm-based metrics can not to distinguish ``good-versus-bad'' models--which, 
+arguably is the point of needing quality metrics.  Indeed, they may give spurious results.
+We show how poorly-trained (and/or poorly-finetuned) models may exhbit both \emph{Scale Collapse}
 and unsually large PL exponents $\alpha\gg 6$.  In particular, we show that the \emph{WeightWatcher} tool
 can be used to identify when a pretrained DNN has problems that can not be detected simply
 by examining the test accuracy.
