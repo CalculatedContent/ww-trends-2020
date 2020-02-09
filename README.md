@@ -12,9 +12,11 @@ see requirements.txt
 
 Jupyter Notebooks for reproducing  sections 4 and 5
 
-ww-colab/
+- ww-colab/
+
 Google Colab Notebooks for reproducing results in sections 6
 
-distiller/
+- distiller/
+
 Jupyter Notebooks for reproducing Distiller results
 (note: user must install distiller to run these)
