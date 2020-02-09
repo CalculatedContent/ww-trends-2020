@@ -13,9 +13,16 @@ see requirements.txt
 
  Jupyter Notebooks for reproducing  sections 4 and 5
 
+ All results can be generated using pretrained models available in the [torchvision] package
+ (except ResNet-1K, see below)
+
 ### ww-colab/
 
  Google Colab Notebooks for reproducing results in sections 6
+
+ Notebooks can be run in parallel on the users Google Cloub
+ They Will download pretrained models from the [CV Sandbox](https://github.com/osmr/imgclsmob) 
+
 
 ### distiller/
 
