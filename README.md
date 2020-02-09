@@ -19,8 +19,8 @@ see requirements.txt
 
 ### distiller/
 
- Jupyter Notebooks for reproducing Distiller results
- (note: user must install distiller to run these)
+ Jupyter Notebooks for reproducing Figure 4 and accompanying text
+ (note: user must install Intell [distiller](https://github.com/NervanaSystems/distiller) to run these)
 
 ### submission
 
