@@ -13,8 +13,8 @@ see requirements.txt
 
  Jupyter Notebooks for reproducing  sections 4 and 5
 
- All results can be generated using pretrained models available in the [torchvision] package
- (except ResNet-1K, see below)
+ All results can be generated using pretrained models available in the [torchvision](https://pytorch.org/docs/stable/torchvision/index.html) pyTorch models
+ (except ResNet-1K, which requies the Cv Sandbox
 
 ### ww-colab/
 
