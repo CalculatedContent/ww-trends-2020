@@ -204,6 +204,7 @@ While this is similar to what is seen in the VGG models, with the DenseNet model
 %VGG, while a fine model in many ways, was limited by needing massive FC layers at the end of the model, requiring significant memory and computational resources, and it's poor conditioning led to problems with vanishing gradients.  
 %The empirical manifestations of this (on weight matrices) are that fitted $\alpha$ values get much worse for deeper layers.
 %%\ncyan{
+\paragraph{Comparison of VGG, ResNet, and DenseNet Architectures.}
 We can interpret these observations by recalling the architectural differences between the VGG, ResNet, and DenseNet architectures,
 and, in particular, the number of of residual connections. VGG resembles the  traditional convolutional architectures,
 such as LeNet5, and consists of several [Conv2D-Maxpool-ReLu] blocks, followed by 3 large Fully Connected (FC) layers.

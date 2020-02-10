@@ -68,12 +68,14 @@ To answer this question, we analyze hundreds of publicly-available pretrained st
 Here is a summary of our main results.
 \begin{itemize}
 \item
-Norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models, i.e., they can be used to discriminate between ``good-better-best'' models.
-However, they can qualitatively fail for models that may not be well-trained, i.e., to distinguish ``good-versus-bad''~models.
+Norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
+%, i.e., they can be used to discriminate between ``good-better-best'' models.
+\item
+However, norm-based meterics may fail for poorly-trained well-trained, i.e., to distinguish ``good-versus-bad''~models.
 \item 
-PL-based metrics do much better at predicting quality trends in CV/NLP models---quantitatively better at discriminating good-better-best, and qualitatively better at discriminating good-versus-bad models.
+PL-based metrics do much bette--quanttiatviely--at predicting quality trends in pretrained models%---quantitatively better at discriminating good-better-best, and qualitatively better at discriminating good-versus-bad models.
 \item 
-PL-based metrics can also be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow} and \emph{Scale Collapse} in poorly-trained models) and evaluate post-training modifications (such as model distillation, increasing the dataset size, and other model improvements).
+PL-based metrics can be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow} and \emph{Scale Collapse} in poorly-trained models) and model enhancements (i.e. distillation, finetuning, etc.)
 \end{itemize}
 
 \noindent
