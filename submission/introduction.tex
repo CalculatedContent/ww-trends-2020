@@ -71,9 +71,9 @@ Here is a summary of our main results.
 Norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
 %, i.e., they can be used to discriminate between ``good-better-best'' models.
 \item
-However, norm-based meterics may fail for poorly-trained well-trained, i.e., to distinguish ``good-versus-bad''~models.
+Norm-based meterics, howevver, may give spurious results, such as \emph{Scale\  Collapse} for poorly-trained modeles (i.e. models trained without enough data, etc.).  
 \item 
-PL-based metrics do much bette--quanttiatviely--at predicting quality trends in pretrained models%---quantitatively better at discriminating good-better-best, and qualitatively better at discriminating good-versus-bad models.
+PL-based metrics do much better--quanttiatviely--at predicting quality trends in pretrained models. That is, they are  quantitatively better at discriminating among a series of ``good-better-best", and are qualitatively better at discriminating good-versus-bad models.
 \item 
 PL-based metrics can be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow} and \emph{Scale Collapse} in poorly-trained models) and model enhancements (i.e. distillation, finetuning, etc.)
 \end{itemize}
