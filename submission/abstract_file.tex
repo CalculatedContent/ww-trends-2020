@@ -1,10 +1,9 @@
 
-In many practical applications, one works with deep neural networks (DNNs) models trained by someone else.
-For such \emph{pretrained models}, one typically does not have access to training data or test data, 
-and, moreover,  does not know many details aout the  model, such as
-the specifics of the training data, the loss function, the hyperparameter values, etc.
-Given just one or more pretrained models, can one say anything about the expected performance or quality of the models ?
-Here, we present and evaluate empirical quality metrics for pretrained neural network models at scale.
+In many practical applications, one works with deep neural network (DNN) models trained by someone else.
+For such \emph{pretrained models}, one typically does not have access to training data or test data.
+Moreover, one does not know many details about the model, such as the specifics of the training data, the loss function, the hyperparameter values, etc.
+Given one or many pretrained models, can one say anything about the expected performance or quality of the models?
+Here, we present and evaluate empirical quality metrics for pretrained DNN models at scale.
 %%Our metrics are drawn from traditional statistical learning theory (e.g., norm-based capacity control metrics) as well as Heavy-Tailed Random Matrix Theory (HT-RMT), as used in the recently-developed Theory of Heavy-Tailed Self Regularization (e.g., fitted power law metrics used to characterize the degree of strong correlations in trained models).
 %%The most promising are metrics drawn from traditional statistical learning theory (e.g., norm-based capacity control metrics) as well as metrics (e.g., fitted power law metrics used to characterize the degree of strong correlations in a system) derived from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
 %The most promising are norm-based metrics
@@ -13,23 +12,14 @@ Here, we present and evaluate empirical quality metrics for pretrained neural ne
 %(which derive from statistical mechanics, in particular the recently-developed Theory of Heavy-Tailed Self Regularization, and which characterize the strength of correlations in a DNN). 
 %
 Using the open-source \emph{WeightWatcher} tool, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in computer vision (CV) and natural language processing (NLP).
-We examine both familiar norm-based capacity control metrics (the Frobenius and  Spectral norms). as well as
-new Power-Law (PL) based metrics, the PL exponent $\alpha$ and the Weighted Alpha ($\hat{\alpha}$) metrics,
-from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
-We also introduce the $\alpha$ (Shatten) Norm metric.
-We find that norm-based metrics correlate well with reported test accuracies of well-trained models
-across nearly all CV architecture series.
-PL-based metrics can also be used to characterize fine-scale properties of these models, and
-we define the layer-wise \emph{Correlation Flow} as new quality assesment.
-We also find that PL-based metrics do much better--quantitatively-- at discriminating among
-a series of ``good-better-best'' models, and qualitatively better at discriminating ``good-versus-bad'' models.
-On the other hand, we find that norm-based metrics can not distinguish ``good-versus-bad'' models--which, 
-arguably is the point of needing quality metrics.  Indeed, they may give spurious results.
-We show how poorly-trained (and/or poorly-finetuned) models may exhbit both \emph{Scale Collapse}
-and unsually large PL exponents $\alpha\gg 6$.  In particular, we show that the \emph{WeightWatcher} tool
-can be used to identify when a pretrained DNN has problems that can not be detected simply
-by examining the test accuracy.
-
-
+We examine both familiar norm-based capacity control metrics (Frobenius and Spectral norms) as well as newer Power-Law (PL) based metrics (including fitted PL exponents, $\alpha$, and the Weighted Alpha metric, $\hat{\alpha}$), from the recently-developed Theory of Heavy-Tailed Self Regularization (HT-SR).
+We also introduce the $\alpha$-Shatten Norm metric.
+We find that norm-based metrics correlate well with reported test accuracies for well-trained models across nearly all CV architecture series.
+On the other hand, we find that norm-based metrics can not distinguish ``good-versus-bad'' models---which, arguably is the point of needing quality metrics.  
+Indeed, they may give spurious results.
+We also find that PL-based metrics do much better---quantitatively better at discriminating among a series of ``good-better-best'' models, and qualitatively better at discriminating ``good-versus-bad'' models.
+PL-based metrics can also be used to characterize fine-scale properties of these models, and we introduce the layer-wise \emph{Correlation Flow} as new quality assesment.
+We show how poorly-trained (and/or poorly fine-tuned) models may exhbit both \emph{Scale Collapse} and unsually large PL exponents, $\alpha\gg 6$, in particular for recent NLP models.
+Our techniques, as implemented in the \emph{WeightWatcher} tool, can be used to identify when a pretrained DNN has problems that can not be detected simply by examining training/test accuracies.
 
 
