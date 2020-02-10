@@ -68,14 +68,18 @@ To answer this question, we analyze hundreds of publicly-available pretrained st
 Here is a summary of our main results.
 \begin{itemize}
 \item
+\textbf{Norm-based metrics and well-trained models.}
 Norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
-%, i.e., they can be used to discriminate between ``good-better-best'' models.
 \item
-Norm-based meterics, however, may give spurious results, such as \emph{Scale\  Collapse} for poorly-trained modeles (i.e. models trained without enough data, etc.).  
+\textbf{Norm-based metrics and poorly-trained models.}
+Norm-based metrics may give spurious results when applied to poorly-trained models (e.g., models trained without enough data, etc.), exhibiting \emph{Scale Collapse} for these models. 
 \item 
-PL-based metrics do much better--quanttiatviely--at predicting quality trends in pretrained models. That is, they are  quantitatively better at discriminating among a series of ``good-better-best", and are qualitatively better at discriminating good-versus-bad models.
+\textbf{PL-based metrics and model quality.}
+PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
+They are quantitatively better at discriminating ``good-better-best'' trends, and qualitatively better at distinguishing ``good-versus-bad'' models.
 \item 
-PL-based metrics can be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow}) in both well- and /or poorly-trained models), and can be used to evaluate enhancements (i.e. distillation, finetuning, etc.)
+\textbf{PL-based metrics and model diagnostics.}
+PL-based metrics can also be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow}) in well-trained and poorly-trained models, and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
 \end{itemize}
 
 \noindent
