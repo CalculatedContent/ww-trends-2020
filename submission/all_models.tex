@@ -1,23 +1,13 @@
 \section{Comparing Hundreds of CV Models}
 \label{sxn:all_cv_models}
 
-In this section, we summarize results from a large-scale analysis of hundreds of CV models, including models developed for image classification, segmentation, and a range of related tasks.  
+In this section, we summarize results from a large-scale analysis of hundreds of CV models, including models developed for image 
+classification, segmentation, and a range of related tasks.  
 Our aim is to complement the detailed results from Sections~\ref{sxn:cv} and~\ref{sxn:nlp} by providing broader conclusions. % about norm-based and PL-based metrics.
-The models we consider have been pretrained on nine datasets, including ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). 
+The models we consider have been pretrained on nine datasets, shown in Table~\ref{table:datasets}.
+%including ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). 
 %%The pretrained models and their accuracy metrics are summarized in the osmr github~\cite{charles-add-link}.
-We provide more details about our experimental setup in Appendix~\ref{sxn:appendix}.
-
-We choose simple linear regression to analyze the relationship between quality metrics (computed with the \emph{WeightWatcher} tool) and traditional accuracy metrics (publicly-reported from a test set).
-% (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense).
-We regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).  
-These include Top5 errors for the ImageNet-1K model, percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (IOU) for other models.
-We regress them individually on each of the norm-based and PL-based metrics, as described above.
-
-Our results are summarized in Table~\ref{table:results}.
-For the mean, larger $R^{2}$ and smaller $MSE$ are desirable; and for the standard deviation, smaller values are desirable.
-Taken as a whole, over the entire corpus of data, PL-based metrics are somewhat better for both the $R^{2}$ mean and standard deviation; and PL-based metrics are much better for $MSE$ mean and standard deviation.
-These (and other) results suggest our conclusions from Sections~\ref{sxn:cv} and~\ref{sxn:nlp} hold much more generally, and they suggest ovbious questions for future work.
-
+We provide full details about how to reproduce these results in Appendix~\ref{sxn:appendix}.
 
 \begin{table}[t]
 \small
@@ -45,4 +35,18 @@ $MSE$ (std)    & 8.69 & 23.06 &          5.14 & \textbf{5.00} \\
 \end{table}
 
 
+We choose simple linear regression to analyze the relationship between quality metrics (computed with the \emph{WeightWatcher} tool) 
+and traditional accuracy metrics (publicly-reported from a test set).
+% (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense).                            
+We regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).
+These include Top5 errors for the ImageNet-1K model, percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy
+(Pix.Acc.) and Intersection-Over-Union (IOU) for other models.
+We regress them individually on each of the norm-based and PL-based metrics, as described above.
+
+Our results are summarized in Table~\ref{table:results}.
+For the mean, larger $R^{2}$ and smaller $MSE$ are desirable; and for the standard deviation, smaller values are desirable.
+Taken as a whole, over the entire corpus of data, PL-based metrics are somewhat better for both the $R^{2}$ mean and standard deviation;
+and PL-based metrics are much better for $MSE$ mean and standard deviation.
+These (and other) results suggest our conclusions from Sections~\ref{sxn:cv} and~\ref{sxn:nlp} hold much more generally, and they suggest
+obvious questions for future work.
 
