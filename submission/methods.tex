@@ -52,14 +52,7 @@ Operationally, $\alpha$ is determined by using the publicly-available \emph{Weig
 where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
 Each of these quantities is defined for a given layer $\mathbf{W}$ matrix.
 
-For norm-based metrics, we use the average of the log norm to the appropriate power.
-Consider, e.g., the \emph{$\alpha$-Shatten Norm metric}, 
-\begin{equation}
-\label{eqn:sum_log_alpha_norm_alpha}
-\sum\nolimits_l \log \Vert\mathbf{W}_l\Vert_{\alpha_l}^{\alpha_l} 
-=
-\sum\nolimits_l \alpha_l \log \Vert\mathbf{W}_l\Vert_{\alpha_l} .
-\end{equation}
+For norm-based metrics, we use the average of the log norm, and to the appropriate power.
 Informallly, this amounts to assuming that the layer weight matrices are statistically independent, in which case we can estimate the model complexity $\mathcal{C}$, or test accuracy, with a standard Product Norm (which resembles a data dependent VC complexity),
 \begin{equation}
 \mathcal{C}\sim\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert \times \cdots \times \Vert\mathbf{W}_{L}\Vert ,
@@ -73,7 +66,14 @@ The log complexity,
  takes the form of an average Log Norm.
 For the \emph{Frobenius norm metric} and \emph{Spectral norm metric}, we can use Eqn.~(\ref{eqn:eqn:sum_log_norm}) directly.% 
 \footnote{When taking $\log\Vert\mathbf{W}_{l}\Vert_{F}^{2}$, the $2$ comes down and out of the sum, and thus ignoring it only changes the metric by a constant factor.}
-For the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum.
+For the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum:
+
+\begin{equation}
+\label{eqn:sum_log_alpha_norm_alpha}
+\sum\nolimits_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l}^{\alpha_l} 
+=
+\sum\nolimits_l \alpha_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l} .
+\end{equation}
 
 
 The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l \in \{1,\ldots,l\}$, weighted by the size, or scale, or each matrix
