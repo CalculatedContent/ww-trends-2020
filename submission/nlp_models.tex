@@ -46,7 +46,7 @@ Later, OpenAI released a much improved model, GPT2-small, which has the same arc
 By comparing the poorly-trained (i.e., ``bad'') GPT to the well-trained (i.e., ``good'') GPT2, we can indentify empirical indidcators for when a model has in fact been poorly-trained and thus may perform poorly when deployed.
 By comparing GPT2-medium to GPT2-large to GPT2-xl, we can examine the effect of increasing simultaneously data set and model size.
 
-The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{XXX-XXX}.
+The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{huggingface}.
 GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ layer Weight Matrices, $\mathbf{W}$.
 Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrics.  
 The self-attention  matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$).
@@ -88,10 +88,12 @@ We have analyzed the four quality metrics described in Section~\ref{sxn:methods}
 See Table \ref{table:nlp} for a summary of results.
 We start by examining trends between GPT and GPT2-small.
 Observe that all four metrics increase when going from GPT to GPT2-small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
-\michael{IS THERE A TYPO THERE, OR AM I MISSING SOMETHING.}
+Notice that in the GPT model, being poorly trained, the norm metrics all exhibit \emph{Scale Collapse} compared to GPT2-small.
+
 We next examine trends between GPT2-medium to GPT2-large to GPT2-xl.
 Observe that (with one minor exception involving the log Frobenius norm metric) all four metrics decrease as one goes from medium to large to xl, indicating that the larger models indeed look better than the smaller models.
-\michael{WE SHOULD PROBABLY REWORD, SINCE IT IS OPPOSITE OF GPT TO GPT2.}
+Notice
+Being well-trained models, the norm metrics now behave as expected, decreasing with increasing accuracy
 
 Going beyond average values, Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT and GPT2-small.  
 These two histograms are very different.

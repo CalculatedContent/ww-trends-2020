@@ -2,8 +2,8 @@
 \label{sxn:cv}
 
 In this section, we examine empirical quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
-This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pyTorch}.
-This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet1k}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
+This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pytorch}.
+This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
 
 We perform \emph{coarse model analysis}, comparing and contrasting the four model series, and predicting trends in model quality. 
 We also perform \emph{fine layer analysis}, as a function of depth for these models, illustrating that PL-based metrics can provide novel insights among the VGG, ResNet/ResNet-1K, and DenseNet architectures. 
@@ -12,7 +12,7 @@ We also perform \emph{fine layer analysis}, as a function of depth for these mod
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
 We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
-To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without BN), and it plots the four quality metrics versus the reported test accuracies~\cite{pyTorchVgg},% 
+To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without BN), and it plots the four quality metrics versus the reported test accuracies~\cite{pytorch},% 
 \footnote{That is, these test accuracies have been previously reported and made publicly-avaiable by others.  We take them as given, and we do not attempt to reproduce/verify them, since we do not permit ourselves any access to training/test data.}
 as well as a basic linear regression line. 
 %with the Root Mean Squared Error (RMSE) shown, \michael{XXX.  WHERE IS RMSE.  IN THAT TABLE?}
@@ -265,14 +265,12 @@ In examining hundreds of pretrained models, we have found several anamolies that
 In particular, to show that $\alpha$ does capture something different, consider the following example, which looks at a compressed/distilled DNN model~\cite{CWZZ17_TR}.
 In this example, we show that some distillation methods may actually \emph{break} models unexpectedly by introducing what we call \emph{Scale Collapse}, where several distilled layers have unexpectedly small Spectral Norms.
 
-We consider ResNet20, trained on CIFAR10, before and after applying the Group Regularization distillation technique, as implemented in the \texttt{distiller} package.%
-\footnote{For details, see \url{https://nervanasystems.github.io/distiller/\#distiller-documentation} and also \url{https://github.com/NervanaSystems/distiller}.}
-We analyze the pretrained 4D\_regularized\_5Lremoved baseline and fine-tuned models.  %\cite{distiller_repo}.
-The reported baseline test accuracies (Top1$=91.45$ and Top5$=99.75$) are better than the reported fine-tuned test accuracies (Top1$=91.02$ and Top5$=99.67$)~\cite{XXX-XXX}.  Because the baseline accuracy is greater,  the previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy}) suggests that the baseline Spectral Norms should be \emph{smaller} on average than the fine-tuned ones should be smaller.
-\michael{IS THERE A TYPO, THAT SOUNDS LIKE BOTH ARE SMALLER.}
-\emph{The oppopsite is observed.}
+We consider ResNet20, trained on CIFAR10, before and after applying the Group Regularization distillation technique, as implemented in the \texttt{distiller} package.\cite{distiller}
+We analyze the pretrained 4D\_regularized\_5Lremoved baseline and fine-tuned models. 
+The reported baseline test accuracies (Top1$=91.45$ and Top5$=99.75$) are better than the reported fine-tuned test accuracies (Top1$=91.02$ and Top5$=99.67$)~\cite{XXX-XXX}.  Because the baseline accuracy is greater,  the previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy}) suggests that the baseline Spectral Norms should be \emph{smaller} on average than the fine-tuned ones. \emph{The oppopsite is observed.}
 %\michael{Do we have something backwards here: where we observed that the average norm to increase with decreasing test error (as it ``should'' not), whereas the average PL exponent $\alpha$ decreases (as ``expected'' from HT-SR Theory).  }
 %In both cases (Frobenius norm results not shown), we observe the opposite.
+\charles{WHy is this confusing? Call me...}
 Figure~\ref{fig:resnet204D5L} presents the Spectral Norm (here denoted $\log\lambda_{max}$) and PL exponent ($\alpha$) for each individual layer weight matrix $\mathbf{W}$.%
 \footnote{Here, we only include layer matrices or feature maps with $M\ge50$.}
 On the other hand, the $\alpha$ values (in Figure~\ref{fig:resnet204Dalpha}) do not differ systematically between the baseline and fine-tuned models.

@@ -16,7 +16,7 @@ We identify 3 different approaches for running SVD on a Conv2D layer:
 \begin{enumerate}
 \item run SVD on each pre-Activation Map $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values
 \item stack the maps into a single matrix of, say, dimension $((k\times k\times out)\times in)$, run SVD to get $in$ singular values
-\item compute the 2D Fourier Transform (FFT) for each of the $(in, out)$ pairs, and run SVD on the Fourier coeffients~\cite{Long2019}, leading to $\sim(k\times in\times out)$ non-zero singular values.
+\item compute the 2D Fourier Transform (FFT) for each of the $(in, out)$ pairs, and run SVD on the Fourier coeffients~\cite{CNNSVD}, leading to $\sim(k\times in\times out)$ non-zero singular values.
 \end{enumerate}
 Each method has tradeoffs.  
 Method (3) is mathematically sound, but computationally expensive. Method (2) is ambiguous.
@@ -30,7 +30,7 @@ Norm-based metrics, however, do depend strongly on the scale of the weight matri
 To apply RMT, we usually define $\mathbf{X}$ with $1/N$ normalization, assuming variance of $\sigma^{2}=1.0$.
 %\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with
- $\sigma^{2}\sim 1/\sqrt{N}$, or some variant, e.g., the Glorot/Xavier normalization~\cite{GloRot}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers. With this implicit scale, 
+ $\sigma^{2}\sim 1/\sqrt{N}$, or some variant, e.g., the Glorot/Xavier normalization~\cite{GloBen10}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers. With this implicit scale, 
 we do \emph{not} ``renormalize'' the empirical weight matrices, i.e., we use them as-is.
 The only exception is that we do rescale the Conv2D pre-activation maps $\mathbf{W}_{i,L}$ 
 by $k/\sqrt{2}$ so that they are on the same scale as the Linear / Fully Connected (FC) layers.
@@ -84,13 +84,12 @@ notebook (see Table~\ref{table:notebooks}).
 For completeness, we provide both the results described here, and additional results
 on other pretrained and distilled models using the \texttt{weightwatcher} tool.
 
-\subsection{Reproducing Table 3, Section~\ref{xsn:all}}
+\subsection{Reproducing Table 3, Section~\ref{sxn:all_cv_models}}
 
 We provide several Google Colab notebooks which can be used to reproduce the results in Table 3,
 in the \texttt{ww-colab} folder in our github repo.  
 The ImageNet-1K and other pretrained models are taken from the pytorch models in the \texttt{omsr/imgclsmob} 
-``Sandbox for training convolutional networks for computer vision'' github repository
-.\footnote{\url{https://github.com/osmr/imgclsmob}}
+``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}
 The data can be generated in parallel by running each Google Colab notebook (i.e. \texttt{ww\_kdd2020\_0\_100.ipynb}) 
 simultaneously on the same account.
 The final results are generated with the \texttt{ww\_kdd2020\_results.ipynb} notebook.
@@ -106,7 +105,7 @@ The regressions are shown in Figure~\ref{fig:DSalphas}.
 
 To generate the results in Table 3, we run linear for each architecture series in Table~\ref{table:architectures},
 regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github 
-repository README file, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}
+repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}
 We filter out regressions with less than five datapoints.
 We record the R-squared and mean squared errors (MSE). 
 The final results for all series regressions are provided in the \texttt{ww-colab/df\_all.xslx} python pandas dataframe file.
