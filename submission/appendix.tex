@@ -25,19 +25,19 @@ For our analysis, because we need thousands of runs, we select method (1), which
 \paragraph{Normalization of Empirical Matrices.}  
 Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the PL fits because $\alpha$ is scale-invariant.
-Norm-based metrics, however, do depend strongly on the scale of the weight matrix--\nred{that is the point.}
+Norm-based metrics, however, do depend strongly on the scale of the weight matrix--that is the point.
 %\nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
 To apply RMT, we usually define $\mathbf{X}$ with $1/N$ normalization, assuming variance of $\sigma^{2}=1.0$.
 %\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with
  $\sigma^{2}\sim 1/\sqrt{N}$, or some variant, e.g., the Glorot/Xavier normalization~\cite{GloBen10}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers. With this implicit scale, 
 we do \emph{not} ``renormalize'' the empirical weight matrices, i.e., we use them as-is.
-The only exception is that we do rescale the Conv2D pre-activation maps $\mathbf{W}_{i,L}$ 
+The only exception is that \emph{we do rescale} the Conv2D pre-activation maps $\mathbf{W}_{i,L}$ 
 by $k/\sqrt{2}$ so that they are on the same scale as the Linear / Fully Connected (FC) layers.
 
 \paragraph{Special consideration for NLP models.}
 NLP models, and other models with large initial embeddings require special care because the
-embedding layers frequently lack the implicit $latex\frac{1}{\sqrt{N}}$ normalization present in other layers.
+embedding layers frequently lack the implicit $\frac{1}{\sqrt{N}}$ normalization present in other layers.
 For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
 but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
  $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
@@ -45,10 +45,10 @@ the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an out
 
 \subsection{Reproducing Sections 4 and 5}
 
-We provide a github repository for this paper that includes jupyter notsbooks that fully reproduce all results.
+We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results.
 All results have been produced using the weightwatcher tool (v0.2.7).
-The ImageNet and OpenAI GPT pretrained models are provided in the current pyTorch, torchvision, and huggingface distributions,
-as specified in the \texttt{requirements.txt} file.
+The ImageNet and OpenAI GPT pretrained models are provided in the current 
+pyTorch~\cite{pytorch} and huggingface~\cite{higgingface} distributions, as specified in the \texttt{requirements.txt} file. 
 
 \begin{table}[t]
 \small
@@ -84,31 +84,32 @@ notebook (see Table~\ref{table:notebooks}).
 For completeness, we provide both the results described here, and additional results
 on other pretrained and distilled models using the \texttt{weightwatcher} tool.
 
-\subsection{Reproducing Table 3, Section~\ref{sxn:all_cv_models}}
+\subsection{Reproducing Table~\ref{table:results}, Section~\ref{sxn:all_cv_models} }
 
-We provide several Google Colab notebooks which can be used to reproduce the results in Table 3,
+We provide several Google Colab notebooks which can be used to reproduce the of Section~\ref{sxn:all_cv_models}.
 in the \texttt{ww-colab} folder in our github repo.  
 The ImageNet-1K and other pretrained models are taken from the pytorch models in the \texttt{omsr/imgclsmob} 
 ``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}
-The data can be generated in parallel by running each Google Colab notebook (i.e. \texttt{ww\_kdd2020\_0\_100.ipynb}) 
+The data for each regression can be generated in parallel by running each Google Colab notebook (i.e. \texttt{ww\_kdd2020\_0\_100.ipynb}) 
 simultaneously on the same account.
-The final results are generated with the \texttt{ww\_kdd2020\_results.ipynb} notebook.
+The data generated is analyzed by the \texttt{ww\_kdd2020\_results.ipynb} notebook,
+which runs all regressions and tabulates the results presented in Table~\ref{table:results}.
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
 We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models
-for those datasets. The final datasets used are shown in Table~\ref{table:datasets}
+for those datasets.  And we filter out regressions with less than five datapoints.
+The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
 
-To further explain how to reproduce our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients
-The regressions are shown in Figure~\ref{fig:DSalphas}.
+To further explain how to reproduce our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients. The regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
 
 To generate the results in Table 3, we run linear for each architecture series in Table~\ref{table:architectures},
 regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github 
 repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}
-We filter out regressions with less than five datapoints.
-We record the R-squared and mean squared errors (MSE). 
-The final results for all series regressions are provided in the \texttt{ww-colab/df\_all.xslx} python pandas dataframe file.
+We record the R-squared and mean squared errors (MSE) for each norm metric, averaged over all regressions for all architectures and datasets.
+Plots are provided for every regression, and more fine grained results may be computed by the reader by 
+analyzing the data in the \texttt{df\_all.xlsx} file.
 
 \begin{table}[t]
 \small
@@ -151,7 +152,7 @@ SqueezeNext/SqNxt                          & 6 \\
 ShuffleNet                                 & 6 \\
 DRN-C/DRN-D                                & 6 \\
 ESPNetv2                                   & 6 \\
-HRNet                                      & 6 \\
+HRNet                      z                & 6 \\
 SqueezeNet/SqueezeResNet                   & 6 \\
 \hline
 \end{tabular}
@@ -192,44 +193,4 @@ SqueezeNet/SqueezeResNet                   & 6 \\
     \label{fig:DSalphas}
 \end{figure}
 
-
-
-
-
-\subsection{XXX: PLACEHOLDER STUFF PROBABLY TO BE REMOVED}
-
-Some other comments that we need to weave into a narrative eventually after later sections are written:
-\begin{itemize}
-\item
-GPT versus GPT2.
-What happens when we don't have enough data?
-This is the main question, and we can use out metrics to evaluate that, but we also get very different results for GPT versus GPT2.
-\item
-The spectral norm is a regularizer, used to distinguish good-better-best, not a quality metric.
-For example, it can ``collapse,'' and for bad models we can have small spectral norm.
-So, it isn't really a quality metric.
-\item
-One question that isn't obvious is whether regularization metrics can be used as quality metrics.
-One might think so, but the answer isn't obviously yes.
-We show that the answer is No.
-A regularizer is designed to select a unique solution from a non-unique good-better-best.
-Quality metrics can also distinguish good versus bad.
-\item
-(We should at least mention this is like the statistical thing where we evaluate which model is better, as oposed to asking if a given model is good, I forget the name of that.)
-\item
-There are cases where the model is bad but regularization metric doesn't tell you that.
-Quality should be correlated in an empirical way.
-Correlated with good-better-best; but also tell good-bad.
-\item
-Question: why not use regularier for quality?
-Answer: A regularizer selects from a given set of degenerate models one which is nice or unique.
-It doesn't tell good versus bad, i.e., whether that model class is any good.
-\item
-Thus, it isn't obvious that norm-based metrics should do well, and they don't in general.
-\item
-We give examples of all of these: bad data; defective data; and distill models in a bad way.
-(Of course, bad data means bad model, at least indirectly, since the quality of the data affects the properties of the model.)
-\item
-We can select a model and change it, i.e., we don't just do hyperparameter fiddling.
-\end{itemize}
-
+ 
