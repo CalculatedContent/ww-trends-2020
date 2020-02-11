@@ -66,14 +66,6 @@ The log complexity,
  takes the form of an average Log Norm.
 For the \emph{Frobenius norm metric} and \emph{Spectral norm metric}, we can use Eqn.~(\ref{eqn:eqn:sum_log_norm}) directly.% 
 \footnote{When taking $\log\Vert\mathbf{W}_{l}\Vert_{F}^{2}$, the $2$ comes down and out of the sum, and thus ignoring it only changes the metric by a constant factor.}
-For the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum:
-
-\begin{equation}
-\label{eqn:sum_log_alpha_norm_alpha}
-\sum\nolimits_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l}^{\alpha_l} 
-=
-\sum\nolimits_l \alpha_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l} .
-\end{equation}
 
 
 The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l \in \{1,\ldots,l\}$, weighted by the size, or scale, or each matrix
@@ -83,7 +75,17 @@ The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l 
 \end{equation}
 where $L$ is the total nuumber of layer weight matrices.
 The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a limited set of models.
+
 Based on this, in this paper, we introduce and evaluate the $\alpha$-Shatten Norm metric.
+Notice for the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum:
+
+\begin{equation}
+\label{eqn:sum_log_alpha_norm_alpha}
+\sum\nolimits_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l}^{\alpha_l} 
+=
+\sum\nolimits_l \alpha_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l} .
+\end{equation}
+
 One expects $\hat{\alpha}$ approximates the average log $\alpha$-Shatten Norm very well for $\alpha < 2$ and reasonably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.  
 
 To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\alpha}$.  
