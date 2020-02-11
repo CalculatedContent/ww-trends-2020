@@ -148,7 +148,7 @@ plot (just) the PL exponent, $\alpha$, for each layer, %
 as a function of depth.
 %
 See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (no BN), ResNet, and DenseNet series.
-(Again, much more detailed set of plots is available at \cite{XXX-WEB-LINK}; but note that the corresponding layer-wise plots for Frobenius and Spectral norms are much less interesting than the results we present here.)
+(Again, much more detailed set of plots is available at our repo; but note that the corresponding layer-wise plots for Frobenius and Spectral norms are much less interesting than the results we present here.)
 
 \begin{figure}[t]
     \centering
@@ -267,7 +267,7 @@ In this example, we show that some distillation methods may actually \emph{break
 
 We consider ResNet20, trained on CIFAR10, before and after applying the Group Regularization distillation technique, as implemented in the \texttt{distiller} package.\cite{distiller}
 We analyze the pretrained 4D\_regularized\_5Lremoved baseline and fine-tuned models. 
-The reported baseline test accuracies (Top1$=91.45$ and Top5$=99.75$) are better than the reported fine-tuned test accuracies (Top1$=91.02$ and Top5$=99.67$)~\cite{XXX-XXX}.  Because the baseline accuracy is greater,  the previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy}) suggests that the baseline Spectral Norms should be \emph{smaller} on average than the fine-tuned ones. \emph{The oppopsite is observed.}
+The reported baseline test accuracies (Top1$=91.45$ and Top5$=99.75$) are better than the reported fine-tuned test accuracies (Top1$=91.02$ and Top5$=99.67$).  Because the baseline accuracy is greater,  the previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy}) suggests that the baseline Spectral Norms should be \emph{smaller} on average than the fine-tuned ones. \emph{The oppopsite is observed.}
 %\michael{Do we have something backwards here: where we observed that the average norm to increase with decreasing test error (as it ``should'' not), whereas the average PL exponent $\alpha$ decreases (as ``expected'' from HT-SR Theory).  }
 %In both cases (Frobenius norm results not shown), we observe the opposite.
 \charles{WHy is this confusing? Call me...}
