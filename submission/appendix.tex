@@ -105,10 +105,9 @@ There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob}
 We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are fewer than 15 models for those datasets.  
 Also, we filter out regressions with fewer than five datapoints.
 
-We also remove the following outliers, as identified by visual inspection: \texttt{efficient\_b0,\_b2}.
-And we remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is the only example show no trends with the norm metrics.
-
-
+We remove the following outliers, as identified by visual inspection: \texttt{efficient\_b0,\_b2}.
+We also remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is the only example show no trends with the norm metrics.
+%
 The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
 
@@ -168,27 +167,30 @@ SqueezeNet/SqueezeResNet                   & 6 \\
         \includegraphics[width=2.5cm]{img/imagenet1k_alpha.png}
         \label{fig:imagenet1k-alpha}
     }
-    \qquad
+    %\qquad
     \subfigure[ CIFAR 10 ]{
         \includegraphics[width=2.5cm]{img/cifar10_alpha.png}
         \label{fig:cifar10.alpha}
     }
-    \qquad
+    %\qquad
     \subfigure[ CIFAR 100 ]{
         \includegraphics[width=2.5cm]{img/cifar100_alpha.png}
         \label{fig:cifar100.alpha}
     }
-    \qquad
+    %\qquad
     \subfigure[ SVHN ]{
         \includegraphics[width=2.5cm]{img/svhn_alpha.png}
         \label{fig:svhn.alpha}
     }
-    \qquad
+    %\qquad
     \subfigure[ CUB 200 ]{
         \includegraphics[width=2.5cm]{img/cub200_alpha.png}
         \label{fig:cub200.alpha}
     }
-    \caption{\charles{Preliminary charts:} PL exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available\charles{ref} for 5 different data sets.}
+    \caption{% 
+             %\charles{Preliminary charts:} 
+             PL exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available for five different data sets.
+            }
     \label{fig:DSalphas}
 \end{figure}
 
@@ -204,6 +206,7 @@ Plots are provided for every regression, and more fine grained results may be co
 The final analysis includes 108 regressions total with 4 or more models, with a positive $R^2$.
 
 \begin{table}[t]
+\footnotesize  % \small
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -243,7 +246,7 @@ Dataset & Model  & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & 
 \hline
 \end{tabular}
 \end{center}
-\caption{MSE Results for all CV model regressions. }
+\caption{$MSE$ Results for all CV model regressions. }
 \label{table:MSEresults}
 \end{table}
 
@@ -252,6 +255,7 @@ Dataset & Model  & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & 
 
 
 \begin{table}[t]
+\footnotesize  % \small
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
