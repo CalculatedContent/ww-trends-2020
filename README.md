@@ -1,4 +1,4 @@
-# kdd2020 anonymous submission of paper
+# Repo to accompany Paper
 
 "Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data"
 
