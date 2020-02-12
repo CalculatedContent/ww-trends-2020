@@ -1,5 +1,7 @@
+\vspace{-1mm}
 \section{Conclusion}
 \label{sxn:conc}
+%\vspace{-1mm}
 
 We have developed (based on strong theory) and evaluated (on a large corpus of publicly-available pretrained models from CV and NLP) methods to predict trends in the quality of state-of-the-art neural networks---without access to training or testing data.
 Prior to our work, it was not obvious that norm-based metrics would perform well to predict trends in quality \emph{across} models (as they are usually used \emph{within} a given model or parameterized model class, e.g., to bound generalization error or to construct regularizers).
@@ -8,31 +10,13 @@ That PL-based metrics perform better (than norm-based metrics) should not be sur
 Again, though, our results are the first to demonstrate this.
 It is also gratifying that this approach can be used to provide fine-scale insight (such as rationalizing the flow of correlations or the collapse of size scale) throughout a network. 
 
-\ncyan{
-We conclude with a few thoughts on what a \emph{practical theory} of DNNs should look like.
-
+We conclude with a few comments on what a \emph{practical theory} of DNNs should look like.
 To do so, we distinguish between two types of theories:
-what may be called an \emph{non-empirical or analogical theory}, in which one creates a very simple model that can be analyzed rigorously, and one argues that the model has properties that are analogous the the system of interest; and 
-what may be called a \emph{semi-empirical theory}, in which there exists a rigorous asymptotic theory that has asymptotic parameters, and one adjusts or fits the parameters to the finite data.
-
-
-often one simple enough to perform ``rigorous'' analysis, and one argues that although simple 
-
-%\michael{MM TO DO.}
-%%
-%We distinguish between what we will call a
-%\emph{phenomenological theory}
-%(that describes empirical relationship of phenomena to each other, in a way which is consistent with fundamental theory, but is not directly derived from that theory)
-%and what can be called a 
-%\emph{first principles theory} 
-%(that is applicable to toy models, but that does not scale up to realistic systems if one includes realistic apsects of realistic systems).
-%%
-%For most complex highly-engineered systems (aside from complex AI/ML systems), one \emph{uses} phenomenological theory rather than first principles theory. 
-%(One does not try to solve the Schr\"odinger equation if one is interested in building a bridge or flying an airplane.)
-%%
-
-Much of the work on the theory of DNNs focuses on the former type of theory, but our approach is of the latter type.
-Our results, however, which are based on our \emph{use} of sophisticated statistical mechanics theory to solve an important practical DNN problems, suggests that our approach should be of interest more generally for those interested in developing a practical DNN theory.
-}
+\emph{non-empirical or analogical theories}, in which one creates, often from general principles, a very simple toy model that can be analyzed rigorously, and one then argues that the model is relevant to the system of interest; and 
+\emph{semi-empirical theories}, in which there exists a rigorous asymptotic theory, which comes with parameters, for the system of interest, and one then adjusts or fits those parameters to the finite non-asymptotic data.
+A drawback of the former approach is that it typically makes very strong assumptions on the data, and the strength of those assumptions can limit the practical applicability of the theory.
+Much of the work on the theory of DNNs focuses on the former type of theory.
+Our approach focuses on the latter type of theory.
+Our results, which are based on our \emph{use} of sophisticated statistical mechanics theory to solve important practical DNN problems, suggests that our approach should be of interest more generally for those interested in developing a practical DNN theory.
 
 

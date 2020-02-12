@@ -1,5 +1,7 @@
+\vspace{-1mm}
 \section{Comparison of CV models}
 \label{sxn:cv}
+%\vspace{-1mm}
 
 In this section, we examine empirical quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
 This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current open source pyTorch framework (version 1.4)~\cite{pytorch}.
@@ -9,6 +11,7 @@ We perform \emph{coarse model analysis}, comparing and contrasting the four mode
 We also perform \emph{fine layer analysis}, as a function of depth for these models, illustrating that PL-based metrics can provide novel insights among the VGG, ResNet/ResNet-1K, and DenseNet architectures. 
 
 
+\vspace{-1mm}
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
 We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
@@ -125,6 +128,7 @@ In our larger analysis, in Section~\ref{sxn:all_cv_models}, we will only include
 (Note that these and many other such plots can be seen on our publicly-available~repo.)
 
 
+\vspace{-1mm}
 \paragraph{Variation in Data Set Size.}
 
 We are interested in how our four quality metrics depend on data set size.
@@ -138,6 +142,7 @@ The ResNet series has strong correlation, with an RMSE of $0.66$, whereas the Re
 As expected, the higher quality data set shows a better fit, even with fewer data~points.
 
 
+\vspace{-1mm}
 \paragraph{Layer Analysis: Metrics as a Function of Depth.}
 
 We can learn much more about a pretrained model by going beyond average values of quality metrics to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
@@ -203,7 +208,9 @@ While this is similar to what is seen in the VGG models, with the DenseNet model
 %Recall the differences---in particular, the number of residual connections---between the VGG, ResNet, and DenseNet architectures.
 %VGG, while a fine model in many ways, was limited by needing massive FC layers at the end of the model, requiring significant memory and computational resources, and it's poor conditioning led to problems with vanishing gradients.  
 %The empirical manifestations of this (on weight matrices) are that fitted $\alpha$ values get much worse for deeper layers.
-%%\ncyan{
+
+
+\vspace{-1mm}
 \paragraph{Comparison of VGG, ResNet, and DenseNet Architectures.}
 We can interpret these observations by recalling the architectural differences between the VGG, ResNet, and DenseNet architectures,
 and, in particular, the number of of residual connections. VGG resembles the  traditional convolutional architectures,
@@ -211,12 +218,13 @@ such as LeNet5, and consists of several [Conv2D-Maxpool-ReLu] blocks, followed b
 ResNet greatly improved on VGG by replacing the large FC layers, shrinking the Conv2D blocks, and introducing \emph{residual connections}.
 This optimized approach allows for greater accurary with far fewer parameters (and GPU memory requirements), and
 ResNet models of up to 1000 layers have been trained~\cite{resnet1000}.
-%%}
+
 We conjuecture that the effeciency and effectivness of ResNet is reflected in the smaller and more stable $\alpha\sim 2.0$, across nearly all layers, indicating that the inner layers are very well correlated and strongly optimized.
 Contrast this with the DenseNet models, which contains many connections between every layer.
 Our results (large $\alpha$, meaning they even a PL model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly optimized.
 
 
+\vspace{-1mm}
 \paragraph{Correlation Flow.}
 
 More generally, we can understand the results presented in Figure~\ref{fig:3models-alpha-layers} in terms of what we will call the \emph{Correlation Flow} of the model. 
@@ -255,8 +263,7 @@ We have seen this in many models, including those shown in Figure~\ref{fig:3mode
 \end{figure}
 
 
-%% %\paragraph{Layer Analysis: Behavior on Less Thoroughy Studied CV Models.}
-%% \paragraph{Correlation Flow: PL vs. Norm Metrics.}
+\vspace{-1mm}
 \paragraph{Scale Collapse; or How Distillation May Break Models.}
 
 The similarity between norm-based metrics and PL-based metrics suggests a question: is the Weighted Alpha metric just a variation of the more familiar norm-based metrics?  %%, or does it capture something different?  
