@@ -1,7 +1,9 @@
 \section{Appendix}
 \label{sxn:appendix}
 
+
 In this appendix, we provide more details on several issues that are important for reproducibility of our results.
+
 
 \subsection{Reproducibility Considerations}
 
@@ -22,7 +24,9 @@ Each method has tradeoffs.
 Method (3) is mathematically sound, but computationally expensive. Method (2) is ambiguous.
 For our analysis, because we need thousands of runs, we select method (1), which is the fastest (and is easiest to reproduce).
 
+
 \paragraph{Normalization of Empirical Matrices.}  
+
 Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the PL fits because $\alpha$ is scale-invariant.
 Norm-based metrics, however, do depend strongly on the scale of the weight matrix--that is the point.
@@ -35,7 +39,9 @@ we do \emph{not} ``renormalize'' the empirical weight matrices, i.e., we use the
 The only exception is that \emph{we do rescale} the Conv2D pre-activation maps $\mathbf{W}_{i,L}$ 
 by $k/\sqrt{2}$ so that they are on the same scale as the Linear / Fully Connected (FC) layers.
 
+
 \paragraph{Special consideration for NLP models.}
+
 NLP models, and other models with large initial embeddings require special care because the
 embedding layers frequently lack the implicit $\frac{1}{\sqrt{N}}$ normalization present in other layers.
 For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
@@ -43,12 +49,13 @@ but in the first embedding layer, the maximum is of order N (the number of words
  $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
 the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
 
-\subsection{Reproducing Sections 4 and 5}
 
-We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results.
-All results have been produced using the weightwatcher tool (v0.2.7).
+\subsection{Reproducing Sections \ref{sxn:cv} and \ref{sxn:nlp} }   %% \subsection{Reproducing Sections 4 and 5}
+
+We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results (as well as many other results).
+All results have been produced using the \emph{WeightWatcher} tool (v0.2.7).
 The ImageNet and OpenAI GPT pretrained models are provided in the current 
-pyTorch~\cite{pytorch} and huggingface~\cite{huggingface} distributions, as specified in the \texttt{requirements.txt} file. 
+pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions, as specified in the \texttt{requirements.txt} file. 
 
 \begin{table}[t]
 \small
@@ -57,59 +64,48 @@ pyTorch~\cite{pytorch} and huggingface~\cite{huggingface} distributions, as spec
 \hline
 Figure & Jupyter Notebook \\
 \hline
-1  &  WeightWatcher-VGG.ipynb \\
-2(a)  &  WeightWatcher-ResNet.ipynb \\
-2(b)  &  WeightWatcher-ResNet-1K.ipynb \\
-3(a)  &  WeightWatcher-VGG.ipynb \\
-3(b)  &  WeightWatcher-ResNet.ipynb \\
-3(c)  &  WeightWatcher-DenseNet.ipynb \\
+\ref{fig:vgg-metrics}                                 & WeightWatcher-VGG.ipynb \\
+\ref{fig:resnet-accuracy}                             & WeightWatcher-ResNet.ipynb \\
+\ref{fig:resnet1k-accuracy}                           & WeightWatcher-ResNet-1K.ipynb \\
+\ref{fig:vgg-alpha-layers}                            & WeightWatcher-VGG.ipynb \\
+\ref{fig:resnet-alpha-layer}                          & WeightWatcher-ResNet.ipynb \\
+\ref{fig:densenet-alpha-layer}                        & WeightWatcher-DenseNet.ipynb \\
 \hline
-4 & WeightWatcher-Intel-Distiller-ResNet20.ipynb \\
+\ref{fig:resnet204D5L}                                & WeightWatcher-Intel-Distiller-ResNet20.ipynb \\
 \hline
-5 & WeightWatcher-OpenAI-GPT.ipynb \\
-6, 7 & WeightWatcher-OpenAI-GPT2.ipynb \\
+\ref{fig:GPT-hist}                                    & WeightWatcher-OpenAI-GPT.ipynb \\
+\ref{fig:gpt-alpha-layers}, \ref{fig:gpt2-histograms} & WeightWatcher-OpenAI-GPT2.ipynb \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Jupyter notebooks used to reproduce all results in sections ~\ref{sxn:cv} and ~\ref{sxn:nlp}}
+\caption{Jupyter notebooks used to reproduce all results in Sections~\ref{sxn:cv} and~\ref{sxn:nlp}}
 \label{table:notebooks}
 \end{table}
 
+
 \subsection{Reproducing Figure~\ref{fig:resnet204D5L}, Distiller Model}
 
-We provide the orginal Jupyter Notebooks, which uses the Intel \texttt{distiller} framework
-.\footnote{\url{https://nervanasystems.github.io/distiller}} in the \texttt{distiller} folder of our 
-github repo. Figure ~\ref{fig:resnet204D5L} is from the  \texttt{``...-Distiller-ResNet20.ipynb''} 
-notebook (see Table~\ref{table:notebooks}).  
-For completeness, we provide both the results described here, and additional results
-on other pretrained and distilled models using the \texttt{weightwatcher} tool.
+In the \texttt{distiller} folder of our github repo, 
+we provide the orginal Jupyter Notebooks, which use the Intel \texttt{distiller} framework.%
+\footnote{\url{https://nervanasystems.github.io/distiller}} 
+Figure~\ref{fig:resnet204D5L} is from the  \texttt{``...-Distiller-ResNet20.ipynb''} notebook (see Table~\ref{table:notebooks}).  
+For completeness, we provide both the results described here, as well as additional results on other pretrained and distilled models using the \emph{WeightWatcher} tool.
 
-\subsection{Reproducing Table~\ref{table:results}, Section~\ref{sxn:all_cv_models} }
 
-We provide several Google Colab notebooks which can be used to reproduce the of Section~\ref{sxn:all_cv_models}.
-in the \texttt{ww-colab} folder in our github repo.  
+\subsection{Reproducing Table~\ref{table:results} in Section~\ref{sxn:all_cv_models} }
+
+In the \texttt{ww-colab} folder of our github repo, we provide several Google Colab notebooks which can be used to reproduce the results of Section~\ref{sxn:all_cv_models}.
 The ImageNet-1K and other pretrained models are taken from the pytorch models in the \texttt{omsr/imgclsmob} 
-``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}
-The data for each regression can be generated in parallel by running each Google Colab notebook (i.e. \texttt{ww\_kdd2020\_0\_100.ipynb}) 
-simultaneously on the same account.
-The data generated is analyzed by the \texttt{ww\_kdd2020\_results.ipynb} notebook,
-which runs all regressions and tabulates the results presented in Table~\ref{table:results}.
+``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}.
+The data for each regression can be generated in parallel by running each Google Colab notebook (i.e., \texttt{ww\_kdd2020\_0\_100.ipynb}) simultaneously on the same account.
+The data generated are analyzed with \texttt{ww\_kdd2020\_results.ipynb}, which runs all regressions and which tabulates the results presented in Table~\ref{table:results}.
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
-We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are less than 15 models
-for those datasets.  And we filter out regressions with less than five datapoints.
+We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO, datasets as there are fewer than 15 models for those datasets.  
+Also, we filter out regressions with fewer than five datapoints.
 The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
-
-To further explain how to reproduce our analysis, we run three batches of linear regressions. First at the global level, we divide models by datasets and run regression separately on all models of a certain dataset, regardless of the architecture. At this level, the plots are quite noisy and clustered as each architecture has its own accuracy trend but, you could still see that most plots show positive relationship with positive coefficients. The regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
-
-To generate the results in Table 3, we run linear for each architecture series in Table~\ref{table:architectures},
-regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github 
-repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}
-We record the R-squared and mean squared errors (MSE) for each norm metric, averaged over all regressions for all architectures and datasets.
-Plots are provided for every regression, and more fine grained results may be computed by the reader by 
-analyzing the data in the \texttt{df\_all.xlsx} file.
 
 \begin{table}[t]
 \small
@@ -161,7 +157,6 @@ SqueezeNet/SqueezeResNet                   & 6 \\
 \label{table:architectures}
 \end{table}
 
-
 \begin{figure}[t]
     \centering
     \subfigure[ImageNet 1K]{
@@ -192,4 +187,14 @@ SqueezeNet/SqueezeResNet                   & 6 \\
     \label{fig:DSalphas}
 \end{figure}
 
+To explain further how to reproduce our analysis, we run three batches of linear regressions. 
+First, at the global level, we divide models by datasets and run regressions separately on all models of a certain dataset, regardless of the architecture. 
+At this level, the plots are quite noisy and clustered, as each architecture has its own accuracy trend; but one can still see that most plots show positive relationship with positive coefficients. 
+Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
  
+To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
+We record the R-squared and mean squared errors (MSE) for each metric, averaged over all regressions for all architectures and datasets.
+Plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
+
+ 
+
