@@ -4,7 +4,7 @@
 In this section, we summarize results from a large-scale analysis of hundreds of CV models, including models developed for image 
 classification, segmentation, and a range of related tasks.  
 Our aim is to complement the detailed results from Sections~\ref{sxn:cv} and~\ref{sxn:nlp} by providing broader conclusions. % about norm-based and PL-based metrics.
-The models we consider have been pretrained on nine datasets, shown in Table~\ref{table:datasets}.
+The models we consider have been pretrained on nine datasets.   %, shown in Table~\ref{table:datasets}.
 %including ImageNet-1K, and CIFAR-10, CIFAR-100, Street View House Numbers (SVHN), Caltech-UCSD Birds-200-2011 (CUB-200-2011), Pascal VOC2012, ADE20K, Cityscapes, and Common Objects in Context (COCO). 
 %%The pretrained models and their accuracy metrics are summarized in the osmr github~\cite{charles-add-link}.
 We provide full details about how to reproduce these results in Appendix~\ref{sxn:appendix}.
@@ -28,7 +28,7 @@ $MSE$ (std)    & 8.69 & 23.06 &          5.14 & \textbf{5.00} \\
 \end{tabular}
 \end{center}
 \caption{Comparison of linear regression fits for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering 168 (out of 309) different pretrained DNNs.  
-         We include regressions only for architectures with 4 or more data points, and which are postively correlated with test error.
+         We include regressions only for architectures with five or more data points, and which are postively correlated with test error.
          These results can be readily reproduced using the Google Colab notebooks (see Appendix~\ref{sxn:appendix}). 
         }
 \label{table:results}

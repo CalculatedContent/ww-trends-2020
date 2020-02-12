@@ -29,7 +29,7 @@ For our analysis, because we need thousands of runs, we select method (1), which
 
 Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the PL fits because $\alpha$ is scale-invariant.
-Norm-based metrics, however, do depend strongly on the scale of the weight matrix--that is the point.
+Norm-based metrics, however, do depend strongly on the scale of the weight matrix---that is the point.
 %\nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
 To apply RMT, we usually define $\mathbf{X}$ with $1/N$ normalization, assuming variance of $\sigma^{2}=1.0$.
 %\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
@@ -43,11 +43,11 @@ by $k/\sqrt{2}$ so that they are on the same scale as the Linear / Fully Connect
 \paragraph{Special consideration for NLP models.}
 
 NLP models, and other models with large initial embeddings require special care because the
-embedding layers frequently lack the implicit $\frac{1}{\sqrt{N}}$ normalization present in other layers.
-For example, in GPT, most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
+embedding layers frequently lack the implicit $1/\sqrt{N}$ normalization present in other layers.
+For example, in GPT, for most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
 but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
  $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
-the first 2 layers by  $\mathbf{X}$ by $\frac{1}{N}$, or to treat them as an outlier).
+the first 2 layers by  $\mathbf{X}$ by $1/N$, or to treat them as an outlier).
 
 
 \subsection{Reproducing Sections \ref{sxn:cv} and \ref{sxn:nlp} }   %% \subsection{Reproducing Sections 4 and 5}
@@ -83,7 +83,7 @@ Figure & Jupyter Notebook \\
 \end{table}
 
 
-\subsection{Reproducing Figure~\ref{fig:resnet204D5L}, Distiller Model}
+\subsection{Reproducing Figure~\ref{fig:resnet204D5L}, for the Distiller Model}
 
 In the \texttt{distiller} folder of our github repo, 
 we provide the orginal Jupyter Notebooks, which use the Intel \texttt{distiller} framework.%
@@ -102,7 +102,7 @@ The data generated are analyzed with \texttt{ww\_kdd2020\_results.ipynb}, which 
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
-We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO, datasets as there are fewer than 15 models for those datasets.  
+We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are fewer than 15 models for those datasets.  
 Also, we filter out regressions with fewer than five datapoints.
 The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
@@ -124,7 +124,7 @@ cub-200-2011  &  12 \\
 \end{center}
 \caption{Datasets used}
 \label{table:datasets}
-\end{table}`
+\end{table}
 
 \begin{table}[t]
 \small
@@ -192,8 +192,8 @@ First, at the global level, we divide models by datasets and run regressions sep
 At this level, the plots are quite noisy and clustered, as each architecture has its own accuracy trend; but one can still see that most plots show positive relationship with positive coefficients. 
 Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
  
-To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical log norm metric against the reported Top 1 (and Top 5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
-We record the R-squared and mean squared errors (MSE) for each metric, averaged over all regressions for all architectures and datasets.
+To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
+We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
 Plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
 
  
@@ -235,9 +235,9 @@ Dataset & Model & Fnorm & Snorm & wAlpha & aNorm \\
 \hline
 \end{tabular}
 \end{center}
-\caption{MSE Results}
+\caption{$MSE$ Results}
 \label{table:MSEresults}
-\end{table}`
+\end{table}
 
 
 \begin{table}[t]
@@ -279,4 +279,4 @@ imagenet-1k & ResNet  & 0.82 &  0.67 & 0.90 & 0.88 \\
 \end{center}
 \caption{$R^{2}$ Results}
 \label{table:R2results}
-\end{table}`
+\end{table}

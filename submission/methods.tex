@@ -64,19 +64,19 @@ The log complexity,
 \log\mathcal{C} \sim \log\Vert\mathbf{W}_{1}\Vert+\log\Vert\mathbf{W}_{2}\Vert + \cdots + \log\Vert\mathbf{W}_{L}\Vert  ,
 \end{equation}
  takes the form of an average Log Norm.
-For the \emph{Frobenius norm metric} and \emph{Spectral norm metric}, we can use Eqn.~(\ref{eqn:eqn:sum_log_norm}) directly.% 
+For the \emph{Frobenius Norm metric} and \emph{Spectral Norm metric}, we can use Eqn.~(\ref{eqn:eqn:sum_log_norm}) directly.% 
 \footnote{When taking $\log\Vert\mathbf{W}_{l}\Vert_{F}^{2}$, the $2$ comes down and out of the sum, and thus ignoring it only changes the metric by a constant factor.}
 
 
-The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l \in \{1,\ldots,l\}$, weighted by the size, or scale, or each matrix
-(and it approximates the average log $\alpha$-Shatten Norm metric),
+The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l \in \{1,\ldots,l\}$, weighted by the size, or scale, or each matrix,
+%(and it approximates the average log $\alpha$-Shatten Norm metric),
 \begin{equation}
 \hat{\alpha} = \dfrac{1}{L}\sum_l \alpha_l\log\lambda_{max,l}\approx\langle\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}\rangle    ,
 \end{equation}
 where $L$ is the total nuumber of layer weight matrices.
 The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a limited set of models.
 
-Based on this, in this paper, we introduce and evaluate the $\alpha$-Shatten Norm metric.
+Based on this, in this paper, we introduce and evaluate the \emph{$\alpha$-Shatten Norm metric}.
 Notice for the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum:
 
 \begin{equation}
@@ -86,7 +86,8 @@ Notice for the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from lay
 \sum\nolimits_l \alpha_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l} .
 \end{equation}
 
-One expects $\hat{\alpha}$ approximates the average log $\alpha$-Shatten Norm very well for $\alpha < 2$ and reasonably well for $\alpha\in[2,5]$~\cite{MM20_unpub_work}.  
+\noindent
+For small $\alpha$, the Weighted Alpha metric approximates the Log $\alpha$-Shatten norm, as can be shown with a statistical mechanics and random matrix theory derivation \cite{MM20_unpub_work}; and the Weighted Alpha and $\alpha$-Shatten norm metrics often behave like an improved, weighted average Log Spectral Norm, and may track this metric in some~cases.
 
 To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\alpha}$.  
 We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  
@@ -95,8 +96,7 @@ The PL exponent $\alpha$ measures of the amount of correlation in a DNN layer we
 It is valid for $\lambda<\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
 The $\lambda_{max}$ is a measure of the size, or scale, of $\mathbf{W}$.
 %
-Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigger'' layers more, and averaging this product leads to a balanced, Weighted Alpha metric for the entire~DNN.%
-\footnote{For small $\alpha$, this Weighted Alpha metric approximates the Log $\alpha$-Shatten norm, as can be shown with a statistical mechanics and random matrix theory derivation \cite{MM20_unpub_work}; and the Weighted Alpha and $\alpha$-Shatten norm metrics often behave like an improved, weighted average Log Spectral Norm, and may track this metric in some cases.}
+Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigger'' layers more, and averaging this product leads to a balanced, Weighted Alpha metric for the entire~DNN.
 
 
 \paragraph{Convolutional Layers and Normalization issues.}

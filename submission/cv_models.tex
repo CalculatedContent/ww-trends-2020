@@ -2,7 +2,7 @@
 \label{sxn:cv}
 
 In this section, we examine empirical quality metrics described in Section~\ref{sxn:methods} for several CV model architecture series.
-This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current opensource pyTorch framework (version 1.4)~\cite{pytorch}.
+This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current open source pyTorch framework (version 1.4)~\cite{pytorch}.
 This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
 
 We perform \emph{coarse model analysis}, comparing and contrasting the four model series, and predicting trends in model quality. 
@@ -16,7 +16,7 @@ To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, 
 \footnote{That is, these test accuracies have been previously reported and made publicly-avaiable by others.  We take them as given, and we do not attempt to reproduce/verify them, since we do not permit ourselves any access to training/test data.}
 as well as a basic linear regression line. 
 %with the Root Mean Squared Error (RMSE) shown, \michael{XXX.  WHERE IS RMSE.  IN THAT TABLE?}
-All four metrics correlate quite well with the reported Top1 accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalziation (i.e., greater accuracy, lower error). 
+All four metrics correlate quite well with the reported Top1 accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalization (i.e., greater accuracy, lower error). 
 While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) performs best (with an RMSE of $0.42$, see Table~\ref{table:cv-models}); and the Weighted Alpha metric ($\hat\alpha =\alpha\log\lambda_{max} $), which is an approximation to the Log $\alpha$-Norm metric~\cite{MM20_unpub_work}, performs second best (with an RMSE of $0.48$, see Table~\ref{table:cv-models}).
 
 \begin{figure}[t]
@@ -113,7 +113,7 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 \label{table:cv-models}
 \end{table}
 
-See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics on for the VGG, ResNet, and DenseNet series.
+See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, and DenseNet series.
 Similar results (not shown) are obtained for the Top5 accuracies.
 Overall, for the the ResNet, ResNet-1K, and DenseNet series, all metrics perform relatively well, the Log $\alpha$-Norm metric performs second best, and the Weighted Alpha metric performs best.
 These model series are all well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among ``good-better-best'' models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
@@ -135,7 +135,7 @@ for the full ResNet model, trained on the full ImageNet dataset, against the Res
 The Log $\alpha$-Norm is much better than the Log Frobenius/Spectral norm metrics (although, as Table~\ref{table:cv-models} shows, it is actually slightly worse than the Weighted Alpha metric).
 The ResNet series has strong correlation, with an RMSE of $0.66$, whereas the ResNet-1K series also shows good correlation, but has a much larger RMSE of $1.9$.
 (Other metrics exhibit similar behavior.)
-As expected, the higher quality data set shows a better fit, even with fewer data points.
+As expected, the higher quality data set shows a better fit, even with fewer data~points.
 
 
 \paragraph{Layer Analysis: Metrics as a Function of Depth.}
@@ -177,7 +177,7 @@ See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (
     \caption{PL exponent ($\alpha$) versus layer id, for the least and the most accurate models in VGG (a), ResNet (b), and DenseNet (c) series. 
              (VGG is without BN; and note that the Y axes on each plot are different.)  
              Subfigure (d) displays the ResNet models (b), zoomed in to $\alpha\in[1,5]$, and with the layer ids overlaid on the X-axis, from smallest to largest, to
-             allow a more detailed analysis for the most strongly correlated layers.
+             allow a more detailed analysis of the most strongly correlated layers.
              Notice that ResNet152 exhibits different and much more stable behavior of $\alpha$ across layers.
              This contrasts with how both VGG models gradually worsen in deeper layers and how the DenseNet models are much more erratic.  
              In the text, this is interpreted in terms of \emph{Correlation Flow}.
@@ -210,11 +210,11 @@ and, in particular, the number of of residual connections. VGG resembles the  tr
 such as LeNet5, and consists of several [Conv2D-Maxpool-ReLu] blocks, followed by 3 large Fully Connected (FC) layers.
 ResNet greatly improved on VGG by replacing the large FC layers, shrinking the Conv2D blocks, and introducing \emph{residual connections}.
 This optimized approach allows for greater accurary with far fewer parameters (and GPU memory requirements), and
-ResNet models of up to 1000 layers have been trained.\cite{resnet1000}.
+ResNet models of up to 1000 layers have been trained~\cite{resnet1000}.
 %%}
 We conjuecture that the effeciency and effectivness of ResNet is reflected in the smaller and more stable $\alpha\sim 2.0$, across nearly all layers, indicating that the inner layers are very well correlated and strongly optimized.
 Contrast this with the DenseNet models, which contains many connections between every layer.
-Our results (large $\alpha$, meaning they even a HT model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly optimized.
+Our results (large $\alpha$, meaning they even a PL model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly optimized.
 
 
 \paragraph{Correlation Flow.}
@@ -270,7 +270,7 @@ We analyze the pretrained 4D\_regularized\_5Lremoved baseline and fine-tuned mod
 The reported baseline test accuracies (Top1$=91.45$ and Top5$=99.75$) are better than the reported fine-tuned test accuracies (Top1$=91.02$ and Top5$=99.67$).  Because the baseline accuracy is greater,  the previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy}) suggests that the baseline Spectral Norms should be \emph{smaller} on average than the fine-tuned ones. \emph{The oppopsite is observed.}
 %\michael{Do we have something backwards here: where we observed that the average norm to increase with decreasing test error (as it ``should'' not), whereas the average PL exponent $\alpha$ decreases (as ``expected'' from HT-SR Theory).  }
 %In both cases (Frobenius norm results not shown), we observe the opposite.
-\charles{WHy is this confusing? Call me...}
+%%\charles{WHy is this confusing? Call me...}
 Figure~\ref{fig:resnet204D5L} presents the Spectral Norm (here denoted $\log\lambda_{max}$) and PL exponent ($\alpha$) for each individual layer weight matrix $\mathbf{W}$.%
 \footnote{Here, we only include layer matrices or feature maps with $M\ge50$.}
 On the other hand, the $\alpha$ values (in Figure~\ref{fig:resnet204Dalpha}) do not differ systematically between the baseline and fine-tuned models.

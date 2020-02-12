@@ -15,7 +15,7 @@ they typically do not correlate with other properties of interest such as robust
 and so on.
 A less well-known problem, but one that is increasingly important, in particular in industrial-scale artificial intelligence (AI), arises when the model \emph{user} is not the model \emph{developer}.
 Here, one may not have access to either the training data or the testing data.
-Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and need to use it "as is,'' or to fine-tune and/or compress it and then use it.
+Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and need to use it ``as is,'' or to fine-tune and/or compress it and then use it.
 
 Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
@@ -76,7 +76,7 @@ Norm-based metrics may give spurious results when applied to poorly-trained mode
 \item 
 \textbf{PL-based metrics and model quality.}
 PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
-They are quantitatively better at discriminating ``good-better-best'' trends, and qualitatively better at distinguishing ``good-versus-bad'' models.
+They are quantitatively better at discriminating ``good-better-best'' trends, and qualitatively better at distinguishing ``good-versus-bad''~models.
 \item 
 \textbf{PL-based metrics and model diagnostics.}
 PL-based metrics can also be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow}) in well-trained and poorly-trained models, and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
@@ -90,8 +90,7 @@ We have examined hundreds of models, and we identify general trends, but we also
 \paragraph{The WeightWatcher Tool.}
 
 All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package}.
-To be fully reproducible, we only examine publically-available, pretrained models, and we also provide all Jupyter and Google Colab notebooks used in an accompanying github repository.%
-\footnote{\url{https://github.com/CalculatedContent/kdd2020} \michael{TO BE ANONYMIZED.}}
+To be fully reproducible, we only examine publically-available, pretrained models, and we also provide all Jupyter and Google Colab notebooks used in an accompanying github repository~\cite{kdd20_sub_repo}.
 See Appendix~\ref{sxn:appendix} for details on how to reproduce all results.
 
 
