@@ -97,13 +97,18 @@ For completeness, we provide both the results described here, as well as additio
 In the \texttt{ww-colab} folder of our github repo, we provide several Google Colab notebooks which can be used to reproduce the results of Section~\ref{sxn:all_cv_models}.
 The ImageNet-1K and other pretrained models are taken from the pytorch models in the \texttt{omsr/imgclsmob} 
 ``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}.
-The data for each regression can be generated in parallel by running each Google Colab notebook (i.e., \texttt{ww\_kdd2020\_0\_100.ipynb}) simultaneously on the same account.
-The data generated are analyzed with \texttt{ww\_kdd2020\_results.ipynb}, which runs all regressions and which tabulates the results presented in Table~\ref{table:results}.
+The data for each regression can be generated in parallel by running each Google Colab notebook (i.e., \texttt{ww\_colab\_0\_100.ipynb}) simultaneously on the same account.
+The data generated are analyzed with \texttt{ww\_colab\_results.ipynb}, which runs all regressions and which tabulates the results presented in Table~\ref{table:results}.
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
 We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are fewer than 15 models for those datasets.  
 Also, we filter out regressions with fewer than five datapoints.
+
+We also remove the following outliers, as identified by visual inspection: \texttt{efficient\_b0,\_b2}.
+And we remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is the only example show no trends with the norm metrics.
+
+
 The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
 
@@ -114,9 +119,9 @@ The final architecture series used are shown in  Table~\ref{table:architectures}
 \hline
 Dataset & $\#$ of Models \\
 \hline
-imagenet-1k   &  78 \\
+imagenet-1k   &  76 \\
 svhn          &  30 \\
-cifar-100     &  30 \\
+cifar-100     &  26 \\
 cifar-10      &  18 \\
 cub-200-2011  &  12 \\
 \hline
@@ -189,94 +194,105 @@ SqueezeNet/SqueezeResNet                   & 6 \\
 
 To explain further how to reproduce our analysis, we run three batches of linear regressions. 
 First, at the global level, we divide models by datasets and run regressions separately on all models of a certain dataset, regardless of the architecture. 
-At this level, the plots are quite noisy and clustered, as each architecture has its own accuracy trend; but one can still see that most plots show positive relationship with positive coefficients. 
+At this level, the plots are quite noisy and clustered, as each architecture has its own accuracy trend; but one can
+ still see that most plots show positive relationship with positive coefficients. 
 Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
  
 To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
 We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
 Plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
+The final analysis includes 108 regressions total with 4 or more models, with a positive $R^2$.
 
- 
 
 \begin{table}[t]
-\small
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
+\hline
 Dataset & Model & Fnorm & Snorm & wAlpha & aNorm \\
 \hline
- imagenet-1k & ResNet  & 5.96 &  11.03 & 3.51 & 4.01 \\
- cifar-10 & ResNet  & 0.31 &  0.30 & 0.28 & 0.28 \\
- cifar-100 & ResNet  & 4.13 &  4.50 & 3.06 & 3.06 \\
- svhn & ResNet  & 0.04 &  0.04 & 0.02 & 0.02 \\
- cub-200-2011 & ResNet  & 0.20 &  0.18 & 3.19 & 3.21 \\
- imagenet-1k & EfficientNet  & 9.25 &  9.28 & 9.28 & 9.27 \\
- imagenet-1k & PreResNet  & 6.59 &  15.44 & 3.59 & 3.71 \\
- imagenet-1k & VGG  & 0.84 &  0.68 & 1.89 & 1.59 \\
- imagenet-1k & ShuffleNet  & 35.38 &  89.58 & 19.54 & 18.48 \\
- imagenet-1k & DLA  & 22.41 &  8.49 & 14.69 & 15.68 \\
- imagenet-1k & HRNet  & 0.47 &  0.51 & 0.16 & 0.16 \\
- imagenet-1k & DRN  & 0.60 &  0.66 & 0.40 & 0.48 \\
- imagenet-1k & SqueezeNext  & 21.94 &  21.39 & 13.31 & 13.23 \\
- imagenet-1k & ESPNetv2  & 13.77 &  14.74 & 1.87 & 2.53 \\
- imagenet-1k & ProxylessNAS  & 0.19 &  0.26 & 0.28 & 0.26 \\
- imagenet-1k & SqueezeNet  & 0.11 &  0.11 & 0.07 & 0.08 \\
- imagenet-1k & IGCV3  & 1.94 &  87.76 & 8.48 & 1.09 \\
- cifar-10 & DIA-ResNet  & 0.05 &  0.08 & 0.28 & 0.32 \\
- cifar-100 & DIA-ResNet  & 0.36 &  1.38 & 0.93 & 1.02 \\
- svhn & DIA-ResNet  & 0.00 &  0.00 & 0.02 & 0.02 \\
- cifar-10 & SENet  & 0.09 &  0.09 & 0.04 & 0.04 \\
- cifar-100 & SENet  & 0.36 &  0.43 & 0.26 & 0.26 \\
- svhn & SENet  & 0.00 &  0.00 & 0.00 & 0.00 \\
- cub-200-2011 & SENet  & 1.07 &  1.29 & 1.85 & 1.95 \\
- cifar-100 & WRN  & 0.14 &  0.20 & 0.07 & 0.06 \\
- svhn & WRN  & 0.01 &  0.01 & 0.01 & 0.01 \\
- cifar-100 & ResNeXt  & 0.80 &  0.95 & 0.78 & 0.79 \\
- svhn & ResNeXt  & 0.00 &  0.00 & 0.01 & 0.01 \\
+ imagenet-1k & ResNet  & 5.96 &  11.03 & \textbf{3.51} & 4.01 \\
+ imagenet-1k & EfficientNet  & 2.67 &  \textbf{1.23} & 2.56 & 2.50 \\
+ imagenet-1k & PreResNet  & 6.59 &  15.44 & \textbf{3.59} & 3.71 \\
+ imagenet-1k & ShuffleNet  & 35.38 &  89.58 & 19.54 & \textbf{18.48} \\
+ imagenet-1k & VGG  & 0.84 &  \textbf{0.68} & 1.89 & 1.59 \\
+ imagenet-1k & DLA  & 22.41 &  \textbf{8.49} & 14.69 & 15.68 \\
+ imagenet-1k & HRNet  & 0.47 &  0.51 & \textbf{0.16} & 0.16 \\
+ imagenet-1k & DRN-C  & 0.60 &  0.66 & \textbf{0.40} & 0.48 \\
+ imagenet-1k & SqueezeNext  & 21.94 &  21.39 & 13.31 & \textbf{13.23} \\
+ imagenet-1k & ESPNetv2  & 13.77 &  14.74 & \textbf{1.87} & 2.53 \\
+ imagenet-1k & IGCV3  & 1.94 &  87.76 & 8.48 & \textbf{1.09} \\
+ imagenet-1k & ProxylessNAS  & \textbf{0.19} &  0.26 & 0.28 & 0.26 \\
+ imagenet-1k & SqueezeNet  & 0.11 &  0.11 & \textbf{0.07} & 0.08 \\
+\hline
+ cifar-10 & ResNet  & 0.31 &  0.30 & \textbf{0.28} & 0.28 \\
+ cifar-10 & DIA-ResNet  & \textbf{0.05} &  0.08 & 0.28 & 0.32 \\
+ cifar-10 & SENet  & 0.09 &  0.09 & \textbf{0.04} & 0.04 \\
+\hline
+ cifar-100 & ResNet  & 4.13 &  4.50 & \textbf{3.06} & 3.06 \\
+ cifar-100 & DIA-ResNet  & \textbf{0.36} &  1.38 & 0.93 & 1.02 \\
+ cifar-100 & SENet  & 0.36 &  0.43 & \textbf{0.26} & 0.26 \\
+ cifar-100 & WRN  & 0.14 &  0.20 & 0.07 & \textbf{0.06} \\
+\hline
+ svhn & ResNet  & 0.04 &  0.04 & \textbf{0.02} & 0.02 \\
+ svhn & DIA-ResNet  & 0.00 &  \textbf{0.00} & 0.02 & 0.02 \\
+ svhn & SENet  & \textbf{0.00} &  0.00 & 0.00 & 0.00 \\
+ svhn & WRN  & 0.01 &  0.01 & 0.01 & \textbf{0.01} \\
+ svhn & ResNeXt  & 0.00 &  \textbf{0.00} & 0.01 & 0.01 \\
+\hline
+ cub-200-2011 & ResNet  & 0.20 &  \textbf{0.18} & 3.19 & 3.21 \\
+ cub-200-2011 & SENet  & \textbf{1.07} &  1.29 & 1.85 & 1.95 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{$MSE$ Results}
+\caption{MSE Results for all CV model regressions.}
 \label{table:MSEresults}
 \end{table}
 
 
+
 \begin{table}[t]
-\small
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
+\hline
 Dataset & Model & Fnorm & Snorm & wAlpha & aNorm \\
 \hline
-imagenet-1k & ResNet  & 0.82 &  0.67 & 0.90 & 0.88 \\
- cifar-10 & ResNet  & 0.58 &  0.59 & 0.62 & 0.61 \\
- cifar-100 & ResNet  & 0.61 &  0.58 & 0.71 & 0.71 \\
- svhn & ResNet  & 0.69 &  0.70 & 0.82 & 0.81 \\
- cub-200-2011 & ResNet  & 0.94 &  0.95 & 0.08 & 0.08 \\
- imagenet-1k & EfficientNet  & 0.00 &  0.00 & 0.00 & 0.00 \\
- imagenet-1k & PreResNet  & 0.73 &  0.36 & 0.85 & 0.85 \\
- imagenet-1k & VGG  & 0.71 &  0.76 & 0.35 & 0.45 \\
- imagenet-1k & ShuffleNet  & 0.63 &  0.06 & 0.80 & 0.81 \\
- imagenet-1k & DLA  & 0.13 &  0.67 & 0.43 & 0.39 \\
- imagenet-1k & HRNet  & 0.91 &  0.90 & 0.97 & 0.97 \\
- imagenet-1k & DRN-C  & 0.81 &  0.79 & 0.87 & 0.85 \\
- imagenet-1k & SqueezeNext  & 0.05 &  0.07 & 0.42 & 0.43 \\
- imagenet-1k & ESPNetv2  & 0.42 &  0.38 & 0.92 & 0.89 \\
- imagenet-1k & ProxylessNAS  & 0.68 &  0.56 & 0.53 & 0.58 \\
- imagenet-1k & SqueezeNet  & 0.01 &  0.00 & 0.38 & 0.26 \\
- imagenet-1k & IGCV3  & 0.98 &  0.12 & 0.92 & 0.99 \\
- cifar-10 & DIA-ResNett  & 0.96 &  0.93 & 0.74 & 0.71 \\
- cifar-100 & DIA-ResNet  & 0.96 &  0.85 & 0.90 & 0.89 \\
- svhn & DIA-ResNet  & 0.94 &  0.95 & 0.78 & 0.77 \\
- cifar-10 & SENet  & 0.91 &  0.91 & 0.96 & 0.96 \\
- cifar-100 & SENet  & 0.97 &  0.96 & 0.98 & 0.98 \\
- svhn & SENet & 0.99 &  0.96 & 0.98 & 0.98 \\
- cub-200-2011 & SENet  & 0.66 &  0.59 & 0.41 & 0.38 \\
- cifar-100 & WRN  & 0.32 &  0.04 & 0.66 & 0.69 \\
- svhn & WRN  & 0.13 &  0.10 & 0.20 & 0.21 \\
- cifar-100 & ResNeXt  & 0.17 &  0.02 & 0.20 & 0.18 \\
- svhn & ResNeXt  & 0.87 &  0.90 & 0.64 & 0.75 \\
+ imagenet-1k & ResNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ imagenet-1k & EfficientNet  & 1.07 &  \textbf{1.29} & 1.85 & 1.95 \\
+ imagenet-1k & PreResNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ imagenet-1k & ShuffleNet  & 1.07 &  1.29 & 1.85 & \textbf{1.95} \\
+ imagenet-1k & VGG  & 1.07 &  \textbf{1.29} & 1.85 & 1.95 \\
+ imagenet-1k & DLA  & 1.07 &  \textbf{1.29} & 1.85 & 1.95 \\
+ imagenet-1k & HRNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ imagenet-1k & DRN-C  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ imagenet-1k & SqueezeNext  & 1.07 &  1.29 & 1.85 & \textbf{1.95} \\
+ imagenet-1k & ESPNetv2  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ imagenet-1k & IGCV3  & 1.07 &  1.29 & 1.85 & \textbf{1.95} \\
+ imagenet-1k & ProxylessNAS  & \textbf{1.07} &  1.29 & 1.85 & 1.95 \\
+ imagenet-1k & SqueezeNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+\hline
+ cifar-10 & ResNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ cifar-10 & DIA-ResNet  & \textbf{1.07} &  1.29 & 1.85 & 1.95 \\
+ cifar-10 & SENet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+\hline
+ cifar-100 & ResNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ cifar-100 & DIA-ResNet  & \textbf{1.07} &  1.29 & 1.85 & 1.95 \\
+ cifar-100 & SENet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ cifar-100 & WRN  & 1.07 &  1.29 & 1.85 & \textbf{1.95} \\
+\hline
+ svhn & ResNet  & 1.07 &  1.29 & \textbf{1.85} & 1.95 \\
+ svhn & DIA-ResNet  & 1.07 &  \textbf{1.29} & 1.85 & 1.95 \\
+ svhn & SENet  & \textbf{1.07} &  1.29 & 1.85 & 1.95 \\
+ svhn & WRN  & 1.07 &  1.29 & 1.85 & \textbf{1.95} \\
+ svhn & ResNeXt  & 1.07 &  \textbf{1.29} & 1.85 & 1.95 \\
+\hline
+ cub-200-2011 & ResNet  & 1.07 &  \textbf{1.29} & 1.85 & 1.95 \\
+ cub-200-2011 & SENet  & \textbf{1.07} &  1.29 & 1.85 & 1.95 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{$R^{2}$ Results}
+\caption{$R^{2}$ Results for all CV model regressions.}
 \label{table:R2results}
 \end{table}
+
+
+
