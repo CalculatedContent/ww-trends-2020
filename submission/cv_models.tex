@@ -265,7 +265,7 @@ In examining hundreds of pretrained models, we have found several anamolies that
 In particular, to show that $\alpha$ does capture something different, consider the following example, which looks at a compressed/distilled DNN model~\cite{CWZZ17_TR}.
 In this example, we show that some distillation methods may actually \emph{break} models unexpectedly by introducing what we call \emph{Scale Collapse}, where several distilled layers have unexpectedly small Spectral Norms.
 
-We consider ResNet20, trained on CIFAR10, before and after applying the Group Regularization distillation technique, as implemented in the \texttt{distiller} package.\cite{distiller}
+We consider ResNet20, trained on CIFAR10, before and after applying the Group Regularization distillation technique, as implemented in the \texttt{distiller} package~\cite{distiller}.
 We analyze the pretrained 4D\_regularized\_5Lremoved baseline and fine-tuned models. 
 The reported baseline test accuracies (Top1$=91.45$ and Top5$=99.75$) are better than the reported fine-tuned test accuracies (Top1$=91.02$ and Top5$=99.67$).  Because the baseline accuracy is greater,  the previous results on ResNet (Table~\ref{table:cv-models} and Figure~\ref{fig:cv2-accuracy}) suggests that the baseline Spectral Norms should be \emph{smaller} on average than the fine-tuned ones. \emph{The oppopsite is observed.}
 %\michael{Do we have something backwards here: where we observed that the average norm to increase with decreasing test error (as it ``should'' not), whereas the average PL exponent $\alpha$ decreases (as ``expected'' from HT-SR Theory).  }
