@@ -2,7 +2,7 @@
 \label{sxn:appendix}
 
 
-In this appendix, we provide more details on several issues that are important for reproducibility of our results.
+In this appendix, we provide more details on several issues that are important for the reproducibility of our results.
 
 
 \subsection{Reproducibility Considerations}
@@ -12,12 +12,12 @@ In this appendix, we provide more details on several issues that are important f
 
 There is some ambiguity in performing spectral analysis on Conv2D layers.  
 Each layer is a 4-index tensor of dimension $(w,h,in,out)$, with an $(w\times h)$ filter (or kernel) and $(in, out)$
-channels. When $w=h=k$,  giving $(k\times k)$ tensor slices, or \emph{pre-Activation Maps} $\mathbf{W}_{i,L}$ of dimension $(in\times out)$ each. 
+channels. When $w=h=k$, it gives $(k\times k)$ tensor slices, or \emph{pre-Activation Maps} $\mathbf{W}_{i,L}$ of dimension $(in\times out)$ each. 
 %
 We identify 3 different approaches for running SVD on a Conv2D layer:
 \begin{enumerate}
-\item run SVD on each pre-Activation Map $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values
-\item stack the maps into a single matrix of, say, dimension $((k\times k\times out)\times in)$, run SVD to get $in$ singular values
+\item run SVD on each pre-Activation Map $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values;
+\item stack the maps into a single matrix of, say, dimension $((k\times k\times out)\times in)$, run SVD to get $in$ singular values;
 \item compute the 2D Fourier Transform (FFT) for each of the $(in, out)$ pairs, and run SVD on the Fourier coeffients~\cite{CNNSVD}, leading to $\sim(k\times in\times out)$ non-zero singular values.
 \end{enumerate}
 Each method has tradeoffs.  
@@ -31,7 +31,7 @@ Normalization is an important, if underappreciated, practical issue.
 Importantly, the normalization of weight matrices does \emph{not} affect the PL fits because $\alpha$ is scale-invariant.
 Norm-based metrics, however, do depend strongly on the scale of the weight matrix---that is the point.
 %\nred{Indeed, early theoretical work by Bartlett suggests that the test accuracy depends strongly on the ``total size'' of the weight matrics.}
-To apply RMT, we usually define $\mathbf{X}$ with $1/N$ normalization, assuming variance of $\sigma^{2}=1.0$.
+To apply RMT, we usually define $\mathbf{X}$ with a $1/N$ normalization, assuming variance of $\sigma^{2}=1.0$.
 %\footnote{For Heavy Tailed theorems, one typically needs a normalization such as \nred{$1/N^{\alpha-1}$. check this}}
 Pretrained DNNs are typically initialized with random weight matrices $\mathbf{W}_{0}$, with
  $\sigma^{2}\sim 1/\sqrt{N}$, or some variant, e.g., the Glorot/Xavier normalization~\cite{GloBen10}, or a $\sqrt{2/Nk^2}$ normalization for Convolutional 2D Layers. With this implicit scale, 
@@ -42,12 +42,9 @@ by $k/\sqrt{2}$ so that they are on the same scale as the Linear / Fully Connect
 
 \paragraph{Special consideration for NLP models.}
 
-NLP models, and other models with large initial embeddings require special care because the
-embedding layers frequently lack the implicit $1/\sqrt{N}$ normalization present in other layers.
-For example, in GPT, for most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$,
-but in the first embedding layer, the maximum is of order N (the number of words in the embedding), or
- $\lambda_{max}\sim\mathcal{O}(10^{5})$.  For GPT and GPT2, we treat all layers as-is (although one may to normalize
-the first 2 layers by  $\mathbf{X}$ by $1/N$, or to treat them as an outlier).
+NLP models, and other models with large initial embeddings, require special care because the embedding layers frequently lack the implicit $1/\sqrt{N}$ normalization present in other layers.
+For example, in GPT, for most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, but in the first embedding layer, the maximum eigenvalue is of order $N$ (the number of words in the embedding), or $\lambda_{max}\sim\mathcal{O}(10^{5})$.  
+For GPT and GPT2, we treat all layers as-is (although one may want to normalize the first 2 layers by  $\mathbf{X}$ by $1/N$, or to treat them as an outlier).
 
 
 \subsection{Reproducing Sections \ref{sxn:cv} and \ref{sxn:nlp} }   %% \subsection{Reproducing Sections 4 and 5}
@@ -78,7 +75,7 @@ Figure & Jupyter Notebook \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Jupyter notebooks used to reproduce all results in Sections~\ref{sxn:cv} and~\ref{sxn:nlp}}
+\caption{Jupyter notebooks used to reproduce all results in Sections~\ref{sxn:cv} and~\ref{sxn:nlp}.}
 \label{table:notebooks}
 \end{table}
 
@@ -102,11 +99,11 @@ The data generated are analyzed with \texttt{ww\_colab\_results.ipynb}, which ru
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
-We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets as there are fewer than 15 models for those datasets.  
-Also, we filter out regressions with fewer than five datapoints.
+We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets, as there are fewer than 15 models for those datasets.  
+Also, we filter out regressions with fewer than 5 datapoints.
 
 We remove the following outliers, as identified by visual inspection: \texttt{efficient\_b0,\_b2}.
-We also remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is the only example show no trends with the norm metrics.
+We also remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is the only example to show no trends with the norm metrics.
 %
 The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
@@ -200,17 +197,12 @@ At this level, the plots are quite noisy and clustered, as each architecture has
  still see that most plots show positive relationship with positive coefficients. 
 Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
  
-To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
-We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
-Plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
-The final analysis includes 108 regressions total with 4 or more models, with a positive $R^2$.
-
 \begin{table}[t]
 \footnotesize  % \small
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Dataset & Model  & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
+Dataset & Model  & $\langle\log\Vert\cdot\Vert_{F}\rangle$ & $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ \\
 \hline
  imagenet-1k & ResNet  & 5.96 &  11.03 & \textbf{3.51} & 4.01 \\
  imagenet-1k & EfficientNet  & 2.67 &  \textbf{1.23} & 2.56 & 2.50 \\
@@ -251,15 +243,12 @@ Dataset & Model  & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & 
 \end{table}
 
 
-
-
-
 \begin{table}[t]
 \footnotesize  % \small
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Dataset & Model  & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
+Dataset & Model  & $\langle\log\Vert\cdot\Vert_{F}\rangle$ & $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ \\
 \hline
 imagenet-1k & ResNet  & 0.82 &  0.67 & \textbf{0.90} & 0.88 \\
  imagenet-1k & EfficientNet  & 0.65 &  \textbf{0.84} & 0.67 & 0.67 \\
@@ -298,3 +287,10 @@ imagenet-1k & ResNet  & 0.82 &  0.67 & \textbf{0.90} & 0.88 \\
 \caption{$R^{2}$ Results for all CV model regressions. }
 \label{table:R2results}
 \end{table}
+
+To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
+We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
+See Table~\ref{table:MSEresults} and Table~\ref{table:R2results}.
+In the repo, plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
+The final analysis includes 108 regressions in all, those with 4 or more models, with a positive $R^2$.
+
