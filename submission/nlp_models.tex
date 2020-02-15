@@ -1,4 +1,4 @@
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \section{Comparison of NLP Models}
 \label{sxn:nlp}
 %\vspace{-1mm}
@@ -28,7 +28,7 @@ In contrast, PL-based metrics, including the Log $\alpha$-Norm metric ($\log\Ver
 Indeed, we can use these metrics to help indentify when archiectures need repair and when more and/or better data are needed.
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{What do large values of $\alpha$ mean?}
 
 Many NLP models, such as GPT and BERT, have some weight matrices with unusually large PL exponents (e.g., $\alpha\gg 6$).
@@ -38,7 +38,7 @@ Phenomenologically, if we examine the ESD visually, we can usually describe thes
 Previous work~\cite{MM18_TR,MM19_HTSR_ICML} has conjectured that very well-trained DNNs would not have many \emph{outlier} $\alpha>6$; and improved versions of GPT (shown below) and BERT (not shown) confirm this.
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{OpenAI GPT Models.}
 
 The OpenAI GPT and GPT2 models provide us with the opportunity to analyze two effects: training the same model with different data set sizes; and increasing the sizes of both the data set and the architectures simultaneously.
@@ -66,8 +66,8 @@ The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and G
 \begin{table}[t]
 \small
 \begin{center}
-%\begin{tabular}{|p{1in}|c|c|c|c|c|}
-\begin{tabular}{|p{0.67in}|c|c|c|c|c|}
+\begin{tabular}{|p{1in}|c|c|c|c|c|}
+%KDD% \begin{tabular}{|p{0.67in}|c|c|c|c|c|}
 \hline
  Series  & \#   & $\langle\log\Vert\mathbf{W}\Vert_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
 \hline
@@ -85,7 +85,7 @@ GPT2-xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
 \end{table}
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Average Quality Metrics for GPT and GPT2.}
 
 We have analyzed the four quality metrics described in Section~\ref{sxn:methods} for the OpenAI GPT and GPT2 pretrained models.
@@ -108,7 +108,7 @@ From this (and other results not shown), we see that $\alpha$ provides a good qu
 This should be contrasted with the behavior displayed by the Frobenius norm (not shown) and the Spectral~norm.
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Scale Collapse in Poorly Trained Models.}
 
 We next describe the behavior of the Spectral norm in GPT versus GPT2-small.
@@ -121,12 +121,15 @@ Using it as an empirical quality metric may give spurious results when applied t
 \begin{figure}[h]
     \centering
     \subfigure[PL exponent ($\alpha$)]{
-        \includegraphics[width=4.0cm]{img/GPT-alpha-hist.png}
+        %KDD% \includegraphics[width=4.0cm]{img/GPT-alpha-hist.png}
+        \includegraphics[width=5.5cm]{img/GPT-alpha-hist.png}
         \label{fig:GPT-alpha-hist}
        }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[Log Spectral Norm ($\log\Vert\mathbf{W}\Vert_{\infty}$)]{
-        \includegraphics[width=4.0cm]{img/GPT-snorm-hist.png}
+        %KDD% \includegraphics[width=4.0cm]{img/GPT-snorm-hist.png}
+        \includegraphics[width=5.5cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm-hist}
        }
    \caption{Histogram of PL exponents ($\alpha$) and Log Spectral Norms ($\log\Vert\mathbf{W}\Vert_{\infty}$) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.}
@@ -147,7 +150,7 @@ Here, we do not include them in our computed average metrics in Table~\ref{table
 
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Layer Analysis: Correlation Flow and Scale Collapse in GPT and GPT2.} 
 
 We also examine in Figure~\ref{fig:gpt-alpha-layers} the PL exponent $\alpha$ and Log Spectral Norm versus layer id, for GPT and GPT2-small.
@@ -165,11 +168,15 @@ Because of the anomalous scale collapse that is frequently observed in poorly-tr
 \begin{figure}[htb]
     \centering
     \subfigure[PL exponent ($\alpha$)]{
-        \includegraphics[width=4.0cm]{img/GPT-alpha-depth.png}
+        %KDD% \includegraphics[width=4.0cm]{img/GPT-alpha-depth.png}
+        \includegraphics[width=5.5cm]{img/GPT-alpha-depth.png}
         \label{fig:gpt-alpha-layer}
     }
+    %KDD% 
+    \quad
     \subfigure[Log Spectral Norm ($\log\Vert\mathbf{W}\Vert_{\infty}$)]{
-        \includegraphics[width=4.0cm]{img/GPT-snorm-depth.png}
+        %KDD% \includegraphics[width=4.0cm]{img/GPT-snorm-depth.png}
+        \includegraphics[width=5.5cm]{img/GPT-snorm-depth.png}
         \label{fig:gpt-snorm-layer}
     }
     \caption{PL exponents ($\alpha$) (in (a)) and Log Spectral Norms ($\log\Vert\mathbf{W}\Vert_{\infty}$) (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.  (Note that the Y axes on each plot are different.)
@@ -179,7 +186,7 @@ Because of the anomalous scale collapse that is frequently observed in poorly-tr
 \end{figure}
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{GPT2: medium, large, xl.} 
 
 We now look across series of increasingly improving GPT2 models (i.e., we consider good-better-best questions), by examining both the PL exponent $\alpha$ as well as the Log Norm metrics.  
@@ -198,11 +205,15 @@ We suspect this indicates that these larger GPT2 models are still under-optimize
     \centering
 
     \subfigure[PL exponent ($\alpha$)]{
-        \includegraphics[width=4.0cm]{img/GPT2*_fnl_alpha_hist.png}
+        %KDD% \includegraphics[width=4.0cm]{img/GPT2*_fnl_alpha_hist.png}
+        \includegraphics[width=5.5cm]{img/GPT2*_fnl_alpha_hist.png}
         \label{fig:gpt2-alpha-hist}
     }
+    %KDD% 
+    \quad
     \subfigure[Log Alpha Norm]{
-        \includegraphics[width=4.0cm]{img/GPT2*_fnl_logpnorm_hist.png}
+        %KDD% \includegraphics[width=4.0cm]{img/GPT2*_fnl_logpnorm_hist.png}
+        \includegraphics[width=5.5cm]{img/GPT2*_fnl_logpnorm_hist.png}
         \label{fig:gpt2-pnorm-hist}
     }
     \caption{Histogram of PL exponents ($\alpha$)

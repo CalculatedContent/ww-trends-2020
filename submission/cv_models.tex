@@ -1,4 +1,4 @@
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \section{Comparison of CV models}
 \label{sxn:cv}
 %\vspace{-1mm}
@@ -11,7 +11,7 @@ We perform \emph{coarse model analysis}, comparing and contrasting the four mode
 We also perform \emph{fine layer analysis}, as a function of depth for these models, illustrating that PL-based metrics can provide novel insights among the VGG, ResNet/ResNet-1K, and DenseNet architectures. 
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
 We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
@@ -25,26 +25,29 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 \begin{figure}[t]
     \centering
     \subfigure[Log Frobenius Norm, VGG ]{
-        %\includegraphics[width=5cm]{img/VGG_lognorm_accs.png}
-        \includegraphics[width=4.0cm]{img/VGG_lognorm_accs.png}
+        \includegraphics[width=4.9cm]{img/VGG_lognorm_accs.png}
+        %KDD% \includegraphics[width=4.0cm]{img/VGG_lognorm_accs.png}
         \label{fig:vgg-fnorm}
     }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[Log Spectral Norm, VGG ]{
-        %\includegraphics[width=4.9cm]{img/VGG_spectralnorm_accs.png}
-        \includegraphics[width=4.0cm]{img/VGG_spectralnorm_accs.png}
+        \includegraphics[width=4.9cm]{img/VGG_spectralnorm_accs.png}
+        %KDD% \includegraphics[width=4.0cm]{img/VGG_spectralnorm_accs.png}
         \label{fig:vgg-snorm}
     }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[ Weighted Alpha, VGG ]{
-        %\includegraphics[width=4.9cm]{img/VGG_alpha_weighted_accs.png}
-        \includegraphics[width=4.0cm]{img/VGG_alpha_weighted_accs.png}
+        \includegraphics[width=4.9cm]{img/VGG_alpha_weighted_accs.png}
+        %KDD% \includegraphics[width=4.0cm]{img/VGG_alpha_weighted_accs.png}
         \label{fig:vgg-walpha}
     }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[Log $\alpha$-Norm, VGG ]{
-        %\includegraphics[width=4.9cm]{img/VGG_logpnorm_accs.png}
-        \includegraphics[width=4.0cm]{img/VGG_logpnorm_accs.png}
+        \includegraphics[width=4.9cm]{img/VGG_logpnorm_accs.png}
+        %KDD% \includegraphics[width=4.0cm]{img/VGG_logpnorm_accs.png}
         \label{fig:vgg-pnorm}
     }
     \caption{Comparison of Average Log Norm and Weighted Alpha quality metrics versus reported test accuracy for pretrained VGG models (with and without BN), trained on ImageNet, available in pyTorch (v1.x).  Metrics fit by linear regression, RMSE reported. }
@@ -56,14 +59,15 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
     \centering
 
     \subfigure[ ResNet, Log $\alpha$-Norm ]{
-        %\includegraphics[width=4.2cm]{img/ResNet_logpnorm_accs.png}
-        \includegraphics[width=4.0cm]{img/ResNet_logpnorm_accs.png}
+        \includegraphics[width=4.9cm]{img/ResNet_logpnorm_accs.png}
+        %KDD% \includegraphics[width=4.0cm]{img/ResNet_logpnorm_accs.png}
         \label{fig:resnet-accuracy}
     }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[ ResNet-1K, Log $\alpha$-Norm ]{
-        %\includegraphics[width=4.5cm]{img/ResNet-1K_logpnorm_accs.png}
-        \includegraphics[width=4.0cm]{img/ResNet-1K_logpnorm_accs.png}
+        \includegraphics[width=4.9cm]{img/ResNet-1K_logpnorm_accs.png}
+        %KDD% \includegraphics[width=4.0cm]{img/ResNet-1K_logpnorm_accs.png}
         \label{fig:resnet1k-accuracy}
     }
     %\qquad
@@ -96,8 +100,8 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 \begin{table}[t]
 \small
 \begin{center}
-%\begin{tabular}{|p{1in}|c|c|c|c|c|}
-\begin{tabular}{|p{0.65in}|c|c|c|c|c|}
+\begin{tabular}{|p{1in}|c|c|c|c|c|}
+%KDD% \begin{tabular}{|p{0.65in}|c|c|c|c|c|}
 %\begin{tabular}{|l|c|c|c|c|c|}
 \hline
  Series    &\#   & $\langle\log\Vert\mathbf{W}\Vert_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
@@ -128,7 +132,7 @@ In our larger analysis, in Section~\ref{sxn:all_cv_models}, we will only include
 (Note that these and many other such plots can be seen on our publicly-available~repo.)
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Variation in Data Set Size.}
 
 We are interested in how our four quality metrics depend on data set size.
@@ -142,7 +146,7 @@ The ResNet series has strong correlation, with an RMSE of $0.66$, whereas the Re
 As expected, the higher quality data set shows a better fit, even with fewer data~points.
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Layer Analysis: Metrics as a Function of Depth.}
 
 We can learn much more about a pretrained model by going beyond average values of quality metrics to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  % in the network. 
@@ -159,24 +163,29 @@ See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (
     \centering
 
     \subfigure[ VGG ]{
-        %\includegraphics[width=4.5cm]{img/VGG_fnl_alpha_depth.png} 
-        \includegraphics[width=4.0cm]{img/VGG_fnl_alpha_depth.png} 
+        \includegraphics[width=4.9cm]{img/VGG_fnl_alpha_depth.png} 
+        %KDD% \includegraphics[width=4.0cm]{img/VGG_fnl_alpha_depth.png} 
                 \label{fig:vgg-alpha-layers}
     }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[ ResNet-1K ]{
-        %\includegraphics[width=4.5cm]{img/ResNet_fnl_alpha_depth.png} 
-        \includegraphics[width=4.0cm]{img/ResNet_fnl_alpha_depth.png} 
+        \includegraphics[width=4.9cm]{img/ResNet_fnl_alpha_depth.png} 
+        %KDD% \includegraphics[width=4.0cm]{img/ResNet_fnl_alpha_depth.png} 
         \label{fig:resnet-alpha-layer}
     }
-    %\qquad
+    %KDD% 
+    \qquad
     \subfigure[ DenseNet ]{
-        %\includegraphics[width=4.5cm]{img/DenseNet_fnl_alpha_depth.png} 
-        \includegraphics[width=4.0cm]{img/DenseNet_fnl_alpha_depth.png} 
+        \includegraphics[width=4.9cm]{img/DenseNet_fnl_alpha_depth.png} 
+        %KDD% \includegraphics[width=4.0cm]{img/DenseNet_fnl_alpha_depth.png} 
         \label{fig:densenet-alpha-layer}
-    
-}    \subfigure[ ResNet-1K (overlaid) ]{
-        \includegraphics[width=4.0cm]{img/resnet_alpha_overlaid_depth.png} 
+    }    
+    %KDD% 
+    \qquad
+    \subfigure[ ResNet-1K (overlaid) ]{
+        \includegraphics[width=4.9cm]{img/resnet_alpha_overlaid_depth.png} 
+        %KDD% \includegraphics[width=4.0cm]{img/resnet_alpha_overlaid_depth.png} 
         \label{fig:resnet_alpha_overlaid_depth}
     }
     \caption{PL exponent ($\alpha$) versus layer id, for the least and the most accurate models in VGG (a), ResNet (b), and DenseNet (c) series. 
@@ -210,7 +219,7 @@ While this is similar to what is seen in the VGG models, with the DenseNet model
 %The empirical manifestations of this (on weight matrices) are that fitted $\alpha$ values get much worse for deeper layers.
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Comparison of VGG, ResNet, and DenseNet Architectures.}
 We can interpret these observations by recalling the architectural differences between the VGG, ResNet, and DenseNet architectures,
 and, in particular, the number of of residual connections. VGG resembles the  traditional convolutional architectures,
@@ -224,7 +233,7 @@ Contrast this with the DenseNet models, which contains many connections between 
 Our results (large $\alpha$, meaning they even a PL model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly optimized.
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Correlation Flow.}
 
 More generally, we can understand the results presented in Figure~\ref{fig:3models-alpha-layers} in terms of what we will call the \emph{Correlation Flow} of the model. 
@@ -243,16 +252,15 @@ We have seen this in many models, including those shown in Figure~\ref{fig:3mode
 \begin{figure}[t]
    \centering
    \subfigure[$\lambda_{max}$ for ResNet20 layers]{
-      %\includegraphics[scale=0.14]{img/resnet4d_maxev.png}
-      \includegraphics[width=4.0cm]{img/resnet4d_maxev.png}
-      %\includegraphics[width=4.5cm]{img/resnet4d_maxev.png}
+      %KDD% \includegraphics[width=4.0cm]{img/resnet4d_maxev.png}
+      \includegraphics[width=4.9cm]{img/resnet4d_maxev.png}
       \label{fig:resnet204Dmaxev}
    }
-   %\qquad
+   %KDD% 
+   \qquad
    \subfigure[$\alpha$ for ResNet20 layers]{
-      %\includegraphics[scale=0.14]{img/resnet4d_alphas.png}
-      \includegraphics[width=4.0cm]{img/resnet4d_alphas.png}
-      %\includegraphics[width=4.5cm]{img/resnet4d_alphas.png}
+      %KDD% \includegraphics[width=4.0cm]{img/resnet4d_alphas.png}
+      \includegraphics[width=4.9cm]{img/resnet4d_alphas.png}
       \label{fig:resnet204Dalpha}
    }
    \caption{%Correlation Flow.
@@ -263,7 +271,7 @@ We have seen this in many models, including those shown in Figure~\ref{fig:3mode
 \end{figure}
 
 
-\vspace{-1mm}
+%KDD% \vspace{-1mm}
 \paragraph{Scale Collapse; or How Distillation May Break Models.}
 
 The similarity between norm-based metrics and PL-based metrics suggests a question: is the Weighted Alpha metric just a variation of the more familiar norm-based metrics?  %%, or does it capture something different?  
