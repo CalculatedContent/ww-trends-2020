@@ -48,7 +48,7 @@ Later, OpenAI released a much improved model, GPT2-small, which has the same arc
 %
 By comparing the poorly-trained (i.e., ``bad'') GPT to the well-trained (i.e., ``good'') GPT2-small, we can indentify empirical indicators for when a model has in fact been poorly-trained and thus may perform poorly when deployed.
 By comparing GPT2-medium to GPT2-large to GPT2-xl, we can examine the effect of increasing data set and model size simultaneously,
-or what we call a series of ``good-better-best'' models.
+an example of what we call a series of ``good-better-best'' models.
 
 The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{huggingface}.
 GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ layer Weight Matrices, $\mathbf{W}$.
@@ -60,7 +60,7 @@ This gives $50$ large matrices.
 Because GPT and GPT2 are trained on different data sets, the initial Embedding matrices differ in shape.
 GPT has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
 %
-The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl, having $12, 24, 36, \text{and } 48$ layers, respectively, with increasingly larger weight matrices.
+The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl, having $12$, $24$, $36$, and $48$ layers, respectively, with increasingly larger weight matrices.
 %The model card for GPT2 is published on github.\footnote{\url{https://github.com/openai/gpt-2/blob/master/model_card.md}}.
 
 
@@ -103,7 +103,8 @@ Going beyond average values, Figure~\ref{fig:GPT-alpha-hist} shows the histogram
 These two histograms are very different.
 The older deficient GPT has numerous unsually large $\alpha$ exponents---meaning they are not really well-described by a PL fit.
 Indeed, we expect that a poorly-trained model will lack good (i.e., small $\alpha$) PL behavior in many/most layers.
-On the other hand, as expected, the newer improved GPT2-small model has, on average, smaller $\alpha$ values than the older GPT, with all $\alpha\le6$ and with smaller mean/median $\alpha$, and it also has far fewer unusually-large outlying $\alpha$ values than GPT.
+On the other hand, as expected, the newer improved GPT2-small model has, on average, smaller $\alpha$ values than the older GPT, with all $\alpha\le6$ and with smaller mean/median $\alpha$.
+It also has far fewer unusually-large outlying $\alpha$ values than GPT.
 From this (and other results not shown), we see that $\alpha$ provides a good quality metric for comparing these two models, the ``bad'' GPT versus the ``good'' GPT2-small.
 %
 This should be contrasted with the behavior displayed by the Frobenius norm (not shown) and the Spectral~norm.
@@ -115,7 +116,7 @@ This should be contrasted with the behavior displayed by the Frobenius norm (not
 We next describe the behavior of the Spectral norm in GPT versus GPT2-small.
 In Figure~\ref{fig:GPT-snorm-hist}, the ``bad'' GPT model has a smaller mean/median Spectral norm as well as, spuriously, many much smaller Spectral norms, compared to the ``good'' GPT2-small, violating the conventional wisdom that smaller Spectral norms are better.
 Indeed, because there are so many anonymously small Spectral norms, it appears that the GPT model may be exhibiting a kind of \emph{Scale Collapse}, like that observed in the distilled CV models (in Figure~\ref{fig:resnet204D5L}).
-This is important because it demonstrates that, while the Spectral norm may correlate well with predicted test error, it is \emph{not} a good indicator of the overall model quality.
+This is important because it demonstrates that, while the Spectral (or Frobenius) norm may correlate well with predicted test error, it is \emph{not} a good indicator of the overall model quality.
 It can mispredict good-versus-bad questions in ways not seen with PL-based metrics.
 Using it as an empirical quality metric may give spurious results when applied to poorly-trained or otherwise deficient models. 
 
@@ -158,7 +159,8 @@ We also examine in Figure~\ref{fig:gpt-alpha-layers} the PL exponent $\alpha$ an
 Let's start with Figure~\ref{fig:gpt-alpha-layer}, which plots $\alpha$ versus the depth (i.e., layer id) for each model.
 The deficient GPT model displays two trends in $\alpha$, one stable with $\alpha\sim 4$, and one increasing with layer id, with $\alpha$ reaching as high as $12$.
 In contrast, the well-trained GPT2-small model shows consistant and stable patterns, again with one stable $\alpha\sim 3.5$ (and below the GPT trend), and the other only slightly trending up, with $\alpha\le 6$. 
-The scale-invariant $\alpha$ metric lets us identify potentially poorly-trained models; and these results show that the Correlation Flow differs significantly between GPT and GPT2-small (with the better GPT2-small looking more like the better ResNet-1K from Figure~\ref{fig:resnet-alpha-layer}).
+The scale-invariant $\alpha$ metric lets us identify potentially poorly-trained models.
+These results show that the Correlation Flow differs significantly between GPT and GPT2-small (with the better GPT2-small looking more like the better ResNet-1K from Figure~\ref{fig:resnet-alpha-layer}).
 
 These results should be contrasted with the corresponding results for Spectral Norms, shown in Figure~\ref{fig:gpt-snorm-layer}.
 Attention models have two types of layers, one small and large; and the Spectral Norm, in particular, displays unusually small values for some of these layers for GPT.
@@ -180,7 +182,7 @@ Because of the anomalous scale collapse that is frequently observed in poorly-tr
         \includegraphics[width=5.5cm]{img/GPT-snorm-depth.png}
         \label{fig:gpt-snorm-layer}
     }
-    \caption{PL exponents ($\alpha$) (in (a)) and Log Spectral Norms ($\log\Vert\mathbf{W}\Vert_{\infty}$) (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.  (Note that the Y axes on each plot are different.)
+    \caption{PL exponents ($\alpha$) (in (a)) and Log Spectral Norms ($\log\Vert\mathbf{W}\Vert_{\infty}$) (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.  (Note that the quantities being shown on each Y axis are different.)
              In the text, this is interpreted in terms of \emph{Correlation Flow} and \emph{Scale~Collapse}.
             }
     \label{fig:gpt-alpha-layers}
@@ -192,7 +194,7 @@ Because of the anomalous scale collapse that is frequently observed in poorly-tr
 
 We now look across series of increasingly improving GPT2 models (i.e., we consider good-better-best questions), by examining both the PL exponent $\alpha$ as well as the Log Norm metrics.  
 In general, as we move from GPT2-medium to GPT2-xl, histograms for both $\alpha$ exponents and the Log Norm metrics downshift from larger to smaller values. 
-For example, see Figure \ref{fig:gpt2-histograms}, which shows the histograms over the layer weight matrics for fitted PL exponent ($\alpha$) and the Log Alpha Norm ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$)~metric.
+For example, see Figure \ref{fig:gpt2-histograms}, which shows the histograms over the layer weight matrices for fitted PL exponent ($\alpha$) and the Log Alpha Norm ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$)~metric.
 
 We see that the average $\alpha$ decreases with increasing model size, although the differences are less noticible between the differing good-better-best GTP2 models than between the good-versus-bad GPT and GPT2-small models.
 Unlike GPT, however, the layer Log Alpha Norms behave more as expected for GPT2 layers, with the larger models consistently having smaller norms. 

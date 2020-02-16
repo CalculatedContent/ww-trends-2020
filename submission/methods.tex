@@ -19,7 +19,7 @@ The models have been trained and evaluated on labeled data $\{d_{i},y_{i}\}\in\m
 The pretained pytroch model files are publicly-available, and the test accuracies have been reported online.  
 In this study, we do not have access to this data, and we have not trained any of the models ourselves,
 nor have we re-evaluated the test accuracies.
-We expect that most well-trained, production-quality models will employ one or more forms of on regularization, such as Batch Normalization (BN), Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
+We expect that most well-trained, production-quality models will employ one or more forms of regularization, such as Batch Normalization (BN), Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
 Here, we will ignore these details, and will focus only on the pretrained layer weight matrices $\mathbf{W}_{l}$.
 
 
@@ -27,7 +27,7 @@ Here, we will ignore these details, and will focus only on the pretrained layer 
 \paragraph{DNN Empirical Quality Metrics.}
 
 The best performing empirical quality metrics depend on the norms and/or spectral properties of each weight matrix,
-$\mathbf{W}$ and/or, equivalently, it's \emph{Empirical Correlation Matrix}: $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$ .%
+$\mathbf{W}$, and/or, equivalently, it's \emph{Empirical Correlation Matrix}: $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.%
 
 Here, we consider the following metrics.
 
@@ -44,7 +44,7 @@ $\alpha$-Norm (or $\alpha$-Shatten Norm):%
  $\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}=\sum_{i=1}^{M}\lambda_{i}^{\alpha}$
 \end{itemize}
 Here, $\lambda_{i}$ is the $i^{th}$ eigenvalue of the $\mathbf{X}$, and $\lambda_{max}$ is the maximum eigenvalue.
-Recall that the eigenvalues are square of the singular values $\sigma_{i}$ of $\mathbf{W}$: $\lambda_{i}=\sigma^{2}_{i}$.
+Recall that the eigenvalues are squares of the singular values $\sigma_{i}$ of $\mathbf{W}$: $\lambda_{i}=\sigma^{2}_{i}$.
 Also, note that we do \emph{not} normalize $\mathbf{X}$ by $1/N$; see Appendix~\ref{sxn:appendix} for a discussion of this issue.
 
 The first two norms are well-known in ML; the last two deserve special mention.
@@ -57,7 +57,7 @@ Operationally, $\alpha$ is determined by using the publicly-available \emph{Weig
 Each of these quantities is defined for a given layer $\mathbf{W}$ matrix.
 
 For norm-based metrics, we use the average of the log norm, and to the appropriate power.
-Informallly, this amounts to assuming that the layer weight matrices are statistically independent, in which case we can estimate the model complexity $\mathcal{C}$, or test accuracy, with a standard Product Norm (which resembles a data dependent VC complexity),
+Informally, this amounts to assuming that the layer weight matrices are statistically independent, in which case we can estimate the model complexity $\mathcal{C}$, or test accuracy, with a standard Product Norm (which resembles a data dependent VC complexity),
 \begin{equation}
 \mathcal{C}\sim\Vert\mathbf{W}_{1}\Vert\times\Vert\mathbf{W}_{2}\Vert \times \cdots \times \Vert\mathbf{W}_{L}\Vert ,
 \end{equation}
