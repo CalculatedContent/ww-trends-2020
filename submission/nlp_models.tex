@@ -35,7 +35,7 @@ Many NLP models, such as GPT and BERT, have some weight matrices with unusually 
 This indicates these matrices may be \emph{under}-correlated (i.e., over-parameterized, relative to the amount of data).
 In this regime, the truncated PL fit itself may not be very reliable because the MLE estimator it uses is unreliable in this range (i.e., the specific $\alpha$ values returned by the truncated PL fits are less reliable, but having large versus small values of $\alpha$ is reliable).
 Phenomenologically, if we examine the ESD visually, we can usually describe these $\mathbf{W}$ as in the \emph{Bulk-Decay} or \emph{Bulk-plus-Spikes} phase~\cite{MM18_TR,MM19_HTSR_ICML}.
-Previous work~\cite{MM18_TR,MM19_HTSR_ICML} has conjectured that very well-trained DNNs would not have many \emph{outlier} $\alpha>6$; and improved versions of GPT (shown below) and BERT (not shown) confirm this.
+Previous work~\cite{MM18_TR,MM19_HTSR_ICML} has conjectured that very well-trained DNNs would not have many \emph{outlier} $\alpha\gg 6$; and improved versions of GPT (shown below) and BERT (not shown) confirm this.
 
 
 %KDD% \vspace{-1mm}
@@ -46,8 +46,9 @@ These models have the remarkable ability to generate fake text that appears to t
 For this reason, the original GPT model released by OpenAI was trained on a deficient data set, rendering the model interesting but not fully functional.  
 Later, OpenAI released a much improved model, GPT2-small, which has the same architecture and number of layers as GPT, but which has been trained on a larger and better data set (and with other changes), making it remarkably good at generating (near) human-quality fake text.  
 %
-By comparing the poorly-trained (i.e., ``bad'') GPT to the well-trained (i.e., ``good'') GPT2, we can indentify empirical indidcators for when a model has in fact been poorly-trained and thus may perform poorly when deployed.
-By comparing GPT2-medium to GPT2-large to GPT2-xl, we can examine the effect of increasing data set and model size simultaneously.
+By comparing the poorly-trained (i.e., ``bad'') GPT to the well-trained (i.e., ``good'') GPT2-small, we can indentify empirical indicators for when a model has in fact been poorly-trained and thus may perform poorly when deployed.
+By comparing GPT2-medium to GPT2-large to GPT2-xl, we can examine the effect of increasing data set and model size simultaneously,
+or what we call a series of ``good-better-best'' models.
 
 The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{huggingface}.
 GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ layer Weight Matrices, $\mathbf{W}$.
@@ -138,7 +139,7 @@ Using it as an empirical quality metric may give spurious results when applied t
 \end{figure}
 
 
-Note that Figure~\ref{fig:GPT-snorm-hist} also shows some unusually large Spectral Norms.
+(Note that Figure~\ref{fig:GPT-snorm-hist} also shows some unusually large Spectral Norms.
 Upon examination, e.g., from Figure \ref{fig:gpt-snorm-layer} (below), we see that these correspond to the first embedding layer(s).
 %That is, they correspond to the change in normalization of the word embedding layer(s), and thus they can be ignored.
 These layers have a different effective normalization, and therefore a different scale.
@@ -146,7 +147,7 @@ These layers have a different effective normalization, and therefore a different
 % For example, in GPT, for most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, but in the first embedding layer, the maximum is of order $N$ (the number of words in the embedding), or $\lambda_{max}\sim\mathcal{O}(10^{5})$.  
 % For GPT and GPT2, we treat all layers as-is (although one may want to normalize the first 2 layers by $\mathbf{X}$ by $1/N$ or treat them as an outlier).
 We discuss this further in Appendix~\ref{sxn:appendix}.
-Here, we do not include them in our computed average metrics in Table~\ref{table:nlp}, and we do not include them in the histogram plot in Figure~\ref{fig:GPT-snorm-hist}.
+Here, we do not include them in our computed average metrics in Table~\ref{table:nlp}, and we do not include them in the histogram plot in Figure~\ref{fig:GPT-snorm-hist}.)
 
 
 

@@ -37,13 +37,12 @@ $MSE$ (std)    & 8.69 & 23.06 &          5.14 & \textbf{5.00} \\
 \end{table}
 
 
-We choose simple linear regression to analyze the relationship between quality metrics (computed with the \emph{WeightWatcher} tool) 
-and traditional accuracy metrics (publicly-reported from a test set).
-% (we avoid polynomial regressions as they are more prone to overfitting and does not make economic sense).                            
+We choose ordinary linear regression (OLS) to quantity the relationship between quality metrics (computed with the \emph{WeightWatcher} tool) 
+and the reported test error and/or accuracy metrics.
 We regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).
 These include Top5 errors for the ImageNet-1K model, percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy
 (Pix.Acc.) and Intersection-Over-Union (IOU) for other models.
-We regress them individually on each of the norm-based and PL-based metrics, as described above.
+We regress them individually on each of the norm-based and PL-based metrics, as described in Section~\ref{sxn:cv}.
 
 Our results are summarized in Table~\ref{table:results}.
 For the mean, larger $R^{2}$ and smaller $MSE$ are desirable; and for the standard deviation, smaller values are desirable.

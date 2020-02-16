@@ -123,7 +123,8 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, and DenseNet series.
 Similar results (not shown) are obtained for the Top5 accuracies.
 Overall, for the the ResNet, ResNet-1K, and DenseNet series, all metrics perform relatively well, the Log $\alpha$-Norm metric performs second best, and the Weighted Alpha metric performs best.
-These model series are all well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among ``good-better-best'' models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
+These model series are all well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among
+a series of ``good-better-best'' models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
 
 The DenseNet series has similar behavior to what we see in Figures~\ref{fig:vgg-metrics} and~\ref{fig:cv2-accuracy} for the other models.
 However, as noted in Table~\ref{table:cv-models}, it has only 4 data points.  
@@ -240,7 +241,7 @@ More generally, we can understand the results presented in Figure~\ref{fig:3mode
 Recall that the average Log $\alpha$-Norm metric and the Weighted Alpha metric are based on HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}, which is in turn based on ideas from the statisical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017}. 
 There, one expects the weight matrices of well-trained DNNs will exhibit correlations over many size scales. 
 Their ESDs can be well-fit by a (truncated) PL, with exponents $\alpha\in[2,4]$.
-Much larger values $(\alpha\gg 5\;\mbox{or}\;6)$ may reflect poorer PL fits, whereas smaller values $(\alpha\sim 2)$, are associated with models that generalize better.
+Much larger values $(\alpha\gg 6)$ may reflect poorer PL fits, whereas smaller values $(\alpha\sim 2)$, are associated with models that generalize better.
 %, but the presence of many adjacent layers with relatively good PL fits \emph{suggests} that those adjacent layers ``impedance match'' well and that the correlations that are captured by one layer propagate well to subsequent layers.
 Informally, one would expect a DNN model to perform well when it fascilitates the propagation of information/features across layers.
 Previous work argues this by computing the gradients over the input data.
@@ -292,8 +293,8 @@ On the other hand, the $\alpha$ values (in Figure~\ref{fig:resnet204Dalpha}) do 
 %\michael{Some comment about big jump in norm; but fix previous backwards question first.}--SEE BELOW
 Also (not shown), the average (unweighted) baseline $\alpha$ is \emph{smaller} than the fine-tuned average (as predicted by HT-SR Theory, the basis of $\hat{\alpha}$).
 
-(That being said, Figure~\ref{fig:resnet204Dalpha} also depcits two very large $\alpha\gg 6$ values for the baseline, but not for the fine-tuned, model.
-This suggests the baseline model has at least two over-parameterized/under-trained layers, and that the distillation method does, in fact, improve the fine-tuned model by compressing these layers.)
+That being said, Figure~\ref{fig:resnet204Dalpha} also depcits two very large $\alpha\gg 6$ values for the baseline, but not for the fine-tuned, model.
+This suggests the baseline model has at least two over-parameterized/under-trained layers, and that the distillation method does, in fact, improve the fine-tuned model by compressing these layers.
 
 The pretrained models in the \texttt{distiller} package have passed some quality metric, but they are much less well trodden than any of the 
 VGG, ResNet, or DenseNet series.  %% we considered above.
@@ -303,7 +304,7 @@ The reason for the anomalous behavior shown in
 Figure~\ref{fig:resnet204D5L}
 is that the \texttt{distiller} Group Regularization technique 
 %%has the unusual effect of increasing
-spuriously increases the norms of the $\mathbf{W}$ pre-activation maps for at least two of the Conv2D layers.
+causes the norms of the $\mathbf{W}$ pre-activation maps for two Conv2D layers to spuriously increase.
 This is difficult to diagnose by analyzing training/test curves, but it is easy to diagnose with our approach.
 
 

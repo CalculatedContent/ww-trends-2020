@@ -51,9 +51,9 @@ The first two norms are well-known in ML; the last two deserve special mention.
 The empirical parameter $\alpha$ is the Power Law (PL) exponent that arises in the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
 Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
-\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}  ,
+\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}.
 \end{equation}
-where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
+%where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
 Each of these quantities is defined for a given layer $\mathbf{W}$ matrix.
 
 For norm-based metrics, we use the average of the log norm, and to the appropriate power.
@@ -97,7 +97,7 @@ To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\
 We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  
 (Technically, we also need the minimum eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
 The PL exponent $\alpha$ measures of the amount of correlation in a DNN layer weight matrix $\mathbf{W}$. 
-It is valid for $\lambda<\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
+It is valid for $\lambda\le\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
 The $\lambda_{max}$ is a measure of the size, or scale, of $\mathbf{W}$.
 %
 Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigger'' layers more, and averaging this product leads to a balanced, Weighted Alpha metric for the entire~DNN.
