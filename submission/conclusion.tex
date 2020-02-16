@@ -1,4 +1,5 @@
-%KDD% \vspace{-1mm}
+%KDD% 
+\vspace{-1mm}
 \section{Conclusion}
 \label{sxn:conc}
 %\vspace{-1mm}
@@ -6,7 +7,7 @@
 We have developed (based on strong theory) and evaluated (on a large corpus of publicly-available pretrained models from CV and NLP) methods to predict trends in the quality of state-of-the-art neural networks---without access to training or testing data.
 Prior to our work, it was not obvious that norm-based metrics would perform well to predict trends in quality \emph{across} models (as they are usually used \emph{within} a given model or parameterized model class, e.g., to bound generalization error or to construct regularizers).
 Our results are the first to demonstrate that they can be used for this important practical problem.
-That PL-based metrics perform better (than norm-based metrics) should not be surprising---at least to those familiar with the statisical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017} (since our use of PL exponents is designed to capture the idea that well-trained models capture correlations over many size scales in the data).
+That PL-based metrics perform better (than norm-based metrics) should not be surprising---at least to those familiar with the statistical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017} (since our use of PL exponents is designed to capture the idea that well-trained models capture correlations over many size scales in the data).
 Again, though, our results are the first to demonstrate this.
 It is also gratifying that our approach can be used to provide fine-scale insight (such as rationalizing the flow of correlations or the collapse of size scale) throughout a network. 
 
@@ -17,6 +18,6 @@ To do so, we distinguish between two types of theories:
 A drawback of the former approach is that it typically makes very strong assumptions on the data, and the strength of those assumptions can limit the practical applicability of the theory.
 Nearly all of the work on the theory of DNNs focuses on the former type of theory.
 Our approach focuses on the latter type of theory.
-Our results, which are based on our \emph{use} of sophisticated statistical mechanics theory to solve important practical DNN problems, suggests that our approach should be of interest more generally for those interested in developing a practical DNN theory.
+Our results, which are based on \emph{using} sophisticated statistical mechanics theory and \emph{solving} important practical DNN problems, suggests that the latter approach should be of interest more generally for those interested in developing a \emph{practical DNN~theory}.
 
 

@@ -3,6 +3,9 @@
 
 
 In this appendix, we provide more details on several issues that are important for the reproducibility of our results.
+%
+All of our computations were performed with the \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package}.
+More details and more results are available in an accompanying github repository~\cite{kdd20_sub_repo}.
 
 
 \subsection{Reproducibility Considerations}
@@ -17,8 +20,8 @@ channels. When $w=h=k$, it gives $(k\times k)$ tensor slices, or \emph{pre-Activ
 We identify 3 different approaches for running SVD on a Conv2D layer:
 \begin{enumerate}
 \item run SVD on each pre-Activation Map $\mathbf{W}_{i,L}$, yielding $(k\times k)$ sets of $M$ singular values;
-\item stack the maps into a single matrix of, say, dimension $((k\times k\times out)\times in)$, run SVD to get $in$ singular values;
-\item compute the 2D Fourier Transform (FFT) for each of the $(in, out)$ pairs, and run SVD on the Fourier coeffients~\cite{CNNSVD}, leading to $\sim(k\times in\times out)$ non-zero singular values.
+\item stack the maps into a single matrix of, say, dimension $((k\times k\times out)\times in)$, and run SVD to get $in$ singular values;
+\item compute the 2D Fourier Transform (FFT) for each of the $(in, out)$ pairs, and run SVD on the Fourier coefficients~\cite{CNNSVD}, leading to $\sim(k\times in\times out)$ non-zero singular values.
 \end{enumerate}
 Each method has tradeoffs.  
 Method (3) is mathematically sound, but computationally expensive. Method (2) is ambiguous.
@@ -44,15 +47,15 @@ by $k/\sqrt{2}$ so that they are on the same scale as the Linear / Fully Connect
 
 NLP models, and other models with large initial embeddings, require special care because the embedding layers frequently lack the implicit $1/\sqrt{N}$ normalization present in other layers.
 For example, in GPT, for most layers, the maximum eigenvalue $\lambda_{max}\sim\mathcal{O}(10-100)$, but in the first embedding layer, the maximum eigenvalue is of order $N$ (the number of words in the embedding), or $\lambda_{max}\sim\mathcal{O}(10^{5})$.  
-For GPT and GPT2, we treat all layers as-is (although one may want to normalize the first 2 layers by  $\mathbf{X}$ by $1/N$, or to treat them as an outlier).
+For GPT and GPT2, we treat all layers as-is (although one may want to normalize the first 2 layers $\mathbf{X}$ by $1/N$, or to treat them as outliers).
 
 
 \subsection{Reproducing Sections \ref{sxn:cv} and \ref{sxn:nlp} }   %% \subsection{Reproducing Sections 4 and 5}
 
-We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results (as well as many other results).
-All results have been produced using the \emph{WeightWatcher} tool (v0.2.7).
+We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results (as well as many other results)~\cite{kdd20_sub_repo}.
+All results have been produced using the \emph{WeightWatcher} tool (v0.2.7)~\cite{weightwatcher_package}.
 The ImageNet and OpenAI GPT pretrained models are provided in the current 
-pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions, as specified in the \texttt{requirements.txt} file. 
+pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions, as specified in the \texttt{requirements.txt}~file. 
 
 \begin{table}[t]
 \small
@@ -83,8 +86,7 @@ Figure & Jupyter Notebook \\
 \subsection{Reproducing Figure~\ref{fig:resnet204D5L}, for the Distiller Model}
 
 In the \texttt{distiller} folder of our github repo, 
-we provide the orginal Jupyter Notebooks, which use the Intel \texttt{distiller} framework.%
-\footnote{\url{https://nervanasystems.github.io/distiller}} 
+we provide the original Jupyter Notebooks, which use the Intel \texttt{distiller} framework~\cite{distiller}.   % \footnote{\url{https://nervanasystems.github.io/distiller}} 
 Figure~\ref{fig:resnet204D5L} is from the  \texttt{``...-Distiller-ResNet20.ipynb''} notebook (see Table~\ref{table:notebooks}).  
 For completeness, we provide both the results described here, as well as additional results on other pretrained and distilled models using the \emph{WeightWatcher} tool.
 
@@ -130,7 +132,8 @@ cub-200-2011  &  12 \\
 \begin{table}[t]
 \small
 \begin{center}
-\begin{tabular}{|p{2in}|c|}
+%KDD% \begin{tabular}{|p{2in}|c|}
+\begin{tabular}{|p{3in}|c|}
 \hline
 Architecture & $\#$ of Models \\
 \hline
@@ -200,7 +203,7 @@ SqueezeNet/SqueezeResNet                   & 6 \\
     }
     \caption{% 
              %\charles{Preliminary charts:} 
-             PL exponent $\alpha$ vs. reported Top1 Test Accuracies for pretrained DNNs available for five different data sets.
+             PL exponent $\alpha$ versus reported Top1 Test Accuracies for pretrained DNNs available for five different data sets.
             }
     \label{fig:DSalphas}
 \end{figure}
@@ -212,7 +215,8 @@ At this level, the plots are quite noisy and clustered, as each architecture has
 Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
  
 \begin{table}[t]
-\footnotesize  % \small
+%KDD% \footnotesize  % \small
+\scriptsize
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -252,13 +256,16 @@ Dataset & Model  & $\langle\log\Vert\cdot\Vert_{F}\rangle$ & $\langle\log\Vert\c
 \hline
 \end{tabular}
 \end{center}
+%KDD% 
+\vspace{-5mm}
 \caption{$MSE$ Results for all CV model regressions. }
 \label{table:MSEresults}
 \end{table}
 
 
 \begin{table}[t]
-\footnotesize  % \small
+%KDD% \footnotesize  % \small
+\scriptsize
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -298,6 +305,8 @@ imagenet-1k & ResNet  & 0.82 &  0.67 & \textbf{0.90} & 0.88 \\
 \hline
 \end{tabular}
 \end{center}
+%KDD% 
+\vspace{-5mm}
 \caption{$R^{2}$ Results for all CV model regressions. }
 \label{table:R2results}
 \end{table}

@@ -16,7 +16,7 @@ See Appendix~\ref{sxn:appendix} for how we define the Conv2D layer matrixes and 
 
 Assume we are given several pretrained DNNs, e.g., as part of an architecture series.
 The models have been trained and evaluated on labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using standard techniques.  
-The pretained pytroch model files are publicly-available, and the test accuracies have been reported online.  
+The pretrained pytroch model files are publicly-available, and the test accuracies have been reported online.  
 In this study, we do not have access to this data, and we have not trained any of the models ourselves,
 nor have we re-evaluated the test accuracies.
 We expect that most well-trained, production-quality models will employ one or more forms of regularization, such as Batch Normalization (BN), Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
@@ -77,7 +77,7 @@ The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l 
 \begin{equation}
 \hat{\alpha} = \dfrac{1}{L}\sum_l \alpha_l\log\lambda_{max,l}\approx\langle\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}\rangle    ,
 \end{equation}
-where $L$ is the total nuumber of layer weight matrices.
+where $L$ is the total number of layer weight matrices.
 The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a limited set of models.
 
 Based on this, in this paper, we introduce and evaluate the \emph{$\alpha$-Shatten Norm metric}.

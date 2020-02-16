@@ -16,7 +16,7 @@ they typically do not correlate with other properties of interest such as robust
 and so on.
 A less well-known problem, but one that is increasingly important, in particular in industrial-scale artificial intelligence (AI), arises when the model \emph{user} is not the model \emph{developer}.
 Here, one may not have access to either the training data or the testing data.
-Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and need to use it ``as is,'' or to fine-tune and/or compress it and then use it.
+Instead, one may simply be given a model that has already been trained---a \emph{pretrained model}---and need to use it as-is, or to fine-tune and/or compress it and then use it.
 
 Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
@@ -31,7 +31,7 @@ In these and other areas, ML objectives can be poor proxies for downstream goals
 
 Most importantly, in industry, one faces unique practical problems such as: do we have enough data for this model? 
 Indeed, high quality, labeled data can be very expensive to acquire, and this cost can make or break a project.
-Methods that are developed and evaluated on any well-defined publicly-available coprus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
+Methods that are developed and evaluated on any well-defined publicly-available corpus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
 It is of great practical interest to have metrics to evaluate the quality of a trained model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
 We seek a practical theory for pretrained models which can predict how, when, and why such models can be expected to perform well or~poorly.
 
@@ -45,10 +45,10 @@ These provide a large corpus of models that by some community standard are state
 \footnote{Clearly, there is a selection bias or survivorship bias here---people tend not to make publicly-available their poorly-performing models---but these models are things in the world that (like social networks or the internet) can be analyzed for their properties.}
 Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available; and, for all of these models, we have no access to training data or testing data, and we have no knowledge of the training/testing protocols. 
 
-The \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrics.
+The \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrices.
 They are based on norms of weight matrices (such norms have been used in traditional statistical learning theory to bound capacity and construct regularizers) and/or parameters of power law (PL) fits of the eigenvalues of weight matrices (such PL fits are based on statistical mechanics approaches to DNNs).
 Note that, while we use traditional norm-based and PL-based metrics, our goals are not the traditional goals.
-Unlike more common ML approaches, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., as with hyperparmeter optimization).% 
+Unlike more common ML approaches, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., as with hyperparameter optimization).% 
 \footnote{One could of course use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained DNN models.}
 Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves, and in both cases, we ask:
 \begin{quote}
@@ -103,7 +103,7 @@ See Appendix~\ref{sxn:appendix} for details on how to reproduce all results.
 We start in Section~\ref{sxn:background} and Section~\ref{sxn:methods} with background and an overview of our general approach.
 In Section \ref{sxn:cv}, we study three well-known widely-available DNN CV architectures (the VGG, ResNet, and DenseNet series of models); and we provide an illustration of our basic methodology, both to evaluate the different metrics against reported test accuracies and to use quality metrics to understand model properties.
 Then, in Section~\ref{sxn:nlp}, we look at several variations of a popular NLP DNN architecture (the OpenAI GPT and GPT2 models); and we show how model quality and properties vary between several variants of GPT and GPT2, including how metrics behave similarly and differently.
-Then, in Section \ref{sxn:all_cv_models}, we present results based on an analysis of hundreds of pretraind DNN models, showing how well each metric predicts the reported test accuracies, and how the PL-based metrics perform remarkably well.
+Then, in Section \ref{sxn:all_cv_models}, we present results based on an analysis of hundreds of pretrained DNN models, showing how well each metric predicts the reported test accuracies, and how the PL-based metrics perform remarkably well.
 Finally, in Section~\ref{sxn:conc}, we provide a brief discussion and conclusion.
 
 
