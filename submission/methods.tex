@@ -4,7 +4,8 @@
 %\vspace{-1mm}
 
 
-Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for aE DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as \nred{the minimization of a general Loss Function $\mathcal{L}$ over  N training data instances and labels $(\mathbf{x}_{i},y_{i})$. For a typical supervised classification problem, one has
+Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for aE DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as \nred{the minimization of a general Loss Function $\mathcal{L}$ over  N training data instances and labels  $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$
+For a typical supervised classification problem, one has
 \begin{equation}
 \underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)
 \end{equation}
@@ -24,10 +25,10 @@ Each DNN layer contains one or more layer 2D  $N\times M$ weight matrices, $\mat
 See Appendix~\ref{sxn:appendix} for how we define the Conv2D layer matrixes and for our choices of normalization. 
 
 Assume we are given several pretrained DNNs, e.g., as part of an architecture series.
-The models have been trained and evaluated on labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using standard techniques.  
+The models have been trained and evaluated on the labeled data $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$, using standard techniques.  
 The pretrained pytroch model files are publicly-available, and the test accuracies have been reported online.  
-In this study, we do not have access to this data, and we have not trained any of the models ourselves,
-nor have we re-evaluated the test accuracies.
+In this study, we do not have access to this data, and we have not trained any of the models ourselves. 
+%nor have we re-evaluated the test accuracies.
 We expect that most well-trained, production-quality models will employ one or more forms of regularization, such as Batch Normalization (BN), Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
 Here, we will ignore these details, and will focus only on the pretrained layer weight matrices $\mathbf{W}_{l}$.
 Our methodological approach is thus similar to a statistical meta-analysis, common in biomedical research.
@@ -65,10 +66,11 @@ The empirical parameter $\alpha$ is the Power Law (PL) exponent that arises in t
 The bottom line from HT-SR Theory is that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models; see Appendix~\ref{sxn:theory-review-appendix} for more details.
 Operationally, $\alpha$ is determined by analyzing DNN weight matrices using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
-\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}.
+\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\in[\lambda_{min},\lambda_{max}].
 \end{equation}
-%where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
-Each of these quantities is defined for a given layer $\mathbf{W}$ matrix.
+Each of these quantities is defined for a given layer $\mathbf{W}$ matrix and the PL fitting method. \cite{Clauset}
+\nred{Here, where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$, 
+and $\lambda_{min}$ is selected automaticlly to yield the best PL fit (which minimizes the K-S distance). }
 
 For norm-based metrics, we use the average of the log norm, and to the appropriate power.
 Informally, this amounts to assuming that the layer weight matrices are statistically independent, in which case we can estimate the model complexity $\mathcal{C}$, or test accuracy, with a standard Product Norm (which resembles a data dependent VC complexity),
