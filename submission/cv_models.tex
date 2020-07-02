@@ -18,7 +18,7 @@ This goes beyond simply predicting trends in model quality, instead illustrating
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
 We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
-To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without BN), and it plots the four quality metrics versus the reported test accuracies~\cite{pytorch},% 
+To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without \nred{BatchNormalization, denoted} BN), and it plots the four quality metrics versus the reported test accuracies~\cite{pytorch},% 
 \footnote{That is, these test accuracies have been previously reported and made publicly-available by others.  We take them as given, and we do not attempt to reproduce/verify them, since we do not permit ourselves any access to training/test data.}
 as well as a basic linear regression line. 
 All four metrics correlate quite well with the reported Top1 accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalization (i.e., greater accuracy, lower error). 
@@ -110,7 +110,7 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, and DenseNet series.
 Similar results (not shown) are obtained for the Top5 accuracies.
 Overall, for the ResNet, ResNet-1K, and DenseNet series, all metrics perform relatively well, the Log $\alpha$-Norm metric performs second best, and the Weighted Alpha metric performs best.
-These model series are all very well-trodden, and thus our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of well-trained versus more-well-trained models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
+These model series are all very well-trodden, and thus our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of well-trained versus very-well-trained models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
 
 The DenseNet series has similar behavior to what we see in Figures~\ref{fig:vgg-metrics} and~\ref{fig:cv2-accuracy} for the other models.
 However, as noted in Table~\ref{table:cv-models}, it has only 4 data points.  
