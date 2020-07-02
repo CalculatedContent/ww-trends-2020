@@ -1,0 +1,64 @@
+
+\section{Overview of Heavy-Tailed Self-Regularization}
+\label{sxn:theory-review-appendix}
+
+For completeness, we provide here a brief overview of Martin and Mahoney's Theory of Heavy-Tailed Self-Regularization (HT-SR)~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+
+Let us write the objective/optimization function for a typical DNN with $L$ layers, with activation functions $h_{l}(\cdot)$, and with $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$, as:
+\begin{equation*}
+E_{DNN} \hspace{-1mm} = \hspace{-1mm} h_{L}(\mathbf{W}_{L}\cdot h_{L-1}(\mathbf{W}_{L-1}\cdot h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
+\end{equation*}
+Typically, this model would be trained on some labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using Backprop, by minimizing the loss $\mathcal{L}$.
+For simplicity, we do not indicate the structural details of the layers (e.g., Dense or not, Convolutions or not, Residual/Skip Connections, etc.). 
+Each layer is defined by one or more layer 2D weight matrices $\mathbf{W}_{l}$, and/or the 2D feature maps $\mathbf{W}_{l,i}$ extracted from 2D Convolutional (Conv2D) layers.
+A typical modern DNN may have anywhere between 5 and 5000 2D layer matrices.%
+\footnote{%
+For each Linear Layer, we get a  single $(N\times M)$ (real-valued) 2D weight matrix, denoted $\mathbf{W}_{l}$, for layer $l$.  
+This includes Dense or Fully-Connected (FC) layers, as well as 1D Convolutional (Conv1D) layers, Attention matrices, etc.
+We ignore the bias terms $\mathbf{b}_{l}$ in this analysis. 
+Let the aspect ratio be $Q=\frac{N}{M}$, with $Q\ge 1$.
+For the Conv2D layers, we have a 4-index Tensor, of the form $(N\times M \times c\times d)$, consisting
+of $c\times d$ 2D feature maps of shape $(N\times M)$.    
+We  extract $n_{l}=c\times d$ 2D weight matrices $\mathbf{W}_{l,i}$, one for each feature map $i=[1,\dots,n_{l}]$ for layer $l$.
+}
+
+In the HT-SR Theory, we analyze the eigenvalue spectrum (the ESD) of the associated correlation matrices~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+From this, we can characterize the amount and form of correlation, and therefore implicit self-regularizartion, present in the DNN's weight matrices.
+For each layer weight matrix $\mathbf{W}$, of size $N \times M$, construct the associated $M\times M$ (uncentered) correlation matrix $\mathbf{X}$. 
+Dropping the $L$ and $l,i$ indices, we have
+$$
+\mathbf{X} = \frac{1}{N}\mathbf{W}^{T}\mathbf{W}.
+$$
+If we compute the eigenvalue spectrum of $\mathbf{X}$, i.e., $\lambda_i$ such that
+$  % $$
+\mathbf{X}\mathbf{v}_{i}=\lambda_{i}\mathbf{v}_{i} , 
+$  % $$
+then the ESD of eigenvalues, $\rho(\lambda)$, is just a histogram of the eigenvalues, formally written as
+\begin{equation}
+\rho(\lambda)=\sum\limits_{i=1}^{M}\delta(\lambda-\lambda_{i})  .
+\label{eqn:eigenval_hist}
+\end{equation}
+Using HT-SR Theory, we can characterize the \emph{correlations} in a weight matrix by examining its ESD, $\rho(\lambda)$.
+It can be well-fit to a truncated power law (PL) distribution, given~as
+\begin{equation}
+\rho(\lambda)\sim\lambda^{-\alpha}  ,
+\label{eqn:eigenval_pl}
+\end{equation}
+which is (at least) valid within a bounded range of eigenvalues $\lambda\in[\lambda^{min},\lambda^{max}]$.  
+We can determine $\alpha$ by fitting the   ESD to a truncated PL, using the commonly accepted Maximum Likelihood (MLE) method of Clauset et al.~\cite{CSN09_powerlaw,ABP14}.
+This method works very well for exponents between $\alpha\in(2,4)$; and it is adequate, although imprecise, for smaller and especially larger $\alpha$~\cite{newman2005_zipf}. 
+
+The original work on HT-SR Theory~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM} considered NNs including AlexNet and InceptionV3 (as well as DenseNet, ResNet, and VGG), and it showed that for nearly every $\mathbf{W}$, the (bulk and tail) of the ESDs can be fit to a truncated PL and the PL exponents $\alpha$ nearly all lie within the range $\alpha\in(1.5,5)$.
+Moreover, smaller exponents $\alpha$ are correlated with more implicit self-regularization and, correspondingly, better generalization~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+Our meta-analysis, the main results of which are summarized in this paper, has shown that these results are ubiquitous.
+For example, 
+upon examining nearly 10,000 layer weight matrices $\mathbf{W}_{l,i}$ across hundreds of different modern pre-trained DNN architectures, the ESD of nearly every $\mathbf{W}$ layer matrix can be fit to a truncated PL:
+$70-80\%$ of the time, the fitted PL exponent $\alpha$ lies in the range $\alpha\in(2,4)$; and  
+$10-20\%$ of the time, the fitted PL exponent $\alpha$ lies in the range $\alpha< 2$.  
+Of course, there are exceptions: in any real DNN, the fitted $\alpha$ may range anywhere from $\sim 1.5$ to $10$ or higher (and, of course, larger values of $\alpha$ may indicate that the PL is not a good model for the data).  
+Still, overall, in nearly all large, pre-trained DNNs, the correlations in the  weight matrices exhibit a remarkable Universality, being both Heavy Tailed, and having small---but not too small---PL exponents. 
+
+As for the mechanism responsible for these properties, statistical physics offers several possibilities~\cite{SornetteBook}, although more work needs to be done.
+Indeed, it is not even clear that one mechanism is responsible for every case.
+One particularly intriguing possibility has to do with the presence of multiplicative noise in the stochastic optimization algorithms used to train these models~\cite{HodMah20A_TR,SorCon97}, and our results motivate the need to understand this multiplicative dynamics in greater detail.
+
