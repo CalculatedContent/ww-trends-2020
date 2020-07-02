@@ -20,7 +20,7 @@ Instead, one may simply be given a model that has already been trained---a \emph
 
 Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
-Moreover, if ML is to become an industrial process, then that process will become siloed: some groups will gather data, other groups will develop models, and other groups will use those models.
+Moreover, if ML is to become an industrial process, then that process will become \nred{comparmentalized in ortder to scale}: some groups will gather data, other groups will develop models, and other groups will use those models.
 Users of models can not be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
 
 Moreover, for many large scale, practical applications, there is no obvious way to define an ideal test metric. 
