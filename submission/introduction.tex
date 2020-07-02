@@ -33,21 +33,25 @@ Most importantly, in industry, one faces unique practical problems such as: do w
 Indeed, high quality, labeled data can be very expensive to acquire, and this cost can make or break a project.
 Methods that are developed and evaluated on any well-defined publicly-available corpus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
 It is of great practical interest to have metrics to evaluate the quality of a trained model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
-We seek a practical theory for pretrained models which can predict how, when, and why such models can be expected to perform well or~poorly.
+There is a need for a \emph{practical theory} for pretrained models which can predict how, when, and why such models can be expected to perform well or~poorly.
 
-In this paper, we present and evaluate quality metrics for pretrained deep neural network (DNN) models, and we do so at scale.
-We consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
+In this paper, we provide a detailed empirical analysis to address these questions, evaluating quality metrics for pretrained deep neural network (DNN) models, and we do so at scale.
+Our approach may be viewed as a statistical meta-analysis of previously published work, where we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
 %
 By now, there are many such state-of-the-art models that are publicly-available, e.g., 
 there are now hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 100$).%
 \footnote{When we began this work in 2018, there were fewer than tens of such models; now in 2020, there are hundreds of such models; and we expect that in a year or two there will be an order of magnitude or more of such models.}
-These provide a large corpus of models that by some community standard are state-of-the-art.%
-\footnote{Clearly, there is a selection bias or survivorship bias here---people tend not to make publicly-available their poorly-performing models---but these models are things in the world that (like social networks or the internet) can be analyzed for their properties.}
-Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available; and, for all of these models, we have no access to training data or testing data, and we have no knowledge of the training/testing protocols. 
+These publicly-available models provide a large corpus of models that by some community standard are state-of-the-art. %
+%%%\footnote{Clearly, there is a selection bias or survivorship bias here---people tend not to make publicly-available their poorly-performing models---but these models are things in the world that (like social networks or the internet) can be analyzed for their properties.}
+Importantly, all of these models have been trained by someone else and have been viewed to be of sufficient interest/quality to be made publicly-available; and, for all of these models, we have no access to training data or testing data, and we have no specific knowledge of the training/testing protocols. 
 
-The \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrices.
-They are based on norms of weight matrices (such norms have been used in traditional statistical learning theory to bound capacity and construct regularizers) and/or parameters of power law (PL) fits of the eigenvalues of weight matrices (such PL fits are based on statistical mechanics approaches to DNNs).
-Note that, while we use traditional norm-based and PL-based metrics, our goals are not the traditional goals.
+In the absence of training and testing data, obvious quantities to examine are the weight matrices of pretrained models.
+Thus,
+the \emph{quality metrics} we consider are based on the spectral properties of the layer weight matrices.
+In particular, they are based on norms of weight matrices 
+and/or parameters of power law (PL) fits of the eigenvalues of weight matrices.
+Such norm-based metrics have been used in traditional statistical learning theory to bound capacity and construct regularizers; and such PL fits are based on statistical mechanics approaches to DNNs.
+While we use traditional norm-based and PL-based metrics, our goals are not the traditional goals.
 Unlike more common ML approaches, \emph{we do not seek a bound on the generalization} (e.g., by evaluating training/test error during training), \emph{we do not seek a new regularizer}, and \emph{we do not aim to evaluate a single model} (e.g., as with hyperparameter optimization).% 
 \footnote{One could of course use these techniques to improve training, and we have been asked about that, but we are not interested in that here. Our main goal here is to use these techniques to evaluate properties of state-of-the-art pretrained DNN models.}
 Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves, and in both cases, we ask:
@@ -65,7 +69,9 @@ Instead, we want to examine different models across common architecture series, 
 %To answer this question, we analyze hundreds of publicly-available pretrained models, including older and current state-of-the-art models in CV and NLP.
 %\end{itemize}
 
-To answer this question, we analyze hundreds of publicly-available pretrained state-of-the-art CV and NLP models. 
+To answer this question, we perform a statistical meta-analysis, where we 
+perform weight matrix analysis on %%%analyze 
+hundreds of publicly-available pretrained state-of-the-art CV and NLP models. 
 Here is a summary of our main results.
 \begin{itemize}
 \item
@@ -73,20 +79,28 @@ Here is a summary of our main results.
 Norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
 \item
 \textbf{Norm-based metrics and poorly-trained models.}
-Norm-based metrics may give spurious results when applied to poorly-trained models (e.g., models trained without enough data, etc.), exhibiting \emph{Scale Collapse} for these models. 
+Norm-based metrics may give spurious results when applied to poorly-trained models (e.g., models trained without enough data, etc.).
+For example, they may exhibit what we call \emph{Scale Collapse} for these models. 
 \item 
 \textbf{PL-based metrics and model quality.}
 PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
-They are quantitatively better at discriminating ``good-better-best'' trends, and qualitatively better at distinguishing ``good-versus-bad''~models.
+They are qualitatively better at discriminating well-trained versus poorly-trained models, and quantitatively better at discriminating among a series of well-trained versus more-well-trained models.
 \item 
 \textbf{PL-based metrics and model diagnostics.}
-PL-based metrics can also be used to characterize fine-scale model properties (including layer-wise \emph{Correlation Flow}) in well-trained and poorly-trained models, and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
+PL-based metrics can also be used to characterize fine-scale model properties (including what we call layer-wise \emph{Correlation Flow}) in well-trained and poorly-trained models, and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
 \end{itemize}
 
 \noindent
-We emphasize that our goal is a practical theory to predict trends in the quality of state-of-the-art DNN models, i.e., not to make a statement about every publicly-available model.
+In light of our main results, several points are worth emphasizing.
+First, our goal is a practical theory to predict trends in the quality of state-of-the-art DNN models, i.e., not to make a statement about every publicly-available model.
 We have examined hundreds of models, and we identify general trends, but we also highlight interesting exceptions.
 %%Several of the most interesting are described below.
+Second, our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and the theory we apply was developed previously~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Performing such a meta-analysis of previously-published work is common in certain areas, but it is quite rare in machine learning, where the emphasis is on developing better training protocols.
+Third, in addition to addressing our main question, our weight matrix analysis can be used to obtain fine-scale insight into DNN models.
+This can be used to develop metrics for \emph{how} to train better models as well as to form hypotheses for \emph{why} DNNs perform as they do.
+We provide two such examples---\emph{Scale Collapse} and \emph{Correlation Flow}---that we have observed in both CV and NLP models and that deserve attention in future work.
+
 
 
 %KDD% \vspace{-1mm}

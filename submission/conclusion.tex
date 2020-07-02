@@ -5,11 +5,16 @@
 %\vspace{-1mm}
 
 We have developed (based on strong theory) and evaluated (on a large corpus of publicly-available pretrained models from CV and NLP) methods to predict trends in the quality of state-of-the-art neural networks---without access to training or testing data.
-Prior to our work, it was not obvious that norm-based metrics would perform well to predict trends in quality \emph{across} models (as they are usually used \emph{within} a given model or parameterized model class, e.g., to bound generalization error or to construct regularizers).
-Our results are the first to demonstrate that they can be used for this important practical problem.
-That PL-based metrics perform better (than norm-based metrics) should not be surprising---at least to those familiar with the statistical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017} (since our use of PL exponents is designed to capture the idea that well-trained models capture correlations over many size scales in the data).
+Our main methodology involved performing a weight matrix meta-analysis, using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package}, and informed by the recently-developed HT-SR~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Prior to our work, it was not even obvious that norm-based metrics would perform well to predict trends in quality \emph{across} models (as they are usually used \emph{within} a given model or parameterized model class, e.g., to bound generalization error or to construct regularizers).
+Importantly, our results are the first to demonstrate that they can be used for this important practical problem.
+
+Our results also demonstrate that PL-based metrics perform better (than norm-based metrics). 
+This should \emph{not} be surprising---at least to those familiar with the statistical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017}---since our use of PL exponents is designed to capture the idea that well-trained models capture information correlations over many size scales in the data.
 Again, though, our results are the first to demonstrate this.
+
 It is also gratifying that our approach can be used to provide fine-scale insight (such as rationalizing the flow of correlations or the collapse of size scale) throughout a network. 
+Clearly, in light of their role in our results on both CV and NLP models, both \emph{Correlation Flow} and \emph{Scale Collapse} are notions that future work should aim to understand better, both for improved training as well as for improved diagnostics on pretrained~models.
 
 We conclude with a few comments on what a \emph{practical theory} of DNNs should look like.
 To do so, we distinguish between two types of theories:

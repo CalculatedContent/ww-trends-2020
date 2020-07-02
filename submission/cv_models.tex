@@ -8,8 +8,9 @@ In this section, we examine empirical quality metrics described in Section~\ref{
 This includes the VGG, ResNet, and DenseNet series of models, each of which consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each of which is distributed with the current open source pyTorch framework (version 1.4)~\cite{pytorch}.
 This also includes a larger set of ResNet models, trained on the ImageNet-1K dataset~\cite{imagenet}, provided on the OSMR ``Sandbox for training convolutional networks for computer vision''~\cite{osmr}, which we call the ResNet-1K series.
 
-We perform \emph{coarse model analysis}, comparing and contrasting the four model series, and predicting trends in model quality. 
-We also perform \emph{fine layer analysis}, as a function of depth for these models, illustrating that PL-based metrics can provide novel insights among the VGG, ResNet/ResNet-1K, and DenseNet architectures. 
+We first perform \emph{coarse model analysis}, comparing and contrasting the four model series, and predicting trends in model quality. 
+We then perform \emph{fine layer analysis}, as a function of depth for these models.
+This goes beyond simply predicting trends in model quality, instead illustrating that PL-based metrics can provide novel insights among the VGG, ResNet/ResNet-1K, and DenseNet architectures. 
 
 
 %KDD% 
@@ -108,14 +109,14 @@ While all four metrics perform well, notice that the Log $\alpha$-Norm metric ($
 
 See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, and DenseNet series.
 Similar results (not shown) are obtained for the Top5 accuracies.
-Overall, for the the ResNet, ResNet-1K, and DenseNet series, all metrics perform relatively well, the Log $\alpha$-Norm metric performs second best, and the Weighted Alpha metric performs best.
-These model series are all well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of ``good-better-best'' models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
+Overall, for the ResNet, ResNet-1K, and DenseNet series, all metrics perform relatively well, the Log $\alpha$-Norm metric performs second best, and the Weighted Alpha metric performs best.
+These model series are all very well-trodden, and thus our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of well-trained versus more-well-trained models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
 
 The DenseNet series has similar behavior to what we see in Figures~\ref{fig:vgg-metrics} and~\ref{fig:cv2-accuracy} for the other models.
 However, as noted in Table~\ref{table:cv-models}, it has only 4 data points.  
 In our larger analysis, in Section~\ref{sxn:all_cv_models}, we will only include series with 5 or more models.
 %For completeness and reproducibility here, the DenseNet Log $\alpha$-Norm plot is given in Appendix~\ref{sxn:appendix}.
-(Note that these and many other such plots can be seen on our publicly-available~repo.)
+(These and many other such plots can be seen on our publicly-available~repo.)
 
 
 %KDD% 
@@ -145,7 +146,7 @@ plot (just) the PL exponent, $\alpha$, for each layer, %
 as a function of depth.
 %
 See Figure~\ref{fig:3models-alpha-layers}, which plots $\alpha$ for each layer (the first layer corresponds to data, the last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (no BN), ResNet, and DenseNet series.
-(Again, a much more detailed set of plots is available at our repo; but note that the corresponding layer-wise plots for Frobenius and Spectral norms are much less interesting than the results we present here.)
+(Again, many more such plots are available at our repo; but note that the corresponding layer-wise plots for Frobenius and Spectral norms are much less interesting than the results we present here.)
 
 \begin{figure}[t]
     \centering
@@ -210,34 +211,39 @@ While this is similar to what is seen in the VGG models, with the DenseNet model
 %KDD% 
 \vspace{-1mm}
 \paragraph{Comparison of VGG, ResNet, and DenseNet Architectures.}
-We can interpret these observations by recalling the architectural differences between the VGG, ResNet, and DenseNet architectures,
+We can interpret these layer-wise observations by recalling the architectural differences between the VGG, ResNet, and DenseNet architectures,
 and, in particular, the number of of residual connections. VGG resembles the  traditional convolutional architectures,
 such as LeNet5, and consists of several [Conv2D-Maxpool-ReLu] blocks, followed by 3 large Fully Connected (FC) layers.
 ResNet greatly improved on VGG by replacing the large FC layers, shrinking the Conv2D blocks, and introducing \emph{residual connections}.
 This optimized approach allows for greater accuracy with far fewer parameters (and GPU memory requirements), and
 ResNet models of up to 1000 layers have been trained~\cite{resnet1000}.
 
-We conjecture that the efficiency and effectiveness of ResNet is reflected in the smaller and more stable $\alpha\sim 2.0$, across nearly all layers, indicating that the inner layers are very well correlated and strongly optimized.
+We conjecture that the efficiency and effectiveness of ResNet is reflected in the smaller and more stable $\alpha\sim 2.0$, across nearly all layers, indicating that the inner layers are very well correlated and more strongly optimized.
 Contrast this with the DenseNet models, which contains many connections between every layer.
-Our results (large $\alpha$, meaning they even a PL model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly optimized.
+Our results (large $\alpha$, meaning that even a PL model is probably a poor fit) suggest that DenseNet has too many connections, diluting high quality interactions across layers, and leaving many layers very poorly~optimized.
 
+Fine-scale measurements such as these enable us to form hypotheses as to the inner workings of DNN models, opening the door to an improved understanding of \emph{why} DNNs work, as well as \emph{how} to design better DNN models.
+We next turn to two such~examples.
 
 %KDD% 
 \vspace{-1mm}
 \paragraph{Correlation Flow.}
 
-More generally, we can understand the results presented in Figure~\ref{fig:3models-alpha-layers} in terms of what we will call the \emph{Correlation Flow} of the model. 
+We can understand the results presented in Figure~\ref{fig:3models-alpha-layers} in terms of what we will call the \emph{Correlation Flow} of the model. 
 Recall that the average Log $\alpha$-Norm metric and the Weighted Alpha metric are based on HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}, which is in turn based on ideas from the statistical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017}. 
-There, one expects the weight matrices of well-trained DNNs will exhibit correlations over many size scales. 
-Their ESDs can be well-fit by a (truncated) PL, with exponents $\alpha\in[2,4]$.
+There, one expects that the weight matrices of well-trained DNNs will exhibit correlations over many size scales, as is well-known in other strongly-correlated systems~\cite{BouchaudPotters03, SornetteBook}. 
+In particular, this would imply that their ESDs can be well-fit by a truncated PL, with exponents $\alpha\in[2,4]$.
 Much larger values $(\alpha\gg 6)$ may reflect poorer PL fits, whereas smaller values $(\alpha\sim 2)$, are associated with models that generalize better.
 %, but the presence of many adjacent layers with relatively good PL fits \emph{suggests} that those adjacent layers ``impedance match'' well and that the correlations that are captured by one layer propagate well to subsequent layers.
+
 Informally, one would expect a DNN model to perform well when it facilitates the propagation of information/features across layers.
 Previous work argues this by computing the gradients over the input data.
-In the absence of training/test data, one might hope that this leaves empirical signatures on weight matrices, and thus we can to try to quantify this by measuring the PL properties of weight matrices.
-In this case, smaller $\alpha$ values correspond to layers in which correlations across multiple scales are better captured~\cite{MM18_TR,SornetteBook}, and we expect that small $\alpha$ values that are stable across multiple layers enable better \emph{correlation flow} through the network.
+In the absence of training/test data, one might hypothesize that this flow of information leaves empirical signatures on weight matrices, and thus that we can quantify this by measuring the PL properties of weight matrices.
+In this case, given the statistical mechanical basis of HT-SR Theory, smaller $\alpha$ values would correspond to layers in which information correlations between data across multiple scales are better captured~\cite{MM18_TR,SornetteBook}, and thus we hypothesize that small $\alpha$ values that are stable across multiple layers enable better \emph{correlation flow} through the network.
 We have seen this in many models, including those shown in Figure~\ref{fig:3models-alpha-layers}.
 
+This is superficially similar to recent work on the information bottleneck~\cite{ST17_TR}, except that here we work in an entirely unsupervised setting.
+Developing theory to evaluate this hypothesis and exploit this insight is an intriguing direction for future work.
 
 \begin{figure}[t]
    \centering
@@ -267,7 +273,7 @@ We have seen this in many models, including those shown in Figure~\ref{fig:3mode
 
 The similarity between norm-based metrics and PL-based metrics suggests a question: is the Weighted Alpha metric just a variation of the more familiar norm-based metrics?  %%, or does it capture something different?  
 More generally, do fitted $\alpha$ values contain information not captured by norms? 
-In examining hundreds of pretrained models, we have found several anomalies that demonstrate the power of our approach.
+In examining hundreds of pretrained models, we have found several anomalies that are ``exceptions that prove the rule'' and that demonstrate the power of our approach.
 In particular, to show that $\alpha$ does capture something different, consider the following example, which looks at a compressed/distilled DNN model~\cite{CWZZ17_TR}.
 In this example, we show that some distillation methods may actually \emph{break} models unexpectedly by introducing what we call \emph{Scale Collapse}, where several distilled layers have unexpectedly small Spectral Norms.
 
@@ -286,10 +292,12 @@ Also (not shown), the average (unweighted) baseline $\alpha$ is \emph{smaller} t
 That being said, Figure~\ref{fig:resnet204Dalpha} also depicts two very large $\alpha\gg 6$ values for the baseline, but not for the fine-tuned, model.
 This suggests the baseline model has at least two over-parameterized/under-trained layers, and that the distillation method does, in fact, improve the fine-tuned model by compressing these layers.
 
-The pretrained models in the \texttt{distiller} package have passed some quality metric, but they are much less well trodden than any of the 
+The obvious interpretation is the following. 
+Pretrained models in the \texttt{distiller} package have passed some quality metric, but they are much less well trodden than any of the 
 VGG, ResNet, or DenseNet series.  %% we considered above.
-While norms make good regularizers for a single model, there is no reason \emph{a priori} to expect them correlate so well with test accuracies across different models.
-We do expect, however, the PL $\alpha$ to do so because it effectively measures the amount of correlation in the model~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+While norms make good regularizers for a single model, there is no reason \emph{a priori} to expect them correlate so well with test accuracies across different models, and they may not differentiate well-trained versus poorly-trained models.
+We do expect, however, the PL $\alpha$ to do so, because it effectively measures the amount of information correlation in the model~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Among other things, this suggests that the $\alpha$ values will improve, i.e., decrease, over time, as distillation techniques continue to improve.
 The reason for the anomalous behavior shown in 
 Figure~\ref{fig:resnet204D5L}
 is that the \texttt{distiller} Group Regularization technique 

@@ -4,7 +4,7 @@
 %\vspace{-1mm}
 
 
-Let us write the Energy Landscape (or optimization function, parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as:
+Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as:
 \begin{equation}
 E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
 \label{eqn:dnn_energy}
@@ -21,11 +21,13 @@ In this study, we do not have access to this data, and we have not trained any o
 nor have we re-evaluated the test accuracies.
 We expect that most well-trained, production-quality models will employ one or more forms of regularization, such as Batch Normalization (BN), Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
 Here, we will ignore these details, and will focus only on the pretrained layer weight matrices $\mathbf{W}_{l}$.
+Our methodological approach is thus similar to a statistical meta-analysis, common in biomedical research.
 
 
 %KDD% \vspace{-1mm}
 \paragraph{DNN Empirical Quality Metrics.}
 
+Since we analyze pretrained models, most of our analysis involves analyzing DNN weight matrices.
 The best performing empirical quality metrics depend on the norms and/or spectral properties of each weight matrix,
 $\mathbf{W}$, and/or, equivalently, it's \emph{Empirical Correlation Matrix}: $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.%
 
@@ -45,11 +47,14 @@ $\alpha$-Norm (or $\alpha$-Shatten Norm):%
 \end{itemize}
 Here, $\lambda_{i}$ is the $i^{th}$ eigenvalue of the $\mathbf{X}$, and $\lambda_{max}$ is the maximum eigenvalue.
 Recall that the eigenvalues are squares of the singular values $\sigma_{i}$ of $\mathbf{W}$: $\lambda_{i}=\sigma^{2}_{i}$.
-Also, note that we do \emph{not} normalize $\mathbf{X}$ by $1/N$; see Appendix~\ref{sxn:appendix} for a discussion of this issue.
+Also, note that we do \emph{not} normalize $\mathbf{X}$ by $1/N$.
+See Appendix~\ref{sxn:appendix} for a discussion of this issue.
+Observe that all four metrics can be computed easily from DNN weight matrices.
 
-The first two norms are well-known in ML; the last two deserve special mention.
+The first two metrics are well-known in ML; the last two deserve special mention.
 The empirical parameter $\alpha$ is the Power Law (PL) exponent that arises in the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
-Operationally, $\alpha$ is determined by using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
+The bottom line from HT-SR Theory is that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models; see Appendix~\ref{sxn:theory-review-appendix} for more details.
+Operationally, $\alpha$ is determined by analyzing DNN weight matrices using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
 \rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\le\lambda_{max}.
 \end{equation}
@@ -78,7 +83,7 @@ The \emph{Weighted Alpha metric} is an average of $\alpha_l$ over all layers $l 
 \hat{\alpha} = \dfrac{1}{L}\sum_l \alpha_l\log\lambda_{max,l}\approx\langle\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}\rangle    ,
 \end{equation}
 where $L$ is the total number of layer weight matrices.
-The Weighted Alpha metric was introduced previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a limited set of models.
+The Weighted Alpha metric was introduced and justified previously~\cite{MM20_SDM}, where it was shown to correlate well with trends in reported test accuracies of pretrained DNNs, albeit on a much smaller and more limited set of models.
 
 Based on this, in this paper, we introduce and evaluate the \emph{$\alpha$-Shatten Norm metric}.
 Notice for the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum:
@@ -91,12 +96,12 @@ Notice for the $\alpha$-Shatten Norm metric, however, $\alpha_l$ varies from lay
 \end{equation}
 
 \noindent
-For small $\alpha$, the Weighted Alpha metric approximates the Log $\alpha$-Shatten norm, as can be shown with a statistical mechanics and random matrix theory derivation \cite{MM20_unpub_work}; and the Weighted Alpha and $\alpha$-Shatten norm metrics often behave like an improved, weighted average Log Spectral Norm, and may track this metric in some~cases.
+For small $\alpha$, the Weighted Alpha metric approximates the Log $\alpha$-Shatten norm, as can be shown with a statistical mechanics and random matrix theory derivation \cite{MM20_unpub_work}; and the Weighted Alpha and $\alpha$-Shatten norm metrics often behave like an improved, weighted average Log Spectral Norm.
 
 To avoid confusion, let us clarify the relationship between $\alpha$ and $\hat{\alpha}$.  
-We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.  
-(Technically, we also need the minimum eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.)
-The PL exponent $\alpha$ measures of the amount of correlation in a DNN layer weight matrix $\mathbf{W}$. 
+We fit the ESD of the correlation matrix $\mathbf{X}$ to a truncated PL, parameterized by 2 values: the PL exponent $\alpha$, and the maximum eigenvalue $\lambda_{max}$.% 
+\footnote{Technically, we also need the minimum eigenvalue $\lambda_{min}$, but this detail does not affect our analysis.}
+The PL exponent $\alpha$ measures the amount of correlation in a DNN layer weight matrix $\mathbf{W}$. 
 It is valid for $\lambda\le\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
 The $\lambda_{max}$ is a measure of the size, or scale, of $\mathbf{W}$.
 %
@@ -105,7 +110,7 @@ Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigg
 
 %KDD% \vspace{-1mm}
 \paragraph{Convolutional Layers and Normalization issues.}
-There are several technical issues (regarding spectral analysis of convolutional layers and normalization of empirical matrices) that are important for reproducibility of our results.
+There are several technical issues, e.g., regarding spectral analysis of convolutional layers and normalization of empirical matrices, that are important for reproducibility of our results.
 See Appendix~\ref{sxn:appendix} for a discussion.
 
 
