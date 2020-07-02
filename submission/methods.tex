@@ -4,11 +4,17 @@
 %\vspace{-1mm}
 
 
-Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as:
+Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for aE DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as \nred{the minimization of a general Loss Function $\mathcal{L}$ over  N (labeled) training data instances $(\mathbf{x}_{i},y_{i})$. For a typical supervised classification problem, one has
 \begin{equation}
-E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})  .
+\underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)
+\end{equation}
+where }
+\begin{equation}
+E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L}),
 \label{eqn:dnn_energy}
 \end{equation}
+\nred{the loss function $\mathcal{L}()$ can take on a myriad of forms\cite{Janocha2017}, and $E_{DNN}$ is what we call the Energy Landscape.}
+
 Each DNN layer contains one or more layer 2D  $N\times M$ weight matrices, $\mathbf{W}_{l}$, or pre-activation maps, $\mathbf{W}_{i,l}$, extracted from 2D Convolutional layers, and where $N > M$.% 
 \footnote{We do not use intra-layer information from the models in our quality metrics, but (as we will describe) our metrics can be used to learn about intra-layer model properties.}
 (We may drop the $i$ and/or $i,l$ subscripts below.)
