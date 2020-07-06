@@ -18,7 +18,7 @@ This goes beyond simply predicting trends in model quality, instead illustrating
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
 We have examined the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
-To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without \nred{BatchNormalization, denoted} BN), and it plots the four quality metrics versus the reported test accuracies~\cite{pytorch},% 
+To start, Figure~\ref{fig:vgg-metrics} considers the VGG series (in particular, the pretrained models VGG11, VGG13, VGG16, and VGG19, with and without Batch Normalization, denoted BN), and it plots the four quality metrics versus the reported test accuracies~\cite{pytorch},% 
 \footnote{That is, these test accuracies have been previously reported and made publicly-available by others.  We take them as given, and we do not attempt to reproduce/verify them, since we do not permit ourselves any access to training/test data.}
 as well as a basic linear regression line. 
 All four metrics correlate quite well with the reported Top1 accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalization (i.e., greater accuracy, lower error). 

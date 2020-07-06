@@ -4,19 +4,20 @@
 %\vspace{-1mm}
 
 
-Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for aE DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$,~as \nred{the minimization of a general Loss Function $\mathcal{L}$ over  N training data instances and labels  $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$
+Let us write the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$, as 
+the minimization of a general Loss Function $\mathcal{L}$ over $N$ training data instances and labels, $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$.
 For a typical supervised classification problem, one has
 \begin{equation}
-\underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)
+\underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)  ,
 \end{equation}
-where the loss function $\mathcal{L}()$ can take on a myriad of forms\cite{Janocha2017}, and 
+where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where
 \begin{equation}
 E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})
 \label{eqn:dnn_energy}
 \end{equation}
-is what we call the Energy Landscape function.  Notice the $E_{DNN}$ does not explicitly depend on the data, but, rather,
-maps data instances vectors $(\mathbf{x}_i)$ to predictions (i.e. labels).
-Therefore, we can analyze $E_{DNN}$ absent of any training or test data. }
+is what we call the Energy (or optimization) Landscape function.  
+Notice that $E_{DNN}$ does not \emph{explicitly} depend on the data, but rather it maps data instance vectors (i.e., $\mathbf{x}_i$ values) to predictions (i.e., labels).
+Therefore, we can analyze $E_{DNN}$ absent of any training or test data. 
 
 
 Each DNN layer contains one or more layer 2D  $N\times M$ weight matrices, $\mathbf{W}_{l}$, or pre-activation maps, $\mathbf{W}_{i,l}$, extracted from 2D Convolutional layers, and where $N > M$.% 
@@ -66,11 +67,11 @@ The empirical parameter $\alpha$ is the Power Law (PL) exponent that arises in t
 The bottom line from HT-SR Theory is that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models; see Appendix~\ref{sxn:theory-review-appendix} for more details.
 Operationally, $\alpha$ is determined by analyzing DNN weight matrices using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package} to fit the Empirical Spectral Density (ESD) of $\mathbf{X}$, i.e., a histogram of the eigenvalues, call it $\rho(\lambda)$, to a truncated PL, 
 \begin{equation}
-\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\in[\lambda_{min},\lambda_{max}].
+\rho(\lambda)\sim\lambda^{\alpha},\;\;\lambda\in[\lambda_{min},\lambda_{max}] ,
 \end{equation}
-Each of these quantities is defined for a given layer $\mathbf{W}$ matrix and the PL fitting method. \cite{Clauset}
-\nred{Here, where $\lambda_{max}$ \emph{is} the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$, 
-and $\lambda_{min}$ is selected automaticlly to yield the best PL fit (which minimizes the K-S distance). }
+where $\lambda_{max}$ is the largest eigenvalue of $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$, and 
+where $\lambda_{min}$ is selected automatically to yield the best PL fit (which minimizes the K-S distance). 
+Each of these quantities is defined for a given layer $\mathbf{W}$ matrix and the PL fitting method~\cite{CSN09_powerlaw,ABP14}.
 
 For norm-based metrics, we use the average of the log norm, and to the appropriate power.
 Informally, this amounts to assuming that the layer weight matrices are statistically independent, in which case we can estimate the model complexity $\mathcal{C}$, or test accuracy, with a standard Product Norm (which resembles a data dependent VC complexity),

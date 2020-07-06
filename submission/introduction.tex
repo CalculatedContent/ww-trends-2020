@@ -20,7 +20,7 @@ Instead, one may simply be given a model that has already been trained---a \emph
 
 Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but models are used in practice, and there is a need for a \emph{practical theory} to guide that practice.
-Moreover, if ML is to become an industrial process, then that process will become \nred{comparmentalized in ortder to scale}: some groups will gather data, other groups will develop models, and other groups will use those models.
+Moreover, if ML is to become an industrial process, then that process will become compartmentalized in order to scale: some groups will gather data, other groups will develop models, and other groups will use those models.
 Users of models can not be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
 
 Moreover, for many large scale, practical applications, there is no obvious way to define an ideal test metric. 
@@ -84,7 +84,7 @@ For example, they may exhibit what we call \emph{Scale Collapse} for these model
 \item 
 \textbf{PL-based metrics and model quality.}
 PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
-They are qualitatively better at discriminating well-trained versus poorly-trained models, and quantitatively better at discriminating among a series of well-trained versus more-well-trained models.
+They are qualitatively better at discriminating well-trained versus poorly-trained models, and quantitatively better at discriminating among a series of well-trained versus very-well-trained models.
 \item 
 \textbf{PL-based metrics and model diagnostics.}
 PL-based metrics can also be used to characterize fine-scale model properties (including what we call layer-wise \emph{Correlation Flow}) in well-trained and poorly-trained models, and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
@@ -108,7 +108,7 @@ We provide two such examples---\emph{Scale Collapse} and \emph{Correlation Flow}
 
 All of our computations were performed with the publicly-available \emph{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package}.
 To be fully reproducible, we only examine publicly-available, pretrained models, and we also provide all Jupyter and Google Colab notebooks used in an accompanying github repository~\cite{kdd20_sub_repo}.
-See Appendix~\ref{sxn:appendix} for details on how to reproduce all results.
+See Appendix~\ref{sxn:appendix} for details on how to reproduce all~results.
 
 
 %KDD% \vspace{-1mm}
