@@ -1,0 +1,131 @@
+%\documentclass[12pt]{article}
+\documentclass[11pt]{article}
+
+\addtolength{\textwidth}{1.4in}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+%\addtolength{\topmargin}{-0.5in}
+\addtolength{\topmargin}{-1.0in}
+\addtolength{\textheight}{1.7in}
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{framed}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%%% \usepackage{verbatim}
+\usepackage{graphicx}
+%\usepackage{caption}
+%%\DeclareCaptionType{copyrightbox}
+%\usepackage{subcaption}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{xcolor}
+%%\usepackage{enumitem}
+\usepackage{paralist}
+
+%\usepackage{subfig}
+\usepackage{subfigure}
+
+\usepackage{longtable} 
+\usepackage{makecell}
+
+\usepackage[multiple]{footmisc}
+\usepackage[section]{placeins}
+
+\usepackage{hyperref}
+\hypersetup{
+     colorlinks   = true,
+     linkcolor    = blue,
+     citecolor    = green
+}
+
+%-----------------------------------------------------------------------
+
+\newcommand{\fix}[1]{\textcolor{red}{#1}}
+\newcommand{\comment}[1]{\textcolor{blue}{#1}}
+\newcommand{\awk}[1]{\textcolor{green}{#1}}
+
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Probab}[1]{\mbox{}{\bf{Pr}}\left[#1\right]}
+\newcommand{\Expect}[1]{\mbox{}{\bf{E}}\left[#1\right]}
+\newcommand{\ExpectBracket}[1]{\mbox{}\langle#1\rangle}
+
+% Here are two macros for comments.
+\newcommand {\nred}[1]{{\color{red}\sf{[#1]}}}
+\newcommand {\ngreen}[1]{{\color{green}\sf{[#1]}}}
+\newcommand {\ncyan}[1]{{\color{cyan}\sf{[#1]}}}
+\newcommand {\michael}[1]{{\color{red}\sf{[michael: #1]}}}
+\newcommand {\charles}[1]{{\color{blue}\sf{[charles: #1]}}}
+\newcommand {\serena}[1]{{\color{orange}\sf{[charles: #1]}}}
+
+\usepackage[normalem]{ulem}
+
+
+
+%-----------------------------------------------------------------------
+
+\begin{document}
+
+\title{%
+Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data
+}
+
+\author{%
+Charles H. Martin\thanks{Calculation Consulting, 8 Locksley Ave, 6B, San Francisco, CA 94122, \texttt{charles@CalculationConsulting.com}.} 
+\and 
+Tongsu (Serena) Peng\thanks{Calculation Consulting, 8 Locksley Ave, 6B, San Francisco, CA 94122, \texttt{serenapeng7@gmail.com}.}
+\and
+Michael W. Mahoney\thanks{ICSI and Department of Statistics, University of California at Berkeley, Berkeley, CA 94720, \texttt{mmahoney@stat.berkeley.edu}.}
+}
+
+\date{}
+\maketitle
+
+
+
+\begin{abstract}
+\input{NatCom_abstract_file}
+\end{abstract}
+
+%GLG | Powered by Box
+
+\input{NatCom_introduction}
+\input{NatCom_methods}
+
+\section{Results}
+We study in detail three well-known CV architectures (the VGG, ResNet, and DenseNet series of models).
+Then, we look in detail at several variations of a popular NLP architecture (the OpenAI GPT and GPT2 models).
+Finally, we present results from a broader analysis of hundreds of pretrained DNN~models.
+
+
+\input{NatCom_cv_models}
+\input{NatCom_nlp_models}
+\input{NatCom_all_models}
+
+\input{NatCom_discussion}
+
+
+\noindent
+\paragraph{Acknowledgements.}
+MWM would like to acknowledge ARO, DARPA, NSF, and ONR as well as the UC Berkeley BDD project and a gift from Intel for providing partial support of this work.
+Our conclusions do not necessarily reflect the position or the policy of our sponsors, and no official endorsement should be inferred.
+We would also like to thank Amir Khosrowshahi and colleagues at Intel for helpful discussion regarding the Group Regularization distillation technique.
+
+\bibliographystyle{unsrt}
+%\bibliographystyle{plain}
+{\small
+%\bibliography{gen_gap}
+\bibliography{dnns}
+%\bibliography{dnns,gen_gap}
+}
+
+\appendix
+\input{NatCom_appendix}
+
+\end{document}

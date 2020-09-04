@@ -1,0 +1,61 @@
+\section{Introduction}
+\label{sxn:intro}
+
+A common problem in machine learning (ML) 
+is to evaluate the quality of a given model.
+A popular way to accomplish this
+is to train a model and then evaluate its training/testing error.
+There are many problems with this approach.
+The training/testing curves give very limited insight into the overall properties of the model; 
+they do not take into account the (often large human and CPU/GPU) time for hyperparameter fiddling;
+they typically do not correlate with other properties of interest such as robustness or fairness or interpretability; 
+and so on.
+A related problem, in particular in industrial-scale artificial intelligence (AI), arises when the model user is not the model developer.
+Then, one may not have access to the training data or the testing data.
+Instead, one may simply be given a model that has already been trained---a pretrained model---and need to use it as-is, or to fine-tune and/or compress it and then use it.
+
+Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
+This may be true in worst-case theory, but models are used in practice, and there is a need for a practical theory to guide that practice.
+Moreover, if ML is to become an industrial process, then that process will become compartmentalized in order to scale: some groups will gather data, other groups will develop models, and other groups will use those models.
+Users of models can not be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
+
+Moreover, for many large scale, practical applications, there is no obvious way to define an ideal test metric. 
+For example, models that generate fake text or conversational chatbots may use a proxy, like perplexity, as a test metric.
+In the end, however, they really require human evaluation. 
+Alternatively, models that cluster user profiles, which are widely used in areas such as marketing and advertising, are unsupervised and have no obvious labels for comparison and/or evaluation.
+In these and other areas, ML objectives can be poor proxies for downstream goals.
+
+Most importantly, in industry, one faces unique practical problems such as: do we have enough data for this model? 
+Indeed, high quality, labeled data can be very expensive to acquire, and this cost can make or break a project.
+Methods that are developed and evaluated on any well-defined publicly-available corpus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
+It is of great practical interest to have metrics to evaluate the quality of a trained model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
+There is a need for a practical theory for pretrained models which can predict how, when, and why such models can be expected to perform well or~poorly.
+
+In the absence of training and testing data, obvious quantities to examine are the weight matrices of pretrained models, e.g., 
+properties such as norms of weight matrices and/or parameters of Power Law (PL) fits of the eigenvalues of weight matrices.
+Norm-based metrics have been used in traditional statistical learning theory to bound capacity and construct regularizers; and PL fits are based on statistical mechanics approaches to deep neural networks (DNNs).
+While we use traditional norm-based and PL-based metrics, our goals are not the traditional goals.
+Unlike more common ML approaches, we do not seek a bound on the generalization (e.g., by evaluating training/test errors), we do not seek a new regularizer, and we do not aim to evaluate a single model (e.g., as with hyperparameter optimization).
+Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves.
+In both cases, we ask:
+Can we predict trends in the quality of pretrained DNN models without access to training or testing data?  
+
+To answer this question, we provide a detailed empirical analysis, evaluating quality metrics for pretrained DNN models, and we do so at scale.
+Our approach may be viewed as a statistical meta-analysis of previously published work, where we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
+By now, there are many such state-of-the-art models that are publicly-available, e.g., 
+hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 100$).%
+\footnote{When we began this work in 2018, there were fewer than tens of such models; now in 2020, there are hundreds of such models; and we expect that in a year or two there will be an order of magnitude or more of such models.}
+For all these models, we have no access to training data or testing data, and we have no specific knowledge of the training/testing protocols. 
+%
+Here is a summary of our main results.
+First, norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
+Second, norm-based metrics may give spurious results when applied to poorly-trained models (e.g., models trained without enough data, etc.).
+For example, they may exhibit what we call \emph{Scale Collapse} for these models. 
+Third, PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
+They are qualitatively better at discriminating well-trained versus poorly-trained models, and quantitatively better at discriminating among a series of well-trained versus very-well-trained models.
+Fourth, PL-based metrics can also be used to characterize fine-scale model properties, including what we call layer-wise \emph{Correlation Flow}, in well-trained and poorly-trained models; and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
+%
+Our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and the theory we apply was developed previously~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Performing such a meta-analysis of previously-published work is common in certain areas, but it is quite rare in ML, where the emphasis is on developing better training protocols.
+
+

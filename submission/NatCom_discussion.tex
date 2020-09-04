@@ -1,0 +1,52 @@
+\section{Discussion}
+
+
+\paragraph{Conclusions.}
+
+
+We have developed and evaluated methods to predict trends in the quality of state-of-the-art neural networks---without access to training or testing data.
+Our main methodology involved weight matrix meta-analysis, using the publicly-available \emph{WeightWatcher} tool~\cite{weightwatcher_package}, and informed by the recently-developed HT-SR Theory~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Prior to our work, it was not even obvious that norm-based metrics would perform well to predict trends in quality \emph{across} models (as they are usually used \emph{within} a given model or parameterized model class, e.g., to bound generalization error or to construct regularizers).
+Our results are the first to demonstrate that they can be used for this important practical problem.
+%
+Our results also demonstrate that PL-based metrics perform better than norm-based metrics. 
+This should \emph{not} be surprising---at least to those familiar with the statistical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017}---since our use of PL exponents is designed to capture the idea that well-trained models capture information correlations over many size scales in the data.
+Again, though, our results are the first to demonstrate this.
+%
+Our approach can also be used to provide fine-scale insight (rationalizing the flow of correlations or the collapse of size scale) throughout a network. 
+Both \emph{Correlation Flow} and \emph{Scale Collapse} are important for improved diagnostics on pretrained models as well as for improved training methodologies.
+
+
+\paragraph{Related work.}
+
+
+Statistical mechanics has long had influence on DNN theory and practice~\cite{EB01_BOOK, MM17_TR, BKPx20}.
+Our best-performing PL-based metrics are based on statistical mechanics via HT-SR Theory~\cite{MM17_TR, MM18_TR, MM19_HTSR_ICML, MM19_KDD, MM20_SDM}.
+The way in which we (and HT-SR Theory) \emph{use} statistical mechanics theory is quite different than the way it is more commonly formulated~\cite{EB01_BOOK, BKPx20}.
+Going beyond idealized models, we \emph{use} statistical mechanics in a broader sense, drawing upon techniques from quantitative finance, random matrix theory, and the statistical mechanics of heavy tailed and strongly correlated systems~\cite{BouchaudPotters03, SornetteBook, BP11, bun2017}.
+%
+There is also a large body of work in ML on using norm-based metrics to bound generalization error~\cite{NTS15, BFT17_TR, LMBx18_TR}.
+This theoretical work aims to prove generalization bounds, and this applied work then uses these norms to construct regularizers to improve training.
+Proving generalization bounds and developing new regularizers is very different than our focus of validating pretrained models.
+
+
+Our work, starting in 2018 with the \emph{WeightWatcher} tool~\cite{weightwatcher_package}, is the first to perform a detailed analysis of the weight matrices of DNNs~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Subsequent to the initial version of this paper, we became aware of two other works that were posted to the in 2020 within weeks of the initial version of this paper~\cite{EJRUY20_TR,UKGBT20_TR}.
+Both of these papers validate our basic result that one can gain substantial insight into model quality by examining weight matrices without access to any training or testing data.
+However, both consider smaller models drawn from a much narrower range of applications than we consider.
+Previous results in HT-SR Theory suggest that insights from these smaller models may not extend to the state-of-the-art CV and NLP models we consider.
+
+
+\paragraph{Looking forward.}
+
+
+We conclude with a few comments on what a \emph{practical theory} of DNNs should look like.
+To do so, we distinguish between two types of theories:
+\emph{non-empirical or analogical theories}, in which one creates, often from general principles, a very simple toy model that can be analyzed rigorously, and one then argues that the model is relevant to the system of interest; and 
+\emph{semi-empirical theories}, in which there exists a rigorous asymptotic theory, which comes with parameters, for the system of interest, and one then adjusts or fits those parameters to the finite non-asymptotic data.
+A drawback of the former approach is that it typically makes very strong assumptions, and the strength of those assumptions can limit the practical applicability of the theory.
+Nearly all of the work on DNN theory focuses on the former type of theory.
+Our approach focuses on the latter type of theory.
+Our results, which are based on \emph{using} sophisticated statistical mechanics theory and \emph{solving} important practical DNN problems, suggests that the latter approach should be of interest more generally for those interested in developing a \emph{practical DNN~theory}.
+
+
