@@ -60,7 +60,11 @@
 \newcommand {\nred}[1]{{\color{red}\sf{[#1]}}}
 \newcommand {\ngreen}[1]{{\color{green}\sf{[#1]}}}
 \newcommand {\ncyan}[1]{{\color{cyan}\sf{[#1]}}}
+
+%% MWM: Do the following to remove the comments from the pdf.
+%\newcommand {\michael}[1]{{ }}
 \newcommand {\michael}[1]{{\color{red}\sf{[michael: #1]}}}
+
 \newcommand {\charles}[1]{{\color{blue}\sf{[charles: #1]}}}
 \newcommand {\serena}[1]{{\color{orange}\sf{[charles: #1]}}}
 
@@ -82,6 +86,7 @@ Charles H. Martin\thanks{Calculation Consulting, 8 Locksley Ave, 6B, San Francis
 Tongsu (Serena) Peng\thanks{Calculation Consulting, 8 Locksley Ave, 6B, San Francisco, CA 94122, \texttt{serenapeng7@gmail.com}.}
 \and
 Michael W. Mahoney\thanks{ICSI and Department of Statistics, University of California at Berkeley, Berkeley, CA 94720, \texttt{mmahoney@stat.berkeley.edu}.}
+\thanks{Corresponding author.}
 }
 
 \date{}
@@ -96,20 +101,20 @@ Michael W. Mahoney\thanks{ICSI and Department of Statistics, University of Calif
 %GLG | Powered by Box
 
 \input{NatCom_introduction}
-\input{NatCom_methods}
 
 \section{Results}
-We study in detail three well-known CV architectures (the VGG, ResNet, and DenseNet series of models).
-Then, we look in detail at several variations of a popular NLP architecture (the OpenAI GPT and GPT2 models).
-Finally, we present results from a broader analysis of hundreds of pretrained DNN~models.
+After describing our overall approach, we study in detail three well-known CV architectures (the VGG, ResNet, and DenseNet series of models).
+Then, we look in detail at several variations of a popular NLP architecture (the OpenAI GPT and GPT2 models), and we present results from a broader analysis of hundreds of pretrained DNN~models.
 
 
+\input{NatCom_overall_approach}
 \input{NatCom_cv_models}
 \input{NatCom_nlp_models}
 \input{NatCom_all_models}
 
 \input{NatCom_discussion}
 
+\input{NatCom_methods}
 
 \noindent
 \paragraph{Acknowledgements.}

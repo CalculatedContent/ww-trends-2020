@@ -25,7 +25,7 @@ In the end, however, they really require human evaluation.
 Alternatively, models that cluster user profiles, which are widely used in areas such as marketing and advertising, are unsupervised and have no obvious labels for comparison and/or evaluation.
 In these and other areas, ML objectives can be poor proxies for downstream goals.
 
-Most importantly, in industry, one faces unique practical problems such as: do we have enough data for this model? 
+Most importantly, in industry, one faces unique practical problems such as determining whether one has enough data for a given model. 
 Indeed, high quality, labeled data can be very expensive to acquire, and this cost can make or break a project.
 Methods that are developed and evaluated on any well-defined publicly-available corpus of data, no matter how large or diverse or interesting, are clearly not going to be well-suited to address problems such as this.
 It is of great practical interest to have metrics to evaluate the quality of a trained model---in the absence of training/testing data and without any detailed knowledge of the training/testing process.  
@@ -37,8 +37,7 @@ Norm-based metrics have been used in traditional statistical learning theory to 
 While we use traditional norm-based and PL-based metrics, our goals are not the traditional goals.
 Unlike more common ML approaches, we do not seek a bound on the generalization (e.g., by evaluating training/test errors), we do not seek a new regularizer, and we do not aim to evaluate a single model (e.g., as with hyperparameter optimization).
 Instead, we want to examine different models across common architecture series, and we want to compare models between different architectures themselves.
-In both cases, we ask:
-Can we predict trends in the quality of pretrained DNN models without access to training or testing data?  
+In both cases, one can ask whether it is possible to predict trends in the quality of pretrained DNN models without access to training or testing data.  
 
 To answer this question, we provide a detailed empirical analysis, evaluating quality metrics for pretrained DNN models, and we do so at scale.
 Our approach may be viewed as a statistical meta-analysis of previously published work, where we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
@@ -50,10 +49,10 @@ For all these models, we have no access to training data or testing data, and we
 Here is a summary of our main results.
 First, norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
 Second, norm-based metrics may give spurious results when applied to poorly-trained models (e.g., models trained without enough data, etc.).
-For example, they may exhibit what we call \emph{Scale Collapse} for these models. 
+For example, they may exhibit what we call Scale Collapse for these models. 
 Third, PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
 They are qualitatively better at discriminating well-trained versus poorly-trained models, and quantitatively better at discriminating among a series of well-trained versus very-well-trained models.
-Fourth, PL-based metrics can also be used to characterize fine-scale model properties, including what we call layer-wise \emph{Correlation Flow}, in well-trained and poorly-trained models; and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
+Fourth, PL-based metrics can also be used to characterize fine-scale model properties, including what we call layer-wise Correlation Flow, in well-trained and poorly-trained models; and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
 %
 Our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and the theory we apply was developed previously~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
 Performing such a meta-analysis of previously-published work is common in certain areas, but it is quite rare in ML, where the emphasis is on developing better training protocols.

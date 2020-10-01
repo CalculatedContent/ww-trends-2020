@@ -8,7 +8,7 @@ In contrast to smaller pre-Activation maps arising in Cond2D layers, Attention m
 In general, they have larger PL exponents $\alpha$.
 Based on HT-SR Theory
 (in particular, the interpretation of values of $\alpha \sim 2$ as modeling systems with good correlations over many size scales~\cite{BouchaudPotters03, SornetteBook}), 
-this suggests that these models fail to capture successfully many of the information correlations in the data (relative to their size) and thus are substantially \emph{under}-trained.
+this suggests that these models fail to capture successfully many of the information correlations in the data (relative to their size) and thus are substantially under-trained.
 More generally, compared to CV models,
 modern NLP models have larger weight matrices and display different spectral properties.
 
@@ -19,16 +19,13 @@ Instead, it should probably be interpreted as being due to a similar mechanism t
 In contrast to norm-based metrics, PL-based metrics, including the Log $\alpha$-Norm metric and the Weighted Alpha metric display consistent behavior, even on poorly trained models.
 One can use these metrics to help identify when architectures need repair and when more and/or better data are needed.
 
-
-\paragraph{What do large values of $\alpha$ mean?}
-
 Many NLP models, such as early variants of GPT and BERT, have weight matrices with unusually large PL exponents (e.g., $\alpha\gg 6$).
-This indicates these matrices may be \emph{under}-correlated (i.e., over-parameterized, relative to the amount of data).
+This indicates these matrices may be under-correlated (i.e., over-parameterized, relative to the amount of data).
 In this regime, the truncated PL fit itself may not be very reliable because the Maximum Likelihood estimator it uses is unreliable in this range.
 The specific $\alpha$ values returned by the truncated PL fits are less reliable, but having large versus small $\alpha$ is reliable.
-If the ESD is visually examined, one can usually describe these $\mathbf{W}$ as in the \emph{Bulk-Decay} or \emph{Bulk-plus-Spikes} phase from HT-ST Theory~\cite{MM18_TR,MM19_HTSR_ICML}.
-Previous work~\cite{MM18_TR,MM19_HTSR_ICML} has conjectured that very well-trained DNNs would not have many \emph{outlier} $\alpha\gg 6$.
-Consistent with this, more recent improved versions of GPT (shown below) and BERT (not shown) confirm this.
+If the ESD is visually examined, one can usually describe these $\mathbf{W}$ as in the Bulk-Decay or Bulk-plus-Spikes phase from HT-ST Theory~\cite{MM18_TR,MM19_HTSR_ICML}.
+Previous work~\cite{MM18_TR,MM19_HTSR_ICML} has conjectured that very well-trained DNNs would not have many outlier $\alpha\gg 6$.
+Consistent with this, more recent improved versions of GPT (shown below) and BERT (not shown) confirm~this.
 
 
 \paragraph{OpenAI GPT Models.}
@@ -68,7 +65,7 @@ The projection layer concatenates the self-attention results into a vector (of d
 This gives $50$ large matrices.
 Because GPT and GPT2 are trained on different data sets, the initial Embedding matrices differ in shape.
 GPT has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. 
-The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl, having $12$, $24$, $36$, and $48$ layers, respectively, with increasingly larger weight matrices.
+The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl, having $12$, $24$, $36$, and $48$ layers, respectively, with increasingly larger weight~matrices.
 }
 \label{table:nlp}
 \end{table}
@@ -79,11 +76,11 @@ The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and G
 See Table \ref{table:nlp} for a summary of results for the four quality metrics for the OpenAI GPT and GPT2 pretrained models.
 Comparing trends between GPT and GPT2-small, 
 observe that all four metrics increase when going from GPT to GPT2-small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
-In the poorly-trained GPT model, the norm metrics all exhibit \emph{Scale Collapse}, compared to well-trained GPT2-small model.
+In the poorly-trained GPT model, the norm metrics all exhibit Scale Collapse, compared to well-trained GPT2-small model.
 
 Comparing trends between GPT2-medium to GPT2-large to GPT2-xl,
 observe that (with one minor exception involving the log Frobenius norm metric) all four metrics decrease as one goes from medium to large to xl, indicating that the larger models indeed look better than the smaller models.
-For these well-trained models, the norm metrics now behave as expected, i.e., there is no \emph{Scale Collapse} and norms are decreasing with increasing~accuracy.
+For these well-trained models, the norm metrics now behave as expected, i.e., there is no Scale Collapse and norms are decreasing with increasing~accuracy.
 
 Going beyond average values, Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT and GPT2-small.  
 The older deficient GPT has numerous unusually large $\alpha$ exponents---meaning they are not well-described by a PL fit.
@@ -99,10 +96,9 @@ This should be contrasted with the behavior displayed by the Frobenius norm (not
 We next describe the Spectral norm in GPT versus GPT2-small.
 In Figure~\ref{fig:GPT-snorm-hist}, the poorly-trained GPT model has a smaller mean/median Spectral norm as well as, spuriously, many much smaller Spectral norms, compared to the well-trained GPT2-small.
 This violates the conventional wisdom that smaller Spectral norms are better.
-Because there are so many anonymously small Spectral norms, the GPT model may be exhibiting a kind of \emph{Scale Collapse}, like that observed in the distilled CV models (Figure~\ref{fig:resnet204D5L}).
+Because there are so many anonymously small Spectral norms, the GPT model may be exhibiting a kind of Scale Collapse, like that observed in the distilled CV models (Figure~\ref{fig:resnet204D5L}).
 
-This demonstrates that, while the Spectral (or Frobenius) norm may correlate well with predicted test error, at least among reasonably well-trained models, it is \emph{not} a good indicator of the overall model quality in general.
-It can mispredict well-trained versus poorly-trained questions in ways not seen with PL-based metrics.
+This demonstrates that, while the Spectral (or Frobenius) norm may correlate well with predicted test error, at least among reasonably well-trained models, it is not a good indicator of the overall model quality in general.
 Using it as an empirical quality metric may give spurious results when applied to poorly-trained or otherwise deficient~models. 
 
 \begin{figure}[h]
@@ -116,7 +112,11 @@ Using it as an empirical quality metric may give spurious results when applied t
         \includegraphics[width=5.5cm]{img/GPT-snorm-hist.png}
         \label{fig:GPT-snorm-hist}
        }
-   \caption{Histogram of PL exponents ($\alpha$) and Log Spectral Norms ($\log\Vert\mathbf{W}\Vert_{\infty}$) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.}
+   \caption{Histogram of PL exponents 
+           %($\alpha$) 
+           and Log Spectral Norms 
+           %($\log\Vert\mathbf{W}\Vert_{\infty}$) 
+           for weight matrices from the OpenAI GPT and GPT2-small pretrained models.}
    
 \label{fig:GPT-hist}
 \end{figure}
@@ -125,7 +125,9 @@ Using it as an empirical quality metric may give spurious results when applied t
 Figure~\ref{fig:GPT-snorm-hist} also shows some unusually large Spectral Norms.
 Upon examination, e.g., from Figure \ref{fig:gpt-snorm-layer} (below), these correspond to the first embedding layer(s).
 These layers have a different effective normalization, and therefore a different scale.
-See Appendix~\ref{sxn:appendix} for details.
+See the Supplementary Information
+%~\ref{sxn:appendix} 
+for details.
 Here, we do not include them in our computed average metrics in Table~\ref{table:nlp}, and we do not include them in the histogram plot in Figure~\ref{fig:GPT-snorm-hist}.
 
 
@@ -156,8 +158,12 @@ Because of the anomalous scale collapse that is frequently observed in poorly-tr
         \includegraphics[width=5.5cm]{img/GPT-snorm-depth.png}
         \label{fig:gpt-snorm-layer}
     }
-    \caption{PL exponents ($\alpha$) (in (a)) and Log Spectral Norms ($\log\Vert\mathbf{W}\Vert_{\infty}$) (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.  (Note that the quantities being shown on each Y axis are different.)
-             In the text, this is interpreted in terms of \emph{Correlation Flow} and \emph{Scale~Collapse}.
+    \caption{PL exponents 
+             %($\alpha$) 
+             (in (a)) and Log Spectral Norms 
+             %($\log\Vert\mathbf{W}\Vert_{\infty}$) 
+             (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models.  (Note that the quantities being shown on each Y axis are different.)
+             In the text, this is interpreted in terms of Correlation Flow and Scale~Collapse.
             }
     \label{fig:gpt-alpha-layers}
 \end{figure}
@@ -190,8 +196,11 @@ This suggests that these larger GPT2 models are still under-optimized/over-param
         \includegraphics[width=5.5cm]{img/GPT2*_fnl_logpnorm_hist.png}
         \label{fig:gpt2-pnorm-hist}
     }
-    \caption{Histogram of PL exponents ($\alpha$)
-              and Log Alpha Norm ($\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$) for weight matrices from models of different sizes in the GPT2 architecture series.  (Plots omit the first 2 (embedding) layers, because they are normalized differently giving anomalously large values.)
+    \caption{Histogram of PL exponents 
+             %($\alpha$)
+             and Log Alpha Norm 
+             %($\log\Vert\mathbf{X}\Vert_{\alpha}^{\alpha}$) 
+             for weight matrices from models of different sizes in the GPT2 architecture series.  (Plots omit the first 2 (embedding) layers, because they are normalized differently giving anomalously large values.)
              }
     \label{fig:gpt2-histograms}
 \end{figure}
