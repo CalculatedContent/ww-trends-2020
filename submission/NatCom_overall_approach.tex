@@ -140,8 +140,8 @@ See Figure~\ref{fig:ww} for an illustration.
 
 \begin{figure}[t]
     \centering
-    %\includegraphics[width=15.0cm]{img/WeightWatcher_v2}
-    \includegraphics[width=15.0cm]{../img2/WeightWatcher_v2}
+    \includegraphics[width=15.0cm]{img/WeightWatcher_v2}
+    %\includegraphics[width=15.0cm]{../img2/WeightWatcher_v2}
     \caption{Schematic of analyzing DNN layer weight matrices $\mathbf{W}$.  
              Given an individual layer weight matrix $\mathbf{W}$, from either a fully-connected layer or a convolutional layer, perform a Singular Value Decomposition (SVD) to obtain $\mathbf{W} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^{T}$, and examine the histogram of eigenvalues of $\mathbf{W}^{T}\mathbf{W}$.
              Norm-based metrics (not shown) and PL-based metrics (that depend on fitting the histogram of eigenvalues to a truncated PL) can be used to compare models.
