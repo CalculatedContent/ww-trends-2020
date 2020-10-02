@@ -8,13 +8,13 @@ All of our computations were performed with the \texttt{WeightWatcher} tool (ver
 
 \paragraph{Additional Details on Layer Weight Matrices}
 
-Recall that we can express the objective/optimization function for a typical DNN with $L$ layers, with activation functions $h_{l}(\cdot)$, and with $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$ as Equation~(\ref{eqn:dnn_energy}).
+Recall that we can express the objective/optimization function for a typical DNN with $L$ layers and with $N\times M$ weight matrices $\mathbf{W}_{l}$ and bias vectors $\mathbf{b}_{l}$ as Equation~(\ref{eqn:dnn_energy}).
 We expect that most well-trained, production-quality models will employ one or more forms of regularization, such as Batch Normalization (BN), Dropout, etc., and many will also contain additional structure such as Skip Connections, etc. 
 Here, we will ignore these details, and will focus only on the pretrained layer weight matrices $\mathbf{W}_{l}$.
 Typically, this model would be trained on some labeled data $\{d_{i},y_{i}\}\in\mathcal{D}$, using Backprop, by minimizing the loss $\mathcal{L}$.
 For simplicity, we do not indicate the structural details of the layers (e.g., Dense or not, Convolutions or not, Residual/Skip Connections, etc.). 
 Each layer is defined by one or more layer 2D weight matrices $\mathbf{W}_{l}$, and/or the 2D feature maps $\mathbf{W}_{l,i}$ extracted from 2D Convolutional (Conv2D) layers.
-A typical modern DNN may have anywhere between 5 and 5000 2D layer matrices.
+A typical modern DNN may have anywhere between 5 and 5000 2D layer~matrices.
 
 For each Linear Layer, we get a  single $(N\times M)$ (real-valued) 2D weight matrix, denoted $\mathbf{W}_{l}$, for layer $l$.  
 This includes Dense or Fully-Connected (FC) layers, as well as 1D Convolutional (Conv1D) layers, Attention matrices, etc.

@@ -2,20 +2,21 @@
 \label{sxn:approach}
 
 
-Consider the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, activation functions $h_{l}(\cdot)$, and $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$, as 
-the minimization of a general Loss Function $\mathcal{L}$ over $N$ training data instances and labels, $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$.
-For a typical supervised classification problem, one has
+Consider the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, and weight matrices $\mathbf{W}_{l}$ and bias vectors $\mathbf{b}_{l}$, as 
+the minimization of a general Loss Function $\mathcal{L}$ over the training data instances and labels, $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$.
+For a typical supervised classification problem, the goal of training is to construct $\mathbf{W}_{l}$ and $\mathbf{b}_{l}$ that capture correlations in the data, in the sense of solving
 \begin{equation}
 \underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)  ,
 \end{equation}
-where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where
+where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where the Energy (or optimization) Landscape function
 \begin{equation}
-E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})
+%E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})
+E_{DNN} = f(\mathbf{W}_{1},\ldots,\mathbf{W}_{L},\mathbf{b}_{1},\ldots,\mathbf{b}_{L})
 \label{eqn:dnn_energy}
 \end{equation}
-is the Energy (or optimization) Landscape function.  
-\michael{See comments for math equations, explain $h_{L}$, scalar valued function, $b_L$, times symbol, etc., confusing about role or $y$, and whether we are dealing with products of matrices.  E.g., $L$ layers, with activation functions $h_{l}(\cdot)$, and with $N\times M$ weight matrices $\mathbf{W}_{l}$ and biases $\mathbf{b}_{l}$; etc.  }
-$E_{DNN}$ does not explicitly depend on the data, but rather it maps data instance vectors ($\mathbf{x}_i$ values) to predictions (labels).
+depends on the weights and biases.
+\michael{See comments for math equations.}
+For a trained model, $E_{DNN}$ does not explicitly depend on the data, but rather it maps data instance vectors ($\mathbf{x}_i$ values) to predictions ($y_{i}$ labels).
 \michael{Mark found that sentence confusing.}
 Therefore, one can analyze $E_{DNN}$ in the absence of any training or test~data. 
 
@@ -34,7 +35,7 @@ for details.
 \paragraph{Metrics for DNN Weight Matrices.}
 
 Our approach involves analyzing individual DNN weight matrices, for (depending on the architecture) fully-connected and/or convolutional layers.
-Each DNN layer contains one or more layer 2D  $N\times M$ weight matrices, $\mathbf{W}_{l}$, or pre-activation maps, $\mathbf{W}_{i,l}$, e.g., extracted from 2D Convolutional layers, where $N > M$.
+Each DNN layer contains one or more layer 2D  $N_{l}\times M_{l}$ weight matrices, $\mathbf{W}_{l}$, or pre-activation maps, $\mathbf{W}_{i,l}$, e.g., extracted from 2D Convolutional layers, where $N > M$.
 See the Supplementary Information
 %~\ref{sxn:appendix} 
 for details.
@@ -85,6 +86,7 @@ The original work on HT-SR Theory considered a small number of NNs, including Al
 It showed that for nearly every $\mathbf{W}$, the (bulk and tail) of the ESDs can be fit to a truncated PL, and that PL exponents $\alpha$ nearly all lie within the range $\alpha\in(1.5,5)$~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
 %
 As for the mechanism responsible for these properties, statistical physics offers several possibilities~\cite{SornetteBook,nishimori01}, e.g., self organized criticality~\cite{SOC87,SOCat25yrs} or multiplicative noise in the stochastic optimization algorithms used to train these models~\cite{HodMah20A_TR,SorCon97}.
+Alternatively, related techniques have been used to analyze correlations and information propogation in actual spiking neurons~\cite{SYYRP11,YKYP14}.
 Our meta-analysis does not require knowledge of mechanisms; and it is not even clear that one mechanism is responsible for every case.
 %
 Crucially, HT-SR Theory predicts that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models.
@@ -140,13 +142,12 @@ See Figure~\ref{fig:ww} for an illustration.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=15.0cm]{img/WeightWatcher_v2}
-    %\includegraphics[width=15.0cm]{../img2/WeightWatcher_v2}
+    %\includegraphics[width=15.0cm]{img/WeightWatcher_v2}
+    \includegraphics[width=15.0cm]{img/WeightWatcher_v3}
     \caption{Schematic of analyzing DNN layer weight matrices $\mathbf{W}$.  
              Given an individual layer weight matrix $\mathbf{W}$, from either a fully-connected layer or a convolutional layer, perform a Singular Value Decomposition (SVD) to obtain $\mathbf{W} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^{T}$, and examine the histogram of eigenvalues of $\mathbf{W}^{T}\mathbf{W}$.
              Norm-based metrics (not shown) and PL-based metrics (that depend on fitting the histogram of eigenvalues to a truncated PL) can be used to compare models.
              For example, one can analyze one layer of a pre-trained model, compare multiple layers of a pre-trained model, make comparisons across model architectures, monitor neural network properties during training, etc. 
-             \michael{Put the Analyze, Compare, Monitor comments in the caption, not the figure.}
 }
     \label{fig:ww}
 \end{figure}
