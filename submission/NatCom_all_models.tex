@@ -6,7 +6,7 @@ This broader analysis on a much larger set of CV and NLP models, with a more div
 See the Supplementary Information
 %~\ref{sxn:appendix} 
 for details.
-To quantify the relationship between quality metrics and the reported test error and/or accuracy metrics, we use ordinary least squares to regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).
+To quantify the relationship between quality metrics and the reported test error and/or accuracy metrics, we use ordinary least squares (similar results are seen with rank correlation metrics) to regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).
 These include Top5 errors for the ImageNet-1K model, percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (IOU) for other models.
 We regress them individually on each of the norm-based and PL-based metrics.
 

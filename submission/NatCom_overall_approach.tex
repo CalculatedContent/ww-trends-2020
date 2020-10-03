@@ -3,18 +3,18 @@
 
 
 Consider the objective/optimization function (parameterized by $\mathbf{W}_{l}$s and $\mathbf{b}_{l}$s) for a DNN with $L$ layers, and weight matrices $\mathbf{W}_{l}$ and bias vectors $\mathbf{b}_{l}$, as 
-the minimization of a general Loss Function $\mathcal{L}$ over the training data instances and labels, $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$.
-For a typical supervised classification problem, the goal of training is to construct $\mathbf{W}_{l}$ and $\mathbf{b}_{l}$ that capture correlations in the data, in the sense of solving
+the minimization of a general loss function $\mathcal{L}$ over the training data instances and labels, $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$.
+For a typical supervised classification problem, the goal of training is to construct (or learn) $\mathbf{W}_{l}$ and $\mathbf{b}_{l}$ that capture correlations in the data, in the sense of solving
 \begin{equation}
 \underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)  ,
 \end{equation}
-where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where the Energy (or optimization) Landscape function
+where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where the energy (or optimization) landscape function
 \begin{equation}
 %E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})
-E_{DNN} = f(\mathbf{W}_{1},\ldots,\mathbf{W}_{L},\mathbf{b}_{1},\ldots,\mathbf{b}_{L})
+E_{DNN} = f(\mathbf{x}_{i} ; \mathbf{W}_{1},\ldots,\mathbf{W}_{L},\mathbf{b}_{1},\ldots,\mathbf{b}_{L})
 \label{eqn:dnn_energy}
 \end{equation}
-depends on the weights and biases.
+depends parametrically on the weights and biases.
 \michael{See comments for math equations.}
 For a trained model, $E_{DNN}$ does not explicitly depend on the data, but rather it maps data instance vectors ($\mathbf{x}_i$ values) to predictions ($y_{i}$ labels).
 \michael{Mark found that sentence confusing.}
@@ -41,7 +41,7 @@ See the Supplementary Information
 for details.
 (We may drop the $i$ and/or $i,l$ subscripts below.)
 The best performing quality metrics depend on the norms and/or spectral properties of each weight matrix,
-$\mathbf{W}$, and/or, equivalently, it's Empirical Correlation Matrix, $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
+$\mathbf{W}$, and/or, equivalently, it's empirical correlation matrix, $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
 We consider the following metrics:
 \begin{eqnarray}
 & & \text{Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{X}\Vert_{F}=\sum\nolimits_{i=1}^{M} \lambda_{i}$ } \\
