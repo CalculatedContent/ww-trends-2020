@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+
+\addtolength{\textwidth}{1.4in}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\topmargin}{-1.0in}
+\addtolength{\textheight}{1.7in}
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+
+%-----------------------------------------------------------------------
+
+\begin{document}
+
+
+\section*{Response to Reviewers
+``Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data''
+}
+
+Thanks to the two reviewers for providing feedback.
+One reviewer had questions about additional results to justify our main claims.
+In some cases, we had these results previously, but they were not included due to space constraints.
+In other cases, these results were easy to generate, and we are happy to include them.
+This reviewer also had several misunderstandings, which we will clarify.
+The other reviewer had several general questions, which we also happy to include and clarify.
+We go through each of the points in turn below, with the reviewer comments in italics and our response immediately after.
+
+
+\subsection*{Reviewer 1}
+
+\emph{%
+The paper presents a set of metrics to evaluate the quality of trained neural networks without having access to the training/testing data used to train/validate the models. 
+This is achieved by taking advantage of regularization techniques to train neural networks. 
+The paper evaluates different approaches such as norms of the learned weight matrices or parameters from power law fits of the eigenvalues of weight matrices. 
+These proposed metrics are therefore evaluated on a large number of pre-trained convolutional neural network architectures and natural language processing models.
+}
+
+\begin{quote}
+To clarify a potential misunderstanding, it is not correct that the metrics we consider are
+``achieved by taking advantage of regularization techniques to train neural networks.'' 
+Norms may be used to train neural networks, but power law fits are not.
+Instead, for the power law fits, we use ideas from statistical mechanics and strongly correlated system theory to try to capture the idea that trained neural networks encode correlations from the data.
+It is fair to say that the power law exponents characterize is the implicit regularization, whether or not the model trainer knew that that was what he or she was doing, but not any regularization explicitly used to train.
+We clarify this point at Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+I like the idea of proposing a metric to evaluate the quality of already trained models. 
+However, I believe the paper arrives to conclusions without using proper statistical analysis and it is too speculative:
+}
+
+\noindent
+\emph{%
+- The average quality vs Top 1 accuracy is tested using linear regression. However, the p-values are not reported and only the RMSE and $R^2$ is provided. Moreover, the assumption of normality of residuals is not tested. Therefore, we cannot conclude with RMSE and $R^2$ that there is a correlation between the metrics and the Top 1 accuracy.
+}
+
+\begin{quote}
+XXX.  CM: 
+The best thing is to run R2 and Ktau, not p-values, and then also look at the plots.
+I'm open to other suggestions here.
+I'll need to set this up this week, and also create a repo with ALL the plots.
+\end{quote}
+
+\noindent
+\emph{%
+- In the layer analysis, the paper analyzes how the PL exponent varies in the different layers. Figure 4 shows how the distribution of alpha among layers is architecture-dependent, having different distributions. Computing the mean of this value among all layers is in my opinion not a good metric to compare different models. Despite the fact, that the results of the linear regression used in Figure 9 are not reported, it seems to be the case as seen in the figure, that there is a poor correlation between trained models with different architectures.
+}
+
+\begin{quote}
+(((XXX.  CM: 
+The whole point is that a crude average works pretty well. 
+We never claim that there is a correlation between different architectures.
+)))\\
+The reviewer is correct that the distribution of $\alpha$ is different for different architectures.
+That is the point.
+Different architectures can be more or less appropriate for a given task, and within an architecture series the metrics we present can be used to predict trends in model quality.
+We never claim that there is a correlation between different architectures, and we know that there is not.
+There are many reasons for this, e.g., different normalizations, etc.
+As for For Figure 9, XXX.
+%
+We clarify these points at Line XXX, Line XXX, and Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+- In the first paragraph of the NLP models (line 325) the paper indicates that lower quality metrics represent better model, but Table 2 indicates the opposite. Also, when comparing the metrics with the depth of the network the paper compares GPT2-medium, large, and xl. However, it does not include in the comparison the small model, which will not present the nice trend of decreasing values of the metrics when increasing the depth of the model.
+}
+
+\begin{quote}
+XXX.  CM: 
+IDK what this is talking about.  We must have explained things improperly.  We should review.
+\end{quote}
+
+\noindent
+\emph{%
+- The paper also concludes that the alpha metric is a good metric to explain the quality based on Figure 6 and 8. However, these histograms look very similar with the exception of a few outliers. This should be analyzed in more detail.
+}
+
+\begin{quote}
+(((XXX.  CM:
+We can analyze in more detail sure.  Space provided.
+)))\\
+The reviewer is correct that the plots are similar.
+The important point is how they are different.
+For the GPT $\alpha$ plots, the overall distribution shifts slightly to smaller values of $\alpha$ and there are fewer large outliers, both indicating that the larger model is
+XXX MM TO REFINE.
+\end{quote}
+
+\noindent
+\emph{%
+- The paper refers to results to support the conclusion, but these results are not reported in the paper or supplementary material -- ``not shown here''. If these results support the conclusion, they should be presented in the paper or at least the supplementary material.
+}
+
+\begin{quote}
+XXX.  CM:
+We can add a supplementary github repo.
+\end{quote}
+
+\noindent
+\emph{%
+So, while I like the idea and believe that the authors tackle an important topic, I believe that the conclusions they arrive at, are not necessarily supported by the experiments and the shown results. Hence, I believe the manuscript needs a major revision and additional experiments in order to support the claims. For these reasons my recommendation is to reject the paper, and encourage the authors to proceed with their work.
+}
+
+\begin{quote}
+XXX.  CM:
+We disagree.  We are happy to provide a more detailed experimental analysis and in gross detail.
+Space is limited here, however. 
+\end{quote}
+
+
+\subsection*{Reviewer 3}
+
+\noindent
+\emph{%
+Nowadays, much research effort is being put into developing a theory for deep learning that could predict a network's generalization error. Yet, for many of these theories, the rubber never meets the road, as no concrete guidelines are provided for practitioners that would allow them to predict the generalization error of state-of-the-art networks, trained on real data, across various hyperparameters, at scale. The authors of this paper undertake this important challenge in the specific, yet prevalent setting of transfer learning (and also model distillation), proposing novel statistics for predicting generalization performance, based on the spectrum of layer-wise weight matrices. Of particular interest is the methodology that the authors chose, relying heavily on data scientific experiments. This work exemplifies the potency of data science in delivering knowledge in the modern scientific era. I, therefore, recommend the acceptance of this publication to Nature Communications,
+once the authors address the minor issues raised below.
+}
+
+\begin{quote}
+Thanks for articulating at least as well as we did the broad goal of the paper.
+\end{quote}
+
+\noindent
+\emph{%
+- ``DNNs will exhibit correlations over many size scales'' -- could the authors elaborate on this statement and explain it for readers unaware of theories pertaining to strongly-correlated systems?
+}
+
+\begin{quote}
+(((XXX.  CM:
+Easy.
+)))\\
+We have elaborated on this at Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+- Would the authors consider the following logic to be correct: \\
+- Smaller power-law exponents result in a more condensed spectrum; \\
+- More condensed spectrum results in a smaller condition number; \\
+- A smaller condition number facilitates the propagation of information/features across layers.
+}
+
+\begin{quote}
+(((XXX.  CM:
+We can discuss in detail.  The trick is in how the tail is estimated ...
+)))\\
+More important than the smaller condition number, which has to do with the ratio of the largest to smallest eigenvalue, is the ``shape'' of the spectral distribution, and in particular the details of the tail and how the tail is estimated.
+We clarify this point at Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+- Could the authors elucidate the relation between the Information Bottleneck and the Theory of Heavy-Tailed Self Regularization?
+}
+
+\begin{quote}
+(((XXX.  CM:
+Pftt IDK.  We can think something up.
+)))\\
+Certainly.
+We clarify this point at Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+- Would the authors consider rank collapse a phenomenon detrimental or beneficial to the network's performance? Why?
+}
+
+\begin{quote}
+(((XXX.  CM:
+Detrimental.  This is known in GANs, where regularizers are used to prevent rank collapse.
+I'll have to think of a bigger reason.
+)))\\
+In general, it would be detrimental.
+This is known in GANs, where regularizers are used to prevent rank collapse, but it appears to hold more generally.
+We clarify this point at Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+- Could the authors define mathematically what is ``Scale Collapse''?
+}
+
+\begin{quote}
+(((XXX.  CM:
+This just means that the scale of the W matrix changes suddenly and unexpectedly.
+)))\\
+XXX MM QUES: ``suddenly and unexpectedly'' MEANS AS A FUNCTION OF SOMETHING THAT IS CHANGING.
+\end{quote}
+
+\noindent
+\emph{%
+- If one were to multiply all weights in the network by a constant, the spectral norm would change, but the classification error would not. Isn't the spectral norm of the weights therefore irrelevant for diagnosing deep networks?
+}
+
+\begin{quote}
+(((XXX.  CM:
+Yes and No.  Recall we are comparing networks with similar architectures.
+One then has to choose a canonical way to normalize the network so that similar architectures can be compared.
+While different networks do have different normalizations, we have not found any discrepancies across 
+models in the same architecture series.
+)))\\
+Yes and No.  
+Recall we are comparing networks with similar architectures.
+One then has to choose a canonical way to normalize the network so that similar architectures can be compared.
+While different networks do have different normalizations, we have not found any discrepancies across 
+models in the same architecture series.
+We clarify this point at Line XXX of the revised manuscript.
+\end{quote}
+
+\noindent
+\emph{%
+- The authors mention in the paper that weight matrices can be ``over-parameterized, relative to the amount of data.'' Is there any empirical evidence in the literature showing that networks can have worse generalization performance due to overparameterization? Isn't the double descent phenomenon showing that generalization error keeps decreasing after the second descent despite increasing overparameterization?
+}
+
+\begin{quote}
+(((XXX.  CM:
+I'll let you handle this one.
+)))\\
+XXX.  MM TO DO.
+\end{quote}
+
+\noindent
+\emph{%
+- Not all losses used in deep learning are a function of the difference between the network's prediction and the label (for example, cross-entropy). I would suggest changing the loss in Equation 1 to include two inputs: the prediction and the label.
+} 
+
+\begin{quote}
+(((XXX.  CM:
+That's fair.
+)))\\
+That is a good point.
+We clarify this point at Line XXX of the revised manuscript.
+\end{quote}
+
+
+\bibliographystyle{unsrt}
+%\bibliographystyle{plain}
+{\small
+%\bibliography{gen_gap}
+\bibliography{dnns}
+%\bibliography{dnns,gen_gap}
+}
+
+
+\end{document}
