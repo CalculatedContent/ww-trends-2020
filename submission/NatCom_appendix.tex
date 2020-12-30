@@ -106,7 +106,7 @@ SqueezeNext/SqNxt                          & 6 \\
 ShuffleNet                                 & 6 \\
 DRN-C/DRN-D                                & 6 \\
 ESPNetv2                                   & 6 \\
-HRNet                      z                & 6 \\
+HRNet                                      & 6 \\
 SqueezeNet/SqueezeResNet                   & 6 \\
 \hline
 \end{tabular}
@@ -141,11 +141,85 @@ SqueezeNet/SqueezeResNet                   & 6 \\
         \includegraphics[width=4.9cm]{img/all-cub-200-2011_alpha.png}
         \label{fig:cub200.alpha}
     }
-    \caption{% 
-             %\charles{Preliminary charts:} 
-             PL exponent $\alpha$ versus reported Top1 Test Accuracies for pretrained DNNs available for five different data sets.
+    \caption{PL exponent $\alpha$ versus reported Top1 Test Accuracies for pretrained DNNs available for different datasets (as segmented in Table~\ref{table:datasets}).
             }
     \label{fig:DSalphas}
+\end{figure}
+
+ 
+\begin{figure}[t]
+    \centering
+    \subfigure[ ResNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_01}
+    }
+    \subfigure[ SENet/SE-ResNet/SE-PreResNet/SE-ResNeXt ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_02}
+    }
+    \subfigure[ DIA-ResNet/DIA-PreResNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_03}
+    }
+    \subfigure[ ResNeXt ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_04}
+    }
+    \subfigure[ WRN ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_05}
+    }
+    \subfigure[ DLA ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_06}
+    }
+    \subfigure[ PreResNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_07}
+    }
+    \subfigure[ ProxylessNAS ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_08}
+    }
+    \subfigure[ VGG/BN-VGG ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_09}
+    }
+    \subfigure[ IGCV3 ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_10}
+    }
+    \subfigure[ EfficientNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_11}
+    }
+    \subfigure[ SqueezeNext/SqNxt ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_12}
+    }
+    \subfigure[ ShuffleNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_13}
+    }
+    \subfigure[ DRN-C/DRN-D ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_14}
+    }
+    \subfigure[ ESPNetv2 ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_15}
+    }
+    \subfigure[ HRNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_16}
+    }
+    \subfigure[ SqueezeNet/SqueezeResNet ]{
+        \includegraphics[width=2.7cm]{img/hex.png}
+        \label{fig:ARCHalphas_17}
+    }
+    \caption{PL exponent $\alpha$ versus reported Top1 Test Accuracies for pretrained DNNs available for different architecture series (as segmented in Table~\ref{table:architectures}).
+            }
+    \label{fig:ARCHalphas}
 \end{figure}
 
  
@@ -191,7 +265,7 @@ Dataset & Model  & $\langle\log\Vert\cdot\Vert_{F}\rangle$ & $\langle\log\Vert\c
 \end{tabular}
 \end{center}
 \vspace{-5mm}
-\caption{$MSE$ Results for all CV model regressions. }
+\caption{$MSE$ results for our analysis of all CV models in Table~\ref{table:datasets}. }
 \label{table:MSEresults}
 \end{table}
 
@@ -238,22 +312,78 @@ imagenet-1k & ResNet  & 0.82 &  0.67 & \textbf{0.90} & 0.88 \\
 \end{tabular}
 \end{center}
 \vspace{-5mm}
-\caption{$R^{2}$ Results for all CV model regressions. }
+\caption{$R^{2}$ results for our analysis of all CV models in Table~\ref{table:datasets}. }
 \label{table:R2results}
+\end{table}
+
+
+\begin{table}[t]
+\scriptsize
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Dataset & Model  & $\langle\log\Vert\cdot\Vert_{F}\rangle$ & $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ \\
+\hline
+ imagenet-1k  & ResNet        &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & EfficientNet  &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & PreResNet     &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & ShuffleNet    &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & VGG           &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & DLA           &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & HRNet         &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & DRN-C         &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & SqueezeNext   &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & ESPNetv2      &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & IGCV3         &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & SqueezeNet    &  XXX &   XXX &  XXX &  XXX \\
+ imagenet-1k  & ProxylessNAS  &  XXX &   XXX &  XXX &  XXX \\
+\hline
+ cifar-10     & ResNet        &  XXX &   XXX &  XXX &  XXX \\
+ cifar-10     & DIA-ResNet    &  XXX &   XXX &  XXX &  XXX \\
+ cifar-10     & SENet         &  XXX &   XXX &  XXX &  XXX \\
+\hline
+ cifar-100    & ResNet        &  XXX &   XXX &  XXX &  XXX \\
+ cifar-100    & DIA-ResNet    &  XXX &   XXX &  XXX &  XXX \\
+ cifar-100    & SENet         &  XXX &   XXX &  XXX &  XXX \\
+ cifar-100    & WRN           &  XXX &   XXX &  XXX &  XXX \\
+\hline
+ svhn         & ResNet        &  XXX &   XXX &  XXX &  XXX \\
+ svhn         & DIA-ResNet    &  XXX &   XXX &  XXX &  XXX \\
+ svhn         & SENet         &  XXX &   XXX &  XXX &  XXX \\
+ svhn         & WRN           &  XXX &   XXX &  XXX &  XXX \\
+ svhn         & ResNeXt       &  XXX &   XXX &  XXX &  XXX \\
+\hline
+ cub-200-2011 & ResNet        &  XXX &   XXX &  XXX &  XXX \\
+ cub-200-2011 & SENet         &  XXX &   XXX &  XXX &  XXX \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{-5mm}
+\caption{Kendall-$\tau$ results for our analysis of all CV models in Table~\ref{table:datasets}. }
+\label{table:KTresults}
 \end{table}
 
 
 \subsection{Supplementary Figures}
 
+\michael{The text in this section needs to be changed---probably not removed, but instead discuss things, not point to the figure we remove, and point to the repo. }
+
+\michael{Do we get more visually compelling results if we present figures, but segmented by architectures, as listed in Table~\ref{table:architectures}; if so, perhaps we should put those, so we don't tell R1 that we just removed what looked bad; or maybe actually both, since we segment by dataset in Table~\ref{table:datasets}. }
+
 To explain further how to reproduce our analysis, we run three batches of linear regressions. 
 First, at the global level, we divide models by datasets and run regressions separately on all models of a certain dataset, regardless of the architecture. 
 At this level, the plots are quite noisy and clustered, as each architecture has its own accuracy trend; but one can
  still see that most plots show positive relationship with positive coefficients. 
-Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
+% V1 REMOVED FOR V2 % Example regressions are shown in Figure~\ref{fig:DSalphas}, as available in the results notebook.
+Example regressions are shown in 
+Figure~\ref{fig:DSalphas}, for models segmented by dataset, as listed in Table~\ref{table:datasets}, 
+and in 
+Figure~\ref{fig:ARCHalphas}, for models segmented by architecture, as listed in Table~\ref{table:architectures}.
+\michael{Comment here on differences.}
 
 To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
 We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
-See Table~\ref{table:MSEresults} and Table~\ref{table:R2results}.
+See Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
 In the repo, plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
 The final analysis includes 108 regressions in all, those with 4 or more models, with a positive $R^2$.
 

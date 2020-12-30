@@ -1,10 +1,11 @@
 \subsection{Comparing Hundreds of Models}
 \label{sxn:all_cv_models}
 
-We summarize results from a large-scale analysis of hundreds of publicly-available  models.
-This broader analysis on a much larger set of CV and NLP models, with a more diverse set of architectures, and developed for a wider range of tasks, complements the previous more detailed analysis on CV and NLP models.
+We have performed a large-scale analysis of hundreds of publicly-available models.
+This broader analysis is on a much larger set of CV and NLP models, with a more diverse set of architectures, that have been developed for a wider range of tasks; and it complements the previous more detailed analysis on CV and NLP models, where we have analyzed only a single architecture series at a time.
 See the Supplementary Information
 %~\ref{sxn:appendix} 
+(and our publicly-available repo)
 for details.
 To quantify the relationship between quality metrics and the reported test error and/or accuracy metrics, we use ordinary least squares (similar results are seen with rank correlation metrics) to regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).
 These include Top5 errors for the ImageNet-1K model, percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (IOU) for other models.
