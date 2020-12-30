@@ -17,7 +17,7 @@ Instead, one may simply be given a model that has already been trained---a pretr
 Na\"{\i}vely---but in our experience commonly, among ML practitioners and ML theorists---if one does not have access to training or testing data, then one can say absolutely nothing about the quality of a ML model.
 This may be true in worst-case theory, but models are used in practice, and there is a need for a practical theory to guide that practice.
 Moreover, if ML is to become an industrial process, then that process will become compartmentalized in order to scale: some groups will gather data, other groups will develop models, and other groups will use those models.
-Users of models can not be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
+Users of models cannot be expected to know the precise details of how models were built, the specifics of data that were used to train the model, what was the loss function or hyperparameter values, how precisely the model was regularized,~etc.
 
 Moreover, for many large scale, practical applications, there is no obvious way to define an ideal test metric. 
 For example, models that generate fake text or conversational chatbots may use a proxy, like perplexity, as a test metric.
@@ -50,8 +50,13 @@ Here is a summary of our main results.
 First, norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
 Second, norm-based metrics may give spurious results when applied to poorly-trained models (e.g., models trained without enough data, etc.).
 For example, they may exhibit what we call Scale Collapse for these models. 
-Third, PL-based metrics do much better at predicting quality trends in pretrained CV/NLP models.  
-They are qualitatively better at discriminating well-trained versus poorly-trained models, and quantitatively better at discriminating among a series of well-trained versus very-well-trained models.
+Third, PL-based metrics can do much better at predicting quality trends in pretrained CV/NLP models.  
+In particular, 
+a weighted PL exponent (weighted by the log of the spectral norm of the corresponding layer) is 
+quantitatively better at discriminating among a series of well-trained versus very-well-trained models
+within a given architecture series; and
+the (unweighted) average PL exponent is 
+qualitatively better at discriminating well-trained versus poorly-trained models.
 Fourth, PL-based metrics can also be used to characterize fine-scale model properties, including what we call layer-wise Correlation Flow, in well-trained and poorly-trained models; and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
 %
 Our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and the theory we apply was developed previously~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.

@@ -8,16 +8,18 @@ For a typical supervised classification problem, the goal of training is to cons
 \begin{equation}
 \underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)  ,
 \end{equation}
+\michael{how precisely to change eqn for R3 comment}
 where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where the energy (or optimization) landscape function
 \begin{equation}
 %E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})
 E_{DNN} = f(\mathbf{x}_{i} ; \mathbf{W}_{1},\ldots,\mathbf{W}_{L},\mathbf{b}_{1},\ldots,\mathbf{b}_{L})
 \label{eqn:dnn_energy}
 \end{equation}
+\michael{sentences around here probably need to be changed in light of change to that eqn R3 wanted}
 depends parametrically on the weights and biases.
-\michael{See comments for math equations.}
+\michael{FROM V1: See comments for math equations.}
 For a trained model, $E_{DNN}$ does not explicitly depend on the data, but rather it maps data instance vectors ($\mathbf{x}_i$ values) to predictions ($y_{i}$ labels).
-\michael{Mark found that sentence confusing.}
+\michael{FROM V1: Mark found that sentence confusing.}
 Therefore, one can analyze $E_{DNN}$ in the absence of any training or test~data. 
 
 Test accuracies have been reported online for publicly-available pretrained pyTorch models~\cite{osmr}.
@@ -42,14 +44,18 @@ for details.
 (We may drop the $i$ and/or $i,l$ subscripts below.)
 The best performing quality metrics depend on the norms and/or spectral properties of each weight matrix,
 $\mathbf{W}$, and/or, equivalently, it's empirical correlation matrix, $\mathbf{X}=\mathbf{W}^{T}\mathbf{W}$.
-We consider the following metrics:
+To evaluate the quality of state-of-the-art DNNs, 
+we consider the following metrics:
 \begin{eqnarray}
 & & \text{Frobenius Norm: $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{X}\Vert_{F}=\sum\nolimits_{i=1}^{M} \lambda_{i}$ } \\
 & & \text{Spectral Norm: $\Vert\mathbf{W}\Vert_{\infty}^{2}=\Vert\mathbf{X}\Vert_{\infty}=\lambda_{max}$ } \\
 & & \text{Weighted Alpha: $\hat{\alpha}=\alpha\log\lambda_{max}$ } \\
 & & \text{$\alpha$-Norm (or $\alpha$-Shatten Norm): $\Vert\mathbf{W}\Vert^{2\alpha}_{2\alpha}=\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}=\sum\nolimits_{i=1}^{M}\lambda_{i}^{\alpha}$. }
 \end{eqnarray}
-Here, $\lambda_{i}$ is the $i^{th}$ eigenvalue of the $\mathbf{X}$, and $\lambda_{max}$ is the maximum eigenvalue.
+%To diagnose problems, 
+To perform diagnostics on potentially-problematic DNNs,
+we will decompose $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$.
+Here, $\lambda_{i}$ is the $i^{th}$ eigenvalue of the $\mathbf{X}$, $\lambda_{max}$ is the maximum eigenvalue, and $\alpha$ is the fitted PL exponent. 
 These eigenvalues are squares of the singular values $\sigma_{i}$ of $\mathbf{W}$, $\lambda_{i}=\sigma^{2}_{i}$.
 All four metrics can be computed easily from DNN weight matrices.
 The first two metrics are well-known in ML.
@@ -90,7 +96,9 @@ Alternatively, related techniques have been used to analyze correlations and inf
 Our meta-analysis does not require knowledge of mechanisms; and it is not even clear that one mechanism is responsible for every case.
 %
 Crucially, HT-SR Theory predicts that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models.
-Relatedly, previous work observed that smaller exponents $\alpha$ correspond to more implicit self-regularization and better generalization~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+The notion of ``size scale'' is well-defined in physical systems, to which this style of analysis is usually applied, but it is less well-defined in CV and NLP applications.
+Informally, it would correspond to pixel groups that are at a greater distance in some metric, or between sentence parts that are at a greater distance in text.
+Relatedly, previous work observed that smaller exponents $\alpha$ correspond to more implicit self-regularization and better generalization, and that we expect a linear correlation between $\hat{\alpha}$ and model quality~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
 
 
 \paragraph{DNN Empirical Quality Metrics.}
@@ -124,8 +132,14 @@ Based on this, in this paper, we introduce and evaluate the $\alpha$-Shatten Nor
 =
 \sum\nolimits_l \alpha_l \log \Vert\mathbf{X}_l\Vert_{\alpha_l} .
 \end{equation}
-For the $\alpha$-Shatten Norm metric, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it can not be taken out of the sum.
+For the $\alpha$-Shatten Norm metric, $\alpha_l$ varies from layer to layer, and so in Eqn.~(\ref{eqn:sum_log_alpha_norm_alpha}) it cannot be taken out of the sum.
 For small $\alpha$, the Weighted Alpha metric approximates the Log $\alpha$-Shatten norm, as can be shown with a statistical mechanics and random matrix theory derivation \cite{MM20_unpub_work}; and the Weighted Alpha and $\alpha$-Shatten norm metrics often behave like an improved, weighted average Log Spectral Norm.
+
+Finally, although it does less well for predicting trends in state-of-the-art model series, e.g., as depth changes, the average value of $\alpha$, i.e., 
+\begin{equation}
+\bar{\alpha} = \dfrac{1}{L}\sum_l \alpha_l = \langle\alpha\rangle    ,
+\end{equation}
+can be used to perform model diagnostics, to identify problems that cannot be detected by examining training/test accuracies, and to discriminate poorly-trained models from well-trained~models.
 
 
 One determines $\alpha$ for a given layer by fitting the ESD of that layer's weight matrix to a truncated PL, using the commonly accepted Maximum Likelihood method~\cite{CSN09_powerlaw,ABP14}.
@@ -146,7 +160,7 @@ See Figure~\ref{fig:ww} for an illustration.
     \includegraphics[width=15.0cm]{img/WeightWatcher_v3}
     \caption{Schematic of analyzing DNN layer weight matrices $\mathbf{W}$.  
              Given an individual layer weight matrix $\mathbf{W}$, from either a fully-connected layer or a convolutional layer, perform a Singular Value Decomposition (SVD) to obtain $\mathbf{W} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^{T}$, and examine the histogram of eigenvalues of $\mathbf{W}^{T}\mathbf{W}$.
-             Norm-based metrics (not shown) and PL-based metrics (that depend on fitting the histogram of eigenvalues to a truncated PL) can be used to compare models.
+             Norm-based metrics and PL-based metrics (that depend on fitting the histogram of eigenvalues to a truncated PL) can be used to compare models.
              For example, one can analyze one layer of a pre-trained model, compare multiple layers of a pre-trained model, make comparisons across model architectures, monitor neural network properties during training, etc. 
 }
     \label{fig:ww}

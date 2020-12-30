@@ -1,7 +1,7 @@
 \subsection{Comparison of CV models}
 \label{sxn:cv}
 
-Each of the VGG, ResNet, and DenseNet series of models consists of several pretrained DNN models, trained on the full ImageNet~\cite{imagenet} dataset, and each is distributed with the current open source pyTorch framework (version 1.4)~\cite{pytorch}.
+Each of the VGG, ResNet, and DenseNet series of models consists of several pretrained DNN models, with a given base architecture, trained on the full ImageNet~\cite{imagenet} dataset, and each is distributed with the current open source pyTorch framework (version 1.4)~\cite{pytorch}.
 In addition, we examine a larger set of ResNet models, which we call the ResNet-1K series, trained on the ImageNet-1K dataset~\cite{imagenet} and provided on the OSMR Sandbox~\cite{osmr}.
 For these models, we first perform coarse model analysis, comparing and contrasting the four model series, and predicting trends in model quality.
 We then perform fine layer analysis, as a function of depth.
@@ -61,7 +61,7 @@ The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) perf
         \label{fig:resnet1k-accuracy}
     }
     \caption{Comparison of Average $\alpha$-Norm quality metric versus reported Top1 test accuracy for the ResNet and ResNet-1K pretrained (pyTorch) models. 
-             \michael{Symbols and text are way to small on these and other figures; axes/ticks way too small; need different symbols, not just red versus green; etc.}
+             \michael{FROM V1: Symbols and text are way to small on these and other figures; axes/ticks way too small; need different symbols, not just red versus green; etc.}
             }
     \label{fig:cv2-accuracy}
 \end{figure}
@@ -91,7 +91,7 @@ The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) perf
 \end{table}
 
 See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, ResNet-1K, and DenseNet series.
-Similar results (not shown) are obtained for the Top5 accuracies.
+Similar results are obtained for the Top5 accuracies.
 Overall, all metrics perform relatively well; the Weighted Alpha metric performs best; and the Log $\alpha$-Norm metric performs second best.
 These model series are all very well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of well-trained versus very-well-trained models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
 The DenseNet series has similar behavior.
