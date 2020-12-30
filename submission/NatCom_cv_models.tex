@@ -144,12 +144,15 @@ The ResNet series has strong correlation (RMSE of $0.66$, $R^2$ of $XXX$, and Ke
 (Other metrics exhibit similar behavior.)
 The higher quality data set shows a better fit, even with fewer data~points.
 
+Going beyond coarse averages to examining quality metrics for each layer weight matrix as a function of depth (or layer id), our metrics can be used to perform model diagnostics and to identify fine-scale properties in a pretrained model.
+We provide three examples of this.
+
 
 \paragraph{Layer Analysis: Metrics as a Function of Depth.}
 
-We can learn much more about a pretrained model by using our metrics to perform model diagnostics.
-This involves going beyond average values of quality metrics to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  
-As an example,
+%%We can learn much more about a pretrained model by using our metrics to perform model diagnostics.
+%%This involves going beyond average values of quality metrics to examining quality metrics for each layer weight matrix, $\mathbf{W}$, as a function of depth (or layer id).  
+%%As an example,
 Figure~\ref{fig:3models-alpha-layers} plots the PL exponent $\alpha$, as a function of depth, for each layer (first layer corresponds to data, last layer to labels) for the least accurate (shallowest) and most accurate (deepest) model in each of the VGG (no BN), ResNet, and DenseNet series.
 (Many more such plots are available at our repo.)
 
@@ -241,6 +244,10 @@ This is similar to recent work on the information bottleneck~\cite{ST17_TR}, exc
 The similarity between norm-based metrics and PL-based metrics may lead one to wonder whether the Weighted Alpha metric is just a variation of more familiar norm-based metrics.  
 Among hundreds of pretrained models, there are ``exceptions that prove the rule,'' and these can be used to show that fitted $\alpha$ values do contain information not captured by norms. 
 To illustrate this, we show that some compression/distillation methods \cite{CWZZ17_TR} may actually damage models unexpectedly, by introducing what we call Scale Collapse, where several distilled layers have unexpectedly small Spectral Norms.
+%
+By Scale Collapse, we mean that the size scale, e.g., as measured by the Spectral or Frobenius Norm, of one or more layers changes dramatically, while the size scale of other layers changes very little, as a function of some change to or perturbation of a model.
+The size scales of different parts of a DNN model are typically defined implicitly by the model training process, and they typically vary in a gradual way for high-quality models.
+Examples of changes of interest include model compression or distillation (discussed here for a CV model), data augmentation (discussed below for an NLP model), additional training, model fine-tuning, etc.
 
 Consider ResNet20, trained on CIFAR10, before and after applying the Group Regularization distillation technique, as implemented in the \texttt{distiller} package~\cite{distiller}.
 We analyze the pretrained 4D\_regularized\_5Lremoved baseline and fine-tuned models. 
@@ -249,7 +256,8 @@ Because the baseline accuracy is greater,  the previous results on ResNet (Table
 The opposite is observed.
 Figure~\ref{fig:resnet204D5L} presents the Spectral Norm (here denoted $\log\lambda_{max}$) and PL exponent ($\alpha$) for each individual layer weight matrix $\mathbf{W}$.
 On the other hand, the $\alpha$ values (in Figure~\ref{fig:resnet204Dalpha}) do not differ systematically between the baseline and fine-tuned models.
-Also (not shown, but as predicted by HT-SR Theory, the basis of $\hat{\alpha}$), the average (unweighted) baseline $\alpha$ is smaller than the fine-tuned average.
+Also, $\bar{\alpha}$, the average unweighted baseline $\alpha$, is smaller for the original model than for the fine-tuned model 
+(as predicted by HT-SR Theory, the basis of $\hat{\alpha}$).
 %
 In spite of this, Figure~\ref{fig:resnet204Dalpha} also depicts two very large $\alpha\gg 6$ values for the baseline, but not for the fine-tuned, model.
 This suggests the baseline model has at least two over-parameterized/under-trained layers, and that the distillation method does, in fact, improve the fine-tuned model by compressing these layers.
