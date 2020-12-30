@@ -3,7 +3,8 @@
 \label{sxn:appendix}
 
 
-\subsection{Supplementary Tables} 
+%%\subsection{Supplementary Tables} 
+\subsection{Supplementary Details} 
 
 \paragraph{Reproducing Sections \ref{sxn:cv} and \ref{sxn:nlp}. }   
 
@@ -64,6 +65,8 @@ We also remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is th
 %
 The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
+
+Tables and figures summarizing this analysis (in a more fine-grained way than provided by Table~\ref{table:results}) are presented next.
 
 \begin{table}[t]
 \small
@@ -364,7 +367,8 @@ Dataset & Model  & $\langle\log\Vert\cdot\Vert_{F}\rangle$ & $\langle\log\Vert\c
 \end{table}
 
 
-\subsection{Supplementary Figures}
+%%\subsection{Supplementary Figures}
+\subsection{Supplementary Tables and Figures}
 
 \michael{The text in this section needs to be changed---probably not removed, but instead discuss things, not point to the figure we remove, and point to the repo. }
 
@@ -386,6 +390,8 @@ We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions f
 See Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
 In the repo, plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
 The final analysis includes 108 regressions in all, those with 4 or more models, with a positive $R^2$.
+
+\michael{Probably some discussion of why these metrics are the right ones, e.g., as opposed to $p$ values, to address R1 comments.}
 
 
 \subsection{Supplementary Discussion: Additional Details on HT-SR Theory}

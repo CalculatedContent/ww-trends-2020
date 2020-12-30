@@ -15,17 +15,20 @@ We regress them individually on each of the norm-based and PL-based metrics.
 \begin{table}[t]
 \small
 \begin{center}
-\begin{tabular}{|p{1in}|c|c|c|c|}
+\begin{tabular}{|p{1.25in}|c|c|c|c|}
 \hline
 %    & Frobenius Norm & Spectral Norm & Weighted Alpha & Alpha-Norm \\
 %    & $\langle\log\Vert\mathbf{W}\Vert_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$ & $\langle\hat{\alpha}=\alpha\log\lambda_{max}\rangle$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
-Series        & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
+                        & $\log\Vert\cdot\Vert_{F}$ & $\log\Vert\cdot\Vert_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
 \hline
-$R^{2}$ (mean) & 0.63 &  0.55 & \textbf{0.64} & \textbf{0.64} \\
-$R^{2}$ (std)  & 0.34 &  0.36 & \textbf{0.29} &          0.30 \\
+$R^{2}$ (mean)          & 0.63 &  0.55 & \textbf{0.64} & \textbf{0.64} \\
+$R^{2}$ (std)           & 0.34 &  0.36 & \textbf{0.29} &          0.30 \\
 \hline
-$MSE$ (mean)   & 4.54 &  9.62 &          3.14 & \textbf{2.92} \\
-$MSE$ (std)    & 8.69 & 23.06 &          5.14 & \textbf{5.00} \\
+$MSE$ (mean)            & 4.54 &  9.62 &          3.14 & \textbf{2.92} \\
+$MSE$ (std)             & 8.69 & 23.06 &          5.14 & \textbf{5.00} \\
+\hline
+Kendall-$\tau$ (mean)   &  XXX &   XXX &           XXX &           XXX \\
+Kendall-$\tau$ (std)    &  XXX &   XXX &           XXX &           XXX \\
 \hline
 \end{tabular}
 \end{center}
