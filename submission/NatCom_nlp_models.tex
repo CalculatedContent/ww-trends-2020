@@ -16,8 +16,10 @@ While norm-based metrics perform reasonably well on well-trained NLP models, the
 For such models, weight matrices may display rank collapse, decreased Frobenius mass, or unusually small Spectral norms.
 This may be misinterpreted as ``smaller is better.'' 
 Instead, it should probably be interpreted as being due to a similar mechanism to how distillation can ``damage'' otherwise good models.
-In contrast to norm-based metrics, PL-based metrics, including the Log $\alpha$-Norm metric and the Weighted Alpha metric display consistent behavior, even on poorly trained models.
-One can use these metrics to help identify when architectures need repair and when more and/or better data are needed.
+In contrast to norm-based metrics, PL-based metrics, including the Log $\alpha$-Norm metric and the Weighted Alpha metric, display more consistent behavior, even on less well-trained models.
+To help identify when architectures need repair and when more and/or better data are needed,
+one can use these metrics, 
+as well as the decomposition of the Weighted Alpha metric ($\alpha\log\lambda_{max}$) into its PL component ($\alpha$) and its norm component ($\log\lambda_{max}$), for each layer.
 
 Many NLP models, such as early variants of GPT and BERT, have weight matrices with unusually large PL exponents (e.g., $\alpha\gg 6$).
 This indicates these matrices may be under-correlated (i.e., over-parameterized, relative to the amount of data).
@@ -30,12 +32,13 @@ Consistent with this, more recent improved versions of GPT (shown below) and BER
 
 \paragraph{OpenAI GPT Models.}
 
-The OpenAI GPT and GPT2 models provide the opportunity to analyze two effects: training the same model with different data set sizes; and increasing the sizes of both the data set and the architectures simultaneously.
+The OpenAI GPT and GPT2 series of models provide the opportunity to analyze two effects: increasing the sizes of both the data set and the architectures simultaneously; and training the same model with low-quality data versus high-quality data. 
 These models have the ability to generate fake text that appears to the human to be real, and they have generated media attention because of the potential for their misuse.
 For this reason, the original GPT model released by OpenAI was trained on a deficient data set, rendering the model interesting but not fully functional.  
 Later, OpenAI released a much improved model, GPT2-small, which has the same architecture and number of layers as GPT, but which has been trained on a larger and better data set, making it remarkably good at generating (near) human-quality fake text.  
+Subsequent models in the GPT2 were larger and trained to more data.
+By comparing GPT2-small to GPT2-medium to GPT2-large to GPT2-xl, we can examine the effect of increasing data set and model size simultaneously, as well as analyze well-trained versus very-well-trained models.
 By comparing the poorly-trained GPT to the well-trained GPT2-small, we can identify empirical indicators for when a model has been poorly-trained and thus may perform poorly when deployed.
-By comparing GPT2-medium to GPT2-large to GPT2-xl, we can examine the effect of increasing data set and model size simultaneously, as well as analyze well-trained versus very-well-trained models.
 The GPT models we analyze are deployed with the popular HuggingFace PyTorch library~\cite{huggingface}.
 
 
@@ -48,7 +51,7 @@ The GPT models we analyze are deployed with the popular HuggingFace PyTorch libr
 \hline
 GPT & 49 & 1.64  & 1.72 & 7.01 & 7.28 \\
 GPT2-small & 49 & 2.04  & 2.54& 9.62 & 9.87 \\
-\hline
+%\hline
 GPT2-medium & 98 & 2.08 & 2.58& 9.74 & 10.01 \\
 GPT2-large & 146 & 1.85 & 1.99& 7.67 & 7.94 \\
 GPT2-xl & 194 & 1.86 & 1.92 & 7.17 & 7.51 \\
@@ -73,14 +76,26 @@ The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and G
 
 \paragraph{Average Quality Metrics for GPT and GPT2.}
 
-See Table \ref{table:nlp} for a summary of results for the four quality metrics for the OpenAI GPT and GPT2 pretrained models.
-Comparing trends between GPT and GPT2-small, 
-observe that all four metrics increase when going from GPT to GPT2-small, i.e., they are smaller for the higher-quality model (higher quality since GPT was trained to better data), when the number of layers is held fixed.
-In the poorly-trained GPT model, the norm metrics all exhibit Scale Collapse, compared to well-trained GPT2-small model.
-
+We examine the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) for the OpenAI GPT and GPT2 pretrained models.
+See Table \ref{table:nlp} for a summary of results.
+%
 Comparing trends between GPT2-medium to GPT2-large to GPT2-xl,
-observe that (with one minor exception involving the log Frobenius norm metric) all four metrics decrease as one goes from medium to large to xl, indicating that the larger models indeed look better than the smaller models.
+observe that (with one minor exception involving the log Frobenius norm metric) all four metrics decrease as one goes from medium to large to xl.
+This indicates that the larger models indeed look better than the smaller models, as expected.
+(((
 For these well-trained models, the norm metrics now behave as expected, i.e., there is no Scale Collapse and norms are decreasing with increasing~accuracy.
+XXX.  MOVE.
+)))
+GPT2-small violates this general trend, but only very slightly.
+This could be due to under-optimization of the GPT2-small model, or since it is the smallest, and these metrics are most relevant for models at scale.
+%
+Comparing trends between GPT and GPT2-small, 
+observe that all four metrics increase when going from GPT to GPT2-small, i.e., they are larger for the higher-quality model (higher quality since GPT2-small was trained to better data), when the number of layers is held fixed.
+XXX.  POINT OUT AND DRILL DOWN.
+This is unexpected XXX AND DRILL DOWN.
+
+In the poorly-trained GPT model, the norm metrics all exhibit Scale Collapse, compared to well-trained GPT2-small model.
+XXX.  WHERE.
 
 Going beyond average values, Figure~\ref{fig:GPT-alpha-hist} shows the histogram (empirical density), for all layers, of $\alpha$ for GPT and GPT2-small.  
 The older deficient GPT has numerous unusually large $\alpha$ exponents---meaning they are not well-described by a PL fit.
@@ -172,17 +187,21 @@ Because of the anomalous scale collapse that is frequently observed in poorly-tr
 \paragraph{GPT2: medium, large, xl.} 
 
 We now look across series of increasingly improving GPT2 models (well-trained versus very-well-trained models), by examining both the PL exponent $\alpha$ as well as the Log Norm metrics.  
-In general, as we move from GPT2-medium to GPT2-xl, histograms for both $\alpha$ exponents and the Log Norm metrics downshift from larger to smaller values. 
 Figure \ref{fig:gpt2-histograms} shows the histograms over the layer weight matrices for fitted PL exponent $\alpha$ and the Log Alpha Norm metric. 
+In general, and as expected, as we move from GPT2-medium to GPT2-xl, histograms for both $\alpha$ exponents and the Log Norm metrics downshift from larger to smaller values. 
 
-The average $\alpha$ decreases with increasing model size, although the differences are less noticeable between the differing well-trained 
-versus very-well-trained GTP2 models than between the poorly-trained versus well-trained GPT and GPT2-small models.
-Unlike GPT, the layer Log Alpha Norms behave more as expected for GPT2 layers, with the larger models consistently having smaller norms. 
-Similarly, the Log Spectral Norm also decreases on average with the larger models (not shown).  
+From Figure~\ref{fig:gpt2-alpha-hist}, we see that
+$\bar{\alpha}$, the average $\alpha$ value, decreases with increasing model size (XXX for GPT2-medium, XXX for GPT2-large, and XXX for GPT2-xl), although the differences are less noticeable between the differing well-trained versus very-well-trained GTP2 models than between the poorly-trained versus well-trained GPT and GPT2-small models.
+Also, from Figure~\ref{fig:gpt2-pnorm-hist}, we see that, 
+unlike GPT, the layer Log Alpha Norms behave more as expected for GPT2 layers, with the larger models consistently having smaller norms (XXX for GPT2-medium, XXX for GPT2-large, and XXX for GPT2-xl). 
+Similarly, the Log Spectral Norm also decreases on average with the larger models (XXX for GPT2-medium, XXX for GPT2-large, and XXX for GPT2-xl).
+% (not shown).  
 As expected, the norm metrics can indeed distinguish among well-trained versus very-well-trained models.
 
-However, while the peaks of the $\alpha$ are getting smaller, towards $2.0$, the tails of the distribution shifts right, with larger GPT2 models having more unusually large $\alpha$ (also not shown). 
-This suggests that these larger GPT2 models are still under-optimized/over-parameterized (relative to the data on which they were trained) and that they have capacity to support datasets even larger than the recent XL $1.5B$ release~\cite{gpt2-xl}.
+However, while the means and peaks of the $\alpha$ distributions are getting smaller, towards $2.0$, Figure~\ref{fig:gpt2-alpha-hist} also shows that the tails of the distribution shifts right, with larger GPT2 models having more unusually large $\alpha$ values.
+This is unexpected, and it suggests that these larger GPT2 models are still under-optimized/over-parameterized (relative to the data on which they were trained) and that they have capacity to support datasets even larger than the recent XL $1.5B$ release~\cite{gpt2-xl}.
+This does not contradict recent theoretical work on the benefits of over-parameterization~\cite{BHMM19}, e.g., since in practice these extremely large models are not fully optimized.
+Subsequent refinements to these models, and other models such as BERT, indicate that this is likely the~case.
 
 \begin{figure}[htb]
     \centering
