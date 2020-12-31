@@ -19,6 +19,8 @@ All four metrics correlate quite well with reported Top1 accuracies, with smalle
 \michael{The following, text and numbers, will need to be updated once we finalize the figures/tables.}
 The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) performs best (RMSE of $0.42$, $R^2$ of $XXX$, and Kendall-$\tau$ of $XXX$, see Table~\ref{table:cv-models}); and the Weighted Alpha metric ($\hat\alpha =\alpha\log\lambda_{max} $) performs second best (RMSE of $0.48$, $R^2$ of $XXX$, and Kendall-$\tau$ of $XXX$, see Table~\ref{table:cv-models}).
 \michael{Put comment on why these three metrics, that HT-SR says that $\hat{\alpha}$ should exhibit good linear correlation, and a few comments on non-normality to address R1 concerns.}
+\charles{The Log Spectral Norm metric correlates very well with small, simpler data sets like the VGG and DenseNet architectures, however, when moving to the larger and more complex ResNet series, the PL-based metrics Log $\alpha$-Norm ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) 
+and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform better across all measures.}
 
 
 \begin{figure}[t]
