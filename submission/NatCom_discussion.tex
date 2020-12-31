@@ -26,10 +26,14 @@ Going beyond idealized models, we use statistical mechanics in a broader sense, 
 There is also a large body of work in ML on using norm-based metrics to bound generalization error~\cite{NTS15, BFT17_TR, LMBx18_TR}.
 This theoretical work aims to prove generalization bounds, and this applied work then uses these norms to construct regularizers to improve training.
 Proving generalization bounds and developing new regularizers is very different than our focus of validating pretrained models.
-Finally, our work has similarities and differences with work on understanding DNNs with the information bottleneck principle~\cite{TZ15,ST17_TR}.
 
+Our work also has intriguing similarities and differences with work on understanding DNNs with the information bottleneck principle~\cite{TZ15,ST17_TR}, which posits that DNNs can be quantified by the mutual information between their layers and the input and output variables.
+Most importantly, our approach does not require access to any data, while information measures used in the information bottleneck approach do require this.
+Nevertheless, several results from HT-SR Theory, on which our metrics are based, have parallels in the information bottleneck approach.
+Perhaps most notably, the quick transition from a \textsc{Random-like} phase to \textsc{Bulk+Spikes} phase, followed by slow transition to a \textsc{Heavy-Tailed} phase, as noted previously~\cite{MM18_TR}, is reminiscent of the dynamics on the Information Plane~\cite{ST17_TR}.
 
-Our work, starting in 2018 with the \texttt{WeightWatcher} tool~\cite{weightwatcher_package}, is the first to perform a detailed analysis of the weight matrices of DNNs~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
+Finally, 
+our work, starting in 2018 with the \texttt{WeightWatcher} tool~\cite{weightwatcher_package}, is the first to perform a detailed analysis of the weight matrices of DNNs~\cite{MM18_TR, MM19_HTSR_ICML, MM20_SDM}.
 Subsequent to the initial version of this paper, we became aware of two other works that were posted to the in 2020 within weeks of the initial version of this paper~\cite{EJRUY20_TR,UKGBT20_TR}.
 Both of these papers validate our basic result that one can gain substantial insight into model quality by examining weight matrices without access to any training or testing data.
 However, both consider smaller models drawn from a much narrower range of applications than we consider.
