@@ -45,7 +45,7 @@ The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) perf
     \caption{Comparison of Average Log Norm and Weighted Alpha quality metrics versus reported test accuracy for pretrained VGG models: 
              VGG11, VGG13, VGG16, and VGG19, with and without Batch Normalization (BN),
              trained on ImageNet, available in pyTorch (v1.4).  
-             Metrics fit by linear regression, RMSE reported.  }
+             Metrics fit by linear regression, RMSE, R2, and the Kendal-tau rank correlation metric reported.  }
     \label{fig:vgg-metrics}
 \end{figure}
 
@@ -64,6 +64,7 @@ The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) perf
     }
     \caption{Comparison of Average $\alpha$-Norm quality metric versus reported Top1 test accuracy for the ResNet and ResNet-1K pretrained (pyTorch) models. 
              \michael{FROM V1: Symbols and text are way to small on these and other figures; axes/ticks way too small; need different symbols, not just red versus green; etc.}
+\charles{See changes}
             }
     \label{fig:cv2-accuracy}
 \end{figure}
@@ -97,23 +98,23 @@ The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) perf
 \begin{center}
 \begin{tabular}{|p{1in}|c|c|c|c|c|c|}
 \hline
- Series                      & \#                    & Metric         & $\langle\log\Vert\mathbf{W}\Vert_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
+ Series                      & \#                    & Metric         & $\langle\log\Vert\mathbf{W}\Vert^{2}_{F}\rangle$ & $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ \\
 \hline
-\multirow{3}{4em}{VGG}       & \multirow{3}{1em}{6}  & RMSE           & 0.56 & 0.53 & 0.48          & \textbf{0.42}  \\
-                             &                       & $R^2$          &  XXX &  XXX &  XXX          &  XXX           \\
-                             &                       & Kendall-$\tau$ &  XXX &  XXX &  XXX          &  XXX           \\
+\multirow{3}{4em}{VGG}       & \multirow{3}{1em}{6}  & RMSE           & 0.56 & \textbf{0.23} & 0.48          & 0.34  \\
+                             &                       & $R^2$          & 0.88 & \textbf{0.98} &  0.92         &  0.96           \\
+                             &                       & Kendall-$\tau$ & -0.79 &  \textbf{-0.93} & \textbf{-0.93} & \textbf{-0.93}        \\
 \hline
-\multirow{3}{4em}{ResNet}    & \multirow{3}{1em}{5}  & RMSE           &  0.9 & 1.4  & \textbf{0.61} & 0.66           \\
-                             &                       & $R^2$          &  XXX &  XXX &  XXX          &  XXX           \\
-                             &                       & Kendall-$\tau$ &  XXX &  XXX &  XXX          &  XXX           \\
+\multirow{3}{4em}{ResNet}    & \multirow{3}{1em}{5}  & RMSE           &  0.9 & 0.97 & \textbf{0.61} & 0.66        \\
+                             &                       & $R^2$          &  0.92 &  0.9 &  \textbf{0.96}   &  0.9         \\
+                             &                       & Kendall-$\tau$ &  -1.0 &  -1.0 &  -1.0          &  -1.0        \\
 \hline
-\multirow{3}{4em}{ResNet-1K} & \multirow{3}{1em}{19} & RMSE           &  2.4 & 3.6  & \textbf{1.8}  & 1.9            \\
-                             &                       & $R^2$          &  XXX &  XXX &  XXX          &  XXX           \\
-                             &                       & Kendall-$\tau$ &  XXX &  XXX &  XXX          &  XXX           \\
+\multirow{3}{4em}{ResNet-1K} & \multirow{3}{1em}{19} & RMSE           &  2.4 & 2.8  & \textbf{1.8}  & 1.9          \\
+                             &                       & $R^2$          &  0.81 &  0.74 &  \textbf{0.89}    &  0.88           \\
+                             &                       & Kendall-$\tau$ &  -0.79 &  -0.79 &  \textbf{-0.89}  &  -0.88           \\
 \hline
-\multirow{3}{4em}{DenseNet}  & \multirow{3}{1em}{4}  & RMSE           &  0.3 & 0.26 & \textbf{0.16} & 0.21           \\
-                             &                       & $R^2$          &  XXX &  XXX &  XXX          &  XXX           \\
-                             &                       & Kendall-$\tau$ &  XXX &  XXX &  XXX          &  XXX           \\
+\multirow{3}{4em}{DenseNet}  & \multirow{3}{1em}{4}  & RMSE           &  0.3 & \textbf{0.11}  & 0.16 & 0.21       \\
+                             &                       & $R^2$          &  0.93 &  \textbf{0.99} &  0.98      &  0.97    \\
+                             &                       & Kendall-$\tau$ &  -1.0 &  -1.0 &  -1.0         &  -1.0     \\
 \hline
 \end{tabular}
 \end{center}
