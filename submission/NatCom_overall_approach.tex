@@ -140,6 +140,7 @@ and the Weighted Alpha and $\alpha$-Shatten norm metrics often behave like an im
 Finally, although it does less well for predicting trends in state-of-the-art model series, e.g., as depth changes, the average value of $\alpha$, i.e., 
 \begin{equation}
 \bar{\alpha} = \dfrac{1}{L}\sum_l \alpha_l = \langle\alpha\rangle    ,
+\label{eqn:alpha_bar}
 \end{equation}
 can be used to perform model diagnostics, to identify problems that cannot be detected by examining training/test accuracies, and to discriminate poorly-trained models from well-trained~models.
 
@@ -176,5 +177,7 @@ The PL exponent $\alpha$ measures the amount of correlation in a DNN layer weigh
 It is valid for $\lambda\le\lambda_{max}$, and it is scale-invariant, i.e., it does not depend on the normalization of $\mathbf{W}$ or $\mathbf{X}$.
 The $\lambda_{max}$ is a measure of the size, or scale, of $\mathbf{W}$.
 Multiplying each $\alpha$ by the corresponding $\log\lambda_{max}$ weighs ``bigger'' layers more, and averaging this product leads to a balanced, Weighted Alpha metric $\hat{\alpha}$ for the entire~DNN.
+We will see that for well-trained CV and NLP models, $\hat{\alpha}$ performs quite well and as expected, but for CV and NLP models that are potentially-problematic or less well-trained, metrics that depend on the scale of the problem can perform anomalously.  
+In these cases, separating $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$, and examining the distributions of each, can be helpful.
 
 

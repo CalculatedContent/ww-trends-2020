@@ -148,7 +148,8 @@ The ResNet series has strong correlation (RMSE of $0.66$, $R^2$ of $XXX$, and Ke
 The higher quality data set shows a better fit, even with fewer data~points.
 
 Going beyond coarse averages to examining quality metrics for each layer weight matrix as a function of depth (or layer id), our metrics can be used to perform model diagnostics and to identify fine-scale properties in a pretrained model.
-We provide three examples of this.
+Doing so involves separating $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$, and examining the distributions of each.
+We provide examples of~this.
 
 
 \paragraph{Layer Analysis: Metrics as a Function of Depth.}
@@ -221,7 +222,7 @@ Informally, one would expect a DNN model to perform well when it facilitates the
 In the absence of training/test data, one might hypothesize that this flow of information leaves empirical signatures on weight matrices, and that we can quantify this by measuring the PL properties of weight matrices.
 In this case, smaller $\alpha$ values correspond to layers in which information correlations between data across multiple scales are better captured~\cite{MM18_TR,SornetteBook}.
 This leads to the hypothesis that small $\alpha$ values that are stable across multiple layers enable better correlation flow through the network.
-This is similar to recent work on the information bottleneck~\cite{TZ15,ST17_TR}, except that here we work in an entirely unsupervised setting.
+This is similar to recent work on the information bottleneck~\cite{TZ15,ST17_TR}, except that here we work in an entirely unsupervised~setting.
 
 \begin{figure}[t]
    \centering
@@ -259,7 +260,9 @@ Because the baseline accuracy is greater,  the previous results on ResNet (Table
 The opposite is observed.
 Figure~\ref{fig:resnet204D5L} presents the Spectral Norm (here denoted $\log\lambda_{max}$) and PL exponent ($\alpha$) for each individual layer weight matrix $\mathbf{W}$.
 On the other hand, the $\alpha$ values (in Figure~\ref{fig:resnet204Dalpha}) do not differ systematically between the baseline and fine-tuned models.
-Also, $\bar{\alpha}$, the average unweighted baseline $\alpha$, is smaller for the original model than for the fine-tuned model 
+Also, $\bar{\alpha}$, the average unweighted baseline $\alpha$, 
+from Eqn.~(\ref{eqn:alpha_bar}),
+is smaller for the original model than for the fine-tuned model 
 (as predicted by HT-SR Theory, the basis of $\hat{\alpha}$).
 %
 In spite of this, Figure~\ref{fig:resnet204Dalpha} also depicts two very large $\alpha\gg 6$ values for the baseline, but not for the fine-tuned, model.
