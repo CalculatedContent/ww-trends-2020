@@ -1,0 +1,49 @@
+
+\begin{table}[t]
+\scriptsize
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Dataset & Model  & $\langle\log\Vert\cdot\Vert^{2}_{F}\rangle$ & $\langle\log\Vert\cdot\Vert^{2}_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ \\
+
+\hline
+ imagenet-1k & ResNet  & 0.79 &  0.63 & \textbf{0.88} & 0.86 \\
+ imagenet-1k & EfficientNet  & 0.65 &  \textbf{0.84} & 0.67 & 0.67 \\
+ imagenet-1k & PreResNet  & 0.73 &  0.36 & \textbf{0.85} & 0.85 \\
+ imagenet-1k & VGG  & 0.71 &  \textbf{0.76} & 0.35 & 0.46 \\
+ imagenet-1k & ShuffleNet  & 0.63 &  0.06 & 0.80 & \textbf{0.81} \\
+ imagenet-1k & DLA  & 0.11 &  \textbf{0.65} & 0.40 & 0.36 \\
+ imagenet-1k & HRNet  & 0.91 &  0.90 & \textbf{0.97} & 0.97 \\
+ imagenet-1k & DRN-C  & 0.81 &  0.79 & \textbf{0.87} & 0.85 \\
+ imagenet-1k & SqueezeNext  & 0.05 &  0.07 & 0.42 & \textbf{0.43} \\
+ imagenet-1k & ESPNetv2  & 0.42 &  0.38 & \textbf{0.92} & 0.89 \\
+ imagenet-1k & SqueezeNet  & 0.01 &  0.00 & \textbf{0.38} & 0.26 \\
+ imagenet-1k & IGCV3  & 0.98 &  0.12 & 0.92 & \textbf{0.99} \\
+ imagenet-1k & ProxylessNAS  & \textbf{0.68} &  0.56 & 0.53 & 0.58 \\
+\hline
+ cifar-10 & ResNet  & 0.58 &  0.59 & \textbf{0.62} & 0.61 \\
+ cifar-10 & DIA-ResNet  & \textbf{0.96} &  0.93 & 0.74 & 0.71 \\
+ cifar-10 & SENet  & 0.91 &  0.91 & \textbf{0.96} & 0.96 \\
+\hline
+ cifar-100 & ResNet  & 0.61 &  0.58 & \textbf{0.71} & 0.71 \\
+ cifar-100 & DIA-ResNet  & \textbf{0.96} &  0.85 & 0.90 & 0.89 \\
+ cifar-100 & SENet  & 0.97 &  0.96 & \textbf{0.98} & 0.98 \\
+ cifar-100 & WRN  & 0.32 &  0.04 & 0.66 & \textbf{0.69} \\
+\hline
+ svhn & ResNet  & 0.69 &  0.70 & \textbf{0.82} & 0.81 \\
+ svhn & DIA-ResNet  & 0.94 &  \textbf{0.95} & 0.78 & 0.77 \\
+ svhn & SENet  & \textbf{0.99} &  0.96 & 0.98 & 0.98 \\
+ svhn & WRN  & 0.13 &  0.10 & 0.20 & \textbf{0.21} \\
+ svhn & ResNeXt  & 0.87 &  \textbf{0.90} & 0.64 & 0.75 \\
+\hline
+ cub-200-2011 & ResNet  & 0.94 &  \textbf{0.95} & 0.08 & 0.08 \\
+ cub-200-2011 & SENet  & \textbf{0.66} &  0.59 & 0.41 & 0.38 \\
+
+\hline
+\end{tabular}
+\vspace{-5mm}
+\end{center}
+\caption{R2 Results for our analysis of all CV models in Table~\ref{table:datasets}. }
+\label{table:R2results}
+\end{table}
+
