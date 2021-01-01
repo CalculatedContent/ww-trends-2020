@@ -1,0 +1,69 @@
+ 
+\begin{figure}[t]
+    \centering
+    \subfigure[ imagenet-1k--HRNet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_HRNet_lognorm}
+        \label{fig:summary_regressions_C_01}
+    }
+    \subfigure[ imagenet-1k--HRNet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_HRNet_spectralnormlog}
+        \label{fig:summary_regressions_C_02}
+    }
+    \subfigure[ imagenet-1k--HRNet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_HRNet_alpha_weighted}
+        \label{fig:summary_regressions_C_03}
+    }
+    \subfigure[ imagenet-1k--HRNet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_HRNet_logpnorm}
+        \label{fig:summary_regressions_C_04}
+    }
+    \subfigure[ imagenet-1k--DRN-C, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DRN_C_lognorm}
+        \label{fig:summary_regressions_C_05}
+    }
+    \subfigure[ imagenet-1k--DRN-C, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DRN_C_spectralnormlog}
+        \label{fig:summary_regressions_C_06}
+    }
+    \subfigure[ imagenet-1k--DRN-C, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DRN_C_alpha_weighted}
+        \label{fig:summary_regressions_C_07}
+    }
+    \subfigure[ imagenet-1k--DRN-C, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DRN_C_logpnorm}
+        \label{fig:summary_regressions_C_08}
+    }
+    \subfigure[ imagenet-1k--SqueezeNext, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNext_lognorm}
+        \label{fig:summary_regressions_C_09}
+    }
+    \subfigure[ imagenet-1k--SqueezeNext, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNext_spectralnormlog}
+        \label{fig:summary_regressions_C_10}
+    }
+    \subfigure[ imagenet-1k--SqueezeNext, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNext_alpha_weighted}
+        \label{fig:summary_regressions_C_11}
+    }
+    \subfigure[ imagenet-1k--SqueezeNext, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNext_logpnorm}
+        \label{fig:summary_regressions_C_12}
+    }
+    \caption{Regression plots for model-dataset pairs, based on data from Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
+             Each row corresponds to a different dataset-model pair:
+             imagenet-1k--HRNet;
+             imagenet-1k--DRN-C;
+             and
+             imagenet-1k--SqueezeNext;
+             repsectively.
+             Each column corresponds to a different metric:
+             $\langle\log\Vert\cdot\Vert_{F}\rangle$; 
+             $\langle\log\Vert\cdot\Vert_{\infty}\rangle$; 
+             $\hat{\alpha}$; 
+             and
+             $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$;
+             repsectively.
+            }
+    \label{fig:summary_regressions_C}
+\end{figure}
+

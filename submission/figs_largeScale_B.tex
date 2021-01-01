@@ -1,0 +1,69 @@
+ 
+\begin{figure}[t]
+    \centering
+    \subfigure[ imagenet-1k--ShuffleNet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ShuffleNet_lognorm}
+        \label{fig:summary_regressions_B_01}
+    }
+    \subfigure[ imagenet-1k--ShuffleNet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ShuffleNet_spectralnormlog}
+        \label{fig:summary_regressions_B_02}
+    }
+    \subfigure[ imagenet-1k--ShuffleNet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ShuffleNet_alpha_weighted}
+        \label{fig:summary_regressions_B_03}
+    }
+    \subfigure[ imagenet-1k--ShuffleNet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ShuffleNet_logpnorm}
+        \label{fig:summary_regressions_B_04}
+    }
+    \subfigure[ imagenet-1k--VGG, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_VGG_lognorm}
+        \label{fig:summary_regressions_B_05}
+    }
+    \subfigure[ imagenet-1k--VGG, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_VGG_spectralnormlog}
+        \label{fig:summary_regressions_B_06}
+    }
+    \subfigure[ imagenet-1k--VGG, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_VGG_alpha_weighted}
+        \label{fig:summary_regressions_B_07}
+    }
+    \subfigure[ imagenet-1k--VGG, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_VGG_logpnorm}
+        \label{fig:summary_regressions_B_08}
+    }
+    \subfigure[ imagenet-1k--DLA, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DLA_lognorm}
+        \label{fig:summary_regressions_B_09}
+    }
+    \subfigure[ imagenet-1k--DLA, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DLA_spectralnormlog}
+        \label{fig:summary_regressions_B_10}
+    }
+    \subfigure[ imagenet-1k--DLA, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DLA_alpha_weighted}
+        \label{fig:summary_regressions_B_11}
+    }
+    \subfigure[ imagenet-1k--DLA, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_DLA_logpnorm}
+        \label{fig:summary_regressions_B_12}
+    }
+    \caption{Regression plots for model-dataset pairs, based on data from Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
+             Each row corresponds to a different dataset-model pair:
+             imagenet-1k--ShuffleNet;
+             imagenet-1k--VGG;
+             and
+             imagenet-1k--DLA;
+             repsectively.
+             Each column corresponds to a different metric:
+             $\langle\log\Vert\cdot\Vert_{F}\rangle$; 
+             $\langle\log\Vert\cdot\Vert_{\infty}\rangle$; 
+             $\hat{\alpha}$; 
+             and
+             $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$;
+             repsectively.
+            }
+    \label{fig:summary_regressions_B}
+\end{figure}
+

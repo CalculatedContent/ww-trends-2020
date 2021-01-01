@@ -1,0 +1,69 @@
+ 
+\begin{figure}[t]
+    \centering
+    \subfigure[ imagenet-1k--ESPNetv2, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ESPNetv2_lognorm}
+        \label{fig:summary_regressions_D_01}
+    }
+    \subfigure[ imagenet-1k--ESPNetv2, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ESPNetv2_spectralnormlog}
+        \label{fig:summary_regressions_D_02}
+    }
+    \subfigure[ imagenet-1k--ESPNetv2, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ESPNetv2_alpha_weighted}
+        \label{fig:summary_regressions_D_03}
+    }
+    \subfigure[ imagenet-1k--ESPNetv2, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ESPNetv2_logpnorm}
+        \label{fig:summary_regressions_D_04}
+    }
+    \subfigure[ imagenet-1k--SqueezeNet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNet_lognorm}
+        \label{fig:summary_regressions_D_05}
+    }
+    \subfigure[ imagenet-1k--SqueezeNet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNet_spectralnormlog}
+        \label{fig:summary_regressions_D_06}
+    }
+    \subfigure[ imagenet-1k--SqueezeNet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNet_alpha_weighted}
+        \label{fig:summary_regressions_D_07}
+    }
+    \subfigure[ imagenet-1k--SqueezeNet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_SqueezeNet_logpnorm}
+        \label{fig:summary_regressions_D_08}
+    }
+    \subfigure[ imagenet-1k--ProxylessNAS, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ProxylessNAS_lognorm}
+        \label{fig:summary_regressions_D_09}
+    }
+    \subfigure[ imagenet-1k--ProxylessNAS, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ProxylessNAS_spectralnormlog}
+        \label{fig:summary_regressions_D_10}
+    }
+    \subfigure[ imagenet-1k--ProxylessNAS, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ProxylessNAS_alpha_weighted}
+        \label{fig:summary_regressions_D_11}
+    }
+    \subfigure[ imagenet-1k--ProxylessNAS, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_imagenet_1k_ProxylessNAS_logpnorm}
+        \label{fig:summary_regressions_D_12}
+    }
+    \caption{Regression plots for model-dataset pairs, based on data from Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
+             Each row corresponds to a different dataset-model pair:
+             imagenet-1k--ESPNetv2;
+             imagenet-1k--SqueezeNet;
+             and
+             imagenet-1k--ProxylessNAS;
+             repsectively.
+             Each column corresponds to a different metric:
+             $\langle\log\Vert\cdot\Vert_{F}\rangle$; 
+             $\langle\log\Vert\cdot\Vert_{\infty}\rangle$; 
+             $\hat{\alpha}$; 
+             and
+             $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$;
+             repsectively.
+            }
+    \label{fig:summary_regressions_D}
+\end{figure}
+

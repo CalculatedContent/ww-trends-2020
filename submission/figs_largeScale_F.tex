@@ -1,0 +1,69 @@
+ 
+\begin{figure}[t]
+    \centering
+    \subfigure[ cifar-10--SENet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_10_SENet_lognorm}
+        \label{fig:summary_regressions_F_01}
+    }
+    \subfigure[ cifar-10--SENet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_10_SENet_spectralnormlog}
+        \label{fig:summary_regressions_F_02}
+    }
+    \subfigure[ cifar-10--SENet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_10_SENet_alpha_weighted}
+        \label{fig:summary_regressions_F_03}
+    }
+    \subfigure[ cifar-10--SENet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_10_SENet_logpnorm}
+        \label{fig:summary_regressions_F_04}
+    }
+    \subfigure[ cifar-100--ResNet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_ResNet_lognorm}
+        \label{fig:summary_regressions_F_05}
+    }
+    \subfigure[ cifar-100--ResNet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_ResNet_spectralnormlog}
+        \label{fig:summary_regressions_F_06}
+    }
+    \subfigure[ cifar-100--ResNet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_ResNet_alpha_weighted}
+        \label{fig:summary_regressions_F_07}
+    }
+    \subfigure[ cifar-100--ResNet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_ResNet_logpnorm}
+        \label{fig:summary_regressions_F_08}
+    }
+    \subfigure[ cifar-100--DIA-ResNet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_DIA_ResNet_lognorm}
+        \label{fig:summary_regressions_F_09}
+    }
+    \subfigure[ cifar-100--DIA-ResNet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_DIA_ResNet_spectralnormlog}
+        \label{fig:summary_regressions_F_10}
+    }
+    \subfigure[ cifar-100--DIA-ResNet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_DIA_ResNet_alpha_weighted}
+        \label{fig:summary_regressions_F_11}
+    }
+    \subfigure[ cifar-100--DIA-ResNet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_cifar_100_DIA_ResNet_logpnorm}
+        \label{fig:summary_regressions_F_12}
+    }
+    \caption{Regression plots for model-dataset pairs, based on data from Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
+             Each row corresponds to a different dataset-model pair:
+             cifar-10--SENet;
+             cifar-100--ResNet;
+             and
+             cifar-100--DIA-ResNet;
+             repsectively.
+             Each column corresponds to a different metric:
+             $\langle\log\Vert\cdot\Vert_{F}\rangle$; 
+             $\langle\log\Vert\cdot\Vert_{\infty}\rangle$; 
+             $\hat{\alpha}$; 
+             and
+             $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$;
+             repsectively.
+            }
+    \label{fig:summary_regressions_F}
+\end{figure}
+

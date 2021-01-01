@@ -1,0 +1,69 @@
+ 
+\begin{figure}[t]
+    \centering
+    \subfigure[ svhn--DIA-ResNet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_DIA_ResNet_lognorm}
+        \label{fig:summary_regressions_H_01}
+    }
+    \subfigure[ svhn--DIA-ResNet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_DIA_ResNet_spectralnormlog}
+        \label{fig:summary_regressions_H_02}
+    }
+    \subfigure[ svhn--DIA-ResNet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_DIA_ResNet_alpha_weighted}
+        \label{fig:summary_regressions_H_03}
+    }
+    \subfigure[ svhn--DIA-ResNet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_DIA_ResNet_logpnorm}
+        \label{fig:summary_regressions_H_04}
+    }
+    \subfigure[ svhn--SENet, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_SENet_lognorm}
+        \label{fig:summary_regressions_H_05}
+    }
+    \subfigure[ svhn--SENet, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_SENet_spectralnormlog}
+        \label{fig:summary_regressions_H_06}
+    }
+    \subfigure[ svhn--SENet, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_SENet_alpha_weighted}
+        \label{fig:summary_regressions_H_07}
+    }
+    \subfigure[ svhn--SENet, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_SENet_logpnorm}
+        \label{fig:summary_regressions_H_08}
+    }
+    \subfigure[ svhn--WRN, $\langle\log\Vert\cdot\Vert_{F}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_WRN_lognorm}
+        \label{fig:summary_regressions_H_09}
+    }
+    \subfigure[ svhn--WRN, $\langle\log\Vert\cdot\Vert_{\infty}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_WRN_spectralnormlog}
+        \label{fig:summary_regressions_H_10}
+    }
+    \subfigure[ svhn--WRN, $\hat{\alpha}$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_WRN_alpha_weighted}
+        \label{fig:summary_regressions_H_11}
+    }
+    \subfigure[ svhn--WRN, $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ ]{
+        \includegraphics[width=3.7cm]{img/omsr_svhn_WRN_logpnorm}
+        \label{fig:summary_regressions_H_12}
+    }
+    \caption{Regression plots for model-dataset pairs, based on data from Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
+             Each row corresponds to a different dataset-model pair:
+             svhn--DIA-ResNet;
+             svhn--SENet;
+             and
+             svhn--WRN;
+             repsectively.
+             Each column corresponds to a different metric:
+             $\langle\log\Vert\cdot\Vert_{F}\rangle$; 
+             $\langle\log\Vert\cdot\Vert_{\infty}\rangle$; 
+             $\hat{\alpha}$; 
+             and
+             $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$;
+             repsectively.
+            }
+    \label{fig:summary_regressions_H}
+\end{figure}
+
