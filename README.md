@@ -38,6 +38,16 @@
  
  current PDF of the archive paper
 
+### Comments on Reproducibility
+
+ The original weightwatcher calculations were done in the Summer of 2019, and then repeated in Jan 2020
+ Since that time, the weightwatcher code has been updated, and the OSMR models have have changed
+
+ This paper reports details results from the Jan 2020 data, stored in data/omsr
+
+ The calculations can be repeated using weightwatcher (with ww2x=True set) however, there may be minor differences 
+in the numerical results. 
+
 #### Deprecated: ww-colab/
 
 
