@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: empirical2_TRfmt.aux
+The style file: unsrt.bst
+Database file #1: dnns.bib
+Warning--empty institution in MM18_TR
+Warning--empty institution in MM17_TR
+Warning--empty institution in BFT17_TR
+Warning--empty institution in LMBx18_TR
+Warning--empty institution in EJRUY20_TR
+Warning--empty institution in UKGBT20_TR
+Warning--empty institution in resnet1000
+Warning--empty institution in ST17_TR
+Warning--empty institution in CWZZ17_TR
+Warning--empty institution in Attn2017
+Warning--empty institution in huggingface
+Warning--empty institution in CNNSVD
+You've used 31 entries,
+            1791 wiz_defined-function locations,
+            602 strings with 8054 characters,
+and the built_in function-call counts, 6195 in all, are:
+= -- 523
+> -- 283
+< -- 17
++ -- 106
+- -- 75
+* -- 327
+:= -- 939
+add.period$ -- 87
+call.type$ -- 31
+change.case$ -- 27
+chr.to.int$ -- 0
+cite$ -- 43
+duplicate$ -- 309
+empty$ -- 631
+format.name$ -- 75
+if$ -- 1418
+int.to.chr$ -- 0
+int.to.str$ -- 31
+missing$ -- 16
+newline$ -- 151
+num.names$ -- 28
+pop$ -- 153
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 163
+stack$ -- 0
+substring$ -- 257
+swap$ -- 90
+text.length$ -- 17
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 12
+while$ -- 47
+width$ -- 33
+write$ -- 305
+(There were 12 warnings)

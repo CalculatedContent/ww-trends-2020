@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Background and Related Work}{}% 2
+\BOOKMARK [1][-]{section.3}{Methods}{}% 3
+\BOOKMARK [1][-]{section.4}{Comparison of CV models}{}% 4
+\BOOKMARK [1][-]{section.5}{Comparison of NLP Models}{}% 5
+\BOOKMARK [1][-]{section.6}{Comparing Hundreds of Models}{}% 6
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 7
+\BOOKMARK [1][-]{appendix.A}{Reproducibility Appendix}{}% 8
+\BOOKMARK [2][-]{subsection.A.1}{Reproducibility Considerations}{appendix.A}% 9
+\BOOKMARK [2][-]{subsection.A.2}{Reproducing Sections 4 and 5 }{appendix.A}% 10
+\BOOKMARK [2][-]{subsection.A.3}{Reproducing Figure 4, for the Distiller Model}{appendix.A}% 11
+\BOOKMARK [2][-]{subsection.A.4}{Reproducing Table 3 in Section 6 }{appendix.A}% 12
+\BOOKMARK [1][-]{appendix.B}{Overview of Heavy-Tailed Self-Regularization}{}% 13

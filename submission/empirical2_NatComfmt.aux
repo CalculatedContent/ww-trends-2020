@@ -1,0 +1,658 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\newlabel{sxn:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{JC17_TR}
+\citation{osmr}
+\citation{weightwatcher_package}
+\citation{kdd20_sub_repo}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Results}{3}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Overall approach}{3}{subsection.2.1}}
+\newlabel{sxn:approach}{{2.1}{3}{Overall approach}{subsection.2.1}{}}
+\newlabel{eqn:dnn_energy}{{2}{3}{Overall approach}{equation.2.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Metrics for DNN Weight Matrices.}{3}{section*.1}}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{SornetteBook}
+\citation{nishimori01}
+\citation{SOC87}
+\citation{SOCat25yrs}
+\citation{HodMah20A_TR}
+\citation{SorCon97}
+\citation{SYYRP11}
+\citation{YKYP14}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\@writefile{toc}{\contentsline {paragraph}{Overview of Heavy-Tailed Self-Regularization.}{4}{section*.2}}
+\newlabel{eqn:eigenval_pl}{{7}{4}{Overview of Heavy-Tailed Self-Regularization}{equation.2.7}{}}
+\citation{MM20_SDM}
+\citation{CSN09_powerlaw}
+\citation{ABP14}
+\citation{newman2005_zipf}
+\citation{weightwatcher_package}
+\@writefile{toc}{\contentsline {paragraph}{DNN Empirical Quality Metrics.}{5}{section*.3}}
+\newlabel{eqn:eqn:sum_log_norm}{{9}{5}{DNN Empirical Quality Metrics}{equation.2.9}{}}
+\newlabel{eqn:sum_log_alpha_norm_alpha}{{11}{5}{DNN Empirical Quality Metrics}{equation.2.11}{}}
+\newlabel{eqn:alpha_bar}{{12}{5}{DNN Empirical Quality Metrics}{equation.2.12}{}}
+\citation{imagenet}
+\citation{pytorch}
+\citation{imagenet}
+\citation{osmr}
+\citation{pytorch}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schematic of analyzing DNN layer weight matrices $\mathbf  {W}$. Given an individual layer weight matrix $\mathbf  {W}$, from either a fully-connected layer or a convolutional layer, perform a Singular Value Decomposition (SVD) to obtain $\mathbf  {W} = \mathbf  {U} \mathbf  {\Sigma } \mathbf  {V}^{T}$, and examine the histogram of eigenvalues of $\mathbf  {W}^{T}\mathbf  {W}$. Norm-based metrics and PL-based metrics (that depend on fitting the histogram of eigenvalues to a truncated PL) can be used to compare models. For example, one can analyze one layer of a pre-trained model, compare multiple layers of a pre-trained model, make comparisons across model architectures, monitor neural network properties during training, etc. }}{6}{figure.1}}
+\newlabel{fig:ww}{{1}{6}{Schematic of analyzing DNN layer weight matrices $\mathbf {W}$. Given an individual layer weight matrix $\mathbf {W}$, from either a fully-connected layer or a convolutional layer, perform a Singular Value Decomposition (SVD) to obtain $\mathbf {W} = \mathbf {U} \mathbf {\Sigma } \mathbf {V}^{T}$, and examine the histogram of eigenvalues of $\mathbf {W}^{T}\mathbf {W}$. Norm-based metrics and PL-based metrics (that depend on fitting the histogram of eigenvalues to a truncated PL) can be used to compare models. For example, one can analyze one layer of a pre-trained model, compare multiple layers of a pre-trained model, make comparisons across model architectures, monitor neural network properties during training, etc}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Comparison of CV models}{6}{subsection.2.2}}
+\newlabel{sxn:cv}{{2.2}{6}{Comparison of CV models}{subsection.2.2}{}}
+\newlabel{fig:vgg-fnorm}{{2(a)}{7}{Subfigure 2(a)}{subfigure.2.1}{}}
+\newlabel{sub@fig:vgg-fnorm}{{(a)}{7}{Subfigure 2(a)\relax }{subfigure.2.1}{}}
+\newlabel{fig:vgg-snorm}{{2(b)}{7}{Subfigure 2(b)}{subfigure.2.2}{}}
+\newlabel{sub@fig:vgg-snorm}{{(b)}{7}{Subfigure 2(b)\relax }{subfigure.2.2}{}}
+\newlabel{fig:vgg-walpha}{{2(c)}{7}{Subfigure 2(c)}{subfigure.2.3}{}}
+\newlabel{sub@fig:vgg-walpha}{{(c)}{7}{Subfigure 2(c)\relax }{subfigure.2.3}{}}
+\newlabel{fig:vgg-pnorm}{{2(d)}{7}{Subfigure 2(d)}{subfigure.2.4}{}}
+\newlabel{sub@fig:vgg-pnorm}{{(d)}{7}{Subfigure 2(d)\relax }{subfigure.2.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of Average Log Norm and Weighted Alpha quality metrics versus reported test accuracy for pretrained VGG models: VGG11, VGG13, VGG16, and VGG19, with and without Batch Normalization (BN), trained on ImageNet, available in pyTorch (v1.4). Metrics fit by linear regression, RMSE, R2, and the Kendal-tau rank correlation metric reported. }}{7}{figure.2}}
+\newlabel{fig:vgg-metrics}{{2}{7}{Comparison of Average Log Norm and Weighted Alpha quality metrics versus reported test accuracy for pretrained VGG models: VGG11, VGG13, VGG16, and VGG19, with and without Batch Normalization (BN), trained on ImageNet, available in pyTorch (v1.4). Metrics fit by linear regression, RMSE, R2, and the Kendal-tau rank correlation metric reported}{figure.2}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Log Frobenius Norm, VGG }}}{7}{figure.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Log Spectral Norm, VGG }}}{7}{figure.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { Weighted Alpha, VGG }}}{7}{figure.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Log $\alpha $-Norm, VGG }}}{7}{figure.2}}
+\@writefile{toc}{\contentsline {paragraph}{Average Quality Metrics versus Reported Test Accuracies.}{7}{section*.4}}
+\newlabel{fig:resnet-accuracy}{{3(a)}{8}{Subfigure 3(a)}{subfigure.3.1}{}}
+\newlabel{sub@fig:resnet-accuracy}{{(a)}{8}{Subfigure 3(a)\relax }{subfigure.3.1}{}}
+\newlabel{fig:resnet1k-accuracy}{{3(b)}{8}{Subfigure 3(b)}{subfigure.3.2}{}}
+\newlabel{sub@fig:resnet1k-accuracy}{{(b)}{8}{Subfigure 3(b)\relax }{subfigure.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comparison of Average $\alpha $-Norm quality metric versus reported Top1 test accuracy for the ResNet and ResNet-1K pretrained (pyTorch) models. {\color  {red}\sf  {[michael: FROM V1: Symbols and text are way to small on these and other figures; axes/ticks way too small; need different symbols, not just red versus green; etc.]}} {\color  {blue}\sf  {[charles: See changes]}} }}{8}{figure.3}}
+\newlabel{fig:cv2-accuracy}{{3}{8}{Comparison of Average $\alpha $-Norm quality metric versus reported Top1 test accuracy for the ResNet and ResNet-1K pretrained (pyTorch) models. \michael {FROM V1: Symbols and text are way to small on these and other figures; axes/ticks way too small; need different symbols, not just red versus green; etc.} \charles {See changes}}{figure.3}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { ResNet, Log $\alpha $-Norm }}}{8}{figure.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { ResNet-1K, Log $\alpha $-Norm }}}{8}{figure.3}}
+\@writefile{toc}{\contentsline {paragraph}{Layer Analysis: Metrics as a Function of Depth.}{8}{section*.5}}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{BouchaudPotters03}
+\citation{SornetteBook}
+\citation{BP11}
+\citation{bun2017}
+\citation{BouchaudPotters03}
+\citation{SornetteBook}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality metrics (RMSE, smaller is better; $R^2$, XXX is better; and Kendall-$\tau $ rank correlation, XXX is better) for reported Top1 test error for pretrained models in each architecture series. Column \# refers to number of models. VGG, ResNet, and DenseNet were pretrained on ImageNet. ResNet-1K was pretrained on ImageNet-1K. }}{9}{table.1}}
+\newlabel{table:cv-models}{{1}{9}{Quality metrics (RMSE, smaller is better; $R^2$, XXX is better; and Kendall-$\tau $ rank correlation, XXX is better) for reported Top1 test error for pretrained models in each architecture series. Column \# refers to number of models. VGG, ResNet, and DenseNet were pretrained on ImageNet. ResNet-1K was pretrained on ImageNet-1K}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Correlation Flow; or How $\alpha $ Varies Across Layers.}{9}{section*.6}}
+\citation{MM18_TR}
+\citation{SornetteBook}
+\citation{TZ15}
+\citation{ST17_TR}
+\citation{CWZZ17_TR}
+\newlabel{fig:vgg-alpha-layers}{{4(a)}{10}{Subfigure 4(a)}{subfigure.4.1}{}}
+\newlabel{sub@fig:vgg-alpha-layers}{{(a)}{10}{Subfigure 4(a)\relax }{subfigure.4.1}{}}
+\newlabel{fig:resnet-alpha-layer}{{4(b)}{10}{Subfigure 4(b)}{subfigure.4.2}{}}
+\newlabel{sub@fig:resnet-alpha-layer}{{(b)}{10}{Subfigure 4(b)\relax }{subfigure.4.2}{}}
+\newlabel{fig:densenet-alpha-layer}{{4(c)}{10}{Subfigure 4(c)}{subfigure.4.3}{}}
+\newlabel{sub@fig:densenet-alpha-layer}{{(c)}{10}{Subfigure 4(c)\relax }{subfigure.4.3}{}}
+\newlabel{fig:resnet_alpha_overlaid_depth}{{4(d)}{10}{Subfigure 4(d)}{subfigure.4.4}{}}
+\newlabel{sub@fig:resnet_alpha_overlaid_depth}{{(d)}{10}{Subfigure 4(d)\relax }{subfigure.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces PL exponent ($\alpha $) versus layer id, for the least and the most accurate models in VGG (a), ResNet (b), and DenseNet (c) series. (VGG is without BN; and note that the Y axes on each plot are different.) Subfigure (d) displays the ResNet models (b), zoomed in to $\alpha \in [1,5]$, and with the layer ids overlaid on the X-axis, from smallest to largest, to allow a more detailed analysis of the most strongly correlated layers. Notice that ResNet152 exhibits different and much more stable behavior of $\alpha $ across layers. This contrasts with how both VGG models gradually worsen in deeper layers and how the DenseNet models are much more erratic. In the text, this is interpreted in terms of Correlation Flow. }}{10}{figure.4}}
+\newlabel{fig:3models-alpha-layers}{{4}{10}{PL exponent ($\alpha $) versus layer id, for the least and the most accurate models in VGG (a), ResNet (b), and DenseNet (c) series. (VGG is without BN; and note that the Y axes on each plot are different.) Subfigure (d) displays the ResNet models (b), zoomed in to $\alpha \in [1,5]$, and with the layer ids overlaid on the X-axis, from smallest to largest, to allow a more detailed analysis of the most strongly correlated layers. Notice that ResNet152 exhibits different and much more stable behavior of $\alpha $ across layers. This contrasts with how both VGG models gradually worsen in deeper layers and how the DenseNet models are much more erratic. In the text, this is interpreted in terms of Correlation Flow}{figure.4}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { VGG }}}{10}{figure.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { ResNet }}}{10}{figure.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { DenseNet }}}{10}{figure.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { ResNet (overlaid) }}}{10}{figure.4}}
+\@writefile{toc}{\contentsline {paragraph}{Scale Collapse; or How Distillation May Break Models.}{10}{section*.7}}
+\citation{distiller}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\newlabel{fig:resnet204Dmaxev}{{5(a)}{11}{Subfigure 5(a)}{subfigure.5.1}{}}
+\newlabel{sub@fig:resnet204Dmaxev}{{(a)}{11}{Subfigure 5(a)\relax }{subfigure.5.1}{}}
+\newlabel{fig:resnet204Dalpha}{{5(b)}{11}{Subfigure 5(b)}{subfigure.5.2}{}}
+\newlabel{sub@fig:resnet204Dalpha}{{(b)}{11}{Subfigure 5(b)\relax }{subfigure.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces ResNet20, distilled with Group Regularization, as implemented in the \texttt  {distiller} (4D\_regularized\_5Lremoved) pretrained models. Log Spectral Norm ($\qopname  \relax o{log}\lambda _{max}$) and PL exponent ($\alpha $) for individual layers, versus layer id, for both baseline (before distillation, green) and fine-tuned (after distillation, red) pretrained models. }}{11}{figure.5}}
+\newlabel{fig:resnet204D5L}{{5}{11}{ResNet20, distilled with Group Regularization, as implemented in the \texttt {distiller} (4D\_regularized\_5Lremoved) pretrained models. Log Spectral Norm ($\log \lambda _{max}$) and PL exponent ($\alpha $) for individual layers, versus layer id, for both baseline (before distillation, green) and fine-tuned (after distillation, red) pretrained models}{figure.5}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {$\lambda _{max}$ for ResNet20 layers}}}{11}{figure.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$\alpha $ for ResNet20 layers}}}{11}{figure.5}}
+\citation{Attn2017}
+\citation{BouchaudPotters03}
+\citation{SornetteBook}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{huggingface}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Comparison of NLP Models}{12}{subsection.2.3}}
+\newlabel{sxn:nlp}{{2.3}{12}{Comparison of NLP Models}{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{OpenAI GPT Models.}{12}{section*.8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Average value for the average Log Norm and Weighted Alpha metrics for pretrained OpenAI GPT and GPT2 models. Column \# refers to number of layers treated. Averages do not include the first embedding layer(s) because they are not (implicitly) normalized. GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ layer Weight Matrices, $\mathbf  {W}$. Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrices. Self-attention matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$). The projection layer concatenates the self-attention results into a vector (of dimension $768$). This gives $50$ large matrices. Because GPT and GPT2 are trained on different data sets, the initial Embedding matrices differ in shape. GPT has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl, having $12$, $24$, $36$, and $48$ layers, respectively, with increasingly larger weight\nobreakspace  {}matrices. }}{13}{table.2}}
+\newlabel{table:nlp}{{2}{13}{Average value for the average Log Norm and Weighted Alpha metrics for pretrained OpenAI GPT and GPT2 models. Column \# refers to number of layers treated. Averages do not include the first embedding layer(s) because they are not (implicitly) normalized. GPT has 12 layers, with 4 Multi-head Attention Blocks, giving $48$ layer Weight Matrices, $\mathbf {W}$. Each Block has 2 components, the Self Attention (attn) and the Projection (proj) matrices. Self-attention matrices are larger, of dimension ($2304\times 768$) or ($3072\times 768$). The projection layer concatenates the self-attention results into a vector (of dimension $768$). This gives $50$ large matrices. Because GPT and GPT2 are trained on different data sets, the initial Embedding matrices differ in shape. GPT has an initial Token and Positional Embedding layers, of dimension $(40478\times 768)$ and $(512\times 768)$, respectively, whereas GPT2 has input Embeddings of shape $(50257\times 768)$ and $(1024\times 768)$, respectively. The OpenAI GPT2 (English) models are: GPT2-small, GPT2-medium, GPT2-large, and GPT2-xl, having $12$, $24$, $36$, and $48$ layers, respectively, with increasingly larger weight~matrices}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Average Quality Metrics for GPT and GPT2.}{13}{section*.9}}
+\@writefile{toc}{\contentsline {paragraph}{Layer Analysis: Scale Collapse in GPT and GPT2.}{14}{section*.10}}
+\newlabel{fig:GPT-snorm-hist}{{6(a)}{14}{Subfigure 6(a)}{subfigure.6.1}{}}
+\newlabel{sub@fig:GPT-snorm-hist}{{(a)}{14}{Subfigure 6(a)\relax }{subfigure.6.1}{}}
+\newlabel{fig:GPT-alpha-hist}{{6(b)}{14}{Subfigure 6(b)}{subfigure.6.2}{}}
+\newlabel{sub@fig:GPT-alpha-hist}{{(b)}{14}{Subfigure 6(b)\relax }{subfigure.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Histogram of PL exponents and Log Spectral Norms for weight matrices from the OpenAI GPT and GPT2-small pretrained models.}}{14}{figure.6}}
+\newlabel{fig:GPT-hist}{{6}{14}{Histogram of PL exponents and Log Spectral Norms for weight matrices from the OpenAI GPT and GPT2-small pretrained models}{figure.6}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Log Spectral Norm ($\qopname \relax o{log}\delimiter "026B30D \mathbf {W}\delimiter "026B30D _{\infty }$)}}}{14}{figure.6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {PL exponent ($\alpha $)}}}{14}{figure.6}}
+\newlabel{fig:gpt-snorm-layer}{{7(a)}{14}{Subfigure 7(a)}{subfigure.7.1}{}}
+\newlabel{sub@fig:gpt-snorm-layer}{{(a)}{14}{Subfigure 7(a)\relax }{subfigure.7.1}{}}
+\newlabel{fig:gpt-alpha-layer}{{7(b)}{14}{Subfigure 7(b)}{subfigure.7.2}{}}
+\newlabel{sub@fig:gpt-alpha-layer}{{(b)}{14}{Subfigure 7(b)\relax }{subfigure.7.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Log Spectral Norms (in (a)) and PL exponents (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models. (Note that the quantities shown on each Y axis are different.) In the text, this is interpreted in terms of Scale Collapse and Correlation\nobreakspace  {}Flow. }}{14}{figure.7}}
+\newlabel{fig:gpt-alpha-layers}{{7}{14}{Log Spectral Norms (in (a)) and PL exponents (in (b)) for weight matrices from the OpenAI GPT and GPT2-small pretrained models. (Note that the quantities shown on each Y axis are different.) In the text, this is interpreted in terms of Scale Collapse and Correlation~Flow}{figure.7}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Log Spectral Norm ($\qopname \relax o{log}\delimiter "026B30D \mathbf {W}\delimiter "026B30D _{\infty }$)}}}{14}{figure.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {PL exponent ($\alpha $)}}}{14}{figure.7}}
+\citation{gpt2-xl}
+\citation{BHMM19}
+\@writefile{toc}{\contentsline {paragraph}{Layer Analysis: Correlation Flow in GPT and GPT2.}{15}{section*.11}}
+\@writefile{toc}{\contentsline {paragraph}{GPT2: medium, large, xl.}{15}{section*.12}}
+\newlabel{fig:gpt2-alpha-hist}{{8(a)}{16}{Subfigure 8(a)}{subfigure.8.1}{}}
+\newlabel{sub@fig:gpt2-alpha-hist}{{(a)}{16}{Subfigure 8(a)\relax }{subfigure.8.1}{}}
+\newlabel{fig:gpt2-pnorm-hist}{{8(b)}{16}{Subfigure 8(b)}{subfigure.8.2}{}}
+\newlabel{sub@fig:gpt2-pnorm-hist}{{(b)}{16}{Subfigure 8(b)\relax }{subfigure.8.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Histogram of PL exponents and Log Alpha Norm for weight matrices from models of different sizes in the GPT2 architecture series. (Plots omit the first 2 (embedding) layers, because they are normalized differently giving anomalously large values.) }}{16}{figure.8}}
+\newlabel{fig:gpt2-histograms}{{8}{16}{Histogram of PL exponents and Log Alpha Norm for weight matrices from models of different sizes in the GPT2 architecture series. (Plots omit the first 2 (embedding) layers, because they are normalized differently giving anomalously large values.)}{figure.8}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {PL exponent ($\alpha $)}}}{16}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Log Alpha Norm}}}{16}{figure.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Comparing Hundreds of Models}{16}{subsection.2.4}}
+\newlabel{sxn:all_cv_models}{{2.4}{16}{Comparing Hundreds of Models}{subsection.2.4}{}}
+\citation{resnet1000}
+\citation{EB01_BOOK}
+\citation{MM17_TR}
+\citation{BKPx20}
+\citation{MM17_TR}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM19_KDD}
+\citation{MM20_SDM}
+\citation{EB01_BOOK}
+\citation{BKPx20}
+\citation{BouchaudPotters03}
+\citation{SornetteBook}
+\citation{BP11}
+\citation{bun2017}
+\citation{NTS15}
+\citation{BFT17_TR}
+\citation{LMBx18_TR}
+\citation{TZ15}
+\citation{ST17_TR}
+\citation{MM18_TR}
+\citation{ST17_TR}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of linear regression fits for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering 108 (out of over 400) different pretrained DNNs. We include regressions only for architectures with five or more data points, and which are positively correlated with test error. These results can be readily reproduced using the Google Colab notebooks. (See the Supplementary Information for details.) {\color  {blue}\sf  {[charles: THIS TABLE IS AUTOGENERATED BUT I CNT INCLUDE FOR SOME REASON]}} }}{17}{table.3}}
+\newlabel{table:results}{{3}{17}{Comparison of linear regression fits for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering 108 (out of over 400) different pretrained DNNs. We include regressions only for architectures with five or more data points, and which are positively correlated with test error. These results can be readily reproduced using the Google Colab notebooks. (See the Supplementary Information for details.) \charles {THIS TABLE IS AUTOGENERATED BUT I CNT INCLUDE FOR SOME REASON}}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Discussion}{17}{section.3}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison of VGG, ResNet, and DenseNet Architectures.}{17}{section*.13}}
+\@writefile{toc}{\contentsline {paragraph}{Related work.}{17}{section*.14}}
+\citation{weightwatcher_package}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{EJRUY20_TR}
+\citation{UKGBT20_TR}
+\citation{weightwatcher_package}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\citation{BouchaudPotters03}
+\citation{SornetteBook}
+\citation{BP11}
+\citation{bun2017}
+\@writefile{toc}{\contentsline {paragraph}{Conclusions.}{18}{section*.15}}
+\@writefile{toc}{\contentsline {paragraph}{Looking forward.}{18}{section*.16}}
+\citation{weightwatcher_package}
+\citation{kdd20_sub_repo}
+\citation{CNNSVD}
+\citation{GloBen10}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{19}{section.4}}
+\newlabel{sxn:methods}{{4}{19}{Methods}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Additional Details on Layer Weight Matrices}{19}{section*.17}}
+\@writefile{toc}{\contentsline {paragraph}{SVD of Convolutional 2D Layers.}{19}{section*.18}}
+\@writefile{toc}{\contentsline {paragraph}{Normalization of Empirical Matrices.}{19}{section*.19}}
+\bibstyle{unsrt}
+\bibdata{dnns}
+\bibcite{MM18_TR}{1}
+\bibcite{MM19_HTSR_ICML}{2}
+\bibcite{MM20_SDM}{3}
+\bibcite{JC17_TR}{4}
+\bibcite{osmr}{5}
+\bibcite{weightwatcher_package}{6}
+\bibcite{kdd20_sub_repo}{7}
+\bibcite{SornetteBook}{8}
+\bibcite{nishimori01}{9}
+\bibcite{SOC87}{10}
+\bibcite{SOCat25yrs}{11}
+\bibcite{HodMah20A_TR}{12}
+\bibcite{SorCon97}{13}
+\bibcite{SYYRP11}{14}
+\@writefile{toc}{\contentsline {paragraph}{Special consideration for NLP models.}{20}{section*.20}}
+\@writefile{toc}{\contentsline {paragraph}{Acknowledgements.}{20}{section*.21}}
+\bibcite{YKYP14}{15}
+\bibcite{CSN09_powerlaw}{16}
+\bibcite{ABP14}{17}
+\bibcite{newman2005_zipf}{18}
+\bibcite{imagenet}{19}
+\bibcite{pytorch}{20}
+\bibcite{BouchaudPotters03}{21}
+\bibcite{BP11}{22}
+\bibcite{bun2017}{23}
+\bibcite{TZ15}{24}
+\bibcite{ST17_TR}{25}
+\bibcite{CWZZ17_TR}{26}
+\bibcite{distiller}{27}
+\bibcite{Attn2017}{28}
+\bibcite{huggingface}{29}
+\bibcite{gpt2-xl}{30}
+\bibcite{BHMM19}{31}
+\bibcite{resnet1000}{32}
+\bibcite{EB01_BOOK}{33}
+\bibcite{MM17_TR}{34}
+\bibcite{BKPx20}{35}
+\bibcite{MM19_KDD}{36}
+\bibcite{NTS15}{37}
+\bibcite{BFT17_TR}{38}
+\bibcite{LMBx18_TR}{39}
+\bibcite{EJRUY20_TR}{40}
+\bibcite{UKGBT20_TR}{41}
+\bibcite{CNNSVD}{42}
+\bibcite{GloBen10}{43}
+\citation{kdd20_sub_repo}
+\citation{weightwatcher_package}
+\citation{pytorch}
+\citation{huggingface}
+\citation{distiller}
+\citation{osmr}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Information}{22}{appendix.A}}
+\newlabel{sxn:appendix}{{A}{22}{Supplementary Information}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Supplementary Details}{22}{subsection.A.1}}
+\@writefile{toc}{\contentsline {paragraph}{Reproducing Sections \ref  {sxn:cv} and \ref  {sxn:nlp}. }{22}{section*.23}}
+\@writefile{toc}{\contentsline {paragraph}{Reproducing Figure\nobreakspace  {}\ref  {fig:resnet204D5L}, for the Distiller Model.}{22}{section*.24}}
+\@writefile{toc}{\contentsline {paragraph}{Reproducing Table\nobreakspace  {}\ref  {table:results} in Section\nobreakspace  {}\ref  {sxn:all_cv_models}. }{22}{section*.25}}
+\citation{osmr}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Jupyter notebooks used to reproduce all results in Sections\nobreakspace  {}\ref  {sxn:cv} and\nobreakspace  {}\ref  {sxn:nlp}.{\color  {blue}\sf  {[charles: Need to update referendes]}}}}{23}{table.4}}
+\newlabel{table:notebooks}{{4}{23}{Jupyter notebooks used to reproduce all results in Sections~\ref {sxn:cv} and~\ref {sxn:nlp}.\charles {Need to update referendes}}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Datasets used {\color  {blue}\sf  {[charles: This table needs updated]}}}}{23}{table.5}}
+\newlabel{table:datasets}{{5}{23}{Datasets used \charles {This table needs updated}}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Supplementary Tables and Figures}{23}{subsection.A.2}}
+\citation{MM18_TR}
+\citation{MM19_HTSR_ICML}
+\citation{MM20_SDM}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Architectures used in total and per dataset}}{24}{table.6}}
+\newlabel{table:architectures}{{6}{24}{Architectures used in total and per dataset}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Supplementary Discussion: Additional Details on HT-SR Theory}{24}{subsection.A.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces RMSE Results for our analysis of all CV models in Table\nobreakspace  {}\ref  {table:datasets}. }}{25}{table.7}}
+\newlabel{table:RMSEresults}{{7}{25}{RMSE Results for our analysis of all CV models in Table~\ref {table:datasets}}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces R2 Results for our analysis of all CV models in Table\nobreakspace  {}\ref  {table:datasets}. }}{25}{table.8}}
+\newlabel{table:R2results}{{8}{25}{R2 Results for our analysis of all CV models in Table~\ref {table:datasets}}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Ktau Results for our analysis of all CV models in Table\nobreakspace  {}\ref  {table:datasets}. }}{26}{table.9}}
+\newlabel{table:Ktauresults}{{9}{26}{Ktau Results for our analysis of all CV models in Table~\ref {table:datasets}}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Comparison of linear regression fits for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering \ 108 (out of over 400) different pretrained DNNs. We include regressions only for architectures with five or more data points, and which are positively correlated with test error. These results can be readily reproduced using the Google Colab notebooks. (See the Supplementary Information for details.)}}{26}{table.10}}
+\newlabel{table:results}{{10}{26}{Comparison of linear regression fits for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering \^^M108 (out of over 400) different pretrained DNNs. We include regressions only for architectures with five or more data points, and which are positively correlated with test error. These results can be readily reproduced using the Google Colab notebooks. (See the Supplementary Information for details.)}{table.10}{}}
+\newlabel{fig:summary_regressions_A_01}{{9(a)}{27}{Subfigure 9(a)}{subfigure.9.1}{}}
+\newlabel{sub@fig:summary_regressions_A_01}{{(a)}{27}{Subfigure 9(a)\relax }{subfigure.9.1}{}}
+\newlabel{fig:summary_regressions_A_02}{{9(b)}{27}{Subfigure 9(b)}{subfigure.9.2}{}}
+\newlabel{sub@fig:summary_regressions_A_02}{{(b)}{27}{Subfigure 9(b)\relax }{subfigure.9.2}{}}
+\newlabel{fig:summary_regressions_A_03}{{9(c)}{27}{Subfigure 9(c)}{subfigure.9.3}{}}
+\newlabel{sub@fig:summary_regressions_A_03}{{(c)}{27}{Subfigure 9(c)\relax }{subfigure.9.3}{}}
+\newlabel{fig:summary_regressions_A_04}{{9(d)}{27}{Subfigure 9(d)}{subfigure.9.4}{}}
+\newlabel{sub@fig:summary_regressions_A_04}{{(d)}{27}{Subfigure 9(d)\relax }{subfigure.9.4}{}}
+\newlabel{fig:summary_regressions_A_05}{{9(e)}{27}{Subfigure 9(e)}{subfigure.9.5}{}}
+\newlabel{sub@fig:summary_regressions_A_05}{{(e)}{27}{Subfigure 9(e)\relax }{subfigure.9.5}{}}
+\newlabel{fig:summary_regressions_A_06}{{9(f)}{27}{Subfigure 9(f)}{subfigure.9.6}{}}
+\newlabel{sub@fig:summary_regressions_A_06}{{(f)}{27}{Subfigure 9(f)\relax }{subfigure.9.6}{}}
+\newlabel{fig:summary_regressions_A_07}{{9(g)}{27}{Subfigure 9(g)}{subfigure.9.7}{}}
+\newlabel{sub@fig:summary_regressions_A_07}{{(g)}{27}{Subfigure 9(g)\relax }{subfigure.9.7}{}}
+\newlabel{fig:summary_regressions_A_08}{{9(h)}{27}{Subfigure 9(h)}{subfigure.9.8}{}}
+\newlabel{sub@fig:summary_regressions_A_08}{{(h)}{27}{Subfigure 9(h)\relax }{subfigure.9.8}{}}
+\newlabel{fig:summary_regressions_A_09}{{9(i)}{27}{Subfigure 9(i)}{subfigure.9.9}{}}
+\newlabel{sub@fig:summary_regressions_A_09}{{(i)}{27}{Subfigure 9(i)\relax }{subfigure.9.9}{}}
+\newlabel{fig:summary_regressions_A_10}{{9(j)}{27}{Subfigure 9(j)}{subfigure.9.10}{}}
+\newlabel{sub@fig:summary_regressions_A_10}{{(j)}{27}{Subfigure 9(j)\relax }{subfigure.9.10}{}}
+\newlabel{fig:summary_regressions_A_11}{{9(k)}{27}{Subfigure 9(k)}{subfigure.9.11}{}}
+\newlabel{sub@fig:summary_regressions_A_11}{{(k)}{27}{Subfigure 9(k)\relax }{subfigure.9.11}{}}
+\newlabel{fig:summary_regressions_A_12}{{9(l)}{27}{Subfigure 9(l)}{subfigure.9.12}{}}
+\newlabel{sub@fig:summary_regressions_A_12}{{(l)}{27}{Subfigure 9(l)\relax }{subfigure.9.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--ResNet; imagenet-1k--EfficientNet; and imagenet-1k--PreResNet; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{27}{figure.9}}
+\newlabel{fig:summary_regressions_A}{{9}{27}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--ResNet; imagenet-1k--EfficientNet; and imagenet-1k--PreResNet; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.9}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { imagenet-1k--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { imagenet-1k--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { imagenet-1k--ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { imagenet-1k--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { imagenet-1k--EfficientNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { imagenet-1k--EfficientNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { imagenet-1k--EfficientNet, $\mathaccentV{hat}05E{\alpha }$ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { imagenet-1k--EfficientNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { imagenet-1k--PreResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { imagenet-1k--PreResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { imagenet-1k--PreResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{27}{figure.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { imagenet-1k--PreResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{27}{figure.9}}
+\newlabel{fig:summary_regressions_B_01}{{10(a)}{28}{Subfigure 10(a)}{subfigure.10.1}{}}
+\newlabel{sub@fig:summary_regressions_B_01}{{(a)}{28}{Subfigure 10(a)\relax }{subfigure.10.1}{}}
+\newlabel{fig:summary_regressions_B_02}{{10(b)}{28}{Subfigure 10(b)}{subfigure.10.2}{}}
+\newlabel{sub@fig:summary_regressions_B_02}{{(b)}{28}{Subfigure 10(b)\relax }{subfigure.10.2}{}}
+\newlabel{fig:summary_regressions_B_03}{{10(c)}{28}{Subfigure 10(c)}{subfigure.10.3}{}}
+\newlabel{sub@fig:summary_regressions_B_03}{{(c)}{28}{Subfigure 10(c)\relax }{subfigure.10.3}{}}
+\newlabel{fig:summary_regressions_B_04}{{10(d)}{28}{Subfigure 10(d)}{subfigure.10.4}{}}
+\newlabel{sub@fig:summary_regressions_B_04}{{(d)}{28}{Subfigure 10(d)\relax }{subfigure.10.4}{}}
+\newlabel{fig:summary_regressions_B_05}{{10(e)}{28}{Subfigure 10(e)}{subfigure.10.5}{}}
+\newlabel{sub@fig:summary_regressions_B_05}{{(e)}{28}{Subfigure 10(e)\relax }{subfigure.10.5}{}}
+\newlabel{fig:summary_regressions_B_06}{{10(f)}{28}{Subfigure 10(f)}{subfigure.10.6}{}}
+\newlabel{sub@fig:summary_regressions_B_06}{{(f)}{28}{Subfigure 10(f)\relax }{subfigure.10.6}{}}
+\newlabel{fig:summary_regressions_B_07}{{10(g)}{28}{Subfigure 10(g)}{subfigure.10.7}{}}
+\newlabel{sub@fig:summary_regressions_B_07}{{(g)}{28}{Subfigure 10(g)\relax }{subfigure.10.7}{}}
+\newlabel{fig:summary_regressions_B_08}{{10(h)}{28}{Subfigure 10(h)}{subfigure.10.8}{}}
+\newlabel{sub@fig:summary_regressions_B_08}{{(h)}{28}{Subfigure 10(h)\relax }{subfigure.10.8}{}}
+\newlabel{fig:summary_regressions_B_09}{{10(i)}{28}{Subfigure 10(i)}{subfigure.10.9}{}}
+\newlabel{sub@fig:summary_regressions_B_09}{{(i)}{28}{Subfigure 10(i)\relax }{subfigure.10.9}{}}
+\newlabel{fig:summary_regressions_B_10}{{10(j)}{28}{Subfigure 10(j)}{subfigure.10.10}{}}
+\newlabel{sub@fig:summary_regressions_B_10}{{(j)}{28}{Subfigure 10(j)\relax }{subfigure.10.10}{}}
+\newlabel{fig:summary_regressions_B_11}{{10(k)}{28}{Subfigure 10(k)}{subfigure.10.11}{}}
+\newlabel{sub@fig:summary_regressions_B_11}{{(k)}{28}{Subfigure 10(k)\relax }{subfigure.10.11}{}}
+\newlabel{fig:summary_regressions_B_12}{{10(l)}{28}{Subfigure 10(l)}{subfigure.10.12}{}}
+\newlabel{sub@fig:summary_regressions_B_12}{{(l)}{28}{Subfigure 10(l)\relax }{subfigure.10.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--ShuffleNet; imagenet-1k--VGG; and imagenet-1k--DLA; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{28}{figure.10}}
+\newlabel{fig:summary_regressions_B}{{10}{28}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--ShuffleNet; imagenet-1k--VGG; and imagenet-1k--DLA; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.10}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { imagenet-1k--ShuffleNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { imagenet-1k--ShuffleNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { imagenet-1k--ShuffleNet, $\mathaccentV{hat}05E{\alpha }$ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { imagenet-1k--ShuffleNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { imagenet-1k--VGG, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { imagenet-1k--VGG, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { imagenet-1k--VGG, $\mathaccentV{hat}05E{\alpha }$ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { imagenet-1k--VGG, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { imagenet-1k--DLA, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { imagenet-1k--DLA, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { imagenet-1k--DLA, $\mathaccentV{hat}05E{\alpha }$ }}}{28}{figure.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { imagenet-1k--DLA, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{28}{figure.10}}
+\newlabel{fig:summary_regressions_C_01}{{11(a)}{29}{Subfigure 11(a)}{subfigure.11.1}{}}
+\newlabel{sub@fig:summary_regressions_C_01}{{(a)}{29}{Subfigure 11(a)\relax }{subfigure.11.1}{}}
+\newlabel{fig:summary_regressions_C_02}{{11(b)}{29}{Subfigure 11(b)}{subfigure.11.2}{}}
+\newlabel{sub@fig:summary_regressions_C_02}{{(b)}{29}{Subfigure 11(b)\relax }{subfigure.11.2}{}}
+\newlabel{fig:summary_regressions_C_03}{{11(c)}{29}{Subfigure 11(c)}{subfigure.11.3}{}}
+\newlabel{sub@fig:summary_regressions_C_03}{{(c)}{29}{Subfigure 11(c)\relax }{subfigure.11.3}{}}
+\newlabel{fig:summary_regressions_C_04}{{11(d)}{29}{Subfigure 11(d)}{subfigure.11.4}{}}
+\newlabel{sub@fig:summary_regressions_C_04}{{(d)}{29}{Subfigure 11(d)\relax }{subfigure.11.4}{}}
+\newlabel{fig:summary_regressions_C_05}{{11(e)}{29}{Subfigure 11(e)}{subfigure.11.5}{}}
+\newlabel{sub@fig:summary_regressions_C_05}{{(e)}{29}{Subfigure 11(e)\relax }{subfigure.11.5}{}}
+\newlabel{fig:summary_regressions_C_06}{{11(f)}{29}{Subfigure 11(f)}{subfigure.11.6}{}}
+\newlabel{sub@fig:summary_regressions_C_06}{{(f)}{29}{Subfigure 11(f)\relax }{subfigure.11.6}{}}
+\newlabel{fig:summary_regressions_C_07}{{11(g)}{29}{Subfigure 11(g)}{subfigure.11.7}{}}
+\newlabel{sub@fig:summary_regressions_C_07}{{(g)}{29}{Subfigure 11(g)\relax }{subfigure.11.7}{}}
+\newlabel{fig:summary_regressions_C_08}{{11(h)}{29}{Subfigure 11(h)}{subfigure.11.8}{}}
+\newlabel{sub@fig:summary_regressions_C_08}{{(h)}{29}{Subfigure 11(h)\relax }{subfigure.11.8}{}}
+\newlabel{fig:summary_regressions_C_09}{{11(i)}{29}{Subfigure 11(i)}{subfigure.11.9}{}}
+\newlabel{sub@fig:summary_regressions_C_09}{{(i)}{29}{Subfigure 11(i)\relax }{subfigure.11.9}{}}
+\newlabel{fig:summary_regressions_C_10}{{11(j)}{29}{Subfigure 11(j)}{subfigure.11.10}{}}
+\newlabel{sub@fig:summary_regressions_C_10}{{(j)}{29}{Subfigure 11(j)\relax }{subfigure.11.10}{}}
+\newlabel{fig:summary_regressions_C_11}{{11(k)}{29}{Subfigure 11(k)}{subfigure.11.11}{}}
+\newlabel{sub@fig:summary_regressions_C_11}{{(k)}{29}{Subfigure 11(k)\relax }{subfigure.11.11}{}}
+\newlabel{fig:summary_regressions_C_12}{{11(l)}{29}{Subfigure 11(l)}{subfigure.11.12}{}}
+\newlabel{sub@fig:summary_regressions_C_12}{{(l)}{29}{Subfigure 11(l)\relax }{subfigure.11.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--HRNet; imagenet-1k--DRN-C; and imagenet-1k--SqueezeNext; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{29}{figure.11}}
+\newlabel{fig:summary_regressions_C}{{11}{29}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--HRNet; imagenet-1k--DRN-C; and imagenet-1k--SqueezeNext; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.11}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { imagenet-1k--HRNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { imagenet-1k--HRNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { imagenet-1k--HRNet, $\mathaccentV{hat}05E{\alpha }$ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { imagenet-1k--HRNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { imagenet-1k--DRN-C, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { imagenet-1k--DRN-C, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { imagenet-1k--DRN-C, $\mathaccentV{hat}05E{\alpha }$ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { imagenet-1k--DRN-C, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { imagenet-1k--SqueezeNext, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { imagenet-1k--SqueezeNext, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { imagenet-1k--SqueezeNext, $\mathaccentV{hat}05E{\alpha }$ }}}{29}{figure.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { imagenet-1k--SqueezeNext, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{29}{figure.11}}
+\newlabel{fig:summary_regressions_D_01}{{12(a)}{30}{Subfigure 12(a)}{subfigure.12.1}{}}
+\newlabel{sub@fig:summary_regressions_D_01}{{(a)}{30}{Subfigure 12(a)\relax }{subfigure.12.1}{}}
+\newlabel{fig:summary_regressions_D_02}{{12(b)}{30}{Subfigure 12(b)}{subfigure.12.2}{}}
+\newlabel{sub@fig:summary_regressions_D_02}{{(b)}{30}{Subfigure 12(b)\relax }{subfigure.12.2}{}}
+\newlabel{fig:summary_regressions_D_03}{{12(c)}{30}{Subfigure 12(c)}{subfigure.12.3}{}}
+\newlabel{sub@fig:summary_regressions_D_03}{{(c)}{30}{Subfigure 12(c)\relax }{subfigure.12.3}{}}
+\newlabel{fig:summary_regressions_D_04}{{12(d)}{30}{Subfigure 12(d)}{subfigure.12.4}{}}
+\newlabel{sub@fig:summary_regressions_D_04}{{(d)}{30}{Subfigure 12(d)\relax }{subfigure.12.4}{}}
+\newlabel{fig:summary_regressions_D_05}{{12(e)}{30}{Subfigure 12(e)}{subfigure.12.5}{}}
+\newlabel{sub@fig:summary_regressions_D_05}{{(e)}{30}{Subfigure 12(e)\relax }{subfigure.12.5}{}}
+\newlabel{fig:summary_regressions_D_06}{{12(f)}{30}{Subfigure 12(f)}{subfigure.12.6}{}}
+\newlabel{sub@fig:summary_regressions_D_06}{{(f)}{30}{Subfigure 12(f)\relax }{subfigure.12.6}{}}
+\newlabel{fig:summary_regressions_D_07}{{12(g)}{30}{Subfigure 12(g)}{subfigure.12.7}{}}
+\newlabel{sub@fig:summary_regressions_D_07}{{(g)}{30}{Subfigure 12(g)\relax }{subfigure.12.7}{}}
+\newlabel{fig:summary_regressions_D_08}{{12(h)}{30}{Subfigure 12(h)}{subfigure.12.8}{}}
+\newlabel{sub@fig:summary_regressions_D_08}{{(h)}{30}{Subfigure 12(h)\relax }{subfigure.12.8}{}}
+\newlabel{fig:summary_regressions_D_09}{{12(i)}{30}{Subfigure 12(i)}{subfigure.12.9}{}}
+\newlabel{sub@fig:summary_regressions_D_09}{{(i)}{30}{Subfigure 12(i)\relax }{subfigure.12.9}{}}
+\newlabel{fig:summary_regressions_D_10}{{12(j)}{30}{Subfigure 12(j)}{subfigure.12.10}{}}
+\newlabel{sub@fig:summary_regressions_D_10}{{(j)}{30}{Subfigure 12(j)\relax }{subfigure.12.10}{}}
+\newlabel{fig:summary_regressions_D_11}{{12(k)}{30}{Subfigure 12(k)}{subfigure.12.11}{}}
+\newlabel{sub@fig:summary_regressions_D_11}{{(k)}{30}{Subfigure 12(k)\relax }{subfigure.12.11}{}}
+\newlabel{fig:summary_regressions_D_12}{{12(l)}{30}{Subfigure 12(l)}{subfigure.12.12}{}}
+\newlabel{sub@fig:summary_regressions_D_12}{{(l)}{30}{Subfigure 12(l)\relax }{subfigure.12.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--ESPNetv2; imagenet-1k--SqueezeNet; and imagenet-1k--ProxylessNAS; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{30}{figure.12}}
+\newlabel{fig:summary_regressions_D}{{12}{30}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--ESPNetv2; imagenet-1k--SqueezeNet; and imagenet-1k--ProxylessNAS; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.12}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { imagenet-1k--ESPNetv2, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { imagenet-1k--ESPNetv2, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { imagenet-1k--ESPNetv2, $\mathaccentV{hat}05E{\alpha }$ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { imagenet-1k--ESPNetv2, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { imagenet-1k--SqueezeNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { imagenet-1k--SqueezeNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { imagenet-1k--SqueezeNet, $\mathaccentV{hat}05E{\alpha }$ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { imagenet-1k--SqueezeNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { imagenet-1k--ProxylessNAS, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { imagenet-1k--ProxylessNAS, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { imagenet-1k--ProxylessNAS, $\mathaccentV{hat}05E{\alpha }$ }}}{30}{figure.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { imagenet-1k--ProxylessNAS, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{30}{figure.12}}
+\newlabel{fig:summary_regressions_E_01}{{13(a)}{31}{Subfigure 13(a)}{subfigure.13.1}{}}
+\newlabel{sub@fig:summary_regressions_E_01}{{(a)}{31}{Subfigure 13(a)\relax }{subfigure.13.1}{}}
+\newlabel{fig:summary_regressions_E_02}{{13(b)}{31}{Subfigure 13(b)}{subfigure.13.2}{}}
+\newlabel{sub@fig:summary_regressions_E_02}{{(b)}{31}{Subfigure 13(b)\relax }{subfigure.13.2}{}}
+\newlabel{fig:summary_regressions_E_03}{{13(c)}{31}{Subfigure 13(c)}{subfigure.13.3}{}}
+\newlabel{sub@fig:summary_regressions_E_03}{{(c)}{31}{Subfigure 13(c)\relax }{subfigure.13.3}{}}
+\newlabel{fig:summary_regressions_E_04}{{13(d)}{31}{Subfigure 13(d)}{subfigure.13.4}{}}
+\newlabel{sub@fig:summary_regressions_E_04}{{(d)}{31}{Subfigure 13(d)\relax }{subfigure.13.4}{}}
+\newlabel{fig:summary_regressions_E_05}{{13(e)}{31}{Subfigure 13(e)}{subfigure.13.5}{}}
+\newlabel{sub@fig:summary_regressions_E_05}{{(e)}{31}{Subfigure 13(e)\relax }{subfigure.13.5}{}}
+\newlabel{fig:summary_regressions_E_06}{{13(f)}{31}{Subfigure 13(f)}{subfigure.13.6}{}}
+\newlabel{sub@fig:summary_regressions_E_06}{{(f)}{31}{Subfigure 13(f)\relax }{subfigure.13.6}{}}
+\newlabel{fig:summary_regressions_E_07}{{13(g)}{31}{Subfigure 13(g)}{subfigure.13.7}{}}
+\newlabel{sub@fig:summary_regressions_E_07}{{(g)}{31}{Subfigure 13(g)\relax }{subfigure.13.7}{}}
+\newlabel{fig:summary_regressions_E_08}{{13(h)}{31}{Subfigure 13(h)}{subfigure.13.8}{}}
+\newlabel{sub@fig:summary_regressions_E_08}{{(h)}{31}{Subfigure 13(h)\relax }{subfigure.13.8}{}}
+\newlabel{fig:summary_regressions_E_09}{{13(i)}{31}{Subfigure 13(i)}{subfigure.13.9}{}}
+\newlabel{sub@fig:summary_regressions_E_09}{{(i)}{31}{Subfigure 13(i)\relax }{subfigure.13.9}{}}
+\newlabel{fig:summary_regressions_E_10}{{13(j)}{31}{Subfigure 13(j)}{subfigure.13.10}{}}
+\newlabel{sub@fig:summary_regressions_E_10}{{(j)}{31}{Subfigure 13(j)\relax }{subfigure.13.10}{}}
+\newlabel{fig:summary_regressions_E_11}{{13(k)}{31}{Subfigure 13(k)}{subfigure.13.11}{}}
+\newlabel{sub@fig:summary_regressions_E_11}{{(k)}{31}{Subfigure 13(k)\relax }{subfigure.13.11}{}}
+\newlabel{fig:summary_regressions_E_12}{{13(l)}{31}{Subfigure 13(l)}{subfigure.13.12}{}}
+\newlabel{sub@fig:summary_regressions_E_12}{{(l)}{31}{Subfigure 13(l)\relax }{subfigure.13.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--IGCV3; cifar-10--ResNet; and cifar-10--DIA-ResNet; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{31}{figure.13}}
+\newlabel{fig:summary_regressions_E}{{13}{31}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: imagenet-1k--IGCV3; cifar-10--ResNet; and cifar-10--DIA-ResNet; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.13}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { imagenet-1k--IGCV3, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { imagenet-1k--IGCV3, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { imagenet-1k--IGCV3, $\mathaccentV{hat}05E{\alpha }$ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { imagenet-1k--IGCV3, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { cifar-10--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { cifar-10--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { cifar-10--ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { cifar-10--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { cifar-10--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { cifar-10--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { cifar-10--DIA-ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{31}{figure.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { cifar-10--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{31}{figure.13}}
+\newlabel{fig:summary_regressions_F_01}{{14(a)}{32}{Subfigure 14(a)}{subfigure.14.1}{}}
+\newlabel{sub@fig:summary_regressions_F_01}{{(a)}{32}{Subfigure 14(a)\relax }{subfigure.14.1}{}}
+\newlabel{fig:summary_regressions_F_02}{{14(b)}{32}{Subfigure 14(b)}{subfigure.14.2}{}}
+\newlabel{sub@fig:summary_regressions_F_02}{{(b)}{32}{Subfigure 14(b)\relax }{subfigure.14.2}{}}
+\newlabel{fig:summary_regressions_F_03}{{14(c)}{32}{Subfigure 14(c)}{subfigure.14.3}{}}
+\newlabel{sub@fig:summary_regressions_F_03}{{(c)}{32}{Subfigure 14(c)\relax }{subfigure.14.3}{}}
+\newlabel{fig:summary_regressions_F_04}{{14(d)}{32}{Subfigure 14(d)}{subfigure.14.4}{}}
+\newlabel{sub@fig:summary_regressions_F_04}{{(d)}{32}{Subfigure 14(d)\relax }{subfigure.14.4}{}}
+\newlabel{fig:summary_regressions_F_05}{{14(e)}{32}{Subfigure 14(e)}{subfigure.14.5}{}}
+\newlabel{sub@fig:summary_regressions_F_05}{{(e)}{32}{Subfigure 14(e)\relax }{subfigure.14.5}{}}
+\newlabel{fig:summary_regressions_F_06}{{14(f)}{32}{Subfigure 14(f)}{subfigure.14.6}{}}
+\newlabel{sub@fig:summary_regressions_F_06}{{(f)}{32}{Subfigure 14(f)\relax }{subfigure.14.6}{}}
+\newlabel{fig:summary_regressions_F_07}{{14(g)}{32}{Subfigure 14(g)}{subfigure.14.7}{}}
+\newlabel{sub@fig:summary_regressions_F_07}{{(g)}{32}{Subfigure 14(g)\relax }{subfigure.14.7}{}}
+\newlabel{fig:summary_regressions_F_08}{{14(h)}{32}{Subfigure 14(h)}{subfigure.14.8}{}}
+\newlabel{sub@fig:summary_regressions_F_08}{{(h)}{32}{Subfigure 14(h)\relax }{subfigure.14.8}{}}
+\newlabel{fig:summary_regressions_F_09}{{14(i)}{32}{Subfigure 14(i)}{subfigure.14.9}{}}
+\newlabel{sub@fig:summary_regressions_F_09}{{(i)}{32}{Subfigure 14(i)\relax }{subfigure.14.9}{}}
+\newlabel{fig:summary_regressions_F_10}{{14(j)}{32}{Subfigure 14(j)}{subfigure.14.10}{}}
+\newlabel{sub@fig:summary_regressions_F_10}{{(j)}{32}{Subfigure 14(j)\relax }{subfigure.14.10}{}}
+\newlabel{fig:summary_regressions_F_11}{{14(k)}{32}{Subfigure 14(k)}{subfigure.14.11}{}}
+\newlabel{sub@fig:summary_regressions_F_11}{{(k)}{32}{Subfigure 14(k)\relax }{subfigure.14.11}{}}
+\newlabel{fig:summary_regressions_F_12}{{14(l)}{32}{Subfigure 14(l)}{subfigure.14.12}{}}
+\newlabel{sub@fig:summary_regressions_F_12}{{(l)}{32}{Subfigure 14(l)\relax }{subfigure.14.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: cifar-10--SENet; cifar-100--ResNet; and cifar-100--DIA-ResNet; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{32}{figure.14}}
+\newlabel{fig:summary_regressions_F}{{14}{32}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: cifar-10--SENet; cifar-100--ResNet; and cifar-100--DIA-ResNet; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.14}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { cifar-10--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { cifar-10--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { cifar-10--SENet, $\mathaccentV{hat}05E{\alpha }$ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { cifar-10--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { cifar-100--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { cifar-100--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { cifar-100--ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { cifar-100--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { cifar-100--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { cifar-100--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { cifar-100--DIA-ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{32}{figure.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { cifar-100--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{32}{figure.14}}
+\newlabel{fig:summary_regressions_G_01}{{15(a)}{33}{Subfigure 15(a)}{subfigure.15.1}{}}
+\newlabel{sub@fig:summary_regressions_G_01}{{(a)}{33}{Subfigure 15(a)\relax }{subfigure.15.1}{}}
+\newlabel{fig:summary_regressions_G_02}{{15(b)}{33}{Subfigure 15(b)}{subfigure.15.2}{}}
+\newlabel{sub@fig:summary_regressions_G_02}{{(b)}{33}{Subfigure 15(b)\relax }{subfigure.15.2}{}}
+\newlabel{fig:summary_regressions_G_03}{{15(c)}{33}{Subfigure 15(c)}{subfigure.15.3}{}}
+\newlabel{sub@fig:summary_regressions_G_03}{{(c)}{33}{Subfigure 15(c)\relax }{subfigure.15.3}{}}
+\newlabel{fig:summary_regressions_G_04}{{15(d)}{33}{Subfigure 15(d)}{subfigure.15.4}{}}
+\newlabel{sub@fig:summary_regressions_G_04}{{(d)}{33}{Subfigure 15(d)\relax }{subfigure.15.4}{}}
+\newlabel{fig:summary_regressions_G_05}{{15(e)}{33}{Subfigure 15(e)}{subfigure.15.5}{}}
+\newlabel{sub@fig:summary_regressions_G_05}{{(e)}{33}{Subfigure 15(e)\relax }{subfigure.15.5}{}}
+\newlabel{fig:summary_regressions_G_06}{{15(f)}{33}{Subfigure 15(f)}{subfigure.15.6}{}}
+\newlabel{sub@fig:summary_regressions_G_06}{{(f)}{33}{Subfigure 15(f)\relax }{subfigure.15.6}{}}
+\newlabel{fig:summary_regressions_G_07}{{15(g)}{33}{Subfigure 15(g)}{subfigure.15.7}{}}
+\newlabel{sub@fig:summary_regressions_G_07}{{(g)}{33}{Subfigure 15(g)\relax }{subfigure.15.7}{}}
+\newlabel{fig:summary_regressions_G_08}{{15(h)}{33}{Subfigure 15(h)}{subfigure.15.8}{}}
+\newlabel{sub@fig:summary_regressions_G_08}{{(h)}{33}{Subfigure 15(h)\relax }{subfigure.15.8}{}}
+\newlabel{fig:summary_regressions_G_09}{{15(i)}{33}{Subfigure 15(i)}{subfigure.15.9}{}}
+\newlabel{sub@fig:summary_regressions_G_09}{{(i)}{33}{Subfigure 15(i)\relax }{subfigure.15.9}{}}
+\newlabel{fig:summary_regressions_G_10}{{15(j)}{33}{Subfigure 15(j)}{subfigure.15.10}{}}
+\newlabel{sub@fig:summary_regressions_G_10}{{(j)}{33}{Subfigure 15(j)\relax }{subfigure.15.10}{}}
+\newlabel{fig:summary_regressions_G_11}{{15(k)}{33}{Subfigure 15(k)}{subfigure.15.11}{}}
+\newlabel{sub@fig:summary_regressions_G_11}{{(k)}{33}{Subfigure 15(k)\relax }{subfigure.15.11}{}}
+\newlabel{fig:summary_regressions_G_12}{{15(l)}{33}{Subfigure 15(l)}{subfigure.15.12}{}}
+\newlabel{sub@fig:summary_regressions_G_12}{{(l)}{33}{Subfigure 15(l)\relax }{subfigure.15.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: cifar-100--SENet; cifar-100--WRN; and svhn--ResNet; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{33}{figure.15}}
+\newlabel{fig:summary_regressions_G}{{15}{33}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: cifar-100--SENet; cifar-100--WRN; and svhn--ResNet; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.15}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { cifar-100--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { cifar-100--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { cifar-100--SENet, $\mathaccentV{hat}05E{\alpha }$ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { cifar-100--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { cifar-100--WRN, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { cifar-100--WRN, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { cifar-100--WRN, $\mathaccentV{hat}05E{\alpha }$ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { cifar-100--WRN, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { svhn--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { svhn--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { svhn--ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{33}{figure.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { svhn--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{33}{figure.15}}
+\newlabel{fig:summary_regressions_H_01}{{16(a)}{34}{Subfigure 16(a)}{subfigure.16.1}{}}
+\newlabel{sub@fig:summary_regressions_H_01}{{(a)}{34}{Subfigure 16(a)\relax }{subfigure.16.1}{}}
+\newlabel{fig:summary_regressions_H_02}{{16(b)}{34}{Subfigure 16(b)}{subfigure.16.2}{}}
+\newlabel{sub@fig:summary_regressions_H_02}{{(b)}{34}{Subfigure 16(b)\relax }{subfigure.16.2}{}}
+\newlabel{fig:summary_regressions_H_03}{{16(c)}{34}{Subfigure 16(c)}{subfigure.16.3}{}}
+\newlabel{sub@fig:summary_regressions_H_03}{{(c)}{34}{Subfigure 16(c)\relax }{subfigure.16.3}{}}
+\newlabel{fig:summary_regressions_H_04}{{16(d)}{34}{Subfigure 16(d)}{subfigure.16.4}{}}
+\newlabel{sub@fig:summary_regressions_H_04}{{(d)}{34}{Subfigure 16(d)\relax }{subfigure.16.4}{}}
+\newlabel{fig:summary_regressions_H_05}{{16(e)}{34}{Subfigure 16(e)}{subfigure.16.5}{}}
+\newlabel{sub@fig:summary_regressions_H_05}{{(e)}{34}{Subfigure 16(e)\relax }{subfigure.16.5}{}}
+\newlabel{fig:summary_regressions_H_06}{{16(f)}{34}{Subfigure 16(f)}{subfigure.16.6}{}}
+\newlabel{sub@fig:summary_regressions_H_06}{{(f)}{34}{Subfigure 16(f)\relax }{subfigure.16.6}{}}
+\newlabel{fig:summary_regressions_H_07}{{16(g)}{34}{Subfigure 16(g)}{subfigure.16.7}{}}
+\newlabel{sub@fig:summary_regressions_H_07}{{(g)}{34}{Subfigure 16(g)\relax }{subfigure.16.7}{}}
+\newlabel{fig:summary_regressions_H_08}{{16(h)}{34}{Subfigure 16(h)}{subfigure.16.8}{}}
+\newlabel{sub@fig:summary_regressions_H_08}{{(h)}{34}{Subfigure 16(h)\relax }{subfigure.16.8}{}}
+\newlabel{fig:summary_regressions_H_09}{{16(i)}{34}{Subfigure 16(i)}{subfigure.16.9}{}}
+\newlabel{sub@fig:summary_regressions_H_09}{{(i)}{34}{Subfigure 16(i)\relax }{subfigure.16.9}{}}
+\newlabel{fig:summary_regressions_H_10}{{16(j)}{34}{Subfigure 16(j)}{subfigure.16.10}{}}
+\newlabel{sub@fig:summary_regressions_H_10}{{(j)}{34}{Subfigure 16(j)\relax }{subfigure.16.10}{}}
+\newlabel{fig:summary_regressions_H_11}{{16(k)}{34}{Subfigure 16(k)}{subfigure.16.11}{}}
+\newlabel{sub@fig:summary_regressions_H_11}{{(k)}{34}{Subfigure 16(k)\relax }{subfigure.16.11}{}}
+\newlabel{fig:summary_regressions_H_12}{{16(l)}{34}{Subfigure 16(l)}{subfigure.16.12}{}}
+\newlabel{sub@fig:summary_regressions_H_12}{{(l)}{34}{Subfigure 16(l)\relax }{subfigure.16.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: svhn--DIA-ResNet; svhn--SENet; and svhn--WRN; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{34}{figure.16}}
+\newlabel{fig:summary_regressions_H}{{16}{34}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: svhn--DIA-ResNet; svhn--SENet; and svhn--WRN; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.16}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { svhn--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { svhn--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { svhn--DIA-ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { svhn--DIA-ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { svhn--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { svhn--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { svhn--SENet, $\mathaccentV{hat}05E{\alpha }$ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { svhn--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { svhn--WRN, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { svhn--WRN, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { svhn--WRN, $\mathaccentV{hat}05E{\alpha }$ }}}{34}{figure.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { svhn--WRN, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{34}{figure.16}}
+\newlabel{fig:summary_regressions_I_01}{{17(a)}{35}{Subfigure 17(a)}{subfigure.17.1}{}}
+\newlabel{sub@fig:summary_regressions_I_01}{{(a)}{35}{Subfigure 17(a)\relax }{subfigure.17.1}{}}
+\newlabel{fig:summary_regressions_I_02}{{17(b)}{35}{Subfigure 17(b)}{subfigure.17.2}{}}
+\newlabel{sub@fig:summary_regressions_I_02}{{(b)}{35}{Subfigure 17(b)\relax }{subfigure.17.2}{}}
+\newlabel{fig:summary_regressions_I_03}{{17(c)}{35}{Subfigure 17(c)}{subfigure.17.3}{}}
+\newlabel{sub@fig:summary_regressions_I_03}{{(c)}{35}{Subfigure 17(c)\relax }{subfigure.17.3}{}}
+\newlabel{fig:summary_regressions_I_04}{{17(d)}{35}{Subfigure 17(d)}{subfigure.17.4}{}}
+\newlabel{sub@fig:summary_regressions_I_04}{{(d)}{35}{Subfigure 17(d)\relax }{subfigure.17.4}{}}
+\newlabel{fig:summary_regressions_I_05}{{17(e)}{35}{Subfigure 17(e)}{subfigure.17.5}{}}
+\newlabel{sub@fig:summary_regressions_I_05}{{(e)}{35}{Subfigure 17(e)\relax }{subfigure.17.5}{}}
+\newlabel{fig:summary_regressions_I_06}{{17(f)}{35}{Subfigure 17(f)}{subfigure.17.6}{}}
+\newlabel{sub@fig:summary_regressions_I_06}{{(f)}{35}{Subfigure 17(f)\relax }{subfigure.17.6}{}}
+\newlabel{fig:summary_regressions_I_07}{{17(g)}{35}{Subfigure 17(g)}{subfigure.17.7}{}}
+\newlabel{sub@fig:summary_regressions_I_07}{{(g)}{35}{Subfigure 17(g)\relax }{subfigure.17.7}{}}
+\newlabel{fig:summary_regressions_I_08}{{17(h)}{35}{Subfigure 17(h)}{subfigure.17.8}{}}
+\newlabel{sub@fig:summary_regressions_I_08}{{(h)}{35}{Subfigure 17(h)\relax }{subfigure.17.8}{}}
+\newlabel{fig:summary_regressions_I_09}{{17(i)}{35}{Subfigure 17(i)}{subfigure.17.9}{}}
+\newlabel{sub@fig:summary_regressions_I_09}{{(i)}{35}{Subfigure 17(i)\relax }{subfigure.17.9}{}}
+\newlabel{fig:summary_regressions_I_10}{{17(j)}{35}{Subfigure 17(j)}{subfigure.17.10}{}}
+\newlabel{sub@fig:summary_regressions_I_10}{{(j)}{35}{Subfigure 17(j)\relax }{subfigure.17.10}{}}
+\newlabel{fig:summary_regressions_I_11}{{17(k)}{35}{Subfigure 17(k)}{subfigure.17.11}{}}
+\newlabel{sub@fig:summary_regressions_I_11}{{(k)}{35}{Subfigure 17(k)\relax }{subfigure.17.11}{}}
+\newlabel{fig:summary_regressions_I_12}{{17(l)}{35}{Subfigure 17(l)}{subfigure.17.12}{}}
+\newlabel{sub@fig:summary_regressions_I_12}{{(l)}{35}{Subfigure 17(l)\relax }{subfigure.17.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Regression plots for model-dataset pairs, based on data from Table\nobreakspace  {}\ref  {table:RMSEresults}, Table\nobreakspace  {}\ref  {table:R2results}, and Table\nobreakspace  {}\ref  {table:Ktauresults}. Each row corresponds to a different dataset-model pair: svhn--ResNeXt; cub-200-2011--ResNet; and cub-200-2011--SENet; repsectively. Each column corresponds to a different metric: $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $; $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $; $\mathaccentV {hat}05E{\alpha }$; and $\delimiter "426830A \qopname  \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $; repsectively. }}{35}{figure.17}}
+\newlabel{fig:summary_regressions_I}{{17}{35}{Regression plots for model-dataset pairs, based on data from Table~\ref {table:RMSEresults}, Table~\ref {table:R2results}, and Table~\ref {table:Ktauresults}. Each row corresponds to a different dataset-model pair: svhn--ResNeXt; cub-200-2011--ResNet; and cub-200-2011--SENet; repsectively. Each column corresponds to a different metric: $\langle \log \Vert \cdot \Vert _{F}\rangle $; $\langle \log \Vert \cdot \Vert _{\infty }\rangle $; $\hat {\alpha }$; and $\langle \log \Vert \cdot \Vert ^{\alpha }_{\alpha }\rangle $; repsectively}{figure.17}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces { svhn--ResNeXt, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces { svhn--ResNeXt, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces { svhn--ResNeXt, $\mathaccentV{hat}05E{\alpha }$ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces { svhn--ResNeXt, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces { cub-200-2011--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces { cub-200-2011--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces { cub-200-2011--ResNet, $\mathaccentV{hat}05E{\alpha }$ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces { cub-200-2011--ResNet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces { cub-200-2011--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{F}\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces { cub-200-2011--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D _{\infty }\delimiter "526930B $ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces { cub-200-2011--SENet, $\mathaccentV{hat}05E{\alpha }$ }}}{35}{figure.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces { cub-200-2011--SENet, $\delimiter "426830A \qopname \relax o{log}\delimiter "026B30D \cdot \delimiter "026B30D ^{\alpha }_{\alpha }\delimiter "526930B $ }}}{35}{figure.17}}

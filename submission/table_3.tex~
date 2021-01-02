@@ -1,0 +1,36 @@
+
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|p{1.25in}|c|c|c|c|}
+\hline
+  & $\log\Vert\cdot\Vert^{2}_{F}$ & $\log\Vert\cdot\Vert^{2}_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
+\hline
+
+RMSE (mean) & 4.84 & 5.56 & 4.58& 4.54 \\
+RMSE (std) & 4.84 & 5.56 & 4.58& 4.54 \\
+\hline
+R2 (mean) & 3.9 & 3.85 & 3.89& 3.89 \\
+R2 (std) & 3.9 & 3.85 & 3.89& 3.89 \\
+\hline
+R2 adjusted (mean) & 3.82 & 3.77 & 3.82& 3.83 \\
+R2 adjusted (std) & 3.82 & 3.77 & 3.82& 3.83 \\
+\hline
+Kendal-tau (mean) & 3.84 & 3.77 & 3.85& 3.85 \\
+Kendal-tau (std) & 3.84 & 3.77 & 3.85& 3.85 \\
+\hline
+
+\hline
+\end{tabular}
+\end{center}
+\caption{Comparison of linear regression fits for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering \
+108 (out of over 400) different pretrained DNNs.
+         We include regressions only for architectures with five or more data points, and which are positively correlated with test error.
+         These results can be readily reproduced using the Google Colab notebooks.
+         (See the Supplementary Information
+         %~\ref{sxn:appendix}                                                                                                                             
+         for details.)
+\label{table:results}
+\end{table}
+
+

@@ -1,0 +1,172 @@
+\begin{thebibliography}{10}
+
+\bibitem{MM18_TR}
+C.~H. Martin and M.~W. Mahoney.
+\newblock Implicit self-regularization in deep neural networks: Evidence from
+  random matrix theory and implications for learning.
+\newblock Technical Report Preprint: arXiv:1810.01075, 2018.
+
+\bibitem{MM19_HTSR_ICML}
+C.~H. Martin and M.~W. Mahoney.
+\newblock Traditional and heavy-tailed self regularization in neural network
+  models.
+\newblock In {\em Proceedings of the 36th International Conference on Machine
+  Learning}, pages 4284--4293, 2019.
+
+\bibitem{MM20_SDM}
+C.~H. Martin and M.~W. Mahoney.
+\newblock Heavy-tailed {U}niversality predicts trends in test accuracies for
+  very large pre-trained deep neural networks.
+\newblock In {\em Proceedings of the 20th SIAM International Conference on Data
+  Mining}, 2020.
+
+\bibitem{weightwatcher_package}
+{WeightWatcher}, 2018.
+\newblock \url{https://pypi.org/project/WeightWatcher/}.
+
+\bibitem{kdd20_sub_repo}
+\url{https://github.com/CalculatedContent/ww-trends-2020}.
+
+\bibitem{EB01_BOOK}
+A.~Engel and C.~P. L.~Van den Broeck.
+\newblock {\em Statistical mechanics of learning}.
+\newblock Cambridge University Press, New York, NY, USA, 2001.
+
+\bibitem{MM17_TR}
+C.~H. Martin and M.~W. Mahoney.
+\newblock Rethinking generalization requires revisiting old ideas: statistical
+  mechanics approaches and complex learning behavior.
+\newblock Technical Report Preprint: arXiv:1710.09553, 2017.
+
+\bibitem{BKPx20}
+Y.~Bahri, J.~Kadmon, J.~Pennington, S.~Schoenholz, J.~Sohl-Dickstein, and
+  S.~Ganguli.
+\newblock Statistical mechanics of deep learning.
+\newblock {\em Annual Review of Condensed Matter Physics}, 11:501--528, 2020.
+
+\bibitem{MM19_KDD}
+C.~H. Martin and M.~W. Mahoney.
+\newblock Statistical mechanics methods for discovering knowledge from modern
+  production quality neural networks.
+\newblock In {\em Proceedings of the 25th Annual ACM SIGKDD Conference}, pages
+  3239--3240, 2019.
+
+\bibitem{BouchaudPotters03}
+J.~P. Bouchaud and M.~Potters.
+\newblock {\em Theory of Financial Risk and Derivative Pricing: From
+  Statistical Physics to Risk Management}.
+\newblock Cambridge University Press, 2003.
+
+\bibitem{SornetteBook}
+D.~Sornette.
+\newblock {\em Critical phenomena in natural sciences: chaos, fractals,
+  selforganization and disorder: concepts and tools}.
+\newblock Springer-Verlag, Berlin, 2006.
+
+\bibitem{BP11}
+J.~P. Bouchaud and M.~Potters.
+\newblock Financial applications of random matrix theory: a short review.
+\newblock In G.~Akemann, J.~Baik, and P.~Di Francesco, editors, {\em The Oxford
+  Handbook of Random Matrix Theory}. Oxford University Press, 2011.
+
+\bibitem{bun2017}
+J.~Bun, J.-P. Bouchaud, and M.~Potters.
+\newblock Cleaning large correlation matrices: tools from random matrix theory.
+\newblock {\em Physics Reports}, 666:1--109, 2017.
+
+\bibitem{NTS15}
+B.~Neyshabur, R.~Tomioka, and N.~Srebro.
+\newblock Norm-based capacity control in neural networks.
+\newblock In {\em Proceedings of the 28th Annual Conference on Learning
+  Theory}, pages 1376--1401, 2015.
+
+\bibitem{BFT17_TR}
+P.~Bartlett, D.~J. Foster, and M.~Telgarsky.
+\newblock Spectrally-normalized margin bounds for neural networks.
+\newblock Technical Report Preprint: arXiv:1706.08498, 2017.
+
+\bibitem{LMBx18_TR}
+Q.~Liao, B.~Miranda, A.~Banburski, J.~Hidary, and T.~Poggio.
+\newblock A surprising linear relationship predicts test performance in deep
+  networks.
+\newblock Technical Report Preprint: arXiv:1807.09659, 2018.
+
+\bibitem{EJRUY20_TR}
+G.~Eilertsen, D.~J{\"o}nsson, T.~Ropinski, J.~Unger, and A.~Ynnerman.
+\newblock Classifying the classifier: dissecting the weight space of neural
+  networks.
+\newblock Technical Report Preprint: arXiv:2002.05688, 2020.
+
+\bibitem{UKGBT20_TR}
+T.~Unterthiner, D.~Keysers, S.~Gelly, O.~Bousquet, and I.~Tolstikhin.
+\newblock Predicting neural network accuracy from weights.
+\newblock Technical Report Preprint: arXiv:2002.11448, 2020.
+
+\bibitem{MM20_unpub_work}
+C.~H. Martin and M.~W. Mahoney.
+\newblock Unpublished results, 2020.
+
+\bibitem{imagenet}
+O.~Russakovsky et~al.
+\newblock Imagenet large scale visual recognition challenge.
+\newblock {\em International Journal of Computer Vision}, 115(3):211--252,
+  2015.
+
+\bibitem{pytorch}
+A.~Paszke et~al.
+\newblock Pytorch: An imperative style, high-performance deep learning library.
+\newblock In {\em Annual Advances in Neural Information Processing Systems 32:
+  Proceedings of the 2019 Conference}, pages 8024--8035, 2019.
+
+\bibitem{osmr}
+{Sandbox for training convolutional networks for computer vision}.
+\newblock \url{https://github.com/osmr/imgclsmob}.
+
+\bibitem{resnet1000}
+K.~He, X.~Zhang, S.~Ren, and J.~Sun.
+\newblock Identity mappings in deep residual networks.
+\newblock Technical Report Preprint: arXiv:1603.05027, 2016.
+
+\bibitem{ST17_TR}
+R.~Shwartz-Ziv and N.~Tishby.
+\newblock Opening the black box of deep neural networks via information.
+\newblock Technical Report Preprint: arXiv:1703.00810, 2017.
+
+\bibitem{CWZZ17_TR}
+Y.~Cheng, D.~Wang, P.~Zhou, and T.~Zhang.
+\newblock A survey of model compression and acceleration for deep neural
+  networks.
+\newblock Technical Report Preprint: arXiv:1710.09282, 2017.
+
+\bibitem{distiller}
+{Intel Distiller package}.
+\newblock \url{https://nervanasystems.github.io/distiller}.
+
+\bibitem{Attn2017}
+A.~Vaswani et~al.
+\newblock Attention is all you need.
+\newblock Technical Report Preprint: arXiv:1706.03762, 2017.
+
+\bibitem{huggingface}
+T.~Wolf et~al.
+\newblock Huggingface's transformers: State-of-the-art natural language
+  processing.
+\newblock Technical Report Preprint: arXiv:1910.03771, 2019.
+
+\bibitem{gpt2-xl}
+{OpenAI GPT-2: 1.5B Release}.
+\newblock \url{https://openai.com/blog/gpt-2-1-5b-release/}.
+
+\bibitem{CNNSVD}
+H.~Sedghi, V.~Gupta, and P.~M. Long.
+\newblock The singular values of convolutional layers.
+\newblock Technical Report Preprint: arXiv:1805.10408, 2018.
+
+\bibitem{GloBen10}
+X.~Glorot and Y.~Bengio.
+\newblock Understanding the difficulty of training deep feedforward neural
+  networks.
+\newblock In {\em Proceedings of the 13th International Workshop on Artificial
+  Intelligence and Statistics}, pages 249--256, 2010.
+
+\end{thebibliography}
