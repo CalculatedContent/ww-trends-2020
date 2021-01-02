@@ -41,6 +41,8 @@
 ### Comments on Reproducibility
 
  The original weightwatcher calculations were done in the Summer of 2019, and then repeated in Jan 2020
+using more pretrained models (from the OSMR repo)
+
  Since that time, the weightwatcher code has been updated, and the OSMR models have have changed
 
  This paper reports details results from the Jan 2020 data, stored in data/omsr
