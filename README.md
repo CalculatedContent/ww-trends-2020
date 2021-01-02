@@ -2,27 +2,24 @@
 
 "Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data"
 
-## Requirements: 
+## Requirements to reproduce results: 
 
  Python 3.7.6
- weightwatcher 0.2.7
+ weightwatcher 0.2.7 (only this version)
 
-see requirements.txt
+ Conda environment in requirements.txt
 
 ## Includes
 
- Jupyter Notebooks for reproducing  sections 4 and 5
+ Jupyter Notebooks for reproducing most Tables and all Figures
 
  All results can be generated using pretrained models available in the [torchvision](https://pytorch.org/docs/stable/torchvision/index.html) pyTorch models
- (except ResNet-1K, which requies the Cv Sandbox
+ (except ResNet-1K, which requies the Cv Sandbox)
 
-### ww-colab/
+### data
 
- Google Colab Notebooks for reproducing results in sections 6
-
- Notebooks can be run in parallel on the users Google Cloub
- They Will download pretrained models from the [CV Sandbox](https://github.com/osmr/imgclsmob) 
-
+ Contains data from weightwatcher runs using Google Colab
+ All Tables and Figures are generated directly from this raw data
 
 ### distiller/
 
@@ -40,3 +37,13 @@ see requirements.txt
  ### pdfs/
  
  current PDF of the archive paper
+
+#### Deprecated: ww-colab/
+
+
+ Data from older submission:
+ Google Colab Notebooks for reproducing results in sections 6
+
+ Notebooks can be run in parallel on the users Google Cloub
+ They Will download pretrained models from the [CV Sandbox](https://github.com/osmr/imgclsmob) 
+
