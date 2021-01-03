@@ -224,7 +224,7 @@ At this level, the plots are quite noisy and clustered, as each architecture has
 To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
 We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
 \michael{Mention KTau.}
-See Table~\ref{table:MSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:KTresults}.
+See Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}.
 In the repo, plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
 The final analysis includes 108 regressions in all, those with 4 or more models, with a positive $R^2$.
 
