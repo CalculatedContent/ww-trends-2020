@@ -5,7 +5,7 @@
 ## Requirements to reproduce results: 
 
  Python 3.7.6
- weightwatcher 0.2.7 (only this version)
+ weightwatcher 0.2.7 (or ww 0.4 with ww2x, and min_size = 50)
 
  Conda environment in requirements.txt
 
