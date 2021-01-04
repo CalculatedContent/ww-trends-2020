@@ -11,16 +11,22 @@ This layer analysis goes beyond predicting trends in model quality, instead illu
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
 We examine the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
-Figure~\ref{fig:vgg-metrics} 
-plots the four quality metrics versus reported test accuracies~\cite{pytorch},% 
+%
+Figure~\ref{fig:vgg-metrics} plots the four quality metrics versus reported test accuracies~\cite{pytorch},% 
 \footnote{These test accuracies have been previously reported and made publicly-available by others.  We take them as given.  We do not attempt to reproduce/verify them, since we do not permit ourselves access to training/test data.}
 as well as a basic linear regression line, for the VGG series.
-All four metrics correlate quite well with reported Top1 accuracies, with smaller norms and smaller values of $\hat{\alpha}$ implying better generalization (i.e., greater accuracy, lower error). 
-\michael{The following, text and numbers, will need to be updated once we finalize the figures/tables.}
-The Log $\alpha$-Norm metric ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) performs best (RMSE of $0.42$, $R^2$ of $XXX$, and Kendall-$\tau$ of $XXX$, see Table~\ref{table:cv-models}); and the Weighted Alpha metric ($\hat\alpha =\alpha\log\lambda_{max} $) performs second best (RMSE of $0.48$, $R^2$ of $XXX$, and Kendall-$\tau$ of $XXX$, see Table~\ref{table:cv-models}).
-\michael{Put comment on why these three metrics, that HT-SR says that $\hat{\alpha}$ should exhibit good linear correlation, and a few comments on non-normality to address R1 concerns.}
-\charles{The Log Spectral Norm metric correlates very well with small, simpler data sets like the VGG and DenseNet architectures, however, when moving to the larger and more complex ResNet series, the PL-based metrics Log $\alpha$-Norm ($\log\Vert\mathbf{W}\Vert_{\alpha}^{\alpha}$) 
-and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform better across all measures.}
+Here, smaller norms and smaller values of $\hat{\alpha}$ imply better generalization (i.e., greater accuracy, lower error). 
+Quantitatively, Log Spectral norm is the best; but, visually, all four metrics correlate quite well with reported Top1 accuracies.
+The DenseNet series has similar behavior.
+(These and many other such plots can be seen on our publicly-available~repo.)
+
+To examine visually how the four quality metrics depend on data set size on a larger, more complex model series, we next look at results on ResNet versus ResNet-1K.
+Figure~\ref{fig:cv2-accuracy} compares the Log $\alpha$-Norm metric for the full ResNet model, trained on the full ImageNet dataset, against the ResNet-1K model, trained on a much smaller ImageNet-1K data set.
+Here, the Log $\alpha$-Norm is much better than the Log Frobenius/Spectral norm metrics (although, as Table~\ref{table:cv-models} shows, it is slightly worse than the Weighted Alpha metric).
+The ResNet series has strong correlation (RMSE of $0.66$, $R^2$ of $0.9$, and Kendall-$\tau$ of $-1.0$), whereas the ResNet-1K series also shows good but weaker correlation (much larger RMSE of $1.9$, $R^2$ of $0.88$, and Kendall-$\tau$ of $-0.88$).
+%%(Other metrics exhibit similar behavior.)
+%%The higher quality data set shows a better fit, even with fewer data~points.
+
 
 
 \begin{figure}[t]
@@ -47,7 +53,8 @@ and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform bet
     \caption{Comparison of Average Log Norm and Weighted Alpha quality metrics versus reported test accuracy for pretrained VGG models: 
              VGG11, VGG13, VGG16, and VGG19, with and without Batch Normalization (BN),
              trained on ImageNet, available in pyTorch (v1.4).  
-             Metrics fit by linear regression, RMSE, R2, and the Kendal-tau rank correlation metric reported.  }
+             Metrics fit by linear regression, RMSE, R2, and the Kendal-tau rank correlation metric reported.  
+            }
     \label{fig:vgg-metrics}
 \end{figure}
 
@@ -65,11 +72,21 @@ and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform bet
         \label{fig:resnet1k-accuracy}
     }
     \caption{Comparison of Average $\alpha$-Norm quality metric versus reported Top1 test accuracy for the ResNet and ResNet-1K pretrained (pyTorch) models. 
-             \michael{FROM V1: Symbols and text are way to small on these and other figures; axes/ticks way too small; need different symbols, not just red versus green; etc.}
-\charles{See changes}
+             Metrics fit by linear regression, RMSE, R2, and the Kendal-tau rank correlation metric reported.  
             }
     \label{fig:cv2-accuracy}
 \end{figure}
+
+
+See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, ResNet-1K, and DenseNet series.
+Similar results are obtained for the Top5 accuracies.
+The Log Frobenius norm performs well but not extremely well;
+the Log Spectral norm performs very well on smaller, simpler models like the VGG and DenseNet architectures; and, 
+when moving to the larger, more complex ResNet series, the PL-based metrics, Weighted Alpha and the Log $\alpha$-Norm, perform the best.
+Overall, though, these model series are all very well-trodden; and our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of well-trained versus very-well-trained models, with PL-based metrics performing somewhat (i.e., quantitatively) better on the larger, more complex ResNet series.
+
+
+%%\michael{Put comment on why these three metrics, that HT-SR says that $\hat{\alpha}$ should exhibit good linear correlation, and a few comments on non-normality to address R1 concerns.}
 
 
 %V1VERSION% \begin{table}[t]
@@ -94,6 +111,7 @@ and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform bet
 %V1VERSION% }
 %V1VERSION% \label{table:cv-models}
 %V1VERSION% \end{table}
+
 
 \begin{table}[t]
 \small
@@ -121,7 +139,7 @@ and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform bet
 \end{tabular}
 \end{center}
 \caption{Quality metrics 
-         (RMSE, smaller is better; $R^2$, XXX is better; and Kendall-$\tau$ rank correlation, XXX is better)
+         (for RMSE, smaller is better; for $R^2$, larger is better; and for Kendall-$\tau$ rank correlation, larger magnitude is better)
          for reported Top1 test error for pretrained models in each architecture series.  
          Column \# refers to number of models.  
          VGG, ResNet, and DenseNet were pretrained on ImageNet.  
@@ -130,22 +148,7 @@ and  Weighted Alpha ($\hat\alpha =\alpha\log\lambda_{max} $) metrics perform bet
 \label{table:cv-models}
 \end{table}
 
-\michael{The following, text and numbers, will need to be updated once we finalize the figures/tables.}
-Overall, all metrics perform relatively well; the Weighted Alpha metric performs best; and the Log $\alpha$-Norm metric performs second best.
-See Table~\ref{table:cv-models} for a summary of results for Top1 accuracies for all four metrics for the VGG, ResNet, ResNet-1K, and DenseNet series.
-Similar results are obtained for the Top5 accuracies.
-These model series are all very well-trodden, and our results indicate that norm-based metrics and PL-based metrics can both distinguish among a series of well-trained versus very-well-trained models, with PL-based metrics performing somewhat (i.e., quantitatively) better.
-The DenseNet series has similar behavior.
-(These and many other such plots can be seen on our publicly-available~repo.)
-
-
-To examine how the four quality metrics depend on data set size, we look at results on ResNet versus ResNet-1K.
-Figure~\ref{fig:cv2-accuracy} compares the Log $\alpha$-Norm metric for the full ResNet model, trained on the full ImageNet dataset, against the ResNet-1K model, trained on a much smaller ImageNet-1K data set.
-\michael{The following, text and numbers, will need to be updated once we finalize the figures/tables.}
-The Log $\alpha$-Norm is much better than the Log Frobenius/Spectral norm metrics (although, as Table~\ref{table:cv-models} shows, it is slightly worse than the Weighted Alpha metric).
-The ResNet series has strong correlation (RMSE of $0.66$, $R^2$ of $XXX$, and Kendall-$\tau$ of $XXX$), whereas the ResNet-1K series also shows good but weaker correlation (much larger RMSE of $1.9$, $R^2$ of $XXX$, and Kendall-$\tau$ of $XXX$).
-(Other metrics exhibit similar behavior.)
-The higher quality data set shows a better fit, even with fewer data~points.
+\michael{Charles, any more sentences to add to the last three paragraphs to clarify anything?  If not, then just comment out this comment.}
 
 Going beyond coarse averages to examining quality metrics for each layer weight matrix as a function of depth (or layer id), our metrics can be used to perform model diagnostics and to identify fine-scale properties in a pretrained model.
 Doing so involves separating $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$, and examining the distributions of each.

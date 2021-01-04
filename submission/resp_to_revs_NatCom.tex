@@ -19,10 +19,10 @@
 
 Thanks to the two reviewers for providing feedback.
 One reviewer had questions about additional results to justify our main claims.
-In some cases, we had these results previously, but they were not included due to space constraints.
-In other cases, these results were easy to generate, and we are happy to include them.
+In some cases, we had these results previously, but they were not included due to space constraints; and, in other cases, these results were easy to generate.
+To do so, we have completely redone our analysis, including the requested analysis as well as additional analysis, and we are happy to include these additional results.
 This reviewer also had several misunderstandings, which we will clarify.
-The other reviewer had several general questions, which we also happy to include and clarify.
+The other reviewer had several general questions about how our conclusions fit into the bigger picture that is emerging in the area, and we are also happy to address and clarify these issues.
 We go through each of the points in turn below, with the reviewer comments in italics and our response immediately after.
 
 
@@ -41,7 +41,7 @@ To clarify a potential misunderstanding, it is not correct that the metrics we c
 Norms may be used to train neural networks, but power law fits are not.
 Instead, for the power law fits, we use ideas from statistical mechanics and strongly correlated system theory to try to capture the idea that trained neural networks encode correlations from the data.
 It is fair to say that the power law exponents characterize is the implicit regularization, whether or not the model trainer knew that that was what he or she was doing, but not any regularization explicitly used to train.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point at Line XXX in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -62,12 +62,13 @@ However, I believe the paper arrives to conclusions without using proper statist
 %I'll need to set this up this week, and also create a repo with ALL the plots.
 %)))\\
 The reviewer is correct.  
-We intended for the reader to examine plots to see that the trends are qualitatively in the correct (or incorrect, in some cases for norm-based metrics) direction, and then to look at the numbers to get quantative insight.
+We intended for the reader to examine plots to see that the trends are qualitatively in the correct (or incorrect, in some cases for norm-based metrics) direction, and then to look at the numbers to get quantitative insight.
 We know that errors are not normal; so, for this and other reasons, in our experience, reporting $p$-values won't clarify the situation.
 We have expanded all of the tables that report RMSE and/or $R^2$ to report the Kendal-$\tau$ rank correlation measure.
 Also, a point we didn't emphasize enough is that from HT-SR theory we expect that PL-based metrics to have strong linear and not just rank correlation.
 We have clarified these points at Line XXX, Line XXX, and Line XXX of the revised manuscript, and in the tables and plots throughout the manuscript.
 (Also, additional results beyond what we have in the main text and Supplementary Material are available in our fully-reproducible and publicly-available repo, and it is our hope that that level of transparency will aid the reader's understanding.)
+XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -96,6 +97,8 @@ Since Figure 9 partitions based on data and not model series, we think that it w
 Thus, we removed it, and we will simply point to the publicly-available repo.
 %
 We clarify these points at Line XXX, Line XXX, and Line XXX of the revised manuscript.
+
+XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -117,6 +120,8 @@ Thus, we look in more detail at the contributions to alpha-hat, i.e., to the PL 
 Doing this makes it clear what while the alpha part behaves as HT-SR theory would predict, i.e., with better models the PL exponents get smaller, the norms behave anomalously and exhibit scale collapes.
 The bottom line is that the metrics we discuss can be sued to distinguish between well-trained versus very well trained models, but that one has to look at the PL exponents to diagnose gross model problems, which was one of our original points.
 We clarify these points in revised text between Line XXX and Line XXX of the revised manuscript.
+
+XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -137,6 +142,8 @@ Interesting the larger models still have some larger alpha values, and we conjec
 Subsequent developments in NLP have shown this to be the case.
 In Fig 8b, which shows the trand more stronlgy, the Shatten norm shifts to the left with higher quality models, as we would expect.
 We have put this discussion and clarified these points in the text.
+
+XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -205,6 +212,8 @@ We have elaborated on this at Line XXX of the revised manuscript.
 %)))\\
 More important than the smaller condition number, which has to do with the ratio of the largest to smallest eigenvalue, is the ``shape'' of the spectral distribution, and in particular the details of the tail and how the tail is estimated.
 We clarify this point at Line XXX of the revised manuscript.
+
+XXX.  MM STILL TO DO THIS IN TEXT MAYBE.
 \end{quote}
 
 \noindent
@@ -295,7 +304,7 @@ We comment on and clarify this point at Line XXX of the revised manuscript.
 %That's fair.
 %)))\\
 That is a good point.
-We clarify this point at Line XXX of the revised manuscript.
+We have modified this equation and adjusted the surrounding and subsequent text.
 \end{quote}
 
 

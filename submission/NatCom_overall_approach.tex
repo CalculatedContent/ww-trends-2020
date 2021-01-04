@@ -6,21 +6,19 @@ Consider the objective/optimization function (parameterized by $\mathbf{W}_{l}$s
 the minimization of a general loss function $\mathcal{L}$ over the training data instances and labels, $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$.
 For a typical supervised classification problem, the goal of training is to construct (or learn) $\mathbf{W}_{l}$ and $\mathbf{b}_{l}$ that capture correlations in the data, in the sense of solving
 \begin{equation}
-\underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)  ,
+%%%\underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N}\left(\mathcal{L}(E_{DNN}(\mathbf{x}_{i})-y_{i})\right)  ,
+\underset{\mathbf{W}_{l},\mathbf{b}_{L}}{\text{argmin}}\;\sum_{i=1}^{N} \mathcal{L}(E_{DNN}(\mathbf{x}_{i}),y_{i})   ,
 \end{equation}
-\michael{how precisely to change eqn for R3 comment}
-where the loss function $\mathcal{L}(\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where the energy (or optimization) landscape function
+where the loss function $\mathcal{L}(\cdot,\cdot)$ can take on a myriad of forms~\cite{JC17_TR}, and where the energy (or optimization) landscape function
 \begin{equation}
 %E_{DNN}=h_{L}(\mathbf{W}_{L}\times h_{L-1}(\mathbf{W}_{L-1}\times h_{L-2}(\cdots)+\mathbf{b}_{L-1})+\mathbf{b}_{L})
 E_{DNN} = f(\mathbf{x}_{i} ; \mathbf{W}_{1},\ldots,\mathbf{W}_{L},\mathbf{b}_{1},\ldots,\mathbf{b}_{L})
 \label{eqn:dnn_energy}
 \end{equation}
-\michael{sentences around here probably need to be changed in light of change to that eqn R3 wanted}
 depends parametrically on the weights and biases.
-\michael{FROM V1: See comments for math equations.}
-For a trained model, $E_{DNN}$ does not explicitly depend on the data, but rather it maps data instance vectors ($\mathbf{x}_i$ values) to predictions ($y_{i}$ labels).
-\michael{FROM V1: Mark found that sentence confusing.}
-Therefore, one can analyze $E_{DNN}$ in the absence of any training or test~data. 
+For a trained model, the form of the function $E_{DNN}$ does not explicitly depend on the data (but it does explicitly depend on the weights and biases).
+The function $E_{DNN}$ maps data instance vectors ($\mathbf{x}_i$ values) to predictions ($y_{i}$ labels), and thus the output of this function does depend on the data.
+Therefore, one can analyze the form of $E_{DNN}$ in the absence of any training or test~data. 
 
 Test accuracies have been reported online for publicly-available pretrained pyTorch models~\cite{osmr}.
 These models have been trained and evaluated on labeled data $\{\mathbf{x}_{i},y_{i}\}\in\mathcal{D}$, using standard techniques.  

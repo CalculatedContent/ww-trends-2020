@@ -189,9 +189,9 @@ Tables and figures summarizing this analysis (in a more fine-grained way than pr
 %%\subsection{Supplementary Figures}
 \subsection{Supplementary Tables and Figures}
 
-\michael{The text in this section needs to be changed---probably not removed, but instead discuss things, not point to the figure we remove, and point to the repo. }
+\michael{Charles, would you put in a couple of paragraphs about how you generated the tables/figures in the appendix, and a few things we learn from them, i.e., basically enough to convince that reviewer that we paid attention to their concerns.}
 
-\michael{Do we get more visually compelling results if we present figures, but segmented by architectures, as listed in Table~\ref{table:architectures}; if so, perhaps we should put those, so we don't tell R1 that we just removed what looked bad; or maybe actually both, since we segment by dataset in Table~\ref{table:datasets}. }
+\michael{Table~\ref{table:architectures} still needs to be fixed, since it does not include the overall results partitioned by dataset that we had in the old Table~\ref{table:datasets}. }
 
 To explain further how to reproduce our analysis, we run three batches of linear regressions. 
 First, at the global level, we divide models by datasets and run regressions separately on all models of a certain dataset, regardless of the architecture. 
@@ -202,12 +202,12 @@ At this level, the plots are quite noisy and clustered, as each architecture has
 %%Figure~\ref{fig:DSalphas}, for models segmented by dataset, as listed in Table~\ref{table:datasets}, 
 %%and in 
 %%Figure~\ref{fig:ARCHalphas}, for models segmented by architecture, as listed in Table~\ref{table:architectures}.
-\michael{Comment here on differences.}
+\michael{Charles, this paragraph is stale since it refers to the old figures that the reviewer did not like, so would you update it.}
 
 To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 (and Top5) errors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
-We record the $R^{2}$ and $MSE$ for each metric, averaged over all regressions for all architectures and datasets.
-\michael{Mention KTau.}
-See Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}.
+We record the $RMSE$, $R^{2}$, and Kendall-$\tau$ for each metric, averaged over all regressions for all architectures and datasets;
+see Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}, respectively.
+\michael{Charles, the label is broken in the caption of Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}.}
 In the repo, plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
 The final analysis includes 108 regressions in all, those with 4 or more models, with a positive $R^2$.
 
@@ -220,10 +220,9 @@ Figure~\ref{fig:summary_regressions_E},
 Figure~\ref{fig:summary_regressions_F},
 Figure~\ref{fig:summary_regressions_G},
 Figure~\ref{fig:summary_regressions_H}, and
-Figure~\ref{fig:summary_regressions_A} for more details.
-\michael{Put a bit of discussion, e.g., on best and worst.}
+Figure~\ref{fig:summary_regressions_I} for more details.
+\michael{Charles, would you put a bit of discussion, e.g., on best and worst, again just a teaser to satisfy that reviewer.}
 
-\michael{Probably some discussion of why these metrics are the right ones, e.g., as opposed to $p$ values, to address R1 comments.}
 
 \input{figs_largeScale_A}
 \input{figs_largeScale_B}
