@@ -20,17 +20,17 @@ pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions, as spec
 \hline
 Table & Figure & Jupyter Notebook \\
 \hline
-& \ref{fig:vgg-metrics}                                 & WeightWatcher-VGG.ipynb \\
-& \ref{fig:resnet-accuracy}                             & WeightWatcher-ResNet.ipynb \\
-& \ref{fig:resnet1k-accuracy}                           & WeightWatcher-ResNet-1K.ipynb \\
-& \ref{fig:vgg-alpha-layers}                            & WeightWatcher-VGG.ipynb \\
-& \ref{fig:resnet-alpha-layer}                          & WeightWatcher-ResNet.ipynb \\
-& \ref{fig:densenet-alpha-layer}                        & WeightWatcher-DenseNet.ipynb \\
+1 & \ref{fig:vgg-metrics}                                 & WeightWatcher-VGG.ipynb \\
+1 & \ref{fig:resnet-accuracy}                             & WeightWatcher-ResNet.ipynb \\
+1 & \ref{fig:resnet1k-accuracy}                           & WeightWatcher-ResNet-1K.ipynb \\
+1 & \ref{fig:vgg-alpha-layers}                            & WeightWatcher-VGG.ipynb \\
+1 & \ref{fig:resnet-alpha-layer}                          & WeightWatcher-ResNet.ipynb \\
+1 & \ref{fig:densenet-alpha-layer}                        & WeightWatcher-DenseNet.ipynb \\
 \hline
 & \ref{fig:resnet204D5L}                                & WeightWatcher-Intel-Distiller-ResNet20.ipynb \\
 \hline
-& \ref{fig:GPT-hist}                                    & WeightWatcher-OpenAI-GPT.ipynb \\
-& \ref{fig:gpt-alpha-layers}, \ref{fig:gpt2-histograms} & WeightWatcher-OpenAI-GPT2.ipynb \\
+2 & \ref{fig:GPT-hist}                                    & WeightWatcher-OpenAI-GPT.ipynb \\
+2 & \ref{fig:gpt-alpha-layers}, \ref{fig:gpt2-histograms} & WeightWatcher-OpenAI-GPT2.ipynb \\
 \hline
 3,7,8,9 & Appendix & OSMR-Analysis.ipynb \\
 \hline
@@ -65,31 +65,10 @@ Also, we filter out regressions with fewer than 5 datapoints.
 We remove the following outliers, as identified by visual inspection: \texttt{efficient\_b0,\_b2}.
 We also remove the entire \texttt{cifar100} \texttt{ResNeXT} series, which is the only example to show no trends with the norm metrics.
 %
-The final datasets used are shown in Table~\ref{table:datasets}.
+%The final datasets used are shown in Table~\ref{table:datasets}.
 The final architecture series used are shown in  Table~\ref{table:architectures}, with the number of models in each.
 
 Tables and figures summarizing this analysis (in a more fine-grained way than provided by Table~\ref{table:results}) are presented next.
-
-\begin{table}[t]
-\small
-\begin{center}
-\begin{tabular}{|p{1in}|c|}
-\hline
-Dataset & $\#$ of Models \\
-\hline
-imagenet-1k   &  76 \\
-svhn          &  30 \\
-cifar-100     &  26 \\
-cifar-10      &  18 \\
-cub-200-2011  &  12 \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Datasets used \charles{This table needs updated}}
-\label{table:datasets}
-\end{table}
-
-\input{table_6}
 
 
 %%\begin{figure}[t]
