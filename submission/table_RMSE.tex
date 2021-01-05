@@ -7,37 +7,37 @@
 Dataset & Model  & $\langle\log\Vert\cdot\Vert^{2}_{F}\rangle$ & $\langle\log\Vert\cdot\Vert^{2}_{\infty}\rangle$ & $\hat{\alpha}$ & $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$ \\
 
 \hline
-imagenet-1k & ResNet  & 2.53 & 3.35 & \textbf{1.92} & \textbf{1.92} \\
-imagenet-1k & EfficientNet  & 1.64 & \textbf{1.11} & 1.60 & 1.60 \\
-imagenet-1k & PreResNet  & 2.57 & 3.93 & \textbf{1.90} & \textbf{1.90} \\
-imagenet-1k & ShuffleNet  & 5.95 & 9.46 & 4.42 & 4.42 \\
-imagenet-1k & VGG  & 1.02 & \textbf{0.88} & 1.48 & 1.48 \\
-imagenet-1k & DLA  & 4.79 & \textbf{3.02} & 3.94 & 3.94 \\
+imagenet-1k & ResNet  & 2.53 & 3.35 & \textbf{1.92} & 2.04 \\
+imagenet-1k & EfficientNet  & 1.64 & \textbf{1.11} & 1.60 & 1.58 \\
+imagenet-1k & PreResNet  & 2.57 & 3.93 & \textbf{1.90} & 1.93 \\
+imagenet-1k & ShuffleNet  & 5.95 & 9.46 & 4.42 & \textbf{4.30} \\
+imagenet-1k & VGG  & 1.11 & \textbf{0.91} & 1.57 & 1.48 \\
+imagenet-1k & DLA  & 4.79 & \textbf{3.02} & 3.94 & 4.06 \\
 imagenet-1k & HRNet  & 0.68 & 0.72 & \textbf{0.40} & \textbf{0.40} \\
-imagenet-1k & DRN-C  & 0.77 & 0.81 & \textbf{0.64} & \textbf{0.64} \\
-imagenet-1k & SqueezeNext  & 4.68 & 4.62 & 3.65 & 3.65 \\
-imagenet-1k & ESPNetv2  & 3.71 & 3.84 & \textbf{1.37} & \textbf{1.37} \\
-imagenet-1k & SqueezeNet  & 0.33 & 0.33 & \textbf{0.26} & \textbf{0.26} \\
-imagenet-1k & ProxylessNAS  & \textbf{0.44} & 0.51 & 0.53 & 0.53 \\
-imagenet-1k & IGCV3  & 1.39 & 9.37 & 2.91 & 2.91 \\
+imagenet-1k & DRN-C  & 0.77 & 0.81 & \textbf{0.64} & 0.69 \\
+imagenet-1k & SqueezeNext  & 4.68 & 4.62 & 3.65 & \textbf{3.64} \\
+imagenet-1k & ESPNetv2  & 3.71 & 3.84 & \textbf{1.37} & 1.59 \\
+imagenet-1k & IGCV3  & 1.39 & 9.37 & 2.91 & \textbf{1.04} \\
+imagenet-1k & SqueezeNet  & 0.33 & 0.33 & \textbf{0.26} & 0.29 \\
+imagenet-1k & ProxylessNAS  & \textbf{0.44} & 0.51 & 0.53 & 0.51 \\
 \hline
 cifar-10 & ResNet  & 0.56 & 0.55 & \textbf{0.53} & \textbf{0.53} \\
-cifar-10 & DIA-ResNet  & \textbf{0.22} & 0.28 & 0.53 & 0.53 \\
+cifar-10 & DIA-ResNet  & \textbf{0.22} & 0.28 & 0.53 & 0.56 \\
 cifar-10 & SENet  & 0.30 & 0.30 & \textbf{0.20} & \textbf{0.20} \\
 \hline
 cifar-100 & ResNet  & 2.03 & 2.12 & \textbf{1.75} & \textbf{1.75} \\
-cifar-100 & DIA-ResNet  & \textbf{0.60} & 1.17 & 0.96 & 0.96 \\
+cifar-100 & DIA-ResNet  & \textbf{0.60} & 1.17 & 0.96 & 1.01 \\
 cifar-100 & SENet  & 0.60 & 0.65 & \textbf{0.51} & \textbf{0.51} \\
-cifar-100 & WRN  & 0.37 & 0.44 & 0.26 & 0.26 \\
+cifar-100 & WRN  & 0.37 & 0.44 & 0.26 & \textbf{0.25} \\
 \hline
-svhn & ResNet  & 0.20 & 0.20 & \textbf{0.15} & \textbf{0.15} \\
+svhn & ResNet  & 0.20 & 0.20 & \textbf{0.15} & 0.16 \\
 svhn & DIA-ResNet  & 0.07 & \textbf{0.06} & 0.13 & 0.13 \\
 svhn & SENet  & \textbf{0.04} & 0.07 & 0.05 & 0.05 \\
-svhn & WRN  & 0.07 & 0.08 & 0.07 & 0.07 \\
-svhn & ResNeXt  & 0.06 & \textbf{0.06} & 0.11 & 0.11 \\
+svhn & WRN  & \textbf{0.07} & 0.08 & \textbf{0.07} & \textbf{0.07} \\
+svhn & ResNeXt  & \textbf{0.06} & \textbf{0.06} & 0.11 & 0.09 \\
 \hline
 cub-200-2011 & ResNet  & 0.45 & \textbf{0.42} & 1.79 & 1.79 \\
-cub-200-2011 & SENet  & \textbf{1.03} & 1.13 & 1.36 & 1.36 \\
+cub-200-2011 & SENet  & \textbf{1.03} & 1.13 & 1.36 & 1.40 \\
 
 \hline
 \end{tabular}
