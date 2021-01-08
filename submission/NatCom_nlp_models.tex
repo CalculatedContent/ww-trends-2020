@@ -107,12 +107,13 @@ Na\"ively using it as an empirical quality metric may give spurious results when
     \centering
     \subfigure[Log Spectral Norm ($\log\Vert\mathbf{W}\Vert_{\infty}$)]{
         \includegraphics[width=5.5cm]{img/GPT-snorm-hist.png}
+
         \label{fig:GPT-snorm-hist}
        }
     \qquad
     \subfigure[PL exponent ($\alpha$)]{
-        \includegraphics[width=5.5cm]{img/GPT-alpha-hist.png}
-        \label{fig:GPT-alpha-hist}
+      \includegraphics[width=5.5cm]{img/GPT-alpha-hist.png}
+      \label{fig:GPT-alpha-hist}
        }
    \caption{Histogram of PL exponents 
            %($\alpha$) 
@@ -206,6 +207,7 @@ Similarly, the Log Spectral Norm also decreases on average with the larger model
 As expected, the norm metrics can indeed distinguish among well-trained versus very-well-trained models.
 \michael{Charles, will you fill in those numbers?}
 
+
 While the means and peaks of the $\alpha$ distributions are getting smaller, towards $2.0$, as expected, Figure~\ref{fig:gpt2-alpha-hist} also shows that the tails of the $\alpha$ distributions shift right, with larger GPT2 models having more unusually large $\alpha$ values.
 This is unexpected.
 It suggests that these larger GPT2 models are still under-optimized/over-parameterized (relative to the data on which they were trained) and that they have capacity to support datasets even larger than the recent XL $1.5B$ release~\cite{gpt2-xl}.
@@ -214,14 +216,13 @@ Subsequent refinements to these models, and other models such as BERT, indicate 
 
 \begin{figure}[htb]
     \centering
-
     \subfigure[PL exponent ($\alpha$)]{
         \includegraphics[width=5.5cm]{img/GPT2*_fnl_alpha_hist.png}
         \label{fig:gpt2-alpha-hist}
     }
     \quad
     \subfigure[Log Alpha Norm]{
-        \includegraphics[width=5.5cm]{img/GPT2*_fnl_logpnorm_hist.png}
+        \includegraphics[width=5.5cm]{img/GPT2*_fnl_log_alpha_norm_hist.png}
         \label{fig:gpt2-pnorm-hist}
     }
     \caption{Histogram of PL exponents 
