@@ -9,7 +9,7 @@
 \paragraph{Reproducing Sections \ref{sxn:cv} and \ref{sxn:nlp}. }   
 
 We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results (as well as many other results)~\cite{kdd20_sub_repo}.
-All results have been produced using the \texttt{WeightWatcher} tool (v0.2.7)~\cite{weightwatcher_package}.
+All results have been produced using the \texttt{WeightWatcher} tool)~\cite{weightwatcher_package}.
 The ImageNet and OpenAI GPT pretrained models are provided in the current 
 pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions.
 
@@ -51,18 +51,27 @@ For completeness, we provide both the results described here, as well as additio
 
 \paragraph{Reproducing Table~\ref{table:results} in Section~\ref{sxn:all_cv_models}. }
 
-The reader may regenerat all of the  results of Section~\ref{sxn:all_cv_models} 
+The reader may regenerate all of the  results of Section~\ref{sxn:all_cv_models} 
 \texttt{WeightWatcher} results using the Google Colab Jupyter notebooks (in the \texttt{ww-colab} folder)
 and  the \texttt{WeightWatcher} tool, 
-and/or simply reproduce the Tables and Figures using the Jupyter notebooks (shown in Table~\ref{table:notebooks}),
+and/or simply reproduce 
+Table~\ref{table:results}, as well as Tables~\ref{table:RMSEresults}-\ref{table:Ktauresults}
+and  Figures~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I},
+using the Jupyter notebooks (shown in Table~\ref{table:notebooks}),
 and the pre-computed \texttt{WeightWatcher} datasets (in the \texttt{data/osmr} folder).
-The ImageNet-1K and other pretrained models are taken from the pyTorch models in the \texttt{omsr/imgclsmob} 
+The pretrained models, trained on ImageNet-1K and the other datasets, 
+are taken from the pyTorch models in the \texttt{omsr/imgclsmob} 
 ``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}.
 The full  \texttt{WeightWatcher} results are provided in the datasets: \texttt{[data/osmr/data...xlsx]},
-last generated in January 2020, using the Google Colab notebooks: \texttt{[ww\_colab/ww\_colab...ipynb]}.
-These data files are analyzed with the \texttt{OSMR-Analysis.ipynb} python Juyter Notebook,
-which runs all regressions and which tabulates the results presented in Table~\ref{table:results}
-and generates the figures in Figures~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I}.
+last generated in January 2020, using the Google Colab notebooks: \texttt{[ww\_colab/ww\_colab...ipynb]},
+and \texttt{WeightWatcher} version ww0.2.7.  Results can be recomputed using the current version (ww0.4.1)
+using the \texttt{ww2x=True} back compatability option, although note the pretrained models must
+be downloaded and  may have changed slightly.
+The data files currently provided are analyzed with the \texttt{OSMR-Analysis.ipynb} python Juyter Notebook,
+which runs all regressions and which tabulates the results presented in 
+Table~\ref{table:results}
+and generates the figures in Figures~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I}
+and Tables
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all to consider, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
@@ -219,17 +228,16 @@ ggithub repository. \michael{citation here ?}
 In each Figure,  each row of subfigures, for a given pretrained model and dataset, depicts the average Norm-based and Power Law metrics
  ($\langle\log\Vert\cdot\Vert_{F}\rangle$,    $\langle\log\Vert\cdot\Vert_{\infty}\rangle$,
 $\hat{\alpha}$,  $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$)
- against the Top1 Test Accuracy, as reported in the github repository README file~\cite{osmr} ).
-, along with a shaded area
-representing the $95\%$ confidence bound.
+ against the Top1 Test Accuracy, as reported in the github repository README file~\cite{osmr} ),
+along with a shaded area representing the $95\%$ confidence bound.
 For each regression, we report the RMSE, R2 regresssion metrics, and Kendal-$\tau$ rank correlation metric,
 both in the title of each subfiguire, and in Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}, respectively.
 To reproduce these Figures and Tables, see the \texttt{OSMR-Analysis.ipynb} python Jupyter Notebook, as listed in Table~\ref{},
 and provided github repo accompanying this paper.
 The reader may regenerate these Figures and Tables,
-along with more fine grained results, by rerunning
+and even more fine grained results, by rerunning
  the \texttt{OSMR-Analysis.ipynb} python Jupyter Notebook (see Table~\ref{table:notebooks}), which 
-analyzes the data in the \texttt{df\_all.xlsx} file. 
+analyzes the precomputed data in the \texttt{df\_all.xlsx} file. 
 This repository also contains the original \texttt{Google Colab} notebooks, run in January 2020, 
 which downloads the pretrained models and  and runs the \texttt{WeightWatcher} tool on them.
 %To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 rrors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
@@ -237,13 +245,12 @@ which downloads the pretrained models and  and runs the \texttt{WeightWatcher} t
 %see Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}, respectively.
 %captions fixed in table Ktau.  
 %In the repo, plots are provided for every regression, and more fine grained results may be computed by the reader by analyzing the data in the \texttt{df\_all.xlsx} file.
-The reader may also run the most current version of  \texttt{WeightWatcher} (ww0.4.1) on individual 
-pretrained models (which may also have changed slightly since January 2020), 
+The reader may also run the  \texttt{WeightWatcher} locally on each of the 
+pretrained models,
 such as the ResNet models, trained on the ImageNet-1K dataset, using the \texttt{WeightWatcher-ResNet-1K.ipynb} notebook.
+(However, note that the models may have changed, giving slightly different results).
 The final analysis includes 108 regressions in all.%, those with 4 or more models.%, with a positive $R^2$.
-
-See
-Figure~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I} for more details.
+See Figure~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I} for more details.
 %5Figure~\ref{fig:summary_regressions_B},
 %Figure~\ref{fig:summary_regressions_C},
 %Figure~\ref{fig:summary_regressions_D},
@@ -265,13 +272,14 @@ has a much smaller $RMSE=1.93$, and much larger  $R2=0.85$, and Kendal-$\tau=0.8
 and only 2 points outside the $95\%$ confidence bands.
 For examples of lower quality fits, consider the SqueezeNext results, as shown Figures~\ref{fig:summary_regressions_C_10} and 
 ~\ref{fig:summary_regressions_C_12}.  
-The Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$,
-is visually anti-correlated  with the test accuracies
+The Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$ appears
+visually anti-correlated with the test accuracies
 (as it is with ShuffleNet, in Figure ~\ref{fig:summary_regressions_B_02}).
-with a very large $95\%$ confidence band, with only 2 points close to the regression line,
-a large RMSE,  $R2=0.07$ (i.e zero), and small Kendal-$\tau=0.33$.
+It has a very large $95\%$ confidence band, with only 2 points close to the regression line, 
+a large RMSE,  $R2=0.07$ (i.e zero), and small Kendal-$\tau=0.33$.  
 The Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$ is (as always) positively-correlated
-with test accuracies, but with $R2=43$, which is not great--but not zero, and a reasonable Kendal-$\tau=0.73$.
+with test accuracies, but with $R2=0.43$, show some linear correaltion, and a reasonable Kendal-$\tau=0.73$,
+showing moderately strong rank correlation.
 
 \input{figs_largeScale_A}
 \input{figs_largeScale_B}
