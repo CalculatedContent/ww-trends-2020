@@ -1,4 +1,4 @@
-%\section{Reproducibility Appendix}
+>%\section{Reproducibility Appendix}
 \section{Supplementary Information}
 \label{sxn:appendix}
 
@@ -222,6 +222,24 @@ Figure~\ref{fig:summary_regressions_G},
 Figure~\ref{fig:summary_regressions_H}, and
 Figure~\ref{fig:summary_regressions_I} for more details.
 \michael{Charles, would you put a bit of discussion, e.g., on best and worst, again just a teaser to satisfy that reviewer.}
+From these Figures, we recognize fits of varying quality, ranging from remarkably good to completely uncorrelated.
+Starting with the best, consider the Imagenet-1K PreResNet results.  Figure~\ref{fig:summary_regressions_A_10} shows 
+the Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$, 
+which has a rather large $RMSE=3.93$, and rather small $R2=0.36$, and Kendal-$\tau=0.54$, and
+has 6 out of 13 points outside the $95\%$ confidence bands.  In contrast, 
+the Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$, 
+in  Figure~\ref{fig:summary_regressions_A_12} , 
+has a much smaller $RMSE=1.93$, and much larger  $R2=0.85$, and Kendal-$\tau=0.87$, 
+and only 2 points outside the $95\%$ confidence bands.
+For examples of lower quality fits, consider the SqueezeNext results, as shown Figures~\ref{fig:summary_regressions_C_10} and 
+~\ref{fig:summary_regressions_C_12}.  
+The Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$,
+is visually anti-correlated  with the test accuracies
+(as it is with ShuffleNet, in Figure ~\ref{fig:summary_regressions_B_02}).
+with a very large $95\%$ confidence band, with only 2 points close to the regression line,
+a large RMSE,  $R2=0.07$ (i.e zero), and small Kendal-$\tau=0.33$.
+The Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$ is always positively-correlated
+with test accuracies, but with $R2=43$, which is not great--but not zero, and a reasonable Kendal-$\tau=0.73$.
 
 
 \input{figs_largeScale_A}
