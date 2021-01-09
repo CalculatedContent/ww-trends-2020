@@ -51,10 +51,10 @@ For completeness, we provide both the results described here, as well as additio
 
 \paragraph{Reproducing Table~\ref{table:results} in Section~\ref{sxn:all_cv_models}. }
 
-The results of Section~\ref{sxn:all_cv_models} can be regenerated using
-using the \texttt{WeightWatcher} tool (version 0.2.7), as described in Table~\ref{table:notebooks};
-the reader may regenerate all the \texttt{WeightWatcher} results using the Google Colab notebooks (in \texttt{ww-colab}),
-and/or simply reproduce the Tables and Figures using the Jupyter notebooks (in Table~ref{table:notebooks},
+The reader may regenerat all of the  results of Section~\ref{sxn:all_cv_models} 
+\texttt{WeightWatcher} results using the Google Colab Jupyter notebooks (in the \texttt{ww-colab} folder)
+and  the \texttt{WeightWatcher} tool, 
+and/or simply reproduce the Tables and Figures using the Jupyter notebooks (shown in Table~\ref{table:notebooks}),
 and the pre-computed \texttt{WeightWatcher} datasets (in the \texttt{data/osmr} folder).
 The ImageNet-1K and other pretrained models are taken from the pyTorch models in the \texttt{omsr/imgclsmob} 
 ``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}.
@@ -65,7 +65,7 @@ which runs all regressions and which tabulates the results presented in Table~\r
 and generates the figures in Figures~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I}.
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
-There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
+There are over $450$ models in all to consider, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
 We omit the results for CUB-200-2011, Pascal-VOC2012, ADE20K, and COCO datasets, as there are fewer than 15 models for those datasets.  
 Also, we filter out regressions with fewer than 5 datapoints.
 
@@ -243,15 +243,15 @@ such as the ResNet models, trained on the ImageNet-1K dataset, using the \texttt
 The final analysis includes 108 regressions in all.%, those with 4 or more models.%, with a positive $R^2$.
 
 See
-Figure~\ref{fig:summary_regressions_A},
-Figure~\ref{fig:summary_regressions_B},
-Figure~\ref{fig:summary_regressions_C},
-Figure~\ref{fig:summary_regressions_D},
-Figure~\ref{fig:summary_regressions_E},
-Figure~\ref{fig:summary_regressions_F},
-Figure~\ref{fig:summary_regressions_G},
-Figure~\ref{fig:summary_regressions_H}, and
-Figure~\ref{fig:summary_regressions_I} for more details.
+Figure~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I} for more details.
+%5Figure~\ref{fig:summary_regressions_B},
+%Figure~\ref{fig:summary_regressions_C},
+%Figure~\ref{fig:summary_regressions_D},
+%Figure~\ref{fig:summary_regressions_E},
+%Figure~\ref{fig:summary_regressions_F},
+%Figure~\ref{fig:summary_regressions_G},
+%Figure~\ref{fig:summary_regressions_H}, and
+
 \michael{Charles, would you put a bit of discussion, e.g., on best and worst, again just a teaser to satisfy that reviewer.}
 \charles{below}
 From these Figures, we recognize fits of varying quality, ranging from remarkably good to completely uncorrelated.
@@ -270,9 +270,8 @@ is visually anti-correlated  with the test accuracies
 (as it is with ShuffleNet, in Figure ~\ref{fig:summary_regressions_B_02}).
 with a very large $95\%$ confidence band, with only 2 points close to the regression line,
 a large RMSE,  $R2=0.07$ (i.e zero), and small Kendal-$\tau=0.33$.
-The Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$ is always positively-correlated
+The Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$ is (as always) positively-correlated
 with test accuracies, but with $R2=43$, which is not great--but not zero, and a reasonable Kendal-$\tau=0.73$.
-
 
 \input{figs_largeScale_A}
 \input{figs_largeScale_B}
