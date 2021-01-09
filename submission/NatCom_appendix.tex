@@ -11,7 +11,7 @@
 We provide a github repository for this paper that includes Jupyter notebooks that fully reproduce all results (as well as many other results)~\cite{kdd20_sub_repo}.
 All results have been produced using the \texttt{WeightWatcher} tool (v0.2.7)~\cite{weightwatcher_package}.
 The ImageNet and OpenAI GPT pretrained models are provided in the current 
-pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions, as specified in the \texttt{requirements.txt}~file. 
+pyTorch~\cite{pytorch} and Huggingface~\cite{huggingface} distributions.
 
 \begin{table}[t]
 \small
@@ -51,11 +51,16 @@ For completeness, we provide both the results described here, as well as additio
 
 \paragraph{Reproducing Table~\ref{table:results} in Section~\ref{sxn:all_cv_models}. }
 
-In the \texttt{ww-colab} folder of our github repo, we provide several Google Colab notebooks which can be used to reproduce the results of Section~\ref{sxn:all_cv_models}.
+In our github repository, we provide several python Juoyter Google Colab anotebooks,
+as well as previously generated data,  which can be used to reproduce the results of Section~\ref{sxn:all_cv_models}, 
+and using the \texttt{WeightWatcher} tool (version 0.2.7), as described in Table~\ref{table:notebooks}.
 The ImageNet-1K and other pretrained models are taken from the pyTorch models in the \texttt{omsr/imgclsmob} 
 ``Sandbox for training convolutional networks for computer vision'' github repository~\cite{osmr}.
-The data for each regression can be generated in parallel by running each Google Colab notebook (i.e., \texttt{ww\_colab\_0\_100.ipynb}) simultaneously on the same account.
-The data generated are analyzed with \texttt{ww\_colab\_results.ipynb}, which runs all regressions and which tabulates the results presented in Table~\ref{table:results}.
+The full  \texttt{WeightWatcher} results are provided in the datasets: \texttt{[data/osmr/data...xlsx]},
+last generated in January 2020, using the Google Colab notebooks: \texttt{[ww\_colab/ww\_colab...ipynb]}.
+These data files are analyzed with the \texttt{OSMR-Analysis.ipynb} python Juyter Notebook,
+which runs all regressions and which tabulates the results presented in Table~\ref{table:results}
+and generates the figures in Figures~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I}.
 
 We attempt to run linear regressions for all pyTorch models for each architecture series for all datasets provided.  
 There are over $450$ models in all, and we note that the \texttt{osmr/imgclsmob} repository is constantly being updated with new models.
