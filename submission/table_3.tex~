@@ -7,17 +7,14 @@
   & $\log\Vert\cdot\Vert^{2}_{F}$ & $\log\Vert\cdot\Vert^{2}_{\infty}$ & $\hat{\alpha}$ & $\log\Vert\cdot\Vert^{\alpha}_{\alpha}$ \\
 \hline
 
-RMSE (mean) & 4.84 & 5.56 & 4.58& 4.54 \\
-RMSE (std) & 4.84 & 5.56 & 4.58& 4.54 \\
+RMSE (mean) & 4.84 & 5.57 & 4.58& 4.55 \\
+RMSE (std) & 9.14 & 9.16 & 9.16& 9.17 \\
 \hline
 R2 (mean) & 3.9 & 3.85 & 3.89& 3.89 \\
-R2 (std) & 3.9 & 3.85 & 3.89& 3.89 \\
+R2 (std) & 9.34 & 9.36 & 9.34& 9.34 \\
 \hline
-R2 adjusted (mean) & 3.82 & 3.77 & 3.82& 3.83 \\
-R2 adjusted (std) & 3.82 & 3.77 & 3.82& 3.83 \\
-\hline
-Kendal-tau (mean) & 3.84 & 3.77 & 3.85& 3.85 \\
-Kendal-tau (std) & 3.84 & 3.77 & 3.85& 3.85 \\
+Kendal-tau (mean) & 3.84 & 3.77 & 3.86& 3.85 \\
+Kendal-tau (std) & 9.37 & 9.4 & 9.36& 9.36 \\
 \hline
 
 \hline
@@ -29,7 +26,7 @@ Kendal-tau (std) & 3.84 & 3.77 & 3.85& 3.85 \\
          These results can be readily reproduced using the Google Colab notebooks.
          (See the Supplementary Information
          %~\ref{sxn:appendix}                                                                                                                             
-         for details.)
+         for details.)}
 \label{table:results}
 \end{table}
 

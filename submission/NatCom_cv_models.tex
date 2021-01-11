@@ -149,11 +149,11 @@ Overall, though, these model series are all very well-trodden; and our results i
 \charles{In partcular, the PL-based AlphaHat $\hat{\alpha}$ and Shatten-Norm $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ metrics 
 tend to perform better when there is a wider variation in the hyper-parameters going beyond just increasing the depth.  In fact sometimes the
 purely norm-based metrics such as the Spectral Norm can be uncorrelated or even
-anti-correlated with the test accuracy, as seen in Section~\ref{sxn:appendix} with
+anti-correlated with the test accuracy, where the PL-metrrics are positively-correlated.
+This is seen in Section~\ref{sxn:appendix} with
 ShuffleNet in Figure~\ref{fig:summary_regressions_B_02},
 SqueezeNext in Figure~\ref{fig:summary_regressions_C_10},
-and WRN in Figure~\ref{fig:summary_regressions_G_06}).
-} 
+and WRN in Figure~\ref{fig:summary_regressions_G_06}).}
 
 Going beyond coarse averages to examining quality metrics for each layer weight matrix as a function of depth (or layer id), our metrics can be used to perform model diagnostics and to identify fine-scale properties in a pretrained model.
 Doing so involves separating $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$, and examining the distributions of each.
