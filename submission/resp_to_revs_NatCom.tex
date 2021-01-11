@@ -118,14 +118,14 @@ in the revised manuscript.
 Sorry for the confusion.
 We have adjusted that table, and we have substantially reworded the text.
 
-The first point is there are two things we are illustrating: one is when we increase both data size and model size (GPT2-small to GPT2-medium to GPT2-large to GPT2-xl); and the second is when a give model is trained to high-quality verus low-quality data (GPT2-small versus GPT).
-For the former, we see a general trend with all the metrics decreasing, with the largest difference between GPT2-medium and GPT2-large, and with the difference between GPT2-small and GPT2-medium very small (near the noise level, and slightly in the opposite direction).
-For the latter, we see GPT seems to violate what we expect. 
-Thus, we look in more detail at the contributions to alpha-hat, i.e., to the PL exponent alpha and the spectral norm.
-Doing this makes it clear what while the alpha part behaves as HT-SR theory would predict, i.e., with better models the PL exponents get smaller, the norms behave anomalously and exhibit scale collapes.
-The bottom line is that the metrics we discuss can be sued to distinguish between well-trained versus very well trained models, but that one has to look at the PL exponents to diagnose gross model problems, which was one of our original points.
-We have clarified these points
-in the revised manuscript.
+The first point is there are two things we are illustrating: one is when we increase both data size and model size (GPT2-small to GPT2-medium to GPT2-large to GPT2-xl); and the second is when a given model is trained to high-quality verus low-quality data (GPT2-small versus GPT).
+For the former, as the model size increases, we see a general trend with all the metrics decreasing, with the largest difference between GPT2-medium and GPT2-large, and with the difference between GPT2-small and GPT2-medium being very small (near the noise level, and slightly in the opposite direction).
+For the latter, when comparing the well trained to poorly trained model, we see that the smaller and poorly trained GPT model seems to violate what we expect.
+Thus, we look in more detail at the two contributions to alpha-hat, the PL exponent alpha and the spectral norm.
+Doing this makes it clear what while the alpha part behaves as HT-SR theory would predict, and that with better models the PL exponents get smaller,
+but the norms behave anomalously and exhibit scale collape.
+The bottom line is that the metrics we discuss can be used to distinguish between well-trained versus very well trained models, but that one has to look at the PL exponents and Spectral Norm to diagnose the model problems; this was one of our original points.
+We have clarified these points in the revised manuscript.
 
 %XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
