@@ -1,4 +1,4 @@
->%\section{Reproducibility Appendix}
+%\section{Reproducibility Appendix}
 \section{Supplementary Information}
 \label{sxn:appendix}
 
@@ -205,10 +205,6 @@ Tables and figures summarizing this analysis (in a more fine-grained way than pr
 %%\subsection{Supplementary Figures}
 \subsection{Supplementary Tables and Figures}
 
-\michael{Charles, would you put in a couple of paragraphs about how you generated the tables/figures in the appendix, and a few things we learn from them, i.e., basically enough to convince that reviewer that we paid attention to their concerns.}
-\charles{fixed below}
-\michael{Table~\ref{table:architectures} still needs to be fixed, since it does not include the overall results partitioned by dataset that we had in the old Table~\ref{table:datasets}. }
-
 %To explain further how to reproduce our analysis, we run three batches of linear regressions. 
 %First, at the global level, we divide models by datasets and run regressions separately on all models of a certain dataset, regardless of the architecture. 
 %At this level, the plots are quite noisy and clustered, as each architecture has its own accuracy trend; but one can
@@ -220,26 +216,28 @@ Tables and figures summarizing this analysis (in a more fine-grained way than pr
 %%Figure~\ref{fig:ARCHalphas}, for models segmented by architecture, as listed in Table~\ref{table:architectures}.
 %\michael{Charles, this paragraph is stale since it refers to the old figures that the reviewer did not like, so would you update it.}
 
-Table~\ref{table:results} and Figures~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I} below present results for OLS 
-(Ordinary Least Squares) regressions for every dataset and architecture series listed in Table~\ref{table:architectures},
- created by running the \texttt{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package}
-on numerous pretrained models taken from the \texttt{OSMR/imgclsmob Sandbox} github repository of pretrained CV DNN model
-ggithub repository. \michael{citation here ?}
-In each Figure,  each row of subfigures, for a given pretrained model and dataset, depicts the average Norm-based and Power Law metrics
- ($\langle\log\Vert\cdot\Vert_{F}\rangle$,    $\langle\log\Vert\cdot\Vert_{\infty}\rangle$,
-$\hat{\alpha}$,  $\langle\log\Vert\cdot\Vert^{\alpha}_{\alpha}\rangle$)
- against the Top1 Test Accuracy, as reported in the github repository README file~\cite{osmr} ),
-along with a shaded area representing the $95\%$ confidence bound.
-For each regression, we report the RMSE, R2 regresssion metrics, and Kendal-$\tau$ rank correlation metric,
-both in the title of each subfiguire, and in Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}, respectively.
-To reproduce these Figures and Tables, see the \texttt{OSMR-Analysis.ipynb} python Jupyter Notebook, as listed in Table~\ref{},
-and provided github repo accompanying this paper.
-The reader may regenerate these Figures and Tables,
-and even more fine grained results, by rerunning
- the \texttt{OSMR-Analysis.ipynb} python Jupyter Notebook (see Table~\ref{table:notebooks}), which 
-analyzes the precomputed data in the \texttt{df\_all.xlsx} file. 
-This repository also contains the original \texttt{Google Colab} notebooks, run in January 2020, 
-which downloads the pretrained models and  and runs the \texttt{WeightWatcher} tool on them.
+Here, we present a more detailed discussion of our large-scale analysis of hundreds of models, which were summarized in Table~\ref{table:results} of Section~\ref{sxn:all_cv_models}. 
+We ran the \texttt{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package}
+on numerous pretrained models taken from the \texttt{OSMR/imgclsmob Sandbox} github repository of pretrained CV DNN models~\cite{osmr},   
+performing OLS (Ordinary Least Squares) regressions for every dataset and architecture series listed in Table~\ref{table:architectures}.
+Table~\ref{table:results} summarized the overall results, and Figures~\ref{fig:summary_regressions_A}--\ref{fig:summary_regressions_I} below present a more detailed visual summary, which enables model diagnostics.
+
+For each Figure, each row of subfigures considers a given pretrained model and dataset, depicting the average Norm-based and Power Law 
+metrics---Log Frobenius norm
+          ($\langle\log\Vert\mathbf{W}\Vert^{2}_{F}\rangle$),
+          Log Spectral norm
+          ($\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$),
+          Weighted Alpha
+          ($\hat{\alpha}$),
+          and Log $\alpha$-Norm
+          ($\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$)---against 
+the Top1 Test Accuracy, as reported in the github repository README file~\cite{osmr}, along with a shaded area representing the $95\%$ confidence bound.
+For each regression, we report the RMSE, the R2 regresssion metric, and the Kendal-$\tau$ rank correlation metric in the title of each subfigure.
+We also present these same numerical values in Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}, respectively.
+To reproduce these Figures and Tables, see the \texttt{OSMR-Analysis.ipynb} python Jupyter Notebook, as listed in Table~\ref{table:notebooks}.
+(These are provided in the github repo accompanying this paper.)
+The reader may regenerate these Figures and Tables, as well as more fine grained results, by rerunning the \texttt{OSMR-Analysis.ipynb} python Jupyter Notebook (see Table~\ref{table:notebooks}), which analyzes the precomputed data in the \texttt{df\_all.xlsx} file. 
+This repository also contains the original \texttt{Google Colab} notebooks, run in January 2020, which download the pretrained models and run the \texttt{WeightWatcher} tool on them.
 %To generate the results in Table~\ref{table:results}, we run linear regressions for each architecture series in Table~\ref{table:architectures}, regressing each empirical Log Norm metric against the reported Top1 rrors (as listed on the \texttt{osmr/imgclsmob} github repository README file~\cite{osmr}, with the relevant data extracted and provided in our github repo as \texttt{pytorchcv.html}).
 %We record the $RMSE$, $R^{2}$, and Kendall-$\tau$ for each metric, averaged over all regressions for all architectures and datasets;
 %see Table~\ref{table:RMSEresults}, Table~\ref{table:R2results}, and Table~\ref{table:Ktauresults}, respectively.
@@ -248,9 +246,9 @@ which downloads the pretrained models and  and runs the \texttt{WeightWatcher} t
 The reader may also run the  \texttt{WeightWatcher} locally on each of the 
 pretrained models,
 such as the ResNet models, trained on the ImageNet-1K dataset, using the \texttt{WeightWatcher-ResNet-1K.ipynb} notebook.
-(However, note that the models may have changed, giving slightly different results).
-The final analysis includes 108 regressions in all.%, those with 4 or more models.%, with a positive $R^2$.
-See Figure~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I} for more details.
+(We should note, however, that the publicly-available versions of these models may have changed slightly, giving slightly different results).
+Our final analysis includes 108 regressions in all. %, those with 4 or more models.%, with a positive $R^2$.
+See Figure~\ref{fig:summary_regressions_A}--\ref{fig:summary_regressions_I} for more details.
 %5Figure~\ref{fig:summary_regressions_B},
 %Figure~\ref{fig:summary_regressions_C},
 %Figure~\ref{fig:summary_regressions_D},
@@ -259,27 +257,33 @@ See Figure~\ref{fig:summary_regressions_A}-\ref{fig:summary_regressions_I} for m
 %Figure~\ref{fig:summary_regressions_G},
 %Figure~\ref{fig:summary_regressions_H}, and
 
-\michael{Charles, would you put a bit of discussion, e.g., on best and worst, again just a teaser to satisfy that reviewer.}
-\charles{below}
+% Log Frobenius norm
+% Log Spectral norm
+% Weighted Alpha
+% Log $\alpha$-Norm
+
 From these Figures, we recognize fits of varying quality, ranging from remarkably good to completely uncorrelated.
-Starting with the best, consider the Imagenet-1K PreResNet results.  Figure~\ref{fig:summary_regressions_A_10} shows 
-the Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$, 
-which has a rather large $RMSE=3.93$, and rather small $R2=0.36$, and Kendal-$\tau=0.54$, and
-has 6 out of 13 points outside the $95\%$ confidence bands.  In contrast, 
-the Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$, 
-in  Figure~\ref{fig:summary_regressions_A_12} , 
-has a much smaller $RMSE=1.93$, and much larger  $R2=0.85$, and Kendal-$\tau=0.87$, 
-and only 2 points outside the $95\%$ confidence bands.
-For examples of lower quality fits, consider the SqueezeNext results, as shown Figures~\ref{fig:summary_regressions_C_10} and 
-~\ref{fig:summary_regressions_C_12}.  
-The Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$ appears
-visually anti-correlated with the test accuracies
-(as it is with ShuffleNet, in Figure ~\ref{fig:summary_regressions_B_02}).
-It has a very large $95\%$ confidence band, with only 2 points close to the regression line, 
-a large RMSE,  $R2=0.07$ (i.e zero), and small Kendal-$\tau=0.33$.  
-The Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$ is (as always) positively-correlated
-with test accuracies, but with $R2=0.43$, show some linear correaltion, and a reasonable Kendal-$\tau=0.73$,
-showing moderately strong rank correlation.
+Starting with some of the best, consider the Imagenet-1K PreResNet results.  
+For example,
+Figure~\ref{fig:summary_regressions_A_10} shows the 
+Log Spectral norm, %Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$, 
+which has a rather large $RMSE=3.93$, and rather small $R2=0.36$, and Kendal-$\tau=0.54$, and 
+which has 6 out of 13 points outside the $95\%$ confidence bands.  
+In contrast, the 
+Log Frobenius norm %Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$, 
+in Figure~\ref{fig:summary_regressions_A_12}
+has a much smaller $RMSE=1.93$, a much larger $R2=0.85$, and Kendal-$\tau=0.87$, and 
+has only 2 points outside the $95\%$ confidence bands.
+For examples of lower quality fits, consider the SqueezeNext results, as shown Figures~\ref{fig:summary_regressions_C_10} and~\ref{fig:summary_regressions_C_12}.  
+The 
+Log Spectral norm  %Avg. Log Spectral Norm $\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$ 
+appears visually anti-correlated with the test accuracies (as it is with ShuffleNet, in Figure~\ref{fig:summary_regressions_B_02}).
+It has a very large $95\%$ confidence band, with only 2 points close to the regression line, a large RMSE, $R2=0.07$ (i.e., near zero), and small Kendal-$\tau=0.33$.  
+The 
+Log Frobenius norm %Avg. Log Alpha Norm $\langle\log\Vert\mathbf{W}\Vert^{\alpha}_{\alpha}\rangle$ 
+is (as always) positively-correlated with test accuracies, but with $R2=0.43$, it show some linear correlation, and a reasonable Kendal-$\tau=0.73$, showing moderately strong rank correlation.
+
+Many more such conclusions can be drawn by examining these Tables and Figures and reproducing the results from our publicly-available repo.
 
 \input{figs_largeScale_A}
 \input{figs_largeScale_B}

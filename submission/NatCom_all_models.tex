@@ -1,7 +1,7 @@
 \subsection{Comparing Hundreds of Models}
 \label{sxn:all_cv_models}
 
-\michael{Refine text in this subsection after the appendix is finished.  Things to emphasize: we have a huge amount of data that we are summarizing very succicently; the table here is the tip of the iceberg; the results show our metrics are good, as a sanity check; they show that you can get some results in general, but looking at the details in the appendix show that results are more reliable within a given architecture series than across different architectures; point to out publicly-availab e repo; mention that we do Kendall-$\tau$ rank correlation also.}
+%%\michael{Refine text in this subsection after the appendix is finished.  Things to emphasize: we have a huge amount of data that we are summarizing very succicently; the table here is the tip of the iceberg; the results show our metrics are good, as a sanity check; they show that you can get some results in general, but looking at the details in the appendix show that results are more reliable within a given architecture series than across different architectures; point to out publicly-availab e repo; mention that we do Kendall-$\tau$ rank correlation also.}
 
 We have performed a large-scale analysis of hundreds of publicly-available models.
 This broader analysis is on a much larger set of CV and NLP models, with a more diverse set of architectures, that have been developed for a wider range of tasks; and it complements the previous more detailed analysis on CV and NLP models, where we have analyzed only a single architecture series at a time.
@@ -9,15 +9,24 @@ See the Supplementary Information
 %~\ref{sxn:appendix} 
 (and our publicly-available repo)
 for details.
-To quantify the relationship between quality metrics and the reported test error and/or accuracy metrics, we use ordinary least squares (similar results are seen with rank correlation metrics) to regress the metrics on the Top1 (and Top5) reported errors (as dependent variables).
+To quantify the relationship between quality metrics and the reported test error and/or accuracy metrics, we use ordinary least squares 
+%(similar results are seen with rank correlation metrics) 
+to regress the metrics on the Top1 (and Top5) reported errors (as dependent variables), and we report the RMSE, the $R^2$ (R2) regresssion metric, and the Kendal-$\tau$ rank correlation metric.
 These include Top5 errors for the ImageNet-1K model, percent error for the CIFAR-10/100, SVHN, CUB-200-2011 models, and Pixel accuracy (Pix.Acc.) and Intersection-Over-Union (IOU) for other models.
 We regress them individually on each of the norm-based and PL-based metrics.
 
+
 \input{table_3}
 
-Results are summarized in Table~\ref{table:results}.
-For the mean, larger $R^{2}$ and smaller $MSE$ are desirable; and for the standard deviation, smaller values are desirable.
+Results are summarized in Table~\ref{table:results} (and Figures~\ref{fig:summary_regressions_A}--\ref{fig:summary_regressions_I} of the Supplementary Material).
+For the mean, 
+smaller RMSE, 
+larger $R^2$, and 
+larger Kendal-$\tau$ 
+are desirable; 
+and, for the standard deviation, smaller values are desirable.
 Taken as a whole, over the entire corpus of data, PL-based metrics are somewhat better for both the $R^{2}$ mean and standard deviation;
-and PL-based metrics are much better for $MSE$ mean and standard deviation.
-These and other results suggest our conclusions hold much more generally.
+and PL-based metrics are much better for RMSE mean and standard deviation.
+Model diagnostics (Supplementary Material) indicate many outliers and imperfect fits.
+Overall, though, these and other results suggest our conclusions hold much more generally.
 

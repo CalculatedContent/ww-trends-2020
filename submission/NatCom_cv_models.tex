@@ -10,7 +10,14 @@ This layer analysis goes beyond predicting trends in model quality, instead illu
 
 \paragraph{Average Quality Metrics versus Reported Test Accuracies.}
 
-We examine the performance of the four quality metrics (Log Frobenius norm, Log Spectral norm, Weighted Alpha, and Log $\alpha$-Norm) applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
+We examine the performance of the four quality metrics---Log Frobenius norm
+                                                         ($\langle\log\Vert\mathbf{W}\Vert^{2}_{F}\rangle$), 
+                                                         Log Spectral norm
+                                                         ($\langle\log\Vert\mathbf{W}\Vert^{2}_{\infty}\rangle$),
+                                                         Weighted Alpha
+                                                         ($\hat{\alpha}$),
+                                                         and Log $\alpha$-Norm
+                                                         ($\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$)---applied to each of the VGG, ResNet, ResNet-1K, and DenseNet series.
 %
 Figure~\ref{fig:vgg-metrics} plots the four quality metrics versus reported test accuracies~\cite{pytorch},% 
 \footnote{These test accuracies have been previously reported and made publicly-available by others.  We take them as given.  We do not attempt to reproduce/verify them, since we do not permit ourselves access to training/test data.}
@@ -145,15 +152,14 @@ Overall, though, these model series are all very well-trodden; and our results i
 \label{table:cv-models}
 \end{table}
 
-\michael{Charles, any more sentences to add to the last three paragraphs to clarify anything?  If not, then just comment out this comment.}
-\charles{In partcular, the PL-based AlphaHat $\hat{\alpha}$ and Shatten-Norm $\langle\log\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}\rangle$ metrics 
-tend to perform better when there is a wider variation in the hyper-parameters going beyond just increasing the depth.  In fact sometimes the
-purely norm-based metrics such as the Spectral Norm can be uncorrelated or even
-anti-correlated with the test accuracy, where the PL-metrrics are positively-correlated.
-This is seen in Section~\ref{sxn:appendix} with
+In particular, the PL-based 
+Weighted Alpha and Log $\alpha$-Norm
+metrics tend to perform better when there is a wider variation in the hyperparameters, going beyond just increasing the depth.  
+In addition, sometimes the purely norm-based metrics such as the Log Spectral norm can be uncorrelated or even anti-correlated with the test accuracy, while the PL-metrrics are positively-correlated.
+This is seen in the Supplementary Material, 
 ShuffleNet in Figure~\ref{fig:summary_regressions_B_02},
-SqueezeNext in Figure~\ref{fig:summary_regressions_C_10},
-and WRN in Figure~\ref{fig:summary_regressions_G_06}).}
+SqueezeNext in Figure~\ref{fig:summary_regressions_C_10}, and 
+WRN in Figure~\ref{fig:summary_regressions_G_06}).
 
 Going beyond coarse averages to examining quality metrics for each layer weight matrix as a function of depth (or layer id), our metrics can be used to perform model diagnostics and to identify fine-scale properties in a pretrained model.
 Doing so involves separating $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$, and examining the distributions of each.
