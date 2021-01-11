@@ -41,7 +41,8 @@ To clarify a potential misunderstanding, it is not correct that the metrics we c
 Norms may be used to train neural networks, but power law fits are not.
 Instead, for the power law fits, we use ideas from statistical mechanics and strongly correlated system theory to try to capture the idea that trained neural networks encode correlations from the data.
 It is fair to say that the power law exponents characterize is the implicit regularization, whether or not the model trainer knew that that was what he or she was doing, but not any regularization explicitly used to train.
-We have clarified this point at Line XXX in the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -64,11 +65,13 @@ However, I believe the paper arrives to conclusions without using proper statist
 The reviewer is correct.  
 We intended for the reader to examine plots to see that the trends are qualitatively in the correct (or incorrect, in some cases for norm-based metrics) direction, and then to look at the numbers to get quantitative insight.
 We know that errors are not normal; so, for this and other reasons, in our experience, reporting $p$-values won't clarify the situation.
-We have expanded all of the tables that report RMSE and/or $R^2$ to report the Kendal-$\tau$ rank correlation measure.
+Instead, to clarify understanding, we have expanded all of the tables that report RMSE and/or $R^2$ to report the Kendal-$\tau$ rank correlation measure; and we have provided figures in the Supplementary Material for all model-dataset pairs, which indicates trends more clearly than the aggregated data.
 Also, a point we didn't emphasize enough is that from HT-SR theory we expect that PL-based metrics to have strong linear and not just rank correlation.
-We have clarified these points at Line XXX, Line XXX, and Line XXX of the revised manuscript, and in the tables and plots throughout the manuscript.
+We have clarified these points 
+in the text 
+of the revised manuscript, and in the tables and plots throughout the manuscript.
 (Also, additional results beyond what we have in the main text and Supplementary Material are available in our fully-reproducible and publicly-available repo, and it is our hope that that level of transparency will aid the reader's understanding.)
-XXX.  MM STILL TO REFINE THIS ANSWER.
+%XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -86,19 +89,21 @@ That is the point.
 Different architectures can be more or less appropriate for a given task, and within an architecture series the metrics we present can be used to predict trends in model quality.
 We never claim that there is a correlation between different architectures, and we know that there is not.
 There are many reasons for this, e.g., different normalizations, etc.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 
 As for For Figure 9, this should be read in light of Tables 7, 8, and 9, as well as the discussion in Sec 2.4.  
 Our metrics for predicting trends in model quality perform well within a given architectural series, and we have discussed this in detail in the main text.
 We also want to show that our general results hold for the hundreds of publicly-available CV and NLP models.
 All of this is available in our publicly-available repo, and so we decided in the text and Supplementary Material to go with just a summary.
 In the main text, we have R2, MSE, and Kendall-Tau; and in the appendix, we have more granular results for several model series.
-Since Figure 9 partitions based on data and not model series, we think that it will likely confuse the reader.
+Since Figure 9 partitions based on data and not model series, we think that it will likely confuse the reader, as opposed to presenting results for all model-dataset pairs, as we now do.
 Thus, we removed it, and we will simply point to the publicly-available repo.
 %
-We clarify these points at Line XXX, Line XXX, and Line XXX of the revised manuscript.
+We have clarified these points
+in the revised manuscript.
 
-XXX.  MM STILL TO REFINE THIS ANSWER.
+%XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -119,9 +124,10 @@ For the latter, we see GPT seems to violate what we expect.
 Thus, we look in more detail at the contributions to alpha-hat, i.e., to the PL exponent alpha and the spectral norm.
 Doing this makes it clear what while the alpha part behaves as HT-SR theory would predict, i.e., with better models the PL exponents get smaller, the norms behave anomalously and exhibit scale collapes.
 The bottom line is that the metrics we discuss can be sued to distinguish between well-trained versus very well trained models, but that one has to look at the PL exponents to diagnose gross model problems, which was one of our original points.
-We clarify these points in revised text between Line XXX and Line XXX of the revised manuscript.
+We have clarified these points
+in the revised manuscript.
 
-XXX.  MM STILL TO REFINE THIS ANSWER.
+%XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -137,13 +143,15 @@ The details matter a lot in both of these figures.
 The reviewer is correct that the plots are similar---the important point is how they are different.
 In Fig 6a, the alphas behave as they should and as as would be predicted by HT-SR theory, i.e., the better GPT2 has the bulk of the alphas shifted to the left and all of the large outlying alphas removed. 
 In Fig 6b, the spectral norm fails to perform well; while it is true that the higher-quality GPT2 does not exhibit Scale Collapes, the distribution of norms is shifted slightly to the right.
-In Fig 8a, there is a slight shift of alphas to the left as the models get larger (with average values now given in the text at Line XXX).
-Interesting the larger models still have some larger alpha values, and we conjecture at Line XXX that the reason for this is that the models are not fully optimized.  
+In Fig 8a, there is a slight shift of alphas to the left as the models get larger (with average values now given 
+in the text).
+Interesting the larger models still have some larger alpha values, and we conjecture 
+that the reason for this is that the models are not fully optimized.  
 Subsequent developments in NLP have shown this to be the case.
 In Fig 8b, which shows the trand more stronlgy, the Shatten norm shifts to the left with higher quality models, as we would expect.
 We have put this discussion and clarified these points in the text.
 
-XXX.  MM STILL TO REFINE THIS ANSWER.
+%XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
 \noindent
@@ -195,7 +203,8 @@ Thanks for articulating at least as well as we did the broad goal of the paper.
 %(((XXX.  CM:
 %Easy.
 %)))\\
-We have elaborated on this at Line XXX of the revised manuscript.
+We have elaborated on this 
+in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -211,9 +220,10 @@ We have elaborated on this at Line XXX of the revised manuscript.
 %We can discuss in detail.  The trick is in how the tail is estimated ...
 %)))\\
 More important than the smaller condition number, which has to do with the ratio of the largest to smallest eigenvalue, is the ``shape'' of the spectral distribution, and in particular the details of the tail and how the tail is estimated.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 
-XXX.  MM STILL TO DO THIS IN TEXT MAYBE.
+%XXX.  MM STILL TO DO THIS IN TEXT MAYBE.
 \end{quote}
 
 \noindent
@@ -226,7 +236,8 @@ XXX.  MM STILL TO DO THIS IN TEXT MAYBE.
 %Pftt IDK.  We can think something up.
 %)))\\
 Certainly.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -241,7 +252,8 @@ We clarify this point at Line XXX of the revised manuscript.
 %)))\\
 In general, it would be detrimental.
 This is known in GANs, where regularizers are used to prevent rank collapse, but it appears to hold more generally.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -257,7 +269,8 @@ We clarify this point at Line XXX of the revised manuscript.
 By Scale Collapes, we mean that the size scale or norm of one or more layers changes a lot, while the size scale or norm of the remaining layers changes very little, as a function of some change to or perturbation of a model.  
 Examples of such changes could include model compression or distillation, data augmentation, additional training, model fine-tuning, etc.
 A more precise definition would have to do with the stability of the model under those sorts of perturbations, but we think that including such a precise definition in the main text would only confuse the reader.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -278,7 +291,8 @@ Recall we are comparing networks with similar architectures.
 One then has to choose (explicitly, or more commonly implicitly, by design choices in the training of the model) a canonical way to normalize the network so that similar architectures can be compared.
 While different networks do have different normalizations, we have not found any discrepancies across 
 models in the same architecture series.
-We clarify this point at Line XXX of the revised manuscript.
+We have clarified this point
+in the revised manuscript.
 \end{quote}
 
 \noindent
@@ -291,7 +305,8 @@ We clarify this point at Line XXX of the revised manuscript.
 %I'll let you handle this one.
 %)))\\
 Superficially, work on double descent may be interpreted as ``more parameters are better,'' but in practice the situation is not that simple, e.g., since it can be difficult to define an appropriate effective number of parameters in realistic architectures and since realistic models are not fully optimized.
-We comment on and clarify this point at Line XXX of the revised manuscript.
+We comment on and clarify this point 
+in the revised manuscript.
 \end{quote}
 
 \noindent
