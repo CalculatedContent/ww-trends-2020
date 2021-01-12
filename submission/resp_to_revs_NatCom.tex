@@ -65,12 +65,12 @@ However, I believe the paper arrives to conclusions without using proper statist
 The reviewer is correct.  
 We intended for the reader to examine plots to see that the trends are qualitatively in the correct (or incorrect, in some cases for norm-based metrics) direction, and then to look at the numbers to get quantitative insight.
 We know that errors are not normal; so, for this and other reasons, in our experience, reporting $p$-values won't clarify the situation.
-Instead, to clarify understanding, we have expanded all of the tables that report RMSE and/or $R^2$ to report the Kendal-$\tau$ rank correlation measure; and we have provided figures in the Supplementary Material for all model-dataset pairs, which indicates trends more clearly than the aggregated data, and which (among other things) show that the plots display the $95\%$ confidence band for every regression along with tabulated results for all metrics.
+Instead, to clarify understanding, we have expanded all of the tables that report RMSE and/or $R^2$ to report the Kendal-$\tau$ rank correlation measure; and we have provided figures in the Supplementary Information for all model-dataset pairs, which indicate trends more clearly than the aggregated data, and which (among other things) show that the plots display the $95\%$ confidence band for every regression along with tabulated results for all metrics.
 Also, a point we didn't emphasize enough is that from HT-SR theory we expect that PL-based metrics to have strong linear and not just rank correlation.
 We have clarified these points 
 in the text 
 of the revised manuscript, and in the tables and plots throughout the manuscript.
-(Also, additional results beyond what we have in the main text and Supplementary Material are available in our fully-reproducible and publicly-available repo, and it is our hope that that level of transparency will aid the reader's understanding.)
+(Also, additional results beyond what we have in the main text and Supplementary Information are available in our fully-reproducible and publicly-available repo, and it is our hope that that level of transparency will aid the reader's understanding.)
 %XXX.  MM STILL TO REFINE THIS ANSWER.
 \end{quote}
 
@@ -92,12 +92,12 @@ There are many reasons for this, e.g., different normalizations, etc.
 We have clarified this point
 in the revised manuscript.
 
-As for For Figure 9, this should be read in light of Tables 7, 8, and 9, as well as the discussion in Sec 2.4.  
+As for (previous) Figure 9, this should be read in light of Tables 7, 8, and 9, as well as the discussion in Sec 2.4.  
 Our metrics for predicting trends in model quality perform well within a given architectural series, and we have discussed this in detail in the main text.
 We also want to show that our general results hold for the hundreds of publicly-available CV and NLP models.
-All of this is available in our publicly-available repo, and so we decided in the text and Supplementary Material to go with just a summary.
+All of this is available in our publicly-available repo, and so we decided in the text and Supplementary Information to go with just a summary.
 In the main text, we have R2, MSE, and Kendall-Tau; and in the appendix, we have more granular results for several model series.
-Since Figure 9 partitions based on data and not model series, we think that it will likely confuse the reader, as opposed to presenting results for all model-dataset pairs, as we now do.
+Since (previous) Figure 9 partitions based on data and not model series, we think that it will likely confuse the reader, as opposed to presenting results for all model-dataset pairs, as we now do.
 Thus, we removed it, and we will simply point to the publicly-available repo.
 %
 We have clarified these points
@@ -173,7 +173,7 @@ We have put this discussion and clarified these points in the text.
 %(((XXX.  CM:
 %We can add a supplementary github repo.
 %)))\\
-We have removed those statements and only refer to the main text or the Supplementary Material.
+We have removed those statements and only refer to the main text or the Supplementary Information.
 We do point out, however, that we intend out results to be fully-reproducible by the community, and thus our publicly-available repo is designed to contain the enormous quantity of data underlying out analysis.
 \end{quote}
 
