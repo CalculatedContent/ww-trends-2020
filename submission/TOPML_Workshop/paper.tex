@@ -126,8 +126,8 @@ Understanding state-of-the-art overparameterized deep neural networks (DNNs) req
 We use the theory of Heavy-Tailed Self-Regularization (HT-SR) to predict the generalization accuracy and improve the fine-tuning of (overparameterized) pretrained DNN models by capturing the dominant correlation structure.
 HT-SR is based on Heavy-Tailed Random Matrix Theory (HT-RMT) and strongly-correlated systems theory from theoretical chemistry and theoretical physics, and methods based on it are implemented in the publicly-available \texttt{WeightWatcher} tool.
 Using \texttt{WeightWatcher}, we can characterize HT structure in the empirical spectral densities (ESDs) of the layer weight matrices, and we can use this to predict trends in the reported test accuracies across hundreds of pretrained DNNs---without needing access to training or test data.
-Going beyond popular norm-based metrics, we show that different metrics, which either depend on the scale (norms) or shape (fitted truncated power law (PL) exponents) of the ESDs, exhbit a Simpson's paradox when varying DNN model depth versus solver hyperparameters.
-The familar scale-based spectral norm metric behaves opposite to theoretical predictions, while the HT $\alpha$-metric (the exponent in a truncated PL fit) acts as predicted.
+Going beyond popular norm-based metrics, we show that different metrics, which either depend on the scale or shap of the ESDs, exhibit a Simpson's paradox when varying DNN model depth versus regularization hyperparameters.
+The familiar scale-based spectral norm metric behaves opposite to theoretical predictions, while the HT $\alpha$-metric acts as predicted.
 The paradoxical behavior  can be resolved by combining these shape and scale metrics with the HT $\hat{\alpha}$ metric.
 Finally, and with access to training data, we show how to
 smooth out and capture the low rank structure to both accurately
@@ -179,29 +179,31 @@ fine-tuning of pretrained DNNs.
 
 Recently, RMT was applied to analyze empirically the weight matrices of DNNs, including both production quality, pretrained models such as AlexNet and Inception, and smaller models trained from scratch, such as LeNet5 and a miniature-AlexNet~\citep{MM18_TR} (see also \citep{MM17_TR, MM18_TR, MM19_HTSR_ICML, MM20_SDM, MM19_KDD}).
 Building on these empirical results, 
-\citet{MM18_TR} developed a phenomenological (statistical mechanics based, as opposed to statistical learning theory based) theory to identify ``5+1 Phases of Training,'' corresponding to increasing amounts of implicit self-regularization.
+\citet{MM18_TR} developed a phenomenological theory, based in statistical mechanics (as opposed to statistical learning theory), to identify ``5+1 Phases of Training,'' 
+corresponding to increasing amounts of implicit self-regularization.
 These phases can be observed during the training process as well as in the final learned (pretrained) DNNs.
 For smaller and/or older DNNs, this implicit self-regularization is like traditional Tikhonov regularization, in that there is a ``size scale'' separating signal from noise.
 For state-of-the-art (SOTA) DNNs, however, they identified a novel form of \emph{Heavy-Tailed Self-Regularization} (HT-SR).
-This is similar to the self-organization seen in the statistical physics of disordered systems (such as classical models of actual neural activity); and 
+This is similar to the self-organization seen in the statistical physics of disordered systems, such classical models of actual spiking neural activity; and 
 it results from correlations arising at all size scales.
 For DNNs, this arises due to the training process itself, when applied to very overparameterized models.
 
-In the HT-SR theory, one analyzes the eigenvalue spectrum, i.e., the ESD, of the associated correlation matrices~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
-From this, one characterizes the amount and form of correlation present in the DNN's weight matrices.
+In the HT-SR theory, one analyzes the eigenvalue spectrum, or empirical spectral density (ESD) 
+of the associated layer correlation matrices~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+and uses this to characterizes the amount and form of correlation present in the DNN's weight matrices.
 For each layer weight matrix $\mathbf{W}$, if we compute the eigenvalue spectrum of 
 $ \mathbf{X} = \frac{1}{N}\mathbf{W}^{T}\mathbf{W} $
-then HT-SR theory characterizes the correlations in a weight matrix by examining its ESD, $\rho(\lambda)$.
-Empirically, the ESD can be well-fit to a truncated PL distribution, 
-$\rho(\lambda)\sim\lambda^{-\alpha} $.
+then HT-SR theory characterizes the correlations in a weight matrix by fitting its ESD, $\rho(\lambda)$.
+to a truncated Power Law (TPL) distribution,  $\rho(\lambda)\sim\lambda^{-\alpha} $.
 %
-The original work on HT-SR theory showed that for nearly every $\mathbf{W}$, i.e., among publicly-available SOTA models, the (bulk and tail) of the ESDs can be fit to a truncated PL, and that PL exponents $\alpha$ nearly all lie within the range $\alpha\in(1.5,5)$~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+The original work on HT-SR showed that among numerous publicly-available SOTA models, for nearly every $\mathbf{W}$,  the tail of the ESDs can be fit to a  TPL, and that Power Law (PL) exponents $\alpha$ nearly all lie within the range $\alpha\in(1.5,5)$~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
 %
 %%As for the mechanism responsible for these properties, statistical physics offers several possibilities~\citep{SornetteBook,nishimori01}, e.g., self organized criticality~\citep{SOC87,SOCat25yrs} or multiplicative noise in the stochastic optimization algorithms used to train these models~\citep{HodMah20A_TR,SorCon97}.
 %%Alternatively, related techniques have been used to analyze correlations and information propogation in actual spiking neurons~\citep{SYYRP11,YKYP14}.
 %%Our meta-analysis does not require knowledge of mechanisms; and it is not even clear that one mechanism is responsible for every case.
 %
-Crucially, HT-SR theory predicts that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models.
+Crucially, HT-SR theory predicts that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models,
+and therefore higher generalization accuracies.
 %%The notion of ``size scale'' is well-defined in physical systems, to which this style of analysis is usually applied, but it is less well-defined in CV and NLP applications.
 %%Informally, it would correspond to pixel groups that are at a greater distance in some metric, or between sentence parts that are at a greater distance in text.
 %%Relatedly, previous work observed that smaller exponents $\alpha$ correspond to more implicit self-regularization and better generalization, and that we expect a linear correlation between $\hat{\alpha}$ and model quality~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
