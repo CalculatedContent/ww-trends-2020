@@ -124,8 +124,8 @@
 
 Understanding state-of-the-art overparameterized deep neural networks (DNNs) requires detailed empirical studies as well as the development of predictive theory in light of those studies. 
 We use the theory of Heavy-Tailed Self-Regularization (HT-SR) to predict the generalization accuracy and improve the fine-tuning of (overparameterized) pretrained DNN models by capturing the dominant correlation structure.
-HT-SR is based on Heavy-Tailed Random Matrix Theory (HT-RMT) and strongly-correlated systems theory from theoretical chemistry and theoretical physics, and methods based on it are implemented in the publicly-available WeightWatcher tool.
-Using WeightWatcher, we can characterize HT structure in the empirical spectral densities (ESDs) of the layer weight matrices, and we can use this to predict trends in the reported test accuracies across hundreds of pretrained DNNs---without needing access to training or test data.
+HT-SR is based on Heavy-Tailed Random Matrix Theory (HT-RMT) and strongly-correlated systems theory from theoretical chemistry and theoretical physics, and methods based on it are implemented in the publicly-available \texttt{WeightWatcher} tool.
+Using \texttt{WeightWatcher}, we can characterize HT structure in the empirical spectral densities (ESDs) of the layer weight matrices, and we can use this to predict trends in the reported test accuracies across hundreds of pretrained DNNs---without needing access to training or test data.
 Going beyond popular norm-based metrics, we show that different metrics, which either depend on the scale (norms) or shape (fitted truncated power law (PL) exponents) of the ESDs, exhbit a Simpson's paradox when varying DNN model depth versus solver hyperparameters.
 The familar scale-based spectral norm metric behaves opposite to theoretical predictions, while the HT $\alpha$-metric (the exponent in a truncated PL fit) acts as predicted.
 The paradoxical behavior  can be resolved by combining these shape and scale metrics with the HT $\hat{\alpha}$ metric.
@@ -182,7 +182,7 @@ Building on these empirical results,
 \citet{MM18_TR} developed a phenomenological (statistical mechanics based, as opposed to statistical learning theory based) theory to identify ``5+1 Phases of Training,'' corresponding to increasing amounts of implicit self-regularization.
 These phases can be observed during the training process as well as in the final learned (pretrained) DNNs.
 For smaller and/or older DNNs, this implicit self-regularization is like traditional Tikhonov regularization, in that there is a ``size scale'' separating signal from noise.
-For state-of-the-art (SOTA) DNNs, however, they identified a novel form of \emph{Heavy-Tailed Self-Regularization} (HT-ST).
+For state-of-the-art (SOTA) DNNs, however, they identified a novel form of \emph{Heavy-Tailed Self-Regularization} (HT-SR).
 This is similar to the self-organization seen in the statistical physics of disordered systems (such as classical models of actual neural activity); and 
 it results from correlations arising at all size scales.
 For DNNs, this arises due to the training process itself, when applied to very overparameterized models.
@@ -235,19 +235,18 @@ Computations were performed with the publicly-available \texttt{WeightWatcher} t
 
 %XXX.  ABSTRACT FROM \citep{MM20a_trends_TR}: ``Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data''
 
-In many applications, one works with neural network models trained by someone else.
+In many applications, one works with DNN models trained by someone else.
 For such pretrained models, one may not have access to training data or test data.
 Moreover, one may not know details about the model, e.g., the specifics of the training data, the loss function, the hyperparameter values, etc.
+(So, one is \emph{not} training models, one is validating pretrained models.)
 Given one or many pretrained models, it is a challenge to say anything about the expected performance or quality of the models.
-We have applied HT-ST Theory to provide a detailed meta-analysis of hundreds of publicly-available pretrained models, examining both 
-norm based capacity control metrics from statistical learning theory as well as PL based metrics from HT-ST theory.
+We have applied HT-SR theory to provide a detailed meta-analysis of hundreds of publicly-available pretrained models, examining both norm based capacity control metrics (from statistical learning theory) as well as PL based metrics (from HT-SR theory).
 
-To answer this question, we provide a detailed empirical analysis, evaluating quality metrics for pretrained DNN models, and we do so at scale.
-Our approach may be viewed as a statistical meta-analysis of previously published work, where we consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
+We consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
 By now, there are many such state-of-the-art models that are publicly-available, e.g., 
-hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 100$).%
-\footnote{When we began this work in 2018, there were fewer than tens of such models; now in 2020, there are hundreds of such models; and we expect that in a year or two there will be an order of magnitude or more of such models.}
+hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 100$).
 For all these models, we have no access to training data or testing data, and we have no specific knowledge of the training/testing protocols. 
+Thus, performing weight matrix analysis is a natural option.
 
 
 We find that norm based metrics correlate well with reported test accuracies for well-trained models, but that they often cannot distinguish well-trained versus poorly-trained models.
@@ -319,17 +318,19 @@ shape and scale metrics show opposite behavior, and a combine metric resolves th
 
 \begin{figure}[t!] 
     \centering
-    \subfigure[Spectral Norm $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$]{
-      \includegraphics[width=4.0cm]{img/simpsons-task2-logspectralnorm.png}
+    \subfigure[Log Spectral Norm]{
+       \includegraphics[width=3.5cm]{img/simpsons-task2-logspectralnorm.png}
     }
-    \subfigure[Alpha Hat $\hat{\alpha}$]{
-     \includegraphics[width=4cm]{img/simpsons-task2-alpha_weighted.png}
+    \subfigure[Weighted Alpha $\hat{\alpha}$]{
+       \includegraphics[width=3.5cm]{img/simpsons-task2-alpha_weighted.png}
     }
-    \caption{Test accuracy as a function of the
-Log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$ 
-and the HTSR Alpha Hat $\hat{\alpha}$ metrics
-as model hyperparameters and depth are varied. 
-Models from the NeurIPS Predicting Generalization contest.}
+    \caption{Test accuracy as a function of 
+             the Log Spectral Norm and 
+             the (HT-SR) Weighted Alpha ($\hat{\alpha}$) metrics,
+             as model hyperparameters and depth are varied. 
+             Models are from the NeurIPS Predicting Generalization contest.
+             A Simpson's paradox is clearly visible.
+            }
     \label{fig:simpsons}
 \end{figure} 
 
