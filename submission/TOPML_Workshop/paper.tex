@@ -344,6 +344,17 @@ Since $\hat{\alpha}$ combines both scale and shape information, it resolves the 
 
 %\charles{We apply our theory of Heavy Tailed Self-Regularization (HTSR) to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth (L) and the solver hyperparameters (batch size, dropout, weight decay), and compare quality metrics that describe both the heavy-tailed shape and norm-based scale of the model layer weight matrices.  In doing so, we identify what amounts to a Simpson’s paradox, in which shape and scale metrics show opposite behavior, and a combine metric resolves the paradox}
 
+\begin{figure}[t!] 
+    \centering
+    \subfigure[Sharpness]{
+       \includegraphics[width=3.5cm]{img/Sharpness_task2.png}
+    }
+    \subfigure[SVDSmoothing]{
+       \includegraphics[width=3.5cm]{img/SVDSmoothing_task2.png}
+    }
+    \caption{Applying the Sharpness (Shape) and SVDSMoothing (Scale) transforms to pretrained DNNs, we can correct for overparemeterization and predict test accuracies remarkably well by evaluating the training accuracy on the transformed models}
+    \label{fig:smoothing}
+\end{figure} 
 
 \section*{Conclusion}
 
