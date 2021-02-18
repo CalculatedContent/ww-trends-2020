@@ -1,5 +1,3 @@
-%%%%%%%% ICML 2021 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
-
 \documentclass{article}
 
 % Recommended, but optional, packages for figures and better typesetting:
@@ -46,6 +44,7 @@
 \newtheorem{lem}{Lemma}
 
 \newcommand{\michael}[1]{{\color{red}\sf{[Michael: #1]}}}
+\newcommand{\charles}[1]{{\color{blue}\sf{[Charles: #1]}}}
 
 \newcommand{\fakesection}[1]{%
   \par\refstepcounter{section}% Increase section counter
@@ -437,6 +436,28 @@ Performing such a meta-analysis of previously-published work is common in certai
 XXX.  IF WANT A ONE SIZE FITS ALL METRIC, THEN CAN EXPECT A SIMPSONS PARADOX.  OUR TECHNIQUES CAN DIAGNOST THIS.  AND IN FACT WE SEE THAT.
 
 \michael{Charles, put in a paragraph and the figure for the Simpson's paradox here.}
+
+\charles{We apply our theory of Heavy Tailed Self-Regularization (HTSR) to predict the generalization accuracies of the pre-trained models provided in this contest, as a function of both model depth (L) and the solver hyperparameters (batch size, dropout, weight decay), and compare quality metrics that describe both the heavy-tailed shape and norm-based scale of the model layer weight matrices.  In doing so, we identify what amounts to a Simpson’s paradox, in which
+shape and scale metrics show opposite behavior, and a combine metric resolves the paradox}
+
+
+
+\begin{figure}[t!] 
+    \centering
+    \subfigure[Spectral Norm $\langle\log\Vert\mathbf{W}\Vert_{\infty}\rangle$]{
+      \includegraphics[width=4.0cm]{img/simpsons-task2-logspectralnorm.png}
+    }
+    \subfigure[Alpha Hat $\hat{\alpha}$]{
+     \includegraphics[width=4cm]{img/simpsons-task2-alpha_weighted.png}
+    }
+    \caption{Test accuracy as a function of the
+Log Spectral Norm $\log\Vert\mathbf{W}\Vert_{\infty}$ 
+and the HTSR Alpha Hat $\hat{\alpha}$ metrics
+as model hyperparameters and depth are varied. 
+Models from the NeurIPS Predicting Generalization contest.}
+    \label{fig:simpsons}
+\end{figure} 
+
 
 \cite{JNBx19_fantastic_TR} is the terrible fantastic paper: ``Fantastic Generalization Measures and Where to Find Them''
 
