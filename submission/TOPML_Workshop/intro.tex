@@ -1,0 +1,30 @@
+We present our Theory of Heavy Tailed Self Regularization (HTSR) and
+its application to the (overparameterized)  Deep Neural Networks (DNNs) 
+to  predict the generalization accuracy and improve fine-tuning
+of pretrained models by capturing the dominant correlation structure.
+We analyze the correlations using techniques from 
+Heavy Tailed Random Matrix Theory (HT-RMT)
+and from  strongly correlated systems from theoretical
+chemistry and  physics.  
+We show how to predict trends in the reported test accuracies
+across hundreds of pretrained DNNs without needing access
+to training or test data by charactering the heavy tailed
+structure of the empirical spectral densities (ESD) of 
+the layer weight matrices.
+In doing so, we show that different metrics, which
+either depend on the shape or scale of the ESDs,
+exhbit a Simpson's paradox when varying DNN model depth
+vs regularization hyperparameters.
+In particular,  the familar scale-based spectral norm
+metric behave opposite theoretical predictions,
+whereas our HT alpha-metric acts as predicted.
+Moreover, the paradoxical behavior  can be resolved
+by combining these shape and scale metrics with
+our HT alpha-hat metric.
+Finally,  And with access to training data, we show how to
+smooth and capture the low rank structure to both accurately
+predict the generalization errors and potentially improve
+finetuning of pretrained DNNs.
+
+
+
