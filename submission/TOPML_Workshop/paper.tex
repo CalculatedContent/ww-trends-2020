@@ -250,8 +250,8 @@ Thus, performing weight matrix analysis is a natural option.
 
 
 We find that norm based metrics correlate well with reported test accuracies for well-trained models, but that they often cannot distinguish well-trained versus poorly-trained models.
-We also find that power law based metrics can do much better---quantitatively better at discriminating among series of well-trained models with a given architecture; and qualitatively better at discriminating well-trained versus poorly-trained models.
-These methods can be used to identify when a pretrained neural network has problems that cannot be detected simply by examining training/test accuracies.
+We also find that PL based metrics can do much better---quantitatively better at discriminating among series of well-trained models with a given architecture; and qualitatively better at discriminating well-trained versus poorly-trained models.
+These methods can be used to identify when a pretrained DNN has problems that cannot be detected simply by examining training/test accuracies.
 %
 %Here is a summary of our main results.
 %First, norm-based metrics do a reasonably good job at predicting quality trends in well-trained CV/NLP models.
@@ -265,10 +265,10 @@ These methods can be used to identify when a pretrained neural network has probl
 %the (unweighted) average PL exponent is 
 %qualitatively better at discriminating well-trained versus poorly-trained models.
 %Fourth, PL-based metrics can also be used to characterize fine-scale model properties, including what we call layer-wise Correlation Flow, in well-trained and poorly-trained models; and they can be used to evaluate model enhancements (e.g., distillation, fine-tuning, etc.).
-%
-Our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and it uses HT-SR theory.%
-\footnote{Performing such a meta-analysis of previously-published work is common in certain areas, but it is quite rare in ML, where the emphasis is on developing better training protocols.}
+See Table~\ref{table:results} for an overview summary of our results.
 
+Our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and it uses HT-SR theory.
+%
 %\citep{BFT17_TR} is Bartlett: ``Spectrally-normalized margin bounds for neural networks''
 %\citep{LMBx18_TR} is Poggio: ``A surprising linear relationship predicts test performance in deep networks''
 There is related work \citep{BFT17_TR,LMBx18_TR}, but that work provides generalization bounds, modifies the models, requires access to data, etc., and so is quite different.
@@ -303,18 +303,13 @@ Kendal-$\tau$ (std) & 9.37 & 9.4 & 9.36& 9.36 \\
 \end{table}
 
 
-
-
 \section*{A Simpson's Paradox---and the Need for Finer-scale Analysis}
 
-XXX.  IF WANT A ONE SIZE FITS ALL METRIC, THEN CAN EXPECT A SIMPSONS PARADOX.  OUR TECHNIQUES CAN DIAGNOST THIS.  AND IN FACT WE SEE THAT.
-
-\michael{Charles, put in a paragraph and the figure for the Simpson's paradox here.}
-
-\charles{We apply our theory of Heavy Tailed Self-Regularization (HTSR) to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth (L) and the solver hyperparameters (batch size, dropout, weight decay), and compare quality metrics that describe both the heavy-tailed shape and norm-based scale of the model layer weight matrices.  In doing so, we identify what amounts to a Simpson’s paradox, in which
-shape and scale metrics show opposite behavior, and a combine metric resolves the paradox}
-
-
+%\citep{JNBx19_fantastic_TR} is the terrible fantastic paper: ``Fantastic Generalization Measures and Where to Find Them''
+%
+%\citep{JFYx20_contest_v10} is the contest: ``{NeurIPS} 2020 Competition: Predicting Generalization in Deep Learning (Version 1.0)''
+%
+%\citep{BHO75} is Bickel: ``Sex Bias in Graduate Admissions: Data from Berkeley''
 
 \begin{figure}[t!] 
     \centering
@@ -328,35 +323,41 @@ shape and scale metrics show opposite behavior, and a combine metric resolves th
              the Log Spectral Norm and 
              the (HT-SR) Weighted Alpha ($\hat{\alpha}$) metrics,
              as model hyperparameters and depth are varied. 
-             Models are from the NeurIPS Predicting Generalization contest.
+             Models are from the NeurIPS 2020 ``Predicting Generalization'' contest.
              A Simpson's paradox is clearly visible.
             }
     \label{fig:simpsons}
 \end{figure} 
 
+Subsequent to the development of HT-SR theory, and our initial results on analyzing pretrained models at scale, there was at NeurIPS 2020 a ``Predicting Generalization'' workshop and contest \citep{JNBx19_fantastic_TR, JFYx20_contest_v10}.
+This contest made publicly-available pretrained models.
+This corpus of models was much more narrow (in terms of domain) but more extensive (in terms of depth and hyperparameter variation) than the previous SOTA corpus we considered~\citep{osmr}.
 
-\citep{JNBx19_fantastic_TR} is the terrible fantastic paper: ``Fantastic Generalization Measures and Where to Find Them''
+In particular, we apply HT-SR theory to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth ($L$) and the solver hyperparameters (batch size, dropout, weight decay), and we compare quality metrics that describe the norm-based scale and the HT/PL shape of the model layer weight matrices.  
+See Figure~\ref{fig:simpsons} for a summary.
+For norm-based metrics, we identify what amounts to a Simpson’s paradox \citep{BHO75}, in which scale and shape metrics show opposite behavior, depending on whether the data are partitioned by depth or solver hyperparameters values.
+Since $\hat{\alpha}$ combines both scale and shape information, it resolves the paradox.
 
-\citep{JFYx20_contest_v10} is the contest: ``{NeurIPS} 2020 Competition: Predicting Generalization in Deep Learning (Version 1.0)''
-
-\citep{BHO75} is Bickel: ``Sex Bias in Graduate Admissions: Data from Berkeley''
-
-
+%\charles{We apply our theory of Heavy Tailed Self-Regularization (HTSR) to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth (L) and the solver hyperparameters (batch size, dropout, weight decay), and compare quality metrics that describe both the heavy-tailed shape and norm-based scale of the model layer weight matrices.  In doing so, we identify what amounts to a Simpson’s paradox, in which shape and scale metrics show opposite behavior, and a combine metric resolves the paradox}
 
 
 \section*{Conclusion}
 
-\michael{I may cut this stuff.}
-We have shown that weight matrix analysis derived from HT-SR Theory can be used to predict trends in the quality of state-of-the-art neural networks without access to training or testing data as well as identify Simpson's-like paradoxes in publicly-available NN models.
-The HT-SR Theory underlying our analysis is quite different than theoretical approaches popular in ML, and indeed it is quite different than typical statistical mechanics approaches to NNs \citep{BKPx20}.
-Recently, however, work motivated by HT-SR Theory has 
-demonstrated that multiplicative noise in stochastic optimization leads to heavy tails~\citep{HodMah20A_TR,GSZ20_TR}; 
-provided a random matrix analysis of random {F}ourier features, going beyond the {G}aussian kernel, to provide a precise phase transition and illustrate the corresponding double descent~\citep{ZCM20_TR}; 
-provided exact expressions for double descent and implicit regularization via a notion of surrogate random design \citep{DLM19_Exact_TR}; 
-demonstrated that good classifiers are abundant in the interpolating regime \citep{TKM20_TR};
-shown how injecting noise into hidden states of recurrent NNs leads to implicit regularization~\citep{LEHM21_TR,Mah12}; and 
-shown that analogous phase transitions hold for the {C}olumn {S}ubset {S}election and the {N}ystrom method~\citep{DKM20_TR}. 
-We expect that the empirical results identified by tools from HT-SR Theory will provide guidance and constraints for future development of overparameterized machine learning models.
+The HT-SR theory underlying our analysis is quite different than theoretical approaches popular in machine learning, and it is quite different than typical statistical mechanics approaches to DNNs \citep{BKPx20}.
+%
+%Recently, however, work motivated by HT-SR theory has 
+%demonstrated that multiplicative noise in stochastic optimization leads to heavy tails~\citep{HodMah20A_TR,GSZ20_TR}; 
+%provided a random matrix analysis of random {F}ourier features, going beyond the {G}aussian kernel, to provide a precise phase transition and illustrate the corresponding double descent~\citep{ZCM20_TR}; 
+%provided exact expressions for double descent and implicit regularization via a notion of surrogate random design \citep{DLM19_Exact_TR}; 
+%demonstrated that good classifiers are abundant in the interpolating regime \citep{TKM20_TR};
+%shown how injecting noise into hidden states of recurrent NNs leads to implicit regularization~\citep{LEHM21_TR,Mah12}; and 
+%shown that analogous phase transitions hold for the {C}olumn {S}ubset {S}election and the {N}ystrom method~\citep{DKM20_TR}. 
+%We expect that the empirical results identified by tools from HT-SR theory will provide guidance and constraints for future development of overparameterized machine learning models.
+%
+However, recent work, work motivated by HT-SR theory, has begun to appear
+\citep{HodMah20A_TR,GSZ20_TR, ZCM20_TR, DLM19_Exact_TR, TKM20_TR, LEHM21_TR,Mah12, DKM20_TR}. 
+We expect that the empirical results and theoretical insights HT-SR theory provides will provide guidance and constraints for future development of overparameterized machine learning models.
+
 
 
 \bibliographystyle{icml2021}
