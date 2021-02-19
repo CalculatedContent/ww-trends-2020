@@ -69,7 +69,7 @@
 \begin{document}
 
 \twocolumn[
-\icmltitle{Using Heavy-Tailed Self-Regularization Theory to Characterize Correlations in and Perform Diagnostics on State-of-the-art Overparameterized Models} 
+\icmltitle{Using Heavy-Tailed Self-Regularization Theory to Characterize Correlations in and Perform Diagnostics on State-of-the-Art Overparameterized Models} 
 
 % It is OKAY to include author information, even for blind
 % submissions: the style file will automatically remove it for you
@@ -120,16 +120,17 @@
 %\end{abstract}
 
 
-\section*{Introduction}
+\paragraph{Introduction.}
+%\subsection*{Introduction}
 
 Understanding state-of-the-art overparameterized deep neural networks (DNNs) requires detailed empirical studies as well as the development of predictive theory in light of those studies. 
-We use the theory of Heavy-Tailed Self-Regularization (HT-SR) to predict the generalization accuracy and improve the fine-tuning of (overparameterized) pretrained DNN models by capturing the dominant correlation structure.
+We use the theory of Heavy-Tailed Self-Regularization (HT-SR) to predict the generalization accuracy and improve the fine-tuning of (overparameterized) pretrained DNN models by capturing the dominant correlational structure.
 HT-SR is based on Heavy-Tailed Random Matrix Theory (HT-RMT) and strongly-correlated systems theory from theoretical chemistry and theoretical physics, and methods based on it are implemented in the publicly-available \texttt{WeightWatcher} tool.
-Using \texttt{WeightWatcher}, we can characterize HT structure in the empirical spectral densities (ESDs) of the layer weight matrices, and we can use this to predict trends in the reported test accuracies across hundreds of pretrained DNNs---without needing access to training or test data.
-Going beyond popular norm-based metrics, we show that different metrics, which either depend on the scale or shap of the ESDs, exhibit a Simpson's paradox when varying DNN model depth versus regularization hyperparameters.
+Using \texttt{WeightWatcher}, we can characterize HT structure in the empirical spectral densities (ESDs) of layer weight matrices, and we can use this to predict trends in the reported test accuracies across hundreds of pretrained DNNs---without needing access to training or test data.
+Going beyond popular norm-based metrics, we show that different metrics, which either depend on the scale or shape of the ESDs, exhibit a Simpson's paradox when varying DNN model depth versus regularization hyperparameters.
 The familiar scale-based spectral norm metric behaves opposite to theoretical predictions, while the HT $\alpha$-metric acts as predicted.
-The paradoxical behavior  can be resolved by combining these shape and scale metrics with the HT $\hat{\alpha}$ metric.
-Finally, and with access to training data, we show how to
+The paradoxical behavior  can be resolved by combining shape and scale metrics with the HT $\hat{\alpha}$ metric.
+Finally, and with access to training data, we can 
 smooth out and capture the low rank structure to both accurately
 predict the generalization errors and potentially improve
 fine-tuning of pretrained DNNs.
@@ -165,57 +166,61 @@ fine-tuning of pretrained DNNs.
 %finetuning of pretrained DNNs.
 
 
-\section*{Statistical Mechanics and Heavy-Tailed Self-Regularization}
+\vspace{-4mm}
+\paragraph{Statistical Mechanics and Heavy-Tailed Self-Regularization.}
+%\subsection*{Statistical Mechanics and Heavy-Tailed Self-Regularization}
 
-%\citep{MM17_TR} is Charles: Rethinking generalization requires revisiting old ideas: statistical mechanics approaches and complex learning behavior''
+%\cite{MM17_TR} is Charles: Rethinking generalization requires revisiting old ideas: statistical mechanics approaches and complex learning behavior''
 %
-%\citep{MM18_TR} is Charles: ``Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning''
+%\cite{MM18_TR} is Charles: ``Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning''
 %
-%\citep{MM19_HTSR_ICML} is Charles: ``Traditional and Heavy-Tailed Self Regularization in Neural Network Models''
+%\cite{MM19_HTSR_ICML} is Charles: ``Traditional and Heavy-Tailed Self Regularization in Neural Network Models''
 %
-%\citep{MM20_SDM} is Charles: ``Heavy-Tailed {U}niversality Predicts Trends in Test Accuracies for Very Large Pre-Trained Deep Neural Networks''
+%\cite{MM20_SDM} is Charles: ``Heavy-Tailed {U}niversality Predicts Trends in Test Accuracies for Very Large Pre-Trained Deep Neural Networks''
 %
-%\citep{MM19_KDD} is Charles: ``Statistical Mechanics Methods for Discovering Knowledge from Modern Production Quality Neural Networks''
+%\cite{MM19_KDD} is Charles: ``Statistical Mechanics Methods for Discovering Knowledge from Modern Production Quality Neural Networks''
 
-Recently, RMT was applied to analyze empirically the weight matrices of DNNs, including both production quality, pretrained models such as AlexNet and Inception, and smaller models trained from scratch, such as LeNet5 and a miniature-AlexNet~\citep{MM18_TR} (see also \citep{MM17_TR, MM18_TR, MM19_HTSR_ICML, MM20_SDM, MM19_KDD}).
+RMT was applied to analyze empirically weight matrices of DNNs, including both production quality, pretrained models such as AlexNet and Inception, and smaller models trained from scratch, such as LeNet5 and a miniature-AlexNet~\cite{MM18_TR} (see also \cite{MM17_TR, MM18_TR, MM19_HTSR_ICML, MM20_SDM, MM19_KDD}).
 Building on these empirical results, 
-\citet{MM18_TR} developed a phenomenological theory, based in statistical mechanics (as opposed to statistical learning theory), to identify ``5+1 Phases of Training,'' 
+\citet{MM18_TR} developed a phenomenological theory, based on statistical mechanics (as opposed to statistical learning theory), to identify ``5+1 Phases of Training,'' 
 corresponding to increasing amounts of implicit self-regularization.
 These phases can be observed during the training process as well as in the final learned (pretrained) DNNs.
-For smaller and/or older DNNs, this implicit self-regularization is like traditional Tikhonov regularization, in that there is a ``size scale'' separating signal from noise.
+For smaller/older DNNs, this implicit self-regularization is like Tikhonov regularization, in that there is a ``size scale'' separating signal from noise.
 For state-of-the-art (SOTA) DNNs, however, they identified a novel form of \emph{Heavy-Tailed Self-Regularization} (HT-SR).
-This is similar to the self-organization seen in the statistical physics of disordered systems, such classical models of actual spiking neural activity; and 
+This is similar to the self-organization seen in the statistical physics of disordered systems, such as classical models of actual spiking neurons; and 
 it results from correlations arising at all size scales.
-For DNNs, this arises due to the training process itself, when applied to very overparameterized models.
+For DNNs, this arises due to the training process itself, when applied to overparameterized models.
 
-In the HT-SR theory, one analyzes the eigenvalue spectrum, or empirical spectral density (ESD) 
-of the associated layer correlation matrices~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+In HT-SR theory, one analyzes the eigenvalue spectrum, or empirical spectral density (ESD) 
+of the associated layer correlation matrices~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}
 and uses this to characterizes the amount and form of correlation present in the DNN's weight matrices.
 For each layer weight matrix $\mathbf{W}$, if we compute the eigenvalue spectrum of 
-$ \mathbf{X} = \frac{1}{N}\mathbf{W}^{T}\mathbf{W} $
-then HT-SR theory characterizes the correlations in a weight matrix by fitting its ESD, $\rho(\lambda)$.
+$ \mathbf{X} = \frac{1}{N}\mathbf{W}^{T}\mathbf{W} $,
+then HT-SR theory characterizes the correlations in a weight matrix by fitting its ESD, $\rho(\lambda)$,
 to a truncated Power Law (TPL) distribution,  $\rho(\lambda)\sim\lambda^{-\alpha} $.
 %
-The original work on HT-SR showed that among numerous publicly-available SOTA models, for nearly every $\mathbf{W}$,  the tail of the ESDs can be fit to a  TPL, and that
-the Power Law (PL) exponents $\alpha$ nearly all lie within the range $\alpha\in(1.5,5)$~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+The original work on HT-SR showed that, among numerous publicly-available SOTA models, for nearly every $\mathbf{W}$, the tail of the ESDs can be fit to a  TPL, and that
+PL exponents $\alpha$ nearly all lie within the range $\alpha\in(1.5,5)$~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
 %
-%%As for the mechanism responsible for these properties, statistical physics offers several possibilities~\citep{SornetteBook,nishimori01}, e.g., self organized criticality~\citep{SOC87,SOCat25yrs} or multiplicative noise in the stochastic optimization algorithms used to train these models~\citep{HodMah20A_TR,SorCon97}.
-%%Alternatively, related techniques have been used to analyze correlations and information propogation in actual spiking neurons~\citep{SYYRP11,YKYP14}.
+%%As for the mechanism responsible for these properties, statistical physics offers several possibilities~\cite{SornetteBook,nishimori01}, e.g., self organized criticality~\cite{SOC87,SOCat25yrs} or multiplicative noise in the stochastic optimization algorithms used to train these models~\cite{HodMah20A_TR,SorCon97}.
+%%Alternatively, related techniques have been used to analyze correlations and information propogation in actual spiking neurons~\cite{SYYRP11,YKYP14}.
 %%Our meta-analysis does not require knowledge of mechanisms; and it is not even clear that one mechanism is responsible for every case.
 %
-Crucially, HT-SR theory predicts that smaller values of $\alpha$ should correspond to models with better correlation over multiple size scales and thus to better models,
-and therefore higher generalization accuracies.
+Crucially, HT-SR theory predicts that smaller values of $\alpha$ correspond to models with better correlation over multiple size scales and thus to better models,
+and therefore higher generalization~accuracies.
 %%The notion of ``size scale'' is well-defined in physical systems, to which this style of analysis is usually applied, but it is less well-defined in CV and NLP applications.
 %%Informally, it would correspond to pixel groups that are at a greater distance in some metric, or between sentence parts that are at a greater distance in text.
-%%Relatedly, previous work observed that smaller exponents $\alpha$ correspond to more implicit self-regularization and better generalization, and that we expect a linear correlation between $\hat{\alpha}$ and model quality~\citep{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
+%%Relatedly, previous work observed that smaller exponents $\alpha$ correspond to more implicit self-regularization and better generalization, and that we expect a linear correlation between $\hat{\alpha}$ and model quality~\cite{MM18_TR,MM19_HTSR_ICML,MM20_SDM}.
 
 
-\section*{Overall approach}
+\vspace{-5mm}
+\paragraph{Overall Approach.}
+%\subsection*{Overall Approach}
 
-Test accuracies have been reported online for publicly-available pretrained pyTorch models~\citep{osmr}.
+Test accuracies have been reported online for publicly-available pretrained pyTorch models~\cite{osmr}.
 These models have been trained and evaluated on labeled data, using standard techniques.  
 We do not have access to this data, and we have not trained any of the models ourselves. 
-Our methodological approach is thus similar to a statistical meta-analysis, common in biomedical research, but uncommon in machine learning.
+Our methodological approach is thus similar to a statistical meta-analysis, common in biomedical research, but uncommon in machine learning (ML).
 %
 To evaluate the quality of SOTA DNNs, we consider the following metrics:
 Frobenius Norm, $\Vert\mathbf{W}\Vert^{2}_{F}=\Vert\mathbf{X}\Vert_{F}=\sum\nolimits_{i=1}^{M} \lambda_{i}$; 
@@ -228,27 +233,31 @@ $\alpha$-Shatten Norm, $\Vert\mathbf{W}\Vert^{2\alpha}_{2\alpha}=\Vert\mathbf{X}
 %& & \text{Weighted Alpha: $\hat{\alpha}=\alpha\log\lambda_{max}$ } \\
 %& & \text{$\alpha$-Shatten Norm: $\Vert\mathbf{W}\Vert^{2\alpha}_{2\alpha}=\Vert\mathbf{X}\Vert^{\alpha}_{\alpha}=\sum\nolimits_{i=1}^{M}\lambda_{i}^{\alpha}$. }
 %\end{eqnarray*}
-To perform diagnostics on potentially-problematic DNNs, we will decompose $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$.
-One determines $\alpha$ for a given layer by fitting the ESD of that layer's weight matrix to a truncated PL, using the commonly accepted Maximum Likelihood method~\citep{CSN09_powerlaw,ABP14}.
-Computations were performed with the publicly-available \texttt{WeightWatcher} tool (version 0.2.7)~\citep{weightwatcher_package}.
+To perform diagnostics on potentially-problematic DNNs, we decompose $\hat{\alpha}$ into its two components, $\alpha$ and $\lambda_{max}$.
+One determines $\alpha$ for a given layer by fitting the ESD of that layer's weight matrix to a TPL, using the commonly accepted Maximum Likelihood method~\cite{CSN09_powerlaw,ABP14}.
+Computations were performed with the publicly-available \texttt{WeightWatcher} tool (version 0.2.7)~\cite{weightwatcher_package}.
 
 
-\section*{Predicting Trends in the Quality of State-of-the-art Models}
+\vspace{-4mm}
+\paragraph{Predicting Trends in the Quality of State-of-the-art Models.}
+%\subsection*{Predicting Trends in the Quality of State-of-the-art Models}
 
 
-%XXX.  ABSTRACT FROM \citep{MM20a_trends_TR}: ``Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data''
+%XXX.  ABSTRACT FROM \cite{MM20a_trends_TR}: ``Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data''
 
 In many applications, one works with DNN models trained by someone else.
 For such pretrained models, one may not have access to training data or test data.
 Moreover, one may not know details about the model, e.g., the specifics of the training data, the loss function, the hyperparameter values, etc.
-(So, one is \emph{not} training models, one is validating pretrained models.)
+%(So, one is \emph{not} training models, one is validating pretrained models.)
 Given one or many pretrained models, it is a challenge to say anything about the expected performance or quality of the models.
 We have applied HT-SR theory to provide a detailed meta-analysis of hundreds of publicly-available pretrained models, examining both norm based capacity control metrics (from statistical learning theory) as well as PL based metrics (from HT-SR theory).
 
-We consider a large suite of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
-By now, there are many such state-of-the-art models that are publicly-available, e.g., 
-hundreds of pretrained models in CV ($\ge 500$) and NLP ($\approx 100$).
-For all these models, we have no access to training data or testing data, and we have no specific knowledge of the training/testing protocols. 
+We consider a corpus of hundreds of publicly-available models, mostly from computer vision (CV) and natural language processing (NLP).
+By now, there are 
+hundreds of such pretrained 
+state-of-the-art models that are publicly-available, 
+in both CV ($\ge 500$) and NLP ($\approx 100$).
+For these models, we have no access to training data or testing data, and we have no specific knowledge of training/testing protocols. 
 Thus, performing weight matrix analysis is a natural option.
 
 
@@ -273,9 +282,9 @@ See Table~\ref{table:results} for an overview summary of our results.
 
 Our work provides a theoretically-principled empirical evaluation---by far the largest, most detailed, and most comprehensive to date---and it uses HT-SR theory.
 %
-%\citep{BFT17_TR} is Bartlett: ``Spectrally-normalized margin bounds for neural networks''
-%\citep{LMBx18_TR} is Poggio: ``A surprising linear relationship predicts test performance in deep networks''
-There is related work \citep{BFT17_TR,LMBx18_TR}, but that work provides generalization bounds, modifies the models, requires access to data, etc., and so is quite different.
+%\cite{BFT17_TR} is Bartlett: ``Spectrally-normalized margin bounds for neural networks''
+%\cite{LMBx18_TR} is Poggio: ``A surprising linear relationship predicts test performance in deep networks''
+There is related work \cite{BFT17_TR,LMBx18_TR}, but that work provides generalization bounds, modifies the models, requires access to data, etc., and so is quite different.
 
 
 
@@ -300,6 +309,7 @@ Kendal-$\tau$ (std) & 9.37 & 9.4 & 9.36& 9.36 \\
 \hline
 \end{tabular}
 \end{center}
+\vspace{-4mm}
 \caption{Comparison of linear regressions for different average Log Norm and Weighted Alpha metrics across 5 CV datasets, 17 architectures, covering \
 108 (out of $>400$) different pretrained~DNNs.
 }
@@ -307,15 +317,18 @@ Kendal-$\tau$ (std) & 9.37 & 9.4 & 9.36& 9.36 \\
 \end{table}
 
 
-\section*{A Simpson's Paradox---and the Need for Finer-scale Analysis}
+\vspace{-4mm}
+\paragraph{A Simpson's Paradox---and the Need for Finer-scale Analysis.}
+%\subsection*{A Simpson's Paradox---and the Need for Finer-scale Analysis}
 
-%\citep{JNBx19_fantastic_TR} is the terrible fantastic paper: ``Fantastic Generalization Measures and Where to Find Them''
+%\cite{JNBx19_fantastic_TR} is the terrible fantastic paper: ``Fantastic Generalization Measures and Where to Find Them''
 %
-%\citep{JFYx20_contest_v10} is the contest: ``{NeurIPS} 2020 Competition: Predicting Generalization in Deep Learning (Version 1.0)''
+%\cite{JFYx20_contest_v10} is the contest: ``{NeurIPS} 2020 Competition: Predicting Generalization in Deep Learning (Version 1.0)''
 %
-%\citep{BHO75} is Bickel: ``Sex Bias in Graduate Admissions: Data from Berkeley''
+%\cite{BHO75} is Bickel: ``Sex Bias in Graduate Admissions: Data from Berkeley''
 
 \begin{figure}[t!] 
+\vspace{-4mm}
     \centering
     \subfigure[Log Spectral Norm]{
        \includegraphics[width=3.5cm]{img/simpsons-task2-logspectralnorm.png}
@@ -323,55 +336,59 @@ Kendal-$\tau$ (std) & 9.37 & 9.4 & 9.36& 9.36 \\
     \subfigure[Weighted Alpha $\hat{\alpha}$]{
        \includegraphics[width=3.5cm]{img/simpsons-task2-alpha_weighted.png}
     }
+\vspace{-4mm}
     \caption{Test accuracy as a function of 
-             the Log Spectral Norm and 
-             the (HT-SR) Weighted Alpha ($\hat{\alpha}$) metrics,
-             as model hyperparameters and depth are varied. 
-             Models are from the NeurIPS 2020 ``Predicting Generalization'' contest.
+             Log Spectral Norm and 
+             (HT-SR) Weighted Alpha ($\hat{\alpha}$) metrics,
+             as hyperparameters and depth are varied, for 
+             models from the NeurIPS 2020 ``Predicting Generalization'' contest.
              A Simpson's paradox is clearly visible.
             }
     \label{fig:simpsons}
 \end{figure} 
 
-Subsequent to the development of HT-SR theory, and our initial results on analyzing pretrained models at scale, there was at NeurIPS 2020 a ``Predicting Generalization'' workshop and contest \citep{JNBx19_fantastic_TR, JFYx20_contest_v10}.
-This contest made publicly-available pretrained models.
-This corpus of models was much more narrow (in terms of domain) but more extensive (in terms of depth and hyperparameter variation) than the previous SOTA corpus we considered~\citep{osmr}.
+Subsequent to the development of HT-SR theory, and our initial results on analyzing pretrained models at scale, there was a NeurIPS 2020 workshop/contest on ``Predicting Generalization'' 
+\cite{JNBx19_fantastic_TR, JFYx20_contest_v10} that made pretrained models publicly-available. 
+This corpus of models was much more narrow (in terms of domain) but more extensive (in terms of depth and hyperparameter variation) than the previous SOTA corpus we considered~\cite{osmr}.
 
-In particular, we apply HT-SR theory to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth ($L$) and the solver hyperparameters (batch size, dropout, weight decay), and we compare quality metrics that describe the norm-based scale and the HT/PL shape of the model layer weight matrices.  
+We apply HT-SR theory to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth ($L$) and the solver hyperparameters (batch size, dropout, weight decay), and we compare quality metrics that describe the norm-based scale and the HT/PL shape of the model layer weight matrices.  
 See Figure~\ref{fig:simpsons} for a summary.
-For norm-based metrics, we identify what amounts to a Simpson’s paradox \citep{BHO75}, in which scale and shape metrics show opposite behavior, depending on whether the data are partitioned by depth or solver hyperparameters values.
+For norm-based metrics, we identify what amounts to a Simpson’s paradox \cite{BHO75}, in which scale and shape metrics show opposite behavior, depending on whether the data are partitioned by depth or solver hyperparameters values.
 Since $\hat{\alpha}$ combines both scale and shape information, it resolves the paradox.
 
 %\charles{We apply our theory of Heavy Tailed Self-Regularization (HTSR) to predict the generalization accuracies of the pretrained models provided in this contest, as a function of both model depth (L) and the solver hyperparameters (batch size, dropout, weight decay), and compare quality metrics that describe both the heavy-tailed shape and norm-based scale of the model layer weight matrices.  In doing so, we identify what amounts to a Simpson’s paradox, in which shape and scale metrics show opposite behavior, and a combine metric resolves the paradox}
 
-\begin{figure}[t!] 
-    \centering
-    \subfigure[Sharpness]{
-       \includegraphics[width=3.5cm]{img/Sharpness_task2.png}
-    }
-    \subfigure[SVDSmoothing]{
-       \includegraphics[width=3.5cm]{img/SVDSmoothing_task2.png}
-    }
-    \caption{Applying the Sharpness (Shape) and SVDSMoothing (Scale) transforms to pretrained DNNs, we can correct for overparemeterization and predict test accuracies remarkably well by evaluating the training accuracy on the transformed models}
-    \label{fig:smoothing}
-\end{figure} 
+%\begin{figure}[t!] 
+%    \centering
+%    \subfigure[Sharpness]{
+%       \includegraphics[width=3.5cm]{img/Sharpness_task2.png}
+%    }
+%    \subfigure[SVDSmoothing]{
+%       \includegraphics[width=3.5cm]{img/SVDSmoothing_task2.png}
+%    }
+%    \caption{Applying the Sharpness (Shape) and SVDSMoothing (Scale) transforms to pretrained DNNs, we can correct for overparemeterization and predict test accuracies remarkably well by evaluating the training accuracy on the transformed models}
+%    \label{fig:smoothing}
+%\end{figure} 
 
-\section*{Conclusion}
 
-The HT-SR theory underlying our analysis is quite different than theoretical approaches popular in machine learning, and it is quite different than typical statistical mechanics approaches to DNNs \citep{BKPx20}.
+\vspace{-5mm}
+\paragraph{Conclusion.}
+%\subsection*{Conclusion}
+
+The HT-SR theory underlying our analysis is quite different than theoretical approaches popular in ML, and it is quite different than typical statistical mechanics approaches to DNNs \cite{BKPx20}.
 %
 %Recently, however, work motivated by HT-SR theory has 
-%demonstrated that multiplicative noise in stochastic optimization leads to heavy tails~\citep{HodMah20A_TR,GSZ20_TR}; 
-%provided a random matrix analysis of random {F}ourier features, going beyond the {G}aussian kernel, to provide a precise phase transition and illustrate the corresponding double descent~\citep{ZCM20_TR}; 
-%provided exact expressions for double descent and implicit regularization via a notion of surrogate random design \citep{DLM19_Exact_TR}; 
-%demonstrated that good classifiers are abundant in the interpolating regime \citep{TKM20_TR};
-%shown how injecting noise into hidden states of recurrent NNs leads to implicit regularization~\citep{LEHM21_TR,Mah12}; and 
-%shown that analogous phase transitions hold for the {C}olumn {S}ubset {S}election and the {N}ystrom method~\citep{DKM20_TR}. 
-%We expect that the empirical results identified by tools from HT-SR theory will provide guidance and constraints for future development of overparameterized machine learning models.
+%demonstrated that multiplicative noise in stochastic optimization leads to heavy tails~\cite{HodMah20A_TR,GSZ20_TR}; 
+%provided a random matrix analysis of random {F}ourier features, going beyond the {G}aussian kernel, to provide a precise phase transition and illustrate the corresponding double descent~\cite{ZCM20_TR}; 
+%provided exact expressions for double descent and implicit regularization via a notion of surrogate random design \cite{DLM19_Exact_TR}; 
+%demonstrated that good classifiers are abundant in the interpolating regime \cite{TKM20_TR};
+%shown how injecting noise into hidden states of recurrent NNs leads to implicit regularization~\cite{LEHM21_TR,Mah12}; and 
+%shown that analogous phase transitions hold for the {C}olumn {S}ubset {S}election and the {N}ystrom method~\cite{DKM20_TR}. 
+%We expect that the empirical results identified by tools from HT-SR theory will provide guidance and constraints for future development of overparameterized ML models.
 %
-However, recent work, work motivated by HT-SR theory, has begun to appear
-\citep{HodMah20A_TR,GSZ20_TR, ZCM20_TR, DLM19_Exact_TR, TKM20_TR, LEHM21_TR,Mah12, DKM20_TR}. 
-We expect that the empirical results and theoretical insights HT-SR theory provides will provide guidance and constraints for future development of overparameterized machine learning models.
+However, recent ML work, motivated by HT-SR theory, has begun to appear
+\cite{HodMah20A_TR,GSZ20_TR, ZCM20_TR, DLM19_Exact_TR, TKM20_TR, LEHM21_TR,Mah12, DKM20_TR}. 
+We expect that the empirical results and theoretical insights HT-SR theory provides will provide guidance and constraints for future development of overparameterized ML~models.
 
 
 
